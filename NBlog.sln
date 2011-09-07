@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog", "NBlog\NBlog.csproj", "{329CA254-3C99-4F77-BB7A-1D715F5339C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog.Specs", "NBlog.Specs\NBlog.Specs.csproj", "{FC444260-99BE-4EE7-8B75-DE291AC4BBD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{329CA254-3C99-4F77-BB7A-1D715F5339C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329CA254-3C99-4F77-BB7A-1D715F5339C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329CA254-3C99-4F77-BB7A-1D715F5339C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329CA254-3C99-4F77-BB7A-1D715F5339C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC444260-99BE-4EE7-8B75-DE291AC4BBD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC444260-99BE-4EE7-8B75-DE291AC4BBD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC444260-99BE-4EE7-8B75-DE291AC4BBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC444260-99BE-4EE7-8B75-DE291AC4BBD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
