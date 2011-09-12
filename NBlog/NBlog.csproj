@@ -104,6 +104,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\nblog.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>nblog.css</LastGenOutput>
+    </None>
     <None Include="Content\site.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>site.css</LastGenOutput>
@@ -136,6 +140,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>layout.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\nblog.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>nblog.scss</DependentUpon>
     </Content>
     <Content Include="Content\site.css">
       <AutoGen>True</AutoGen>
