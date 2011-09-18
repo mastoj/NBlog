@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasySec, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasySec.1.0\lib\net40\EasySec.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -73,6 +76,13 @@
     <Reference Include="Microsoft.ServiceModel.Web.jQuery">
       <HintPath>..\packages\JsonValue.0.3.0\lib\40\Microsoft.ServiceModel.Web.jQuery.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
@@ -102,6 +112,9 @@
     <Reference Include="WatiN.Core">
       <HintPath>..\packages\WatiN.2.1.0\lib\net40\WatiN.Core.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.2\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\nblog.scss">
@@ -112,11 +125,16 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>site.css</LastGenOutput>
     </None>
+    <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\CreateAdminModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Account\CreateAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\base.scss">
@@ -217,7 +235,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\NBlog.Data.Mongo\NBlog.Data.Mongo.csproj">
+      <Project>{906C54D3-3522-4634-80DF-D80EF8370017}</Project>
+      <Name>NBlog.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NBlog.Data\NBlog.Data.csproj">
+      <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
+      <Name>NBlog.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

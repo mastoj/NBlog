@@ -15,19 +15,32 @@ namespace NBlog.Specs.Steps
     public class NavigationSteps
     {
         private Dictionary<string, string> _pages;
+        private Dictionary<string, string> _links;
 
         public NavigationSteps()
         {
             _pages = new Dictionary<string, string>()
                          {
-                             {"start page", ""}
+                             {"start page", ""},
+                             {"login page", "login"}
+                         };
+            _links = new Dictionary<string, string>()
+                         {
+                             {"log off", "logOff"}
                          };
         }
 
-        [When(@"I navigatae to the (.*)")]
-        public void WhenINavigataeToTheStartPage(string page)
+        [When(@"I navigate to the (.*)")]
+        public void WhenINavigateToAPage(string page)
         {
-            WebBrowser.Current.GoTo(Configuration.Host);
+            var pageUrl = _pages[page];
+            WebBrowser.Current.GoTo(Configuration.Host + pageUrl);
+        }
+
+        [When(@"I am on the (.*)")]
+        public void WhenIAmOnAPage(string page)
+        {
+            WhenINavigateToAPage(page);
         }
 
         [Then(@"it should have a title")]
@@ -40,6 +53,18 @@ namespace NBlog.Specs.Steps
         public void ThenItShouldHaveAListOfRecentPosts()
         {
             WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
+        }
+
+        [Then(@"I should be re-directed to the (.*)")]
+        public void ThenIShouldBeRe_DirectedToTheStartPage(string page)
+        {
+            ScenarioContext.Current.Pending();
+        }
+    
+        [Then(@"there should be a (.*) link")]
+        public void ThenThereShouldBeALogOffLink(string link)
+        {
+            ScenarioContext.Current.Pending();
         }
     }
 }

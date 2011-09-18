@@ -244,7 +244,7 @@ jQuery.fn = jQuery.prototype = {
 			jQuery.merge( ret, elems );
 		}
 
-		// Add the old object onto the stack (as a reference)
+		// Insert the old object onto the stack (as a reference)
 		ret.prevObject = this;
 
 		ret.context = this.context;
@@ -270,7 +270,7 @@ jQuery.fn = jQuery.prototype = {
 		// Attach the listeners
 		jQuery.bindReady();
 
-		// Add the callback
+		// Insert the callback
 		readyList.done( fn );
 
 		return this;
@@ -906,7 +906,7 @@ jQuery.extend({
 		var deferred = jQuery._Deferred(),
 			failDeferred = jQuery._Deferred(),
 			promise;
-		// Add errorDeferred methods, then and promise
+		// Insert errorDeferred methods, then and promise
 		jQuery.extend( deferred, {
 			then: function( doneCallbacks, failCallbacks ) {
 				deferred.done( doneCallbacks ).fail( failCallbacks );
@@ -1675,7 +1675,7 @@ jQuery.extend({
 		}
 
 		if ( fn ) {
-			// Add a progress sentinel to prevent the fx queue from being
+			// Insert a progress sentinel to prevent the fx queue from being
 			// automatically dequeued
 			if ( type === "fx" ) {
 				queue.unshift("inprogress");
@@ -2206,7 +2206,7 @@ jQuery.event = {
 			};
 		}
 
-		// Add elem as a property of the handle function
+		// Insert elem as a property of the handle function
 		// This is to prevent a memory leak with non-native events in IE.
 		eventHandle.elem = elem;
 
@@ -2267,7 +2267,7 @@ jQuery.event = {
 				}
 			}
 
-			// Add the function to the element's handler list
+			// Insert the function to the element's handler list
 			handlers.push( handleObj );
 
 			// Keep track of which events have been used, for global triggering
@@ -2610,7 +2610,7 @@ jQuery.event = {
 			event.target = event.target.parentNode;
 		}
 
-		// Add relatedTarget, if necessary
+		// Insert relatedTarget, if necessary
 		if ( !event.relatedTarget && event.fromElement ) {
 			event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
 		}
@@ -2624,17 +2624,17 @@ jQuery.event = {
 			event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
 		}
 
-		// Add which for key events
+		// Insert which for key events
 		if ( event.which == null && (event.charCode != null || event.keyCode != null) ) {
 			event.which = event.charCode != null ? event.charCode : event.keyCode;
 		}
 
-		// Add metaKey to non-Mac browsers (use ctrl for PC's and Meta for Macs)
+		// Insert metaKey to non-Mac browsers (use ctrl for PC's and Meta for Macs)
 		if ( !event.metaKey && event.ctrlKey ) {
 			event.metaKey = event.ctrlKey;
 		}
 
-		// Add which for click: 1 === left; 2 === middle; 3 === right
+		// Insert which for click: 1 === left; 2 === middle; 3 === right
 		// Note: button is not normalized, so don't use it
 		if ( !event.which && event.button !== undefined ) {
 			event.which = (event.button & 1 ? 1 : ( event.button & 2 ? 3 : ( event.button & 4 ? 2 : 0 ) ));
@@ -5746,7 +5746,7 @@ jQuery.fn.css = function( name, value ) {
 };
 
 jQuery.extend({
-	// Add in style property hooks for overriding the default
+	// Insert in style property hooks for overriding the default
 	// behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
@@ -5772,7 +5772,7 @@ jQuery.extend({
 		"lineHeight": true
 	},
 
-	// Add in properties whose names you wish to fix before
+	// Insert in properties whose names you wish to fix before
 	// setting or getting the value
 	cssProps: {
 		// normalize float css property
@@ -6646,7 +6646,7 @@ jQuery.extend({
 		};
 
 		// Remove hash character (#7531: and string promotion)
-		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
+		// Insert protocol if not provided (#5866: IE7 issue with protocol-less urls)
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
 
@@ -6701,7 +6701,7 @@ jQuery.extend({
 			// Get ifModifiedKey before adding the anti-cache parameter
 			ifModifiedKey = s.url;
 
-			// Add anti-cache in url if needed
+			// Insert anti-cache in url if needed
 			if ( s.cache === false ) {
 
 				var ts = jQuery.now(),
@@ -7077,7 +7077,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 					data = data.replace( jsre, replace );
 				}
 				if ( s.data === data ) {
-					// Add callback manually
+					// Insert callback manually
 					url += (/\?/.test( url ) ? "&" : "?") + s.jsonp + "=" + jsonpCallback;
 				}
 			}
@@ -7238,7 +7238,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject ?
 	/* Microsoft failed to properly
 	 * implement the XMLHttpRequest in IE7 (can't request local files),
 	 * so we use the ActiveXObject when it is available
-	 * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
+	 * Insertitionally XMLHttpRequest can be disabled in IE7/IE8 so
 	 * we need a fallback.
 	 */
 	function() {
@@ -7404,7 +7404,7 @@ if ( jQuery.support.ajax ) {
 							xhrCallbacks = {};
 							xhrOnUnloadAbort();
 						}
-						// Add to list of active xhrs callbacks
+						// Insert to list of active xhrs callbacks
 						handle = xhrId++;
 						xhr.onreadystatechange = xhrCallbacks[ handle ] = callback;
 					}
@@ -8184,7 +8184,7 @@ jQuery.fn.extend({
 		offset.top  -= parseFloat( jQuery.css(elem, "marginTop") ) || 0;
 		offset.left -= parseFloat( jQuery.css(elem, "marginLeft") ) || 0;
 
-		// Add offsetParent borders
+		// Insert offsetParent borders
 		parentOffset.top  += parseFloat( jQuery.css(offsetParent[0], "borderTopWidth") ) || 0;
 		parentOffset.left += parseFloat( jQuery.css(offsetParent[0], "borderLeftWidth") ) || 0;
 

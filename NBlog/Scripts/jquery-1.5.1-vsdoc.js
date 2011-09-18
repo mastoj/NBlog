@@ -310,7 +310,7 @@ jQuery.fn = jQuery.prototype = {
 			jQuery.merge( ret, elems );
 		}
 
-		// Add the old object onto the stack (as a reference)
+		// Insert the old object onto the stack (as a reference)
 		ret.prevObject = this;
 
 		ret.context = this.context;
@@ -334,7 +334,7 @@ jQuery.fn = jQuery.prototype = {
 		///     &#10;This means that every time the passed-in function is executed
 		///     &#10;(which is once for every element matched) the 'this' keyword
 		///     &#10;points to the specific element.
-		///     &#10;Additionally, the function, when executed, is passed a single
+		///     &#10;Insertitionally, the function, when executed, is passed a single
 		///     &#10;argument representing the position of the element in the matched
 		///     &#10;set.
 		///     &#10;Part of Core
@@ -363,7 +363,7 @@ jQuery.fn = jQuery.prototype = {
 
 		// Otherwise, remember the function for later
 		} else if ( readyList ) {
-			// Add the function to the wait list
+			// Insert the function to the wait list
 			readyList.push( fn );
 		}
 
@@ -1692,7 +1692,7 @@ jQuery.extend({
 		}
 
 		if ( fn ) {
-			// Add a progress sentinel to prevent the fx queue from being
+			// Insert a progress sentinel to prevent the fx queue from being
 			// automatically dequeued
 			if ( type === "fx" ) {
 				queue.unshift("inprogress");
@@ -1709,7 +1709,7 @@ jQuery.fn.extend({
 	queue: function( type, data ) {
 		///	<summary>
 		///     &#10;1: queue() - Returns a reference to the first element's queue (which is an array of functions).
-		///     &#10;2: queue(callback) - Adds a new function, to be executed, onto the end of the queue of all matched elements.
+		///     &#10;2: queue(callback) - Inserts a new function, to be executed, onto the end of the queue of all matched elements.
 		///     &#10;3: queue(queue) - Replaces the queue of all matched element with this new queue (the array of functions).
 		///	</summary>
 		///	<param name="type" type="Function">The function to add to the queue.</param>
@@ -1844,7 +1844,7 @@ jQuery.fn.extend({
 
 	addClass: function( value ) {
 		///	<summary>
-		///     &#10;Adds the specified class(es) to each of the set of matched elements.
+		///     &#10;Inserts the specified class(es) to each of the set of matched elements.
 		///     &#10;Part of DOM/Attributes
 		///	</summary>
 		///	<param name="value" type="String">
@@ -1930,7 +1930,7 @@ jQuery.fn.extend({
 
 	toggleClass: function( value, stateVal ) {
 		///	<summary>
-		///     &#10;Add or remove a class from each element in the set of matched elements, depending
+		///     &#10;Insert or remove a class from each element in the set of matched elements, depending
 		///     &#10;on either the class's presence or the value of the switch argument.
 		///	</summary>
 		///	<param name="value" type="Object">
@@ -2330,7 +2330,7 @@ jQuery.event = {
 			};
 		}
 
-		// Add elem as a property of the handle function
+		// Insert elem as a property of the handle function
 		// This is to prevent a memory leak with non-native events in IE.
 		eventHandle.elem = elem;
 
@@ -2391,7 +2391,7 @@ jQuery.event = {
 				}
 			}
 
-			// Add the function to the element's handler list
+			// Insert the function to the element's handler list
 			handlers.push( handleObj );
 
 			// Keep track of which events have been used, for global triggering
@@ -2762,7 +2762,7 @@ jQuery.event = {
 			event.target = event.target.parentNode;
 		}
 
-		// Add relatedTarget, if necessary
+		// Insert relatedTarget, if necessary
 		if ( !event.relatedTarget && event.fromElement ) {
 			event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
 		}
@@ -2776,17 +2776,17 @@ jQuery.event = {
 			event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
 		}
 
-		// Add which for key events
+		// Insert which for key events
 		if ( event.which == null && (event.charCode != null || event.keyCode != null) ) {
 			event.which = event.charCode != null ? event.charCode : event.keyCode;
 		}
 
-		// Add metaKey to non-Mac browsers (use ctrl for PC's and Meta for Macs)
+		// Insert metaKey to non-Mac browsers (use ctrl for PC's and Meta for Macs)
 		if ( !event.metaKey && event.ctrlKey ) {
 			event.metaKey = event.ctrlKey;
 		}
 
-		// Add which for click: 1 === left; 2 === middle; 3 === right
+		// Insert which for click: 1 === left; 2 === middle; 3 === right
 		// Note: button is not normalized, so don't use it
 		if ( !event.which && event.button !== undefined ) {
 			event.which = (event.button & 1 ? 1 : ( event.button & 2 ? 3 : ( event.button & 4 ? 2 : 0 ) ));
@@ -3196,7 +3196,7 @@ jQuery.fn[ "bind" ] = function( type, data, fn ) {
 	///     &#10;Binds a handler to one or more events for each matched element.  Can also bind custom events.
 	///	</summary>
 	///	<param name="type" type="String">One or more event types separated by a space.  Built-in event type values are: blur, focus, load, resize, scroll, unload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error .</param>
-	///	<param name="data" optional="true" type="Object">Additional data passed to the event handler as event.data</param>
+	///	<param name="data" optional="true" type="Object">Insertitional data passed to the event handler as event.data</param>
 	///	<param name="fn" type="Function">A function to bind to the event on each of the set of matched elements.  function callback(eventObject) such that this corresponds to the dom element.</param>
 
 	// Handle object literals
@@ -3229,7 +3229,7 @@ jQuery.fn[ "one" ] = function( type, data, fn ) {
 	///     &#10;Binds a handler to one or more events to be executed exactly once for each matched element.
 	///	</summary>
 	///	<param name="type" type="String">One or more event types separated by a space.  Built-in event type values are: blur, focus, load, resize, scroll, unload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error .</param>
-	///	<param name="data" optional="true" type="Object">Additional data passed to the event handler as event.data</param>
+	///	<param name="data" optional="true" type="Object">Insertitional data passed to the event handler as event.data</param>
 	///	<param name="fn" type="Function">A function to bind to the event on each of the set of matched elements.  function callback(eventObject) such that this corresponds to the dom element.</param>
 
 	// Handle object literals
@@ -3298,7 +3298,7 @@ jQuery.fn.extend({
 		///     &#10;Triggers a type of event on every matched element.
 		///	</summary>
 		///	<param name="type" type="String">One or more event types separated by a space.  Built-in event type values are: blur, focus, load, resize, scroll, unload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error .</param>
-		///	<param name="data" optional="true" type="Array">Additional data passed to the event handler as additional arguments.</param>
+		///	<param name="data" optional="true" type="Array">Insertitional data passed to the event handler as additional arguments.</param>
 		///	<param name="fn" type="Function">This parameter is undocumented.</param>
 
 		return this.each(function() {
@@ -3311,7 +3311,7 @@ jQuery.fn.extend({
 		///     &#10;Triggers all bound event handlers on an element for a specific event type without executing the browser's default actions.
 		///	</summary>
 		///	<param name="type" type="String">One or more event types separated by a space.  Built-in event type values are: blur, focus, load, resize, scroll, unload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error .</param>
-		///	<param name="data" optional="true" type="Array">Additional data passed to the event handler as additional arguments.</param>
+		///	<param name="data" optional="true" type="Array">Insertitional data passed to the event handler as additional arguments.</param>
 		///	<param name="fn" type="Function">This parameter is undocumented.</param>
 
 		if ( this[0] ) {
@@ -5485,14 +5485,14 @@ jQuery.fn.extend({
 
 	add: function( selector, context ) {
 		///	<summary>
-		///     &#10;Adds one or more Elements to the set of matched elements.
+		///     &#10;Inserts one or more Elements to the set of matched elements.
 		///     &#10;Part of DOM/Traversing
 		///	</summary>
 		///	<param name="selector" type="String">
 		///     &#10;A string containing a selector expression to match additional elements against.
 		///	</param>
 		///	<param name="context" type="Element">
-		///     &#10;Add some elements rooted against the specified context.
+		///     &#10;Insert some elements rooted against the specified context.
 		///	</param>
 		///	<returns type="jQuery" />
 
@@ -5508,7 +5508,7 @@ jQuery.fn.extend({
 
 	andSelf: function() {
 		///	<summary>
-		///     &#10;Adds the previous selection to the current selection.
+		///     &#10;Inserts the previous selection to the current selection.
 		///	</summary>
 		///	<returns type="jQuery" />
 
@@ -6672,7 +6672,7 @@ jQuery.fn.css = function( name, value ) {
 };
 
 jQuery.extend({
-	// Add in style property hooks for overriding the default
+	// Insert in style property hooks for overriding the default
 	// behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
@@ -6698,7 +6698,7 @@ jQuery.extend({
 		"lineHeight": true
 	},
 
-	// Add in properties whose names you wish to fix before
+	// Insert in properties whose names you wish to fix before
 	// setting or getting the value
 	cssProps: {
 		// normalize float css property
@@ -7535,7 +7535,7 @@ jQuery.extend({
         };
 
         // Remove hash character (#7531: and string promotion)
-        // Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
+        // Insert protocol if not provided (#5866: IE7 issue with protocol-less urls)
         // We also use the url parameter if available
         s.url = ((url || s.url) + "").replace(rhash, "").replace(rprotocol, ajaxLocParts[1] + "//");
 
@@ -7590,7 +7590,7 @@ jQuery.extend({
             // Get ifModifiedKey before adding the anti-cache parameter
             ifModifiedKey = s.url;
 
-            // Add anti-cache in url if needed
+            // Insert anti-cache in url if needed
             if (s.cache === false) {
 
                 var ts = jQuery.now(),
@@ -7901,7 +7901,7 @@ jQuery.extend({
  * Create the request object; Microsoft failed to properly
  * implement the XMLHttpRequest in IE7 (can't request local files),
  * so we use the ActiveXObject when it is available
- * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
+ * Insertitionally XMLHttpRequest can be disabled in IE7/IE8 so
  * we need a fallback.
  */
 if ( window.ActiveXObject ) {
@@ -8855,7 +8855,7 @@ jQuery.fn.extend({
 		offset.top  -= parseFloat( jQuery.css(elem, "marginTop") ) || 0;
 		offset.left -= parseFloat( jQuery.css(elem, "marginLeft") ) || 0;
 
-		// Add offsetParent borders
+		// Insert offsetParent borders
 		parentOffset.top  += parseFloat( jQuery.css(offsetParent[0], "borderTopWidth") ) || 0;
 		parentOffset.left += parseFloat( jQuery.css(offsetParent[0], "borderLeftWidth") ) || 0;
 

@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * Note: While Microsoft is not the author of this file, Microsoft is
 * offering you a license subject to the terms of the Microsoft Software
 * License Terms for Microsoft ASP.NET Model View Controller 3.
@@ -251,7 +251,7 @@ window.Modernizr = (function(window,document,undefined){
          * @param {Element} element
          * @param {string} property The property name. This will not be prefixed.
          * @param {string} value The value of the property. This WILL be prefixed.
-         * @param {string=} extra Additional CSS to append unmodified to the end of
+         * @param {string=} extra Insertitional CSS to append unmodified to the end of
          * the CSS string.
          */
         function set_prefixed_value_css(element, property, value, extra) {
@@ -265,7 +265,7 @@ window.Modernizr = (function(window,document,undefined){
          * @param {Element} element
          * @param {string} property The property name. This WILL be prefixed.
          * @param {string} value The value of the property. This will not be prefixed.
-         * @param {string=} extra Additional CSS to append unmodified to the end of
+         * @param {string=} extra Insertitional CSS to append unmodified to the end of
          * the CSS string.
          */
         function set_prefixed_property_css(element, property, value, extra) {
@@ -315,7 +315,7 @@ window.Modernizr = (function(window,document,undefined){
      *    device, as evidenced by tablets running Windows 7 or, alas,
      *    the Palm Pre / WebOS (touch) phones.
      *    
-     * Additionally, Chrome (desktop) used to lie about its support on this,
+     * Insertitionally, Chrome (desktop) used to lie about its support on this,
      *    but that has since been rectified: http://crbug.com/36415
      *    
      * We also test for Firefox 4 Multitouch Support.
@@ -838,7 +838,7 @@ window.Modernizr = (function(window,document,undefined){
 
 
     /**
-     * Addtest allows the user to define their own feature tests
+     * Inserttest allows the user to define their own feature tests
      * the result will be added onto the Modernizr object,
      * as well as an appropriate className set on the html element
      * 
@@ -905,7 +905,7 @@ window.Modernizr = (function(window,document,undefined){
           // Shim the document and iepp fragment
           shim(doc);
           shim(docFrag);
-          // Add iepp custom print style element
+          // Insert iepp custom print style element
           head.insertBefore(styleElem, head.firstChild);
           styleElem.media = 'print';
           win.attachEvent(
@@ -961,7 +961,7 @@ window.Modernizr = (function(window,document,undefined){
     docElement.className = docElement.className.replace(/\bno-js\b/,'') 
                             + ' js '
 
-                            // Add the new classes to the <html> element.
+                            // Insert the new classes to the <html> element.
                             + classes.join( ' ' );
     
     return ret;

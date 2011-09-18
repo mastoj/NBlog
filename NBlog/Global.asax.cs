@@ -21,6 +21,10 @@ namespace NBlog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Login route",
+                            "login",
+                            new {controller = "Account", action = "LogIn"});
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
