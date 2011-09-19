@@ -52,7 +52,7 @@ namespace NBlog.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserRepository>().To<MongoUserRepository>().InRequestScope();
-            kernel.Bind<IMongoConfiguration>().To<MongoConfiguration>().InSingletonScope();
+            kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
             kernel.Bind<IHashGenerator>().To<HashGenerator>().InSingletonScope();
         }        
     }
