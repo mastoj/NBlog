@@ -10,6 +10,7 @@ Scenario: Anonymous user can access login page
 	Then I should get a successful response
 	And it should have a title
 
+@AdminUserExists
 Scenario: Anonymous user get redirected to create admin page if no user exists
 	Given it doesn't exist a user
 	When I navigate to the login page

@@ -11,7 +11,7 @@ namespace NBlog.Specs.Helpers
         {
             get
             {
-                return _current = _current ?? new ObservableBrowser();
+                _current = _current ?? new ObservableBrowser();
                 return _current;
             }
         }

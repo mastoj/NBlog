@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -41,7 +42,18 @@ namespace NBlog.Data.Mongo.Tests
 
         private static MongoUserRepository GetTestRepository()
         {
-            return new MongoUserRepository(new MongoConfiguration() {ConnectionString = "mongodb://localhost/test"});
+            var connectionString = GetConnectionString();
+            return new MongoUserRepository(new MongoConfiguration() { ConnectionString = connectionString });
+        }
+
+        private static string GetConnectionString()
+        {
+            var connectionString = "mongodb://localhost/test";
+            if (ConfigurationManager.AppSettings["Environment"] == "Test")
+            {
+                connectionString = "mongodb://tester:TestPass@staff.mongohq.com:10075/NBlogTest";
+            }
+            return connectionString;
         }
 
         private static void InsertUser(User user)
@@ -134,7 +146,6 @@ namespace NBlog.Data.Mongo.Tests
             InsertUser(user);
             InsertUser(user2);
             InsertUser(user3);
-            IList<User> users;
             int count;
 
             // act

@@ -3,7 +3,7 @@ namespace NBlog.Data.Mongo
     public class MongoConfiguration : IMongoConfiguration
     {
         private string _mongoConnection;
-        public string ConnectionString
+        public virtual string ConnectionString
         {
             get
             {
@@ -14,7 +14,7 @@ namespace NBlog.Data.Mongo
         }
 
         private string _options;
-        public string Options
+        public virtual string Options
         {
             get 
             {
