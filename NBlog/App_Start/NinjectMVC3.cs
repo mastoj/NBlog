@@ -1,4 +1,5 @@
 using EasySec.Hashing;
+using NBlog.Configuration;
 using NBlog.Data;
 using NBlog.Data.Mongo;
 

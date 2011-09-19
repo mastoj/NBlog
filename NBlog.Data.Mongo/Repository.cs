@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Norm;
+using Norm.Collections;
 using TJ.Extensions;
 
 namespace NBlog.Data.Mongo
@@ -12,6 +13,7 @@ namespace NBlog.Data.Mongo
     {
         private IMongo _provider;
         public IMongoDatabase Database { get { return _provider.Database; } }
+        public abstract string CollectionName { get; }
 
         protected Repository(IMongoConfiguration mongoConfiguration = null)
         {
@@ -31,7 +33,7 @@ namespace NBlog.Data.Mongo
 
         public IQueryable<T> All()
         {
-            return _provider.GetCollection<T>().AsQueryable();
+            return GetCollection().AsQueryable();
         }
 
         public IQueryable<T> FindAll(Expression<Func<T, bool>> predicate)
@@ -52,22 +54,27 @@ namespace NBlog.Data.Mongo
         public void Insert(T item)
         {
             item.Id = Guid.NewGuid();
-            _provider.GetCollection<T>().Insert(item);
+            GetCollection().Insert(item);
         }
 
         public void Delete(T item)
         {
-            _provider.GetCollection<T>().Delete(item);
+            GetCollection().Delete(item);
         }
 
         public void DeleteAll()
         {
-            _provider.Database.DropCollection(typeof(T).Name);
+            _provider.Database.DropCollection(CollectionName);
         }
 
         public void Update(T item)
         {
-            _provider.GetCollection<T>().Insert(item);
+            GetCollection().Insert(item);
+        }
+
+        private IMongoCollection<T> GetCollection()
+        {
+            return _provider.GetCollection<T>(CollectionName);
         }
     }
 }

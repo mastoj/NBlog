@@ -125,7 +125,7 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>site.css</LastGenOutput>
     </None>
-    <Compile Include="App_Start\NBlogMongoConfiguration.cs" />
+    <Compile Include="Configuration\NBlogMongoConfiguration.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
@@ -243,6 +243,10 @@
     <ProjectReference Include="..\NBlog.Data\NBlog.Data.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
+      <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
+      <Name>TJ.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

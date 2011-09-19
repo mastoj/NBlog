@@ -11,5 +11,10 @@ namespace NBlog.Data.Mongo
         {
             
         }
+
+        public override string CollectionName
+        {
+            get { return "Users"; }
+        }
     }
 }
