@@ -47,7 +47,7 @@ namespace NBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User() {UserName = model.UserName};
+                var user = new User() { UserName = model.UserName, Name = model.Name };
                 user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
                 _userRepository.Insert(user);
                 return RedirectToAction("Index", "Home");
