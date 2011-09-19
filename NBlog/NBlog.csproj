@@ -125,6 +125,7 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>site.css</LastGenOutput>
     </None>
+    <Compile Include="App_Start\NBlogMongoConfiguration.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
