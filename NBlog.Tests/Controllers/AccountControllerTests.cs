@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
 using EasySec.Hashing;
+using Moq;
 using NBlog.Controllers;
 using NBlog.Data;
+using NBlog.Infrastructure;
 using NBlog.Models;
 using NUnit.Framework;
 
@@ -22,7 +24,7 @@ namespace NBlog.Tests.Controllers
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            var controller = new AccountController(userRepository, new HashGenerator());
+            var controller = CreateAccountController(userRepository: userRepository);
 
             // act
             var result = controller.CreateAdmin(createAdminModel) as RedirectToRouteResult;
@@ -32,6 +34,13 @@ namespace NBlog.Tests.Controllers
             Assert.IsNotNull(result, "View can't be null");
             Assert.IsNotNull(user, "User was not created");
             Assert.AreNotEqual(createAdminModel.Password, user.PasswordHash);
+        }
+
+        private AccountController CreateAccountController(InMemoryUserRepository userRepository = null, IHashGenerator hashGenerator = null, IAuthenticationManager authenticationManager = null)
+        {
+            userRepository = userRepository ?? new InMemoryUserRepository();
+            hashGenerator = hashGenerator ?? new HashGenerator();
+            return new AccountController(userRepository, hashGenerator, authenticationManager);
         }
 
         [Test]
@@ -46,8 +55,7 @@ namespace NBlog.Tests.Controllers
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            userRepository.DeleteAll();
-            var controller = new AccountController(userRepository, new HashGenerator());
+            var controller = CreateAccountController();
             controller.ModelState.AddModelError("Password", "Password mismatch");
 
             // act
@@ -64,8 +72,7 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
-            userRepository.DeleteAll();
-            var controller = new AccountController(userRepository, new HashGenerator());
+            var controller = CreateAccountController();
 
             // act
             var result = controller.LogIn() as RedirectToRouteResult;
@@ -75,5 +82,75 @@ namespace NBlog.Tests.Controllers
             Assert.AreEqual("CreateAdmin", result.RouteValues["action"].ToString(), "Expected redirect to create admin view");
         }
 
+        [Test]
+        public void LogIn_WithValidCredentialsResultsInLoggedInUserAndRedirect()
+        {
+            // arrange
+            var hashGenerator = new HashGenerator();
+            var user = new User()
+            {
+                UserName = "admin",
+                PasswordHash = hashGenerator.GenerateHash("Password!"),
+                Name = "Tomas"
+            };
+            var userRepository = new InMemoryUserRepository();
+            userRepository.Insert(user);
+            var userViewModel = new LogInViewModel { UserName = "admin", Password = "Password!" };
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+
+            // act 
+            var result = controller.LogIn(userViewModel) as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Admin", result.RouteValues["area"]);
+            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.AtMostOnce());
+        }
+
+        [Test]
+        public void LogIn_WithInvalidUserNameResultsInNotLoggedInUserAndSameView()
+        {
+            // arrange
+            var userRepository = new InMemoryUserRepository();
+            var userViewModel = new LogInViewModel { UserName = "admin", Password = "Password!" };
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+
+            // act 
+            var result = controller.LogIn(userViewModel) as ViewResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.Never());
+        }
+
+        [Test]
+        public void LogIn_WithInvalidPasswordResultsInNotLoggedInUserAndSameView()
+        {
+            // arrange
+            var hashGenerator = new HashGenerator();
+            var user = new User()
+            {
+                UserName = "admin",
+                PasswordHash = hashGenerator.GenerateHash("Password!"),
+                Name = "Tomas"
+            };
+            var userRepository = new InMemoryUserRepository();
+            userRepository.Insert(user);
+            var userViewModel = new LogInViewModel { UserName = "admin", Password = "WrongPassword!" };
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+
+            // act 
+            var result = controller.LogIn(userViewModel) as ViewResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.Never());
+        }
     }
 }

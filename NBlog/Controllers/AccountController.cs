@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Data;
+using NBlog.Infrastructure;
 using NBlog.Models;
+using TJ.Extensions;
 
 namespace NBlog.Controllers
 {
@@ -13,11 +16,13 @@ namespace NBlog.Controllers
     {
         private IUserRepository _userRepository;
         private IHashGenerator _hashGenerator;
+        private IAuthenticationManager _authenticationManager;
 
-        public AccountController(IUserRepository userRepository, IHashGenerator hashGenerator)
+        public AccountController(IUserRepository userRepository, IHashGenerator hashGenerator, IAuthenticationManager authenticationManager)
         {
             _userRepository = userRepository;
             _hashGenerator = hashGenerator;
+            _authenticationManager = authenticationManager;
         }
 
         //
@@ -27,9 +32,46 @@ namespace NBlog.Controllers
         {
             if (_userRepository.All().Count() == 0)
             {
+                SignOutUserIfSignedIn();
                 return RedirectToAction("CreateAdmin");
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogIn(LogInViewModel model)
+        {
+            if (ModelState.IsValid && ValidateCredentials(model))
+            {
+                _authenticationManager.SignInUser(model.UserName);
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+            return View(model);
+        }
+
+        private bool ValidateCredentials(LogInViewModel model)
+        {
+            var user = _userRepository.Single(y => y.UserName == model.UserName);
+            if(user.IsNull())
+            {
+                ModelState.AddModelError("UserName", "User does not exist");
+                return false;
+            }
+            var isValid = _hashGenerator.CompareHash(user.PasswordHash, model.Password);
+            if (isValid.IsFalse())
+            {
+                ModelState.AddModelError("Password", "Password mismatch");
+                return false;
+            }
+            return true;
+        }
+
+        private void SignOutUserIfSignedIn()
+        {
+            if (User.IsNotNull() && User.Identity.IsNotNull() && User.Identity.IsAuthenticated.IsTrue())
+            {
+                _authenticationManager.SignOutUser();
+            }
         }
 
         public ActionResult LogOff()

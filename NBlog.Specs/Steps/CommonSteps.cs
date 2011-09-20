@@ -6,6 +6,7 @@ using EasySec.Hashing;
 using NBlog.Data;
 using NBlog.Data.Mongo;
 using NBlog.Specs.Config;
+using NBlog.Specs.Helpers;
 using TechTalk.SpecFlow;
 
 namespace NBlog.Specs.Steps
@@ -27,6 +28,29 @@ namespace NBlog.Specs.Steps
                                    PasswordHash = _hashGenerator.GenerateHash("password")
                                };
                 userRepository.Insert(user);
+            }
+        }
+
+        [BeforeScenario("NotLoggedIn")]
+        public void NotLoggedIn()
+        {
+            WebBrowser.Current.GoTo(Configuration.Host);
+            var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
+            if (logOffLink != null)
+            {
+                logOffLink.Click();
+            }
+        }
+
+        [BeforeScenario("LoggedIn")]
+        public void LoggedIn()
+        {
+            AdminUserExists();
+            WebBrowser.Current.GoTo(Configuration.Host + NavigationHelper.Pages["start page"]);
+            var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
+            if (logOffLink != null)
+            {
+                logOffLink.Click();
             }
         }
     }

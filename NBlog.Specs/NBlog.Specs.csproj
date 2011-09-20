@@ -73,6 +73,7 @@
       <DependentUpon>Navigation.feature</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Configuration.cs" />
+    <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\NavigationObserver.cs" />
     <Compile Include="Helpers\ObservableBrowser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,13 +6,27 @@ namespace NBlog.Configuration
 {
     public class NBlogMongoConfiguration : MongoConfiguration
     {
+        public INBlogConfiguration NBlogConfiguration { get; set; }
+
+        public NBlogMongoConfiguration(INBlogConfiguration nBlogConfiguration)
+        {
+            NBlogConfiguration = nBlogConfiguration;
+        }
+
         private string _connectionString;
         public override string ConnectionString
         {
             get
             {
-                _connectionString = _connectionString ?? ConfigurationManager.AppSettings["MONGOHQ_URL"];
-                _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;
+                if (NBlogConfiguration.IsSpecFlowTest)
+                {
+                    _connectionString = NBlogConfiguration.SpecMongoConnection;
+                }
+                else
+                {
+                    _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
+                    _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;                    
+                }
                 return _connectionString;
             }
         }

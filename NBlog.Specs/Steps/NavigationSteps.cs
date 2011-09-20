@@ -14,20 +14,11 @@ namespace NBlog.Specs.Steps
     [Binding]
     public class NavigationSteps
     {
-        private Dictionary<string, string> _pages;
-        private Dictionary<string, string> _links;
+        private Dictionary<string, string> _pages = NavigationHelper.Pages;
+        private Dictionary<string, string> _links = NavigationHelper.Links;
 
         public NavigationSteps()
         {
-            _pages = new Dictionary<string, string>()
-                         {
-                             {"start page", ""},
-                             {"login page", "login"}
-                         };
-            _links = new Dictionary<string, string>()
-                         {
-                             {"log off", "logOff"}
-                         };
         }
 
         [When(@"I navigate to the (.*)")]
@@ -55,16 +46,25 @@ namespace NBlog.Specs.Steps
             WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
         }
 
-        [Then(@"I should be re-directed to the (.*)")]
-        public void ThenIShouldBeRe_DirectedToTheStartPage(string page)
+        [Then(@"I should be redirected to the (.*)")]
+        public void ThenIShouldBeRe_DirectedToThePage(string page)
         {
-            ScenarioContext.Current.Pending();
+            WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
+            var isOnPage = WebBrowser.Current.Uri.LocalPath.Contains(_pages[page]);
+            if (!isOnPage)
+            {
+                Assert.Fail("Was not redirected to the page {0}", page);
+            }
         }
     
         [Then(@"there should be a (.*) link")]
-        public void ThenThereShouldBeALogOffLink(string link)
+        public void ThenThereShouldBeALogOffLink(string linkId)
         {
-            ScenarioContext.Current.Pending();
+            var link = WebBrowser.Current.Link(Find.ById(_links[linkId]));
+            if (link.Exists.IsFalse())
+            {
+                Assert.Fail("Can't find link {0}", linkId);
+            }
         }
     }
 }

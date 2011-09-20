@@ -67,16 +67,18 @@ namespace NBlog.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Anonymous user can access start page")]
+        [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
         public virtual void AnonymousUserCanAccessStartPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user can access start page", ((string[])(null)));
-#line 3
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user can access start page", new string[] {
+                        "NotLoggedIn"});
 #line 4
- testRunner.When("I navigate to the start page");
+this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Then("I should get a successful response");
+ testRunner.When("I navigate to the start page");
 #line 6
+ testRunner.Then("I should get a successful response");
+#line 7
  testRunner.And("it should have a title");
 #line hidden
             this.ScenarioCleanup();
@@ -84,17 +86,36 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Anonymous user can access login page")]
+        [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
         public virtual void AnonymousUserCanAccessLoginPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user can access login page", ((string[])(null)));
-#line 8
-this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.When("I navigate to the login page");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user can access login page", new string[] {
+                        "NotLoggedIn"});
 #line 10
- testRunner.Then("I should get a successful response");
+this.ScenarioSetup(scenarioInfo);
 #line 11
+ testRunner.When("I navigate to the login page");
+#line 12
+ testRunner.Then("I should get a successful response");
+#line 13
  testRunner.And("it should have a title");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Logged in user get redirected from the log in page")]
+        [NUnit.Framework.CategoryAttribute("LoggedInAsAdmin")]
+        public virtual void LoggedInUserGetRedirectedFromTheLogInPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user get redirected from the log in page", new string[] {
+                        "LoggedInAsAdmin"});
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line 17
+ testRunner.When("I navigate to the login page");
+#line 18
+ testRunner.Then("I should be re-directed to the start page");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -102,17 +123,19 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Anonymous user get redirected to create admin page if no user exists")]
         [NUnit.Framework.CategoryAttribute("AdminUserExists")]
+        [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
         public virtual void AnonymousUserGetRedirectedToCreateAdminPageIfNoUserExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user get redirected to create admin page if no user exists", new string[] {
-                        "AdminUserExists"});
-#line 14
+                        "AdminUserExists",
+                        "NotLoggedIn"});
+#line 22
 this.ScenarioSetup(scenarioInfo);
-#line 15
+#line 23
  testRunner.Given("it doesn\'t exist a user");
-#line 16
+#line 24
  testRunner.When("I navigate to the login page");
-#line 17
+#line 25
  testRunner.Then("I should be re-directed to the create admin page");
 #line hidden
             this.ScenarioCleanup();

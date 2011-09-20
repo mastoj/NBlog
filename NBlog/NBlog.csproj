@@ -117,6 +117,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Content\nblog.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>nblog.css</LastGenOutput>
@@ -125,17 +128,24 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>site.css</LastGenOutput>
     </None>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Configuration\INBlogConfiguration.cs" />
+    <Compile Include="Configuration\NBlogConfiguration.cs" />
     <Compile Include="Configuration\NBlogMongoConfiguration.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Infrastructure\FormsAuthenticationManager.cs" />
+    <Compile Include="Infrastructure\IAuthenticationManager.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LogInViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\CreateAdmin.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\base.scss">
@@ -257,6 +267,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

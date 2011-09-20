@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EasySec.Hashing;
+using NBlog.Data;
+using NBlog.Data.Mongo;
+using NBlog.Specs.Config;
 using NBlog.Specs.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -11,27 +15,33 @@ namespace NBlog.Specs.Steps
     [Binding]
     public class LogInLogOffSteps : TechTalk.SpecFlow.Steps
     {
-        [Given(@"I am not logged in")]
-        public void GivenIAmNotLoggedIn()
-        {
-            When("I am on the login page");
-            var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
-            if (logOffLink != null)
-            {
-                logOffLink.Click();
-            }
-        }
-    
+        private IHashGenerator _hashGenerator = new HashGenerator();
+
         [Given(@"it exist an account with the credentials")]
         public void GivenItExistAnAccountWithTheCredentials(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var userName = table.Rows[0]["UserName"];
+            var password = table.Rows[0]["Password"];
+            var name = table.Rows[0]["Name"];
+            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            {
+                var user = new User
+                {
+                    Name = name,
+                    UserName = userName,
+                    PasswordHash = _hashGenerator.GenerateHash(password)
+                };
+                userRepository.Insert(user);
+            }
         }
 
         [Given(@"it doesn't exist a user")]
         public void GivenItDoesnTExistAUser()
         {
-            ScenarioContext.Current.Pending();
+            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            {
+                userRepository.DeleteAll();
+            }
         }
     }
 }
