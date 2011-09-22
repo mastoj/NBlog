@@ -18,7 +18,7 @@ namespace NBlog.Configuration
         {
             get
             {
-                if (NBlogConfiguration.IsSpecFlowTest)
+                if (NBlogConfiguration.IsProd.IsFalse() && NBlogConfiguration.IsSpecFlowTest)
                 {
                     _connectionString = NBlogConfiguration.SpecMongoConnection;
                 }

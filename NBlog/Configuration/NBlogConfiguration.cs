@@ -14,6 +14,15 @@ namespace NBlog.Configuration
             }
         }
 
+        private bool? _isProd;
+        public bool IsProd   
+        {
+            get { 
+                _isProd = _isProd ?? Environment == "Release";
+                return _isProd.Value;
+            }
+        }
+
         private bool? _isSpecFlowTest;
         public bool IsSpecFlowTest
         {

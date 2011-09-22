@@ -11,5 +11,6 @@ namespace NBlog.Configuration
         bool IsSpecFlowTest { get; }
         string SpecMongoConnection { get; }
         string MongoHQUrl { get; }
+        bool IsProd { get; }
     }
 }
