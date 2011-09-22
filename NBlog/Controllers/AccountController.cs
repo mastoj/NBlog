@@ -73,7 +73,9 @@ namespace NBlog.Controllers
 
         public ActionResult LogOff()
         {
-            throw new NotImplementedException();
+            SignOutUserIfSignedIn();
+            TempData.AddInfoMessage("Successfully signed out");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult CreateAdmin()

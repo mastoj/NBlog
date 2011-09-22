@@ -9,6 +9,16 @@ namespace NBlog.Helpers
 {
     public static class TempAndViewDataHelpers
     {
+        public static void AddInfoMessage(this TempDataDictionary tempData, string errorMessage)
+        {
+            tempData.AddErrorMessage("info", errorMessage);
+        }
+
+        public static void AddInfoMessage(this ViewDataDictionary viewData, string errorMessage)
+        {
+            viewData.AddErrorMessage("info", errorMessage);
+        }
+
         public static void AddErrorMessage(this TempDataDictionary tempData, string errorMessage)
         {
             tempData.AddErrorMessage("error", errorMessage);
