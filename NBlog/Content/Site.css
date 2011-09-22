@@ -897,3 +897,16 @@ or wrap each row of columns in a <div class="row"> */
 .flash-container .error {
   background-color: #ff9494;
   color: #991212; }
+
+#super-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #343434;
+  color: #979797; }
+  #super-header a {
+    color: #979797; }
+  #super-header ul, #super-header li {
+    margin-bottom: 0px; }
+
+.navigation li {
+  float: left; }
