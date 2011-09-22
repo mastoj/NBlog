@@ -184,7 +184,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.And("I enter the following information", ((string)(null)), table5);
 #line 42
- testRunner.And("I click the login button");
+ testRunner.And("I click the log in button");
 #line 43
  testRunner.Then("I should see a error message");
 #line hidden

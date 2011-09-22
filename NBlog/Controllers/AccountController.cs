@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Data;
+using NBlog.Helpers;
 using NBlog.Infrastructure;
 using NBlog.Models;
 using TJ.Extensions;
@@ -52,18 +53,14 @@ namespace NBlog.Controllers
         private bool ValidateCredentials(LogInViewModel model)
         {
             var user = _userRepository.Single(y => y.UserName == model.UserName);
-            if(user.IsNull())
-            {
-                ModelState.AddModelError("UserName", "User does not exist");
-                return false;
-            }
-            var isValid = _hashGenerator.CompareHash(user.PasswordHash, model.Password);
+            var isValid = user.IsNotNull() && _hashGenerator.CompareHash(user.PasswordHash, model.Password);
             if (isValid.IsFalse())
             {
-                ModelState.AddModelError("Password", "Password mismatch");
-                return false;
+                var errorMessage = "Invalid user credentials";
+                ModelState.AddModelError("", errorMessage);
+                TempData.AddErrorMessage(errorMessage);
             }
-            return true;
+            return isValid;
         }
 
         private void SignOutUserIfSignedIn()

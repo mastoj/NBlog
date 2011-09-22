@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using NBlog.Helpers
+@using TJ.Extensions
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,9 +18,11 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/NBlog.js")" type="text/javascript"></script>
 </head>
 
 <body>
+@RenderFlash()
     <div class="header super-container">
         <header class="container header" id="header">
             <div class="sixteen columns">
@@ -38,11 +42,34 @@
             </nav>
         </header>
     </div>
-        <article class="container main">
-            @RenderBody()
-        </article>
-        <footer class="container footer" id="footer">
-            <p>Copyright @DateTime.Now.Year Tomas Jansson</p>        
-        </footer>
+    <article class="container main">
+        @RenderBody()
+    </article>
+    <footer class="container footer" id="footer">
+        <p>Copyright @DateTime.Now.Year Tomas Jansson</p>        
+    </footer>
 </body>
 </html>
+
+@helper RenderFlash()
+{
+    var flashMessagesDictionary = TempData.GetFlashMessages() ?? new Dictionary<string, List<string>>();
+    var viewDataFlashMessagesDictionary = ViewData.GetFlashMessages();
+    foreach (var viewDataFlashMessagesEntry in viewDataFlashMessagesDictionary)
+    {
+        if (flashMessagesDictionary.ContainsKey(viewDataFlashMessagesEntry.Key))
+        {
+            flashMessagesDictionary[viewDataFlashMessagesEntry.Key].AddRange(viewDataFlashMessagesEntry.Value);
+        }
+        else
+        {
+            flashMessagesDictionary.Add(viewDataFlashMessagesEntry.Key, viewDataFlashMessagesEntry.Value);
+        }
+    }
+    if (flashMessagesDictionary.Count > 0)
+    {
+        <div class="flash-container">
+            @Html.DictionaryToUlLiList(flashMessagesDictionary, "div", "container")
+        </div>
+    }
+}

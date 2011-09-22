@@ -64,7 +64,7 @@ body {
 /* #Typography
 ================================================== */
 h1, h2, h3, h4, h5, h6 {
-  color: inherit;
+  color: #181818;
   font-family: 'Lato', sans-serif;
   font-weight: normal; }
 
@@ -889,3 +889,11 @@ or wrap each row of columns in a <div class="row"> */
     color: #fefefe; }
   .header.super-container a {
     color: #fefefe; }
+
+.flash-container li {
+  padding-bottom: 12px;
+  padding-top: 12px;
+  margin-bottom: 0px; }
+.flash-container .error {
+  background-color: #ff9494;
+  color: #991212; }

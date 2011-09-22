@@ -39,6 +39,6 @@ Scenario: Log in unsuccessful
 		| InputField | Input    |
 		| UserName   | admin    |
 		| Password   | asdf1232 |
-	And I click the login button
+	And I click the log in button
 	Then I should see a error message
 	

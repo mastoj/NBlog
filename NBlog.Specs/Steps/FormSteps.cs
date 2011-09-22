@@ -48,7 +48,11 @@ namespace NBlog.Specs.Steps
         [Then(@"I should see a error message")]
         public void ThenIShouldSeeAErrorMessage()
         {
-            ScenarioContext.Current.Pending();
+            var errorContainer = WebBrowser.Current.Element(Find.BySelector("div.error"));
+            if (errorContainer.Exists.IsFalse())
+            {
+                Assert.Fail("Can't find an container with .error class");
+            }
         }
 
         [Then(@"there should be a create button")]

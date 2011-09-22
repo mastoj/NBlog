@@ -5,3 +5,11 @@
     color: #fefefe; }
   .header.super-container a {
     color: #fefefe; }
+
+.flash-container li {
+  padding-bottom: 12px;
+  padding-top: 12px;
+  margin-bottom: 0px; }
+.flash-container .error {
+  background-color: #ff9494;
+  color: #991212; }

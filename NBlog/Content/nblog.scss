@@ -1,12 +1,21 @@
 ﻿.header.super-container {
 	background-color: #545454;
 	color: #fefefe;
-	h1
-	{
+	h1 {
 		color: #fefefe;
 	}
-	a
-	{
+	a {
 		color: #fefefe;
+	}
+}
+.flash-container {
+	li {
+		padding-bottom: 12px;
+		padding-top: 12px;
+		margin-bottom: 0px;
+	}
+	.error {
+		background-color: #ff9494;
+		color: #991212;
 	}
 }

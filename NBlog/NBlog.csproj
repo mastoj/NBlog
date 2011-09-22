@@ -135,6 +135,8 @@
     <Compile Include="Configuration\NBlogMongoConfiguration.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Helpers\TempAndViewDataHelpers.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationManager.cs" />
     <Compile Include="Infrastructure\IAuthenticationManager.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
@@ -144,6 +146,7 @@
     </Compile>
     <Compile Include="Models\LogInViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\NBlog.js" />
     <Content Include="Views\Account\CreateAdmin.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
   </ItemGroup>
