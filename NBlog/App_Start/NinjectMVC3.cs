@@ -54,9 +54,9 @@ namespace NBlog.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUserRepository>().To<MongoUserRepository>().InRequestScope();
             kernel.Bind<INBlogConfiguration>().To<NBlogConfiguration>().InSingletonScope();
             kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
+            kernel.Bind<IUserRepository>().To<MongoUserRepository>().InRequestScope();
             kernel.Bind<MembershipProvider>().To<NBlogMembershipProvider>();
             kernel.Bind<IAuthenticationManager>().To<FormsAuthenticationManager>().InSingletonScope();
             kernel.Bind<IHashGenerator>().To<HashGenerator>().InSingletonScope();
