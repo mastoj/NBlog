@@ -27,14 +27,14 @@
     {
         <div id="super-header" class="super-container">
             <div class="container">
-                <ul class="navigation twelve columns alpha">
+                <ul class="navigation sixteen columns alpha">
                     <li>
-                        @Html.ActionLink("Admin", "Index", "Home", null, new { id = "admin-home", area="admin" })
+                    @Html.ActionLink("Admin", "Index", "Home", new { area = "Admin"}, null)
+                    </li>
+                    <li class="right">
+                        | @User.Identity.Name | @Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { id = "logOff" })
                     </li>
                 </ul>
-                <div class="columns four omega">
-                    @User.Identity.Name | @Html.ActionLink("Log off", "LogOff", "Account", null, new { id = "logOff" })
-                </div>                  
             </div>
         </div>
     }

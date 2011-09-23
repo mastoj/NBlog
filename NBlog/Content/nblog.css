@@ -26,3 +26,5 @@
 
 .navigation li {
   float: left; }
+.navigation .right {
+  float: right; }

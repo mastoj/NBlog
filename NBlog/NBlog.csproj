@@ -139,7 +139,6 @@
     <Compile Include="Helpers\TempAndViewDataHelpers.cs" />
     <Compile Include="Infrastructure\FormsAuthenticationManager.cs" />
     <Compile Include="Infrastructure\IAuthenticationManager.cs" />
-    <Compile Include="Infrastructure\NBlogMembershipProvider.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
