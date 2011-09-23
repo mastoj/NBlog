@@ -124,10 +124,6 @@
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>nblog.css</LastGenOutput>
     </None>
-    <None Include="Content\site.scss">
-      <Generator>ScssGenerator</Generator>
-      <LastGenOutput>site.css</LastGenOutput>
-    </None>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Configuration\INBlogConfiguration.cs" />
@@ -146,6 +142,11 @@
     </Compile>
     <Compile Include="Models\LogInViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Content>
     <Content Include="Scripts\NBlog.js" />
     <Content Include="Views\Account\CreateAdmin.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
@@ -158,6 +159,10 @@
     <None Include="Content\layout.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>layout.css</LastGenOutput>
+    </None>
+    <None Include="Content\site.scss">
+      <Generator>ScssGenerator</Generator>
+      <LastGenOutput>site.css</LastGenOutput>
     </None>
     <None Include="Content\skeleton.scss">
       <Generator>ScssGenerator</Generator>
@@ -177,11 +182,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>nblog.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\site.css">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="Content\skeleton.css">
       <AutoGen>True</AutoGen>
