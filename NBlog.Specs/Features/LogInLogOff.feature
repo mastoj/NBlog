@@ -3,14 +3,15 @@
 @NotLoggedIn
 Scenario: Setup initial account
 	Given it doesn't exist a user
-	Then there should be a create button
-	And no login button
 	When I navigate to the login page
-	And I enter the following information
-		| InputField | Input    |
-		| UserName   | admin    |
-		| Password   | asdf1234 |
-		| Name		 | tomas	|
+	Then there should be a create button
+	And no log in button
+	When I enter the following information
+		| InputField           | Input    |
+		| UserName             | admin    |
+		| Password             | asdf1234 |
+		| PasswordConfirmation | asdf1234 |
+		| Name                 | tomas    |
 	And I click the create button
 	Then I should be redirected to the admin page
 	And there should be a log off link

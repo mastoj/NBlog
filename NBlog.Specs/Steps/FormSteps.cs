@@ -16,7 +16,8 @@ namespace NBlog.Specs.Steps
     {
         private Dictionary<string, string> buttonMap = new Dictionary<string, string>
                                                            {
-                                                               {"log in", "LogIn"}
+                                                               {"log in", "LogIn"},
+                                                               {"create", "Create"}
                                                            };
         [When(@"I enter the following information")]
         public void WhenEnterTheFollowingInformation(Table table)
@@ -55,16 +56,24 @@ namespace NBlog.Specs.Steps
             }
         }
 
-        [Then(@"there should be a create button")]
-        public void ThenThereShouldBeACreateButton()
+        [Then(@"there should be a (.*) button")]
+        public void ThenThereShouldBeAButton(string buttonIdentifier)
         {
-            ScenarioContext.Current.Pending();
+            var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonIdentifier]));
+            if (button.Exists.IsFalse())
+            {
+                Assert.Fail("Can't find the {0} button", buttonIdentifier);
+            }
         }
 
-        [Then(@"no login button")]
-        public void ThenNoLoginButton()
+        [Then(@"no (.*) button")]
+        public void ThenNoLoginButton(string buttonIdentifier)
         {
-            ScenarioContext.Current.Pending();
+            var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonIdentifier]));
+            if (button.Exists.IsTrue())
+            {
+                Assert.Fail("Find button {0} but it should not be there", buttonIdentifier);
+            }
         }
     }
 }

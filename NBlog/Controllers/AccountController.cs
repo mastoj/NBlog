@@ -91,7 +91,8 @@ namespace NBlog.Controllers
                 var user = new User() { UserName = model.UserName, Name = model.Name };
                 user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
                 _userRepository.Insert(user);
-                return RedirectToAction("Index", "Home");
+                _authenticationManager.SignInUser(user.UserName);
+                return RedirectToAction("Index", "Home", new {area = "Admin"});
             }
             return View(model);
         }

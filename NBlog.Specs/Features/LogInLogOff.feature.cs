@@ -75,11 +75,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 5
  testRunner.Given("it doesn\'t exist a user");
 #line 6
- testRunner.Then("there should be a create button");
-#line 7
- testRunner.And("no login button");
-#line 8
  testRunner.When("I navigate to the login page");
+#line 7
+ testRunner.Then("there should be a create button");
+#line 8
+ testRunner.And("no log in button");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -91,15 +91,18 @@ this.ScenarioSetup(scenarioInfo);
                         "Password",
                         "asdf1234"});
             table1.AddRow(new string[] {
+                        "PasswordConfirmation",
+                        "asdf1234"});
+            table1.AddRow(new string[] {
                         "Name",
                         "tomas"});
 #line 9
- testRunner.And("I enter the following information", ((string)(null)), table1);
-#line 14
- testRunner.And("I click the create button");
+ testRunner.When("I enter the following information", ((string)(null)), table1);
 #line 15
- testRunner.Then("I should be redirected to the admin page");
+ testRunner.And("I click the create button");
 #line 16
+ testRunner.Then("I should be redirected to the admin page");
+#line 17
  testRunner.And("there should be a log off link");
 #line hidden
             this.ScenarioCleanup();
@@ -112,7 +115,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in successful", new string[] {
                         "NotLoggedIn"});
-#line 19
+#line 20
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -123,9 +126,9 @@ this.ScenarioSetup(scenarioInfo);
                         "admin",
                         "asdf1234",
                         "Tomas"});
-#line 20
+#line 21
  testRunner.Given("it exist an account with the credentials", ((string)(null)), table2);
-#line 23
+#line 24
  testRunner.When("I navigate to the login page");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -137,13 +140,13 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Password",
                         "asdf1234"});
-#line 24
+#line 25
  testRunner.And("I enter the following information", ((string)(null)), table3);
-#line 28
- testRunner.And("I click the log in button");
 #line 29
- testRunner.Then("I should be redirected to the admin page");
+ testRunner.And("I click the log in button");
 #line 30
+ testRunner.Then("I should be redirected to the admin page");
+#line 31
  testRunner.And("there should be a log off link");
 #line hidden
             this.ScenarioCleanup();
@@ -156,7 +159,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in unsuccessful", new string[] {
                         "NotLoggedIn"});
-#line 33
+#line 34
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -167,9 +170,9 @@ this.ScenarioSetup(scenarioInfo);
                         "admin",
                         "asdf1234",
                         "Tomas"});
-#line 34
+#line 35
  testRunner.Given("it exist an account with the credentials", ((string)(null)), table4);
-#line 37
+#line 38
  testRunner.When("I navigate to the login page");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -181,11 +184,11 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "Password",
                         "asdf1232"});
-#line 38
+#line 39
  testRunner.And("I enter the following information", ((string)(null)), table5);
-#line 42
- testRunner.And("I click the log in button");
 #line 43
+ testRunner.And("I click the log in button");
+#line 44
  testRunner.Then("I should see a error message");
 #line hidden
             this.ScenarioCleanup();

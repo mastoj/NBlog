@@ -13,7 +13,7 @@ namespace NBlog.Tests.Controllers
     public class AccountControllerTests
     {
         [Test]
-        public void CreateAdmin_CreatesAdminForValidInput()
+        public void CreateAdmin_CreatesSignInAndRedirectAdminForValidInput()
         {
             // arrange
             var createAdminModel = new CreateAdminModel()
@@ -24,7 +24,9 @@ namespace NBlog.Tests.Controllers
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            var controller = CreateAccountController(userRepository: userRepository);
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
 
             // act
             var result = controller.CreateAdmin(createAdminModel) as RedirectToRouteResult;
@@ -34,6 +36,7 @@ namespace NBlog.Tests.Controllers
             Assert.IsNotNull(result, "View can't be null");
             Assert.IsNotNull(user, "User was not created");
             Assert.AreNotEqual(createAdminModel.Password, user.PasswordHash);
+            mock.Verify(y => y.SignInUser(createAdminModel.UserName));
         }
 
         private AccountController CreateAccountController(InMemoryUserRepository userRepository = null, IHashGenerator hashGenerator = null, IAuthenticationManager authenticationManager = null)
