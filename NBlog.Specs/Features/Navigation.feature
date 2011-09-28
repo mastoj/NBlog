@@ -15,11 +15,11 @@ Scenario: Anonymous user can access login page
 @LoggedInAsAdmin
 Scenario: Logged in user get redirected from the log in page
 	When I navigate to the login page
-	Then I should be re-directed to the start page
+	Then I should be redirected to the start page
 
 @AdminUserExists
 @NotLoggedIn
 Scenario: Anonymous user get redirected to create admin page if no user exists
 	Given it doesn't exist a user
 	When I navigate to the login page
-	Then I should be re-directed to the create admin page
+	Then I should be redirected to the create admin page

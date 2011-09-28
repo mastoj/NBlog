@@ -115,7 +115,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
  testRunner.When("I navigate to the login page");
 #line 18
- testRunner.Then("I should be re-directed to the start page");
+ testRunner.Then("I should be redirected to the start page");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -136,7 +136,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
  testRunner.When("I navigate to the login page");
 #line 25
- testRunner.Then("I should be re-directed to the create admin page");
+ testRunner.Then("I should be redirected to the create admin page");
 #line hidden
             this.ScenarioCleanup();
         }
