@@ -19,7 +19,8 @@
   position: relative;
   width: 960px;
   margin: 0 auto;
-  padding: 0; }
+  padding-left: 0.5em;
+  padding-right: 0.5em; }
 
 .column, .columns {
   float: left;

@@ -1,11 +1,54 @@
-﻿.header.super-container {
-	background-color: #545454;
-	color: #fefefe;
+﻿$soft-white:#fefefe;
+$light-grey:#979797;
+$medium-grey:#545454;
+$strong-grey:#343434;
+$strong-red:#991212;
+$soft-red:#ff9494;
+$strong-green:#129912;
+$soft-green:#94ff94;
+
+.header.super-container {
+	background-color: $medium-grey;
+	color: $soft-white;
 	h1 {
-		color: #fefefe;
+		color: $soft-white;
 	}
-	a {
-		color: #fefefe;
+	.menu {
+		ul {
+			margin: 0;
+			a, a:hover {
+				text-decoration: none;
+				color: $soft-white;
+				background-color: $medium-grey;
+			}
+			a:hover {
+				text-decoration: underline;
+				background-color: $strong-grey;
+			}
+			li {
+				padding-left: 0.5em;
+				padding-right: 0.5em;
+				padding-top: 0.5em;
+				margin: 0 0.2em 0 0;
+				-moz-border-radius: 5px 5px 0 0;
+				border-radius: 5px 5px 0 0;
+			}
+			li:hover {
+				color: $soft-white;
+				background-color: $strong-grey;
+			}
+			li.active {
+				background-color: $soft-white;
+				color: $strong-grey;
+				a {
+					background-color: $soft-white;
+					color: $strong-grey;
+				}
+				a:hover {
+					text-decoration: none;
+				}
+			}
+		}
 	}
 }
 .flash-container {
@@ -19,24 +62,24 @@
 		border-width: 2px;
 	}
 	.super-container.error {
-		border-color: #991212;
+		border-color: $strong-red;
 	}
 	.super-container.info {
-		border-color: #129912;
+		border-color: $strong-green;
 	}
 	.error {
-		background-color: #ff9494;
-		color: #991212;
+		background-color: $strong-red;
+		color: $strong-red;
 	}
 	.info {
-		background-color: #94ff94;
-		color: #129912;
+		background-color: $soft-green;
+		color: $strong-green;
 	}
 }
 #super-header {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	background-color: #343434;
+	background-color: $strong-grey;
 	color: #979797;
 	a {
 		color: #979797;
@@ -45,6 +88,7 @@
 		margin-bottom: 0px;
 	}
 }
+
 .navigation {
 	li {
 		float: left;
@@ -60,10 +104,10 @@ form {
 	border-radius: 5px;
 	padding: 1em;
 	.field-validation-error {
-		color: #991212;
+		color: $strong-red;
 	}
 	.input-validation-error {
-		background-color: #ff9494;
+		background-color: $soft-red;
 	}
 	.editor-label, .editor-actions {
 		margin-top: 1em;
