@@ -36,7 +36,7 @@ namespace NBlog.Tests.Controllers
             Assert.IsNotNull(result, "View can't be null");
             Assert.IsNotNull(user, "User was not created");
             Assert.AreNotEqual(createAdminModel.Password, user.PasswordHash);
-            mock.Verify(y => y.SignInUser(createAdminModel.UserName));
+            mock.Verify(y => y.LoginUser(createAdminModel.UserName));
         }
 
         private AccountController CreateAccountController(InMemoryUserRepository userRepository = null, IHashGenerator hashGenerator = null, IAuthenticationManager authenticationManager = null)
@@ -71,14 +71,14 @@ namespace NBlog.Tests.Controllers
         }
 
         [Test]
-        public void LogIn_ResultsInRedirectToCreateIfNoUserExists()
+        public void Login_ResultsInRedirectToCreateIfNoUserExists()
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
             var controller = CreateAccountController();
 
             // act
-            var result = controller.LogIn() as RedirectToRouteResult;
+            var result = controller.Login() as RedirectToRouteResult;
 
             // assert
             Assert.IsNotNull(result, "Expected redirect to route result when no user exist");
@@ -86,7 +86,7 @@ namespace NBlog.Tests.Controllers
         }
 
         [Test]
-        public void LogIn_WithValidCredentialsResultsInLoggedInUserAndRedirect()
+        public void Login_WithValidCredentialsResultsInLoggedInUserAndRedirect()
         {
             // arrange
             var hashGenerator = new HashGenerator();
@@ -104,16 +104,16 @@ namespace NBlog.Tests.Controllers
             var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
 
             // act 
-            var result = controller.LogIn(userViewModel) as RedirectToRouteResult;
+            var result = controller.Login(userViewModel) as RedirectToRouteResult;
 
             // assert
             Assert.IsNotNull(result);
             Assert.AreEqual("Admin", result.RouteValues["area"]);
-            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.AtMostOnce());
+            mock.Verify(y => y.LoginUser(userViewModel.UserName), Times.AtMostOnce());
         }
 
         [Test]
-        public void LogIn_WithInvalidUserNameResultsInNotLoggedInUserAndSameView()
+        public void Login_WithInvalidUserNameResultsInNotLoggedInUserAndSameView()
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
@@ -123,15 +123,15 @@ namespace NBlog.Tests.Controllers
             var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
 
             // act 
-            var result = controller.LogIn(userViewModel) as ViewResult;
+            var result = controller.Login(userViewModel) as ViewResult;
 
             // assert
             Assert.IsNotNull(result);
-            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.Never());
+            mock.Verify(y => y.LoginUser(userViewModel.UserName), Times.Never());
         }
 
         [Test]
-        public void LogIn_WithInvalidPasswordResultsInNotLoggedInUserAndSameView()
+        public void Login_WithInvalidPasswordResultsInNotLoggedInUserAndSameView()
         {
             // arrange
             var hashGenerator = new HashGenerator();
@@ -149,11 +149,27 @@ namespace NBlog.Tests.Controllers
             var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
 
             // act 
-            var result = controller.LogIn(userViewModel) as ViewResult;
+            var result = controller.Login(userViewModel) as ViewResult;
 
             // assert
             Assert.IsNotNull(result);
-            mock.Verify(y => y.SignInUser(userViewModel.UserName), Times.Never());
+            mock.Verify(y => y.LoginUser(userViewModel.UserName), Times.Never());
+        }
+
+        [Test]
+        public void Logout_ShouldLogOutUser()
+        {
+            // arrange
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(authenticationManager: authenticationManager);
+
+            // act 
+            var result = controller.Logout() as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result);
+            mock.Verify(y => y.LogoutUser(), Times.AtLeastOnce());
         }
     }
 }

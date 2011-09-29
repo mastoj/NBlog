@@ -29,22 +29,22 @@ namespace NBlog.Controllers
         //
         // GET: /Account/
 
-        public ActionResult LogIn()
+        public ActionResult Login()
         {
             if (_userRepository.All().Count() == 0)
             {
-                SignOutUserIfSignedIn();
+                _authenticationManager.LogoutUser();
                 return RedirectToAction("CreateAdmin");
             }
             return View();
         }
 
         [HttpPost]
-        public ActionResult LogIn(LogInViewModel model)
+        public ActionResult Login(LogInViewModel model)
         {
             if (ModelState.IsValid && ValidateCredentials(model))
             {
-                _authenticationManager.SignInUser(model.UserName);
+                _authenticationManager.LoginUser(model.UserName);
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
             return View(model);
@@ -63,17 +63,9 @@ namespace NBlog.Controllers
             return isValid;
         }
 
-        private void SignOutUserIfSignedIn()
+        public ActionResult Logout()
         {
-            if (User.IsNotNull() && User.Identity.IsNotNull() && User.Identity.IsAuthenticated.IsTrue())
-            {
-                _authenticationManager.SignOutUser();
-            }
-        }
-
-        public ActionResult LogOff()
-        {
-            SignOutUserIfSignedIn();
+            _authenticationManager.LogoutUser();
             TempData.AddInfoMessage("Successfully signed out");
             return RedirectToAction("Index", "Home");
         }
@@ -91,7 +83,7 @@ namespace NBlog.Controllers
                 var user = new User() { UserName = model.UserName, Name = model.Name };
                 user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
                 _userRepository.Insert(user);
-                _authenticationManager.SignInUser(user.UserName);
+                _authenticationManager.LoginUser(user.UserName);
                 return RedirectToAction("Index", "Home", new {area = "Admin"});
             }
             return View(model);

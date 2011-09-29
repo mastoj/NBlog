@@ -6,7 +6,7 @@ namespace NBlog.Infrastructure
 {
     public interface IAuthenticationManager
     {
-        void SignInUser(string userName);
-        void SignOutUser();
+        void LoginUser(string userName);
+        void LogoutUser();
     }
 }

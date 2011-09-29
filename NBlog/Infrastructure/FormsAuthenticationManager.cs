@@ -6,12 +6,12 @@ namespace NBlog.Infrastructure
 {
     public class FormsAuthenticationManager : IAuthenticationManager
     {
-        public void SignInUser(string userName)
+        public void LoginUser(string userName)
         {
             FormsAuthentication.SetAuthCookie(userName, false);
         }
 
-        public void SignOutUser()
+        public void LogoutUser()
         {
             var user = HttpContext.Current.User;
             if (user.IsNotNull() && user.Identity.IsNotNull() && user.Identity.IsAuthenticated)
