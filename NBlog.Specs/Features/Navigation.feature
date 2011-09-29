@@ -13,13 +13,18 @@ Scenario: Anonymous user can access login page
 	And it should have a title
 
 @LoggedInAsAdmin
-Scenario: Logged in user get redirected from the log in page
+Scenario: Logged in user get redirected from the login page
 	When I navigate to the login page
 	Then I should be redirected to the start page
 
-@AdminUserExists
 @NotLoggedIn
 Scenario: Anonymous user get redirected to create admin page if no user exists
 	Given it doesn't exist a user
 	When I navigate to the login page
 	Then I should be redirected to the create admin page
+
+@AdminUserExists
+@NotLoggedIn
+Scenario: Anonymous user get redirected to login page if no user exists
+	When I navigate to the create admin page
+	Then I should be redirected to the login page

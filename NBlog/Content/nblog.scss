@@ -10,13 +10,27 @@
 }
 .flash-container {
 	li {
-		padding-bottom: 12px;
-		padding-top: 12px;
+		padding-bottom: 1.2em;
+		padding-top: 1.2em;
 		margin-bottom: 0px;
+	}
+	.super-container {
+		border-bottom-style: solid;
+		border-width: 2px;
+	}
+	.super-container.error {
+		border-color: #991212;
+	}
+	.super-container.info {
+		border-color: #129912;
 	}
 	.error {
 		background-color: #ff9494;
 		color: #991212;
+	}
+	.info {
+		background-color: #94ff94;
+		color: #129912;
 	}
 }
 #super-header {
@@ -38,5 +52,29 @@
 	.right {
 		float: right;
 	}
+}
 
+form {
+	background-color: #F1F1F1;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1em;
+	.field-validation-error {
+		color: #991212;
+	}
+	.input-validation-error {
+		background-color: #ff9494;
+	}
+	.editor-label, .editor-actions {
+		margin-top: 1em;
+	}
+	.editor-actions {
+		margin-top: 1em;
+		button, .button, input[type="submit"] {
+			margin: 0px;
+		}
+	} 
+	input[type="text"], input[type="password"], input[type="email"], textarea, select {
+		margin: 0px;
+	}
 }

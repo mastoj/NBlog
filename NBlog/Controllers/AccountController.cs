@@ -31,7 +31,7 @@ namespace NBlog.Controllers
 
         public ActionResult Login()
         {
-            if (_userRepository.All().Count() == 0)
+            if (UsersExist().IsFalse())
             {
                 _authenticationManager.LogoutUser();
                 return RedirectToAction("CreateAdmin");
@@ -72,21 +72,37 @@ namespace NBlog.Controllers
 
         public ActionResult CreateAdmin()
         {
+            if (UsersExist())
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateAdmin(CreateAdminModel model)
         {
-            if (ModelState.IsValid)
+            if (UsersExist().IsTrue())
             {
-                var user = new User() { UserName = model.UserName, Name = model.Name };
-                user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
-                _userRepository.Insert(user);
-                _authenticationManager.LoginUser(user.UserName);
-                return RedirectToAction("Index", "Home", new {area = "Admin"});
+                return RedirectToAction("Login");
             }
-            return View(model);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = new User() {UserName = model.UserName, Name = model.Name};
+                    user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
+                    _userRepository.Insert(user);
+                    _authenticationManager.LoginUser(user.UserName);
+                    return RedirectToAction("Index", "Home", new {area = "Admin"});
+                }
+                return View(model);
+            }
+        }
+
+        private bool UsersExist()
+        {
+            return _userRepository.All().Count() > 0;
         }
     }
 }

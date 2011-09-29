@@ -4,12 +4,11 @@
     ViewBag.Title = "Log in to rule the world";
 }
 
-<h2>LogIn</h2>
+<h2>Could you please log in... that would make my day</h2>
 
 @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
     <fieldset>
-        <legend>LogInViewModel</legend>
+        <legend>This is where you enter your credentials.</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
@@ -27,8 +26,8 @@
             @Html.ValidationMessageFor(model => model.Password)
         </div>
 
-        <p>
+        <div class="editor-actions">
             <input type="submit" value="Log in" id="LogIn" />
-        </p>
+        </div>
     </fieldset>
 }

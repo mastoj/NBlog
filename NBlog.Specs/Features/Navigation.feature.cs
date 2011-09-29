@@ -104,11 +104,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Logged in user get redirected from the log in page")]
+        [NUnit.Framework.DescriptionAttribute("Logged in user get redirected from the login page")]
         [NUnit.Framework.CategoryAttribute("LoggedInAsAdmin")]
-        public virtual void LoggedInUserGetRedirectedFromTheLogInPage()
+        public virtual void LoggedInUserGetRedirectedFromTheLoginPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user get redirected from the log in page", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user get redirected from the login page", new string[] {
                         "LoggedInAsAdmin"});
 #line 16
 this.ScenarioSetup(scenarioInfo);
@@ -122,21 +122,38 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Anonymous user get redirected to create admin page if no user exists")]
-        [NUnit.Framework.CategoryAttribute("AdminUserExists")]
         [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
         public virtual void AnonymousUserGetRedirectedToCreateAdminPageIfNoUserExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user get redirected to create admin page if no user exists", new string[] {
+                        "NotLoggedIn"});
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
+ testRunner.Given("it doesn\'t exist a user");
+#line 23
+ testRunner.When("I navigate to the login page");
+#line 24
+ testRunner.Then("I should be redirected to the create admin page");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Anonymous user get redirected to login page if no user exists")]
+        [NUnit.Framework.CategoryAttribute("AdminUserExists")]
+        [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
+        public virtual void AnonymousUserGetRedirectedToLoginPageIfNoUserExists()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user get redirected to login page if no user exists", new string[] {
                         "AdminUserExists",
                         "NotLoggedIn"});
-#line 22
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 23
- testRunner.Given("it doesn\'t exist a user");
-#line 24
- testRunner.When("I navigate to the login page");
-#line 25
- testRunner.Then("I should be redirected to the create admin page");
+#line 29
+ testRunner.When("I navigate to the create admin page");
+#line 30
+ testRunner.Then("I should be redirected to the login page");
 #line hidden
             this.ScenarioCleanup();
         }

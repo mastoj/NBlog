@@ -25,6 +25,14 @@ namespace NBlog.Specs.Steps
             var name = table.Rows[0]["Name"];
             using (var userRepository = new MongoUserRepository(new MongoConfig()))
             {
+                var users = userRepository.FindAll(y => y.UserName == userName);
+                foreach (var user in users)
+                {
+                    userRepository.Delete(user);
+                }
+            }
+            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            {
                 var user = new User
                 {
                     Name = name,

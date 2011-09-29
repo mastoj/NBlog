@@ -388,12 +388,6 @@ ul.tabs {
 
 /* #Forms
 ================================================== */
-form {
-  margin-bottom: 20px; }
-
-fieldset {
-  margin-bottom: 20px; }
-
 input[type="text"],
 input[type="password"],
 input[type="email"],

@@ -1,15 +1,15 @@
 ﻿@model NBlog.Models.CreateAdminModel
 
 @{
-    ViewBag.Title = "CreateAdmin";
+    ViewBag.Title = "Create the master of the universe!";
 }
 
-<h2>CreateAdmin</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>CreateAdminModel</legend>
+        <legend>Enter the master's user information</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
@@ -43,12 +43,8 @@
             @Html.ValidationMessageFor(model => model.PasswordConfirmation)
         </div>
 
-        <p>
+        <div class="editor-actions">
             <input type="submit" value="Create" id="Create" />
-        </p>
+        </div>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

@@ -1,8 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using EasySec.Hashing;
 using Moq;
 using NBlog.Controllers;
 using NBlog.Data;
+using NBlog.Data.Extensions;
 using NBlog.Infrastructure;
 using NBlog.Models;
 using NUnit.Framework;
@@ -75,7 +77,9 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
-            var controller = CreateAccountController();
+            var mock = new Mock<IAuthenticationManager>();
+            var authenticationManager = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
 
             // act
             var result = controller.Login() as RedirectToRouteResult;
@@ -83,6 +87,63 @@ namespace NBlog.Tests.Controllers
             // assert
             Assert.IsNotNull(result, "Expected redirect to route result when no user exist");
             Assert.AreEqual("CreateAdmin", result.RouteValues["action"].ToString(), "Expected redirect to create admin view");
+            mock.Verify(y => y.LogoutUser(), Times.AtLeastOnce());
+        }
+
+        [Test]
+        public void Create_ResultsInRedirectToLoginIfUserExists()
+        {
+            // arrange
+            var userRepository = new InMemoryUserRepository();
+            var user = new User()
+            {
+                UserName = "admin",
+                PasswordHash = "pasasasasdas",
+                Name = "Tomas"
+            };
+            userRepository.Insert(user);
+            var controller = CreateAccountController(userRepository: userRepository);
+
+            // act
+            var result = controller.CreateAdmin() as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result, "Expected redirect to route result when no user exist");
+            Assert.AreEqual("Login", result.RouteValues["action"].ToString(), "Expected redirect to login view");
+        }
+
+        [Test]
+        public void Create_FailsIfUserExists()
+        {
+            // arrange
+            var userRepository = new InMemoryUserRepository();
+            var user = new User()
+            {
+                UserName = "admin",
+                PasswordHash = "pasasasasdas",
+                Name = "Tomas"
+            };
+            var createAdminModel = new CreateAdminModel()
+            {
+                Password = "password",
+                PasswordConfirmation = "password2",
+                UserName = "Admin",
+                Name = "Tomas"
+            };
+            userRepository.Insert(user);
+            var controller = CreateAccountController(userRepository: userRepository);
+
+            // act
+            var result = controller.CreateAdmin(createAdminModel) as RedirectToRouteResult;
+
+            // assert
+            Assert.IsNotNull(result, "Expected redirect to route result when no user exist");
+            Assert.AreEqual("Login", result.RouteValues["action"].ToString(), "Expected redirect to login view");
+            Assert.AreEqual(1, userRepository.All().Count());
+            var userInDb = userRepository.Single();
+            Assert.AreEqual(user.UserName, userInDb.UserName);
+            Assert.AreEqual(user.PasswordHash, userInDb.PasswordHash);
+            Assert.AreEqual(user.Name, userInDb.Name);
         }
 
         [Test]
