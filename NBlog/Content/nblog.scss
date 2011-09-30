@@ -15,14 +15,18 @@ $soft-green:#94ff94;
 	}
 	.menu {
 		ul {
-			margin: 0;
+			padding: 0px;
+			margin: 0px;
 			li {
+				display: inline-block;
 				padding: 0px;
 				margin: 0px;
+				padding-bottom: 0.1em;
 				a {
 					padding-left: 0.5em;
 					padding-right: 0.5em;
 					padding-top: 0.5em;
+					padding-bottom: 0.3em;
 					margin: 0 0.2em 0 0;
 					-moz-border-radius: 5px 5px 0 0;
 					border-radius: 5px 5px 0 0;
