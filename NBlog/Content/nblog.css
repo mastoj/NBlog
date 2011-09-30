@@ -5,31 +5,26 @@
     color: #fefefe; }
   .header.super-container .menu ul {
     margin: 0; }
-    .header.super-container .menu ul a, .header.super-container .menu ul a:hover {
-      text-decoration: none;
-      color: #fefefe;
-      background-color: #545454; }
-    .header.super-container .menu ul a:hover {
-      text-decoration: underline;
-      background-color: #343434; }
     .header.super-container .menu ul li {
-      padding-left: 0.5em;
-      padding-right: 0.5em;
-      padding-top: 0.5em;
-      margin: 0 0.2em 0 0;
-      -moz-border-radius: 5px 5px 0 0;
-      border-radius: 5px 5px 0 0; }
-    .header.super-container .menu ul li:hover {
-      color: #fefefe;
-      background-color: #343434; }
-    .header.super-container .menu ul li.active {
-      background-color: #fefefe;
-      color: #343434; }
-      .header.super-container .menu ul li.active a {
+      padding: 0px;
+      margin: 0px; }
+      .header.super-container .menu ul li a {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-top: 0.5em;
+        margin: 0 0.2em 0 0;
+        -moz-border-radius: 5px 5px 0 0;
+        border-radius: 5px 5px 0 0;
+        text-decoration: none;
+        color: #fefefe;
+        background-color: #545454; }
+      .header.super-container .menu ul li a:hover {
+        text-decoration: underline;
+        background-color: #343434; }
+      .header.super-container .menu ul li a.active {
+        text-decoration: none;
         background-color: #fefefe;
         color: #343434; }
-      .header.super-container .menu ul li.active a:hover {
-        text-decoration: none; }
 
 .flash-container li {
   padding-bottom: 1.2em;

@@ -16,36 +16,28 @@ $soft-green:#94ff94;
 	.menu {
 		ul {
 			margin: 0;
-			a, a:hover {
-				text-decoration: none;
-				color: $soft-white;
-				background-color: $medium-grey;
-			}
-			a:hover {
-				text-decoration: underline;
-				background-color: $strong-grey;
-			}
 			li {
-				padding-left: 0.5em;
-				padding-right: 0.5em;
-				padding-top: 0.5em;
-				margin: 0 0.2em 0 0;
-				-moz-border-radius: 5px 5px 0 0;
-				border-radius: 5px 5px 0 0;
-			}
-			li:hover {
-				color: $soft-white;
-				background-color: $strong-grey;
-			}
-			li.active {
-				background-color: $soft-white;
-				color: $strong-grey;
+				padding: 0px;
+				margin: 0px;
 				a {
-					background-color: $soft-white;
-					color: $strong-grey;
+					padding-left: 0.5em;
+					padding-right: 0.5em;
+					padding-top: 0.5em;
+					margin: 0 0.2em 0 0;
+					-moz-border-radius: 5px 5px 0 0;
+					border-radius: 5px 5px 0 0;
+					text-decoration: none;
+					color: $soft-white;
+					background-color: $medium-grey;
 				}
 				a:hover {
+					text-decoration: underline;
+					background-color: $strong-grey;
+				}
+				a.active {
 					text-decoration: none;
+					background-color: $soft-white;
+					color: $strong-grey;
 				}
 			}
 		}
