@@ -36,7 +36,7 @@ namespace NBlog.Specs.Steps
         }
         
         [When(@"I click the (.*) button")]
-        public void WhenIClickTheLoginButton(string buttonId)
+        public void WhenIClickTheButton(string buttonId)
         {
             var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonId]));
             if (button.Exists.IsFalse())

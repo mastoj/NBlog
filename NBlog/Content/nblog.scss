@@ -1,7 +1,7 @@
 ﻿$soft-white:#fefefe;
 $light-grey:#979797;
-$medium-grey:#545454;
-$strong-grey:#343434;
+$medium-grey: darken($light-grey, 20%);// #545454;
+$strong-grey: darken($medium-grey, 20%);//#343434;
 $strong-red:#991212;
 $soft-red:#ff9494;
 $strong-green:#129912;
@@ -11,6 +11,18 @@ $soft-green:#94ff94;
 {
 	-moz-border-radius: $radius $radius 0 0;
 	border-radius: $radius $radius 0 0;	
+}
+
+@mixin border-radius-bottom($radius)
+{
+	-moz-border-radius: 0 0 $radius $radius;
+	border-radius: 0 0 $radius $radius;	
+}
+
+@mixin border-radius($radius)
+{
+	-moz-border-radius: $radius;
+	border-radius: $radius;
 }
 
 .header.super-container {
@@ -75,7 +87,7 @@ $soft-green:#94ff94;
 		border-color: $strong-green;
 	}
 	.error {
-		background-color: $strong-red;
+		background-color: $soft-red;
 		color: $strong-red;
 	}
 	.info {
@@ -107,8 +119,7 @@ $soft-green:#94ff94;
 
 form {
 	background-color: #F1F1F1;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	@include border-radius(5px);
 	padding: 1em;
 	.field-validation-error {
 		color: $strong-red;

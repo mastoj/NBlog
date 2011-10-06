@@ -50,8 +50,9 @@ namespace NBlog.Specs.Steps
         public void ThenIShouldBeRe_DirectedToThePage(string page)
         {
             WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
-            var isOnPage = WebBrowser.Current.Uri.LocalPath.Contains(_pages[page]);
-            if (!isOnPage)
+            var localPath = WebBrowser.Current.Uri.LocalPath;
+            var isMatch = localPath.Equals(_pages[page]);
+            if (!isMatch)
             {
                 Assert.Fail("Was not redirected to the page {0}", page);
             }

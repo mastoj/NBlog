@@ -9,7 +9,7 @@ namespace NBlog.Specs.Helpers
     {
         public static string Host
         {
-            get { return "http://localhost:60720/"; }
+            get { return "http://localhost:60720"; }
         }
     }
 }

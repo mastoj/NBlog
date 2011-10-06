@@ -14,10 +14,6 @@ namespace NBlog.Specs.Config
                 base.ConnectionString = "mongodb://localhost/spectest";
                 return base.ConnectionString;
             }
-            set
-            {
-                base.ConnectionString = value;
-            }
         }
     }
 }

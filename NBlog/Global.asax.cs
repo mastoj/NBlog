@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TJ.Mvc.Filter;
 
 namespace NBlog
 {
@@ -14,6 +15,7 @@ namespace NBlog
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            filters.Add(new RequireAutheticationAttribute());
             filters.Add(new HandleErrorAttribute());
         }
 

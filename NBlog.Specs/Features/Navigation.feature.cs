@@ -105,11 +105,11 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Logged in user get redirected from the login page")]
-        [NUnit.Framework.CategoryAttribute("LoggedInAsAdmin")]
+        [NUnit.Framework.CategoryAttribute("LoggedIn")]
         public virtual void LoggedInUserGetRedirectedFromTheLoginPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user get redirected from the login page", new string[] {
-                        "LoggedInAsAdmin"});
+                        "LoggedIn"});
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
@@ -153,6 +153,23 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.When("I navigate to the create admin page");
 #line 30
+ testRunner.Then("I should be redirected to the login page");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Anonymous user have no access to the admin area")]
+        [NUnit.Framework.CategoryAttribute("NotLoggedIn")]
+        public virtual void AnonymousUserHaveNoAccessToTheAdminArea()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user have no access to the admin area", new string[] {
+                        "NotLoggedIn"});
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line 34
+ testRunner.When("I navigate to the admin page");
+#line 35
  testRunner.Then("I should be redirected to the login page");
 #line hidden
             this.ScenarioCleanup();

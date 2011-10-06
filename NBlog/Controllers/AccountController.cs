@@ -10,9 +10,11 @@ using NBlog.Helpers;
 using NBlog.Infrastructure;
 using NBlog.Models;
 using TJ.Extensions;
+using TJ.Mvc.Filter;
 
 namespace NBlog.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private IUserRepository _userRepository;
@@ -35,6 +37,10 @@ namespace NBlog.Controllers
             {
                 _authenticationManager.LogoutUser();
                 return RedirectToAction("CreateAdmin");
+            }
+            if (User.Identity.IsAuthenticated.IsTrue())
+            {
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }

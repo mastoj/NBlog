@@ -12,7 +12,7 @@ Scenario: Anonymous user can access login page
 	Then I should get a successful response
 	And it should have a title
 
-@LoggedInAsAdmin
+@LoggedIn
 Scenario: Logged in user get redirected from the login page
 	When I navigate to the login page
 	Then I should be redirected to the start page
@@ -27,4 +27,9 @@ Scenario: Anonymous user get redirected to create admin page if no user exists
 @NotLoggedIn
 Scenario: Anonymous user get redirected to login page if no user exists
 	When I navigate to the create admin page
+	Then I should be redirected to the login page
+
+@NotLoggedIn
+Scenario: Anonymous user have no access to the admin area
+	When I navigate to the admin page
 	Then I should be redirected to the login page

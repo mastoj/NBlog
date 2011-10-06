@@ -9,10 +9,10 @@ namespace NBlog.Specs.Helpers
     {
         private static Dictionary<string, string> _pages = new Dictionary<string, string>()
                                                                {
-                                                                   {"start page", ""},
-                                                                   {"login page", "login"},
-                                                                   {"admin page", "Admin/Home"},
-                                                                   {"create admin page", "Account/CreateAdmin"}
+                                                                   {"start page", "/"},
+                                                                   {"login page", "/login"},
+                                                                   {"admin page", "/Admin"},
+                                                                   {"create admin page", "/Account/CreateAdmin"}
                                                                };
 
         private static Dictionary<string, string> _links = new Dictionary<string, string>()

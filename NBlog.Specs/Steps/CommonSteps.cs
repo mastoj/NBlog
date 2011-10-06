@@ -21,11 +21,15 @@ namespace NBlog.Specs.Steps
         {
             using (var userRepository = new MongoUserRepository(new MongoConfig()))
             {
+                userRepository.DeleteAll();
+            }
+            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            {
                 var user = new User
                                {
                                    Name = "Tomas",
                                    UserName = "admin",
-                                   PasswordHash = _hashGenerator.GenerateHash("password")
+                                   PasswordHash = _hashGenerator.GenerateHash("asdf1234")
                                };
                 userRepository.Insert(user);
             }
@@ -46,11 +50,16 @@ namespace NBlog.Specs.Steps
         public void LoggedIn()
         {
             AdminUserExists();
-            WebBrowser.Current.GoTo(Configuration.Host + NavigationHelper.Pages["start page"]);
+            WebBrowser.Current.GoTo(Configuration.Host + NavigationHelper.Pages["login page"]);
             var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
-            if (logOffLink != null)
+            if (logOffLink == null)
             {
-                logOffLink.Click();
+                var formSteps = new FormSteps();
+                var table = new Table("InputField", "Input");
+                table.AddRow("UserName", "admin");
+                table.AddRow("Password", "asdf1234");
+                formSteps.WhenEnterTheFollowingInformation(table);
+                formSteps.WhenIClickTheButton("log in");
             }
         }
     }

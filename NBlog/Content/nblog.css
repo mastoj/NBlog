@@ -1,5 +1,5 @@
 .header.super-container {
-  background-color: #545454;
+  background-color: #646464;
   color: #fefefe; }
   .header.super-container h1 {
     color: #fefefe; }
@@ -26,15 +26,15 @@
         -moz-border-radius: 5px 5px 0 0;
         border-radius: 5px 5px 0 0;
         color: #fefefe;
-        background-color: #545454; }
+        background-color: #646464; }
       .header.super-container .menu ul li a.active {
         text-decoration: none;
         background-color: #fefefe;
-        color: #343434; }
+        color: #313131; }
       .header.super-container .menu ul li a:hover {
         text-decoration: underline;
         color: #fefefe;
-        background-color: #343434; }
+        background-color: #313131; }
 
 .flash-container li {
   padding-bottom: 1.2em;
@@ -48,7 +48,7 @@
 .flash-container .super-container.info {
   border-color: #129912; }
 .flash-container .error {
-  background-color: #991212;
+  background-color: #ff9494;
   color: #991212; }
 .flash-container .info {
   background-color: #94ff94;
@@ -57,7 +57,7 @@
 #super-header {
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #343434;
+  background-color: #313131;
   color: #979797; }
   #super-header a {
     color: #979797; }

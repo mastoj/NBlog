@@ -263,6 +263,10 @@
       <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
       <Name>TJ.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TJ.Mvc\TJ.Mvc.csproj">
+      <Project>{B8F5BAD9-D6C1-4556-BC97-4E5C53999814}</Project>
+      <Name>TJ.Mvc</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
