@@ -834,31 +834,37 @@ or wrap each row of columns in a <div class="row"> */
   .header.super-container h1 {
     color: #fefefe; }
   .header.super-container .menu ul {
+    height: 2.2em;
     padding: 0px;
     margin: 0px; }
     .header.super-container .menu ul li {
+      height: 2.2em;
+      line-height: 2.2em;
       display: inline-block;
       padding: 0px;
-      margin: 0px;
-      padding-bottom: 0.1em; }
+      margin-right: 0.3em; }
       .header.super-container .menu ul li a {
+        display: inline-block;
         padding-left: 0.5em;
         padding-right: 0.5em;
-        padding-top: 0.5em;
+        padding-top: 0.3em;
         padding-bottom: 0.3em;
+        height: 1.6em;
+        line-height: 1.6em;
         margin: 0 0.2em 0 0;
+        text-decoration: none;
         -moz-border-radius: 5px 5px 0 0;
         border-radius: 5px 5px 0 0;
-        text-decoration: none;
         color: #fefefe;
         background-color: #545454; }
-      .header.super-container .menu ul li a:hover {
-        text-decoration: underline;
-        background-color: #343434; }
       .header.super-container .menu ul li a.active {
         text-decoration: none;
         background-color: #fefefe;
         color: #343434; }
+      .header.super-container .menu ul li a:hover {
+        text-decoration: underline;
+        color: #fefefe;
+        background-color: #343434; }
 
 .flash-container li {
   padding-bottom: 1.2em;
