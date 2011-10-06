@@ -62,6 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\MongoConfig.cs" />
+    <Compile Include="Features\AdminFeatures.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminFeatures.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\LogInLogOff.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\AdminFeatures.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AdminFeatures.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\LogInLogOff.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LogInLogOff.feature.cs</LastGenOutput>

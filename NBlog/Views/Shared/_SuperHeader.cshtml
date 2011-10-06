@@ -1,0 +1,18 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <div id="super-header" class="super-container">
+        <div class="container">
+            <ul class="navigation sixteen columns alpha">
+                <li>
+                @Html.ActionLink("Posts", "Index", "Post", new { area = "Admin"}, new {id = "posts"})
+                @Html.ActionLink("Comments", "Index", "Comment", new { area = "Admin"}, new {id = "comments"})
+                @Html.ActionLink("Pages", "Index", "Page", new { area = "Admin"}, new {id = "pages"})
+                @Html.ActionLink("Configuration", "Index", "Configuration", new { area = "Admin"}, new {id = "configuration"})
+                </li>
+                <li class="right">
+                    | @User.Identity.Name | @Html.ActionLink("Log off", "Logout", "Account", new { area = "" }, new { id = "logOff" })
+                </li>
+            </ul>
+        </div>
+    </div>
+}

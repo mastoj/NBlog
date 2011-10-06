@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace NBlog.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class ConfigurationController : Controller
     {
         //
-        // GET: /Admin/Home/
+        // GET: /Admin/Configuration/
 
         public ActionResult Index()
         {

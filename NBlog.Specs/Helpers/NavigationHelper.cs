@@ -17,7 +17,11 @@ namespace NBlog.Specs.Helpers
 
         private static Dictionary<string, string> _links = new Dictionary<string, string>()
                                                                {
-                                                                   {"log off", "logOff"}
+                                                                   {"log off", "logOff"},
+                                                                   {"pages", "pages"},
+                                                                   {"posts", "posts"},
+                                                                   {"comments", "comments"},
+                                                                   {"configuration", "configuration"}
                                                                };
 
         public static Dictionary<string, string> Pages

@@ -23,36 +23,13 @@
 
 <body>
 @RenderFlash()
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div id="super-header" class="super-container">
-            <div class="container">
-                <ul class="navigation sixteen columns alpha">
-                    <li>
-                    @Html.ActionLink("Admin", "Index", "Home", new { area = "Admin"}, null)
-                    </li>
-                    <li class="right">
-                        | @User.Identity.Name | @Html.ActionLink("Log off", "Logout", "Account", new { area = "" }, new { id = "logOff" })
-                    </li>
-                </ul>
-            </div>
-        </div>
-    }
+    @Html.Partial("_SuperHeader")
     <div class="header super-container">
         <header class="container header" id="header">
             <div class="sixteen columns alpha">
                 <h1>Welcome to the end of the internets</h1>
             </div>
-            <nav class="menu">
-                <ul class="navigation columns sixteen alpha">
-                    <li class="">
-                        <a href="#" >Home</a>
-                    </li>
-                    <li>
-                        <a class="active" href="#" >About</a>
-                    </li>
-                </ul>
-            </nav>
+            @Html.Partial("_Menu")
         </header>
     </div>
     <article class="container main">

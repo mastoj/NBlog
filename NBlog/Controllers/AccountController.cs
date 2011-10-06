@@ -50,10 +50,15 @@ namespace NBlog.Controllers
         {
             if (ModelState.IsValid && ValidateCredentials(model))
             {
-                _authenticationManager.LoginUser(model.UserName);
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                return LoginAndRedirect(model.UserName);
             }
             return View(model);
+        }
+
+        private ActionResult LoginAndRedirect(string userName)
+        {
+            _authenticationManager.LoginUser(userName);
+            return RedirectToAction("Index", "Post", new { area = "Admin" });
         }
 
         private bool ValidateCredentials(LogInViewModel model)
@@ -99,8 +104,7 @@ namespace NBlog.Controllers
                     var user = new User() {UserName = model.UserName, Name = model.Name};
                     user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
                     _userRepository.Insert(user);
-                    _authenticationManager.LoginUser(user.UserName);
-                    return RedirectToAction("Index", "Home", new {area = "Admin"});
+                    return LoginAndRedirect(user.UserName);
                 }
                 return View(model);
             }

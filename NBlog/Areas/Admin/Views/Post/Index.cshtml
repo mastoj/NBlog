@@ -1,0 +1,59 @@
+@model IEnumerable<NBlog.Areas.Admin.Models.PostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            ShorUrl
+        </th>
+        <th>
+            Post
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Tags
+        </th>
+        <th>
+            Categories
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        <td>
+			@item.ShorUrl
+        </td>
+        <td>
+			@item.Post
+        </td>
+        <td>
+			@item.Title
+        </td>
+        <td>
+			@(item.Tags == null ? "None" : item.Tags.Count.ToString())
+        </td>
+        <td>
+			@(item.Categories == null ? "None" : item.Categories.Count.ToString())
+        </td>
+    </tr>
+}
+
+</table>
+
+

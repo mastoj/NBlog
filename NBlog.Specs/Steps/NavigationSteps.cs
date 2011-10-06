@@ -21,6 +21,13 @@ namespace NBlog.Specs.Steps
         {
         }
 
+        [Given(@"I am on the (.*)")]
+        public void GivenIAmOnTheAdminPage(string page)
+        {
+            var pageUrl = _pages[page];
+            WebBrowser.Current.GoTo(Configuration.Host + pageUrl);
+        }
+        
         [When(@"I navigate to the (.*)")]
         public void WhenINavigateToAPage(string page)
         {
