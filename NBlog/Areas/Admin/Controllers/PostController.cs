@@ -17,6 +17,11 @@ namespace NBlog.Areas.Admin.Controllers
 
             return View(new List<PostViewModel>());
         }
+
+        public ActionResult Create()
+        {
+            return View(new PostViewModel());
+        }
     }
 }
 

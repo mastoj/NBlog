@@ -1,0 +1,78 @@
+﻿@model NBlog.Areas.Admin.Models.PostViewModel
+
+@{
+    ViewBag.Title = "Create a new shiny post!";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>PostViewModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShortUrl)
+            @Html.ValidationMessageFor(model => model.ShortUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Post)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Post)
+            @Html.ValidationMessageFor(model => model.Post)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tags)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Tags)
+            @Html.ValidationMessageFor(model => model.Tags)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Categories)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Categories)
+            @Html.ValidationMessageFor(model => model.Categories)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Publish)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Publish)
+            @Html.ValidationMessageFor(model => model.Publish)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PublishDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PublishDate)
+            @Html.ValidationMessageFor(model => model.PublishDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" id="Save"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

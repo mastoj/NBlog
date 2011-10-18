@@ -123,6 +123,8 @@
     <Content Include="Areas\Admin\Views\Configuration\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Page\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
     <None Include="Content\nblog.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>nblog.css</LastGenOutput>
@@ -158,6 +160,7 @@
     <Content Include="Views\Account\CreateAdmin.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Shared\_SuperHeader.cshtml" />
+    <Content Include="Views\Shared\_MasterLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\base.scss">
@@ -285,9 +288,7 @@
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

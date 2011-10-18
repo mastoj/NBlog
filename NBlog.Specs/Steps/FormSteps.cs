@@ -26,15 +26,48 @@ namespace NBlog.Specs.Steps
             {
                 var id = row["InputField"];
                 var value = row["Input"];
-                var field = WebBrowser.Current.TextField(Find.ById(id));
-                if (field.Exists.IsFalse())
+                var dataType = row.ContainsKey("DataType") ? row["DataType"] : "string";
+                switch (dataType)
                 {
-                    Assert.Fail("Missing input field with id {0}", id);
+                    case "bool":
+                        SetCheckbox(id, value);
+                        break;
+                    case "longstring":
+                        SetTextArea(id, value);
+                        break;
+                    default:
+                        SetTextField(id, value);
+                        break;
                 }
-                field.TypeText(value);
             }
         }
-        
+
+        private void SetTextArea(string id, string value)
+        {
+            SetTextField(id, value);
+        }
+
+        private void SetTextField(string id, string value)
+        {
+            var field = WebBrowser.Current.TextField(Find.ById(id));
+            if (field.Exists.IsFalse())
+            {
+                Assert.Fail("Missing input field with id {0}", id);
+            }
+            field.TypeText(value);
+        }
+
+        private void SetCheckbox(string id, string value)
+        {
+            var checkBox = WebBrowser.Current.CheckBox(Find.ById(id));
+            if (checkBox.Exists.IsFalse())
+            {
+                Assert.Fail("Missing checkbox with id {0}", id);
+            }
+            var boolValue = bool.Parse(value);
+            checkBox.Checked = boolValue;
+        }
+
         [When(@"I click the (.*) button")]
         public void WhenIClickTheButton(string buttonId)
         {
