@@ -17,7 +17,8 @@ namespace NBlog.Specs.Steps
         private Dictionary<string, string> buttonMap = new Dictionary<string, string>
                                                            {
                                                                {"log in", "LogIn"},
-                                                               {"create", "Create"}
+                                                               {"create", "Create"},
+                                                               {"save", "Save"}
                                                            };
         [When(@"I enter the following information")]
         public void WhenEnterTheFollowingInformation(Table table)

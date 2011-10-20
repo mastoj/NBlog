@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NBlog.Specs.Helpers
+﻿namespace NBlog.Specs.Config
 {
     public static class Configuration
     {

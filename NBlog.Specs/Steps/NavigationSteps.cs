@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using NBlog.Specs.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -25,14 +22,14 @@ namespace NBlog.Specs.Steps
         public void GivenIAmOnTheAdminPage(string page)
         {
             var pageUrl = _pages[page];
-            WebBrowser.Current.GoTo(Configuration.Host + pageUrl);
+            WebBrowser.Current.GoTo(Config.Configuration.Host + pageUrl);
         }
         
         [When(@"I navigate to the (.*)")]
         public void WhenINavigateToAPage(string page)
         {
             var pageUrl = _pages[page];
-            WebBrowser.Current.GoTo(Configuration.Host + pageUrl);
+            WebBrowser.Current.GoTo(Config.Configuration.Host + pageUrl);
         }
 
         [When(@"I am on the (.*)")]

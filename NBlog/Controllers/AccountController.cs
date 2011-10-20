@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using EasySec.Hashing;
+using NBlog.Data.Repositories;
 using NBlog.Data;
+using NBlog.Data.Translators;
 using NBlog.Helpers;
 using NBlog.Infrastructure;
 using NBlog.Models;
@@ -101,10 +103,10 @@ namespace NBlog.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new User() {UserName = model.UserName, Name = model.Name};
-                    user.PasswordHash = _hashGenerator.GenerateHash(model.Password);
+                    model.PasswordHash = _hashGenerator.GenerateHash(model.Password);
+                    var user = model.ToDTO();
                     _userRepository.Insert(user);
-                    return LoginAndRedirect(user.UserName);
+                    return LoginAndRedirect(model.UserName);
                 }
                 return View(model);
             }

@@ -1,6 +1,8 @@
 using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Configuration;
+using NBlog.Data.Mongo.Repositories;
+using NBlog.Data.Repositories;
 using NBlog.Data;
 using NBlog.Data.Mongo;
 using NBlog.Infrastructure;
@@ -56,7 +58,11 @@ namespace NBlog.App_Start
         {
             kernel.Bind<INBlogConfiguration>().To<NBlogConfiguration>().InSingletonScope();
             kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
-            kernel.Bind<IUserRepository>().To<MongoUserRepository>().InRequestScope();
+
+            // Repositores
+            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+            kernel.Bind<IPostRepository>().To<PostRepository>().InRequestScope();
+
             kernel.Bind<IAuthenticationManager>().To<FormsAuthenticationManager>().InSingletonScope();
             kernel.Bind<IHashGenerator>().To<HashGenerator>().InSingletonScope();
         }        

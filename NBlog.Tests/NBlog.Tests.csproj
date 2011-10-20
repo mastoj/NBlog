@@ -58,9 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InMemoryRepositories\InMemoryPostRepository.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostControllerTests.cs" />
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
-    <Compile Include="InMemoryUserRepository.cs" />
+    <Compile Include="InMemoryRepositories\InMemoryRepository.cs" />
+    <Compile Include="InMemoryRepositories\InMemoryUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

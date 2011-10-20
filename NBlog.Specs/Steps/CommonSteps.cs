@@ -5,6 +5,9 @@ using System.Text;
 using EasySec.Hashing;
 using NBlog.Data;
 using NBlog.Data.Mongo;
+using NBlog.Data.Mongo.Repositories;
+using NBlog.Data.Translators;
+using NBlog.Models;
 using NBlog.Specs.Config;
 using NBlog.Specs.Helpers;
 using TechTalk.SpecFlow;
@@ -19,26 +22,27 @@ namespace NBlog.Specs.Steps
         [BeforeScenario("AdminUserExists")]
         public void AdminUserExists()
         {
-            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            using (var userRepository = new UserRepository(new MongoConfig()))
             {
                 userRepository.DeleteAll();
             }
-            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            using (var userRepository = new UserRepository(new MongoConfig()))
             {
-                var user = new User
+                var user = new CreateAdminModel
                                {
                                    Name = "Tomas",
                                    UserName = "admin",
                                    PasswordHash = _hashGenerator.GenerateHash("asdf1234")
                                };
-                userRepository.Insert(user);
+                var userDto = user.ToDTO();
+                userRepository.Insert(userDto);
             }
         }
 
         [BeforeScenario("NotLoggedIn")]
         public void NotLoggedIn()
         {
-            WebBrowser.Current.GoTo(Configuration.Host);
+            WebBrowser.Current.GoTo(Config.Configuration.Host);
             var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
             if (logOffLink != null)
             {
@@ -50,7 +54,7 @@ namespace NBlog.Specs.Steps
         public void LoggedIn()
         {
             AdminUserExists();
-            WebBrowser.Current.GoTo(Configuration.Host + NavigationHelper.Pages["login page"]);
+            WebBrowser.Current.GoTo(Config.Configuration.Host + NavigationHelper.Pages["login page"]);
             var logOffLink = WebBrowser.Current.Links.SingleOrDefault(y => y.Id == "logOff");
             if (logOffLink == null)
             {

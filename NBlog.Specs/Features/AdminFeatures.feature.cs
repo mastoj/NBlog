@@ -90,13 +90,15 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("When logged in the logged in user should be able to create a post")]
         [NUnit.Framework.CategoryAttribute("LoggedIn")]
+        [NUnit.Framework.CategoryAttribute("NoPosts")]
         public virtual void WhenLoggedInTheLoggedInUserShouldBeAbleToCreateAPost()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When logged in the logged in user should be able to create a post", new string[] {
-                        "LoggedIn"});
-#line 15
-this.ScenarioSetup(scenarioInfo);
+                        "LoggedIn",
+                        "NoPosts"});
 #line 16
+this.ScenarioSetup(scenarioInfo);
+#line 17
  testRunner.Given("I am on the create post page");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -112,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
                         "longstring",
                         "demopost"});
             table1.AddRow(new string[] {
-                        "Post",
+                        "Content",
                         "string",
                         "Demo content"});
             table1.AddRow(new string[] {
@@ -131,45 +133,18 @@ this.ScenarioSetup(scenarioInfo);
                         "Categories",
                         "string",
                         "cat1 cat2"});
-#line 17
+#line 18
  testRunner.When("I enter the following information", ((string)(null)), table1);
-#line 26
- testRunner.And("I click the save button");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "InputField",
-                        "DataType",
-                        "Value"});
-            table2.AddRow(new string[] {
-                        "Title",
-                        "string",
-                        "Demo title"});
-            table2.AddRow(new string[] {
-                        "ShortUrl",
-                        "string",
-                        "demopost"});
-            table2.AddRow(new string[] {
-                        "Post",
-                        "string",
-                        "Demo content"});
-            table2.AddRow(new string[] {
-                        "PublishDate",
-                        "datetime",
-                        "2011-10-01"});
-            table2.AddRow(new string[] {
-                        "Publish",
-                        "bool",
-                        "true"});
-            table2.AddRow(new string[] {
-                        "Tags",
-                        "list",
-                        "tag1 tag2"});
-            table2.AddRow(new string[] {
-                        "Categories",
-                        "list",
-                        "cat1 cat2"});
 #line 27
- testRunner.Then("a post should exist with the data", ((string)(null)), table2);
+ testRunner.And("I click the save button");
+#line 28
+ testRunner.When("I navigate to the admin page");
+#line 29
+ testRunner.Then("I should find a list of posts with one entry");
+#line 30
+ testRunner.And("it contains the string \"Demo title\"");
+#line 31
+ testRunner.And("it contains the string \"demopost\"");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -5,6 +5,9 @@ using System.Text;
 using EasySec.Hashing;
 using NBlog.Data;
 using NBlog.Data.Mongo;
+using NBlog.Data.Mongo.Repositories;
+using NBlog.Data.Translators;
+using NBlog.Models;
 using NBlog.Specs.Config;
 using NBlog.Specs.Helpers;
 using NUnit.Framework;
@@ -23,7 +26,7 @@ namespace NBlog.Specs.Steps
             var userName = table.Rows[0]["UserName"];
             var password = table.Rows[0]["Password"];
             var name = table.Rows[0]["Name"];
-            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            using (var userRepository = new UserRepository(new MongoConfig()))
             {
                 var users = userRepository.FindAll(y => y.UserName == userName);
                 foreach (var user in users)
@@ -31,22 +34,23 @@ namespace NBlog.Specs.Steps
                     userRepository.Delete(user);
                 }
             }
-            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            using (var userRepository = new UserRepository(new MongoConfig()))
             {
-                var user = new User
+                var user = new CreateAdminModel()
                 {
                     Name = name,
                     UserName = userName,
                     PasswordHash = _hashGenerator.GenerateHash(password)
                 };
-                userRepository.Insert(user);
+                var userDto = user.ToDTO();
+                userRepository.Insert(userDto);
             }
         }
 
         [Given(@"it doesn't exist a user")]
         public void GivenItDoesnTExistAUser()
         {
-            using (var userRepository = new MongoUserRepository(new MongoConfig()))
+            using (var userRepository = new UserRepository(new MongoConfig()))
             {
                 userRepository.DeleteAll();
             }

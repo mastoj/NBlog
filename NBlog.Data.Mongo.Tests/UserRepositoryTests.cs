@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using NBlog.Data.DTO;
+using NBlog.Data.Mongo.Repositories;
 using NUnit.Framework;
 
 namespace NBlog.Data.Mongo.Tests
@@ -40,10 +42,10 @@ namespace NBlog.Data.Mongo.Tests
             }            
         }
 
-        private static MongoUserRepository GetTestRepository()
+        private static UserRepository GetTestRepository()
         {
             var connectionString = GetConnectionString();
-            return new MongoUserRepository(new MongoConfiguration() { ConnectionString = connectionString });
+            return new UserRepository(new MongoConfiguration() { ConnectionString = connectionString });
         }
 
         private static string GetConnectionString()

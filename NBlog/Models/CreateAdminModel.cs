@@ -1,10 +1,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using NBlog.Data;
+using NBlog.Data;
 
 namespace NBlog.Models
 {
-    public class CreateAdminModel
+    public class CreateAdminModel : Entity, IUser
     {
         [Required(ErrorMessage = "User name required")]
         [DisplayName("Admin user name")]
@@ -21,5 +23,7 @@ namespace NBlog.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password mismatch")]
         public string PasswordConfirmation { get; set; }
+
+        public string PasswordHash { get; set; }
     }
 }

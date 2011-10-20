@@ -83,7 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Navigation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Configuration.cs" />
+    <Compile Include="Config\Configuration.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\NavigationObserver.cs" />
     <Compile Include="Helpers\ObservableBrowser.cs" />
@@ -93,6 +93,7 @@
     <Compile Include="Steps\LogInLogOffSteps.cs" />
     <Compile Include="Steps\NavigationSteps.cs" />
     <Compile Include="Helpers\WebBrowser.cs" />
+    <Compile Include="Steps\PostSteps.cs" />
     <Compile Include="Steps\TestSetupTearDown.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +120,10 @@
     <ProjectReference Include="..\NBlog.Data\NBlog.Data.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NBlog\NBlog.csproj">
+      <Project>{329CA254-3C99-4F77-BB7A-1D715F5339C8}</Project>
+      <Name>NBlog</Name>
     </ProjectReference>
     <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
       <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>

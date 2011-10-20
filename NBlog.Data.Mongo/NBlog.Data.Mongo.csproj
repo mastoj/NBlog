@@ -46,8 +46,9 @@
     <Compile Include="IMongoConfiguration.cs" />
     <Compile Include="MongoConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="MongoUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NBlog.Data\NBlog.Data.csproj">

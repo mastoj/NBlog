@@ -3,8 +3,9 @@ using System.Web.Mvc;
 using EasySec.Hashing;
 using Moq;
 using NBlog.Controllers;
-using NBlog.Data;
 using NBlog.Data.Extensions;
+using NBlog.Data;
+using NBlog.Data.Translators;
 using NBlog.Infrastructure;
 using NBlog.Models;
 using NUnit.Framework;
@@ -95,13 +96,14 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
-            var user = new User()
+            var user = new CreateAdminModel()
             {
                 UserName = "admin",
                 PasswordHash = "pasasasasdas",
                 Name = "Tomas"
             };
-            userRepository.Insert(user);
+            var userDto = user.ToDTO();
+            userRepository.Insert(userDto);
             var controller = CreateAccountController(userRepository: userRepository);
 
             // act
@@ -117,7 +119,7 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
-            var user = new User()
+            var user = new CreateAdminModel()
             {
                 UserName = "admin",
                 PasswordHash = "pasasasasdas",
@@ -130,7 +132,8 @@ namespace NBlog.Tests.Controllers
                 UserName = "Admin",
                 Name = "Tomas"
             };
-            userRepository.Insert(user);
+            var userDto = user.ToDTO();
+            userRepository.Insert(userDto);
             var controller = CreateAccountController(userRepository: userRepository);
 
             // act
@@ -151,14 +154,15 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var hashGenerator = new HashGenerator();
-            var user = new User()
+            var user = new CreateAdminModel()
             {
                 UserName = "admin",
                 PasswordHash = hashGenerator.GenerateHash("Password!"),
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            userRepository.Insert(user);
+            var userDto = user.ToDTO();
+            userRepository.Insert(userDto);
             var userViewModel = new LogInViewModel { UserName = "admin", Password = "Password!" };
             var mock = new Mock<IAuthenticationManager>();
             var authenticationManager = mock.Object;
@@ -196,14 +200,15 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var hashGenerator = new HashGenerator();
-            var user = new User()
+            var user = new CreateAdminModel()
             {
                 UserName = "admin",
                 PasswordHash = hashGenerator.GenerateHash("Password!"),
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            userRepository.Insert(user);
+            var userDto = user.ToDTO();
+            userRepository.Insert(userDto);
             var userViewModel = new LogInViewModel { UserName = "admin", Password = "WrongPassword!" };
             var mock = new Mock<IAuthenticationManager>();
             var authenticationManager = mock.Object;
