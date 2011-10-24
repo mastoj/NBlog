@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using NBlog.Areas.Admin.Controllers;
 using NBlog.Areas.Admin.Models;
+using NBlog.Data.DTO;
 using NBlog.Data.Repositories;
 using NBlog.Data;
 using NBlog.Helpers;
@@ -16,7 +17,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
     public class PostControllerTests
     {
         [Test]
-        public void Controller_ShouldReturnCreateViewWithModel_WhenModelIsInvalid_AndShowErrorFlash()
+        public void Create_ShouldReturnCreateViewWithModel_WhenModelIsInvalid_AndShowErrorFlash()
         {
             // Arrange
             var model = new PostViewModel();
@@ -33,7 +34,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
         }
 
         [Test]
-        public void Controller_ShouldReturnCreateViewWithNoModel_WhenModelIsValid_AndShowSuccessFlash()
+        public void Create_ShouldReturnCreateViewWithNoModel_WhenModelIsValid_AndShowSuccessFlash()
         {
             // Arrange
             var model = CreateValidPostViewModel();
@@ -49,7 +50,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
         }
 
         [Test]
-        public void Controller_ShouldCreatePostInRepository_WhenModelIsValid()
+        public void Create_ShouldCreatePostInRepository_WhenModelIsValid()
         {
             // Arrange
             IPostRepository _postRepository = new InMemoryPostRepository(); 
@@ -61,6 +62,32 @@ namespace NBlog.Tests.Areas.Admin.Controllers
 
             // Assert
             Assert.AreEqual(1, _postRepository.All().Count());
+        }
+
+        [Test]
+        public void Index_ModelShouldContainOneElement_IfRepositoryReturnsOneElement()
+        {
+            // Arrange
+            IPostRepository _postRepository = new InMemoryPostRepository();
+            _postRepository.Insert(new Post()
+                                       {
+                                           Content = "This is some content",
+                                           ShortUrl = "short url",
+                                           Title = "This is for real",
+                                           Id = Guid.Empty,
+                                           Publish = false,
+                                           PublishDate = new DateTime(2011, 10, 24)
+                                       });
+            var target = new PostController(_postRepository);
+
+            // Act
+            var result = target.Index() as ViewResult;
+            var model = (IEnumerable<PostViewModel>)(result.Model);
+
+            // Assert
+            Assert.AreEqual("Index", result.ViewName);
+            Assert.AreEqual(1, model.Count());
+            Assert.AreEqual("This is for real", model.First().Title);
         }
 
         private PostViewModel CreateValidPostViewModel()

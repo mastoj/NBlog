@@ -16,7 +16,7 @@ namespace NBlog.Specs.Steps
         [Then(@"I should find a list of posts with one entry")]
         public void ThenIShouldFindAListWithOneEntry()
         {
-            var list = WebBrowser.Current.List(Find.ByClass("posts"));
+            var list = WebBrowser.Current.Table(Find.ByClass("posts"));
             if (list.Exists.IsFalse())
             {
                 Assert.Fail("Can't find post list");

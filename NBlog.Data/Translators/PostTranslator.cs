@@ -8,7 +8,7 @@ namespace NBlog.Data.Translators
 {
     public static class PostTranslator
     {
-        public static Post ToDTO(IPost post)
+        public static Post ToDTO(this IPost post)
         {
             var postDto = new Post()
                               {
@@ -38,6 +38,15 @@ namespace NBlog.Data.Translators
                                Title = postDto.Title
                            };
             return post;
+        }
+
+        public static IEnumerable<T> ToIPosts<T>(this IEnumerable<Post> postDtos) where T : IPost, new()
+        {
+            foreach (var postDto in postDtos)
+            {
+                var iPost = postDto.ToIPost<T>();
+                yield return iPost;
+            }
         }
     }
 }

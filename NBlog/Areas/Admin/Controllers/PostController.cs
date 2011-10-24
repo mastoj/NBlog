@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NBlog.Areas.Admin.Models;
 using NBlog.Data.Repositories;
 using NBlog.Data;
+using NBlog.Data.Translators;
 using NBlog.Helpers;
 using TJ.Extensions;
 
@@ -25,8 +26,8 @@ namespace NBlog.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-
-            return View(new List<PostViewModel>());
+            var model = _postRepository.All().ToIPosts<PostViewModel>();
+            return View("Index", model);
         }
 
         public ActionResult Create()
@@ -42,8 +43,13 @@ namespace NBlog.Areas.Admin.Controllers
                 ViewData.AddErrorMessage("Failed to create post");
                 return View("Create", model);
             }
-            ViewData.AddInfoMessage("Post created!");
-            return View("Create");
+            else
+            {
+                var post = model.ToDTO();
+                _postRepository.Insert(post);
+                ViewData.AddInfoMessage("Post created!");
+                return View("Create");
+            }
         }
     }
 }
