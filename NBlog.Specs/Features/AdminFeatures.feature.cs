@@ -86,68 +86,6 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("When logged in the logged in user should be able to create a post")]
-        [NUnit.Framework.CategoryAttribute("LoggedIn")]
-        [NUnit.Framework.CategoryAttribute("NoPosts")]
-        public virtual void WhenLoggedInTheLoggedInUserShouldBeAbleToCreateAPost()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When logged in the logged in user should be able to create a post", new string[] {
-                        "LoggedIn",
-                        "NoPosts"});
-#line 16
-this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("I am on the create post page");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "InputField",
-                        "DataType",
-                        "Input"});
-            table1.AddRow(new string[] {
-                        "Title",
-                        "string",
-                        "Demo title"});
-            table1.AddRow(new string[] {
-                        "ShortUrl",
-                        "longstring",
-                        "demopost"});
-            table1.AddRow(new string[] {
-                        "Content",
-                        "string",
-                        "Demo content"});
-            table1.AddRow(new string[] {
-                        "PublishDate",
-                        "datetime",
-                        "2011-10-01"});
-            table1.AddRow(new string[] {
-                        "Publish",
-                        "bool",
-                        "true"});
-            table1.AddRow(new string[] {
-                        "Tags",
-                        "string",
-                        "tag1 tag2"});
-            table1.AddRow(new string[] {
-                        "Categories",
-                        "string",
-                        "cat1 cat2"});
-#line 18
- testRunner.When("I enter the following information", ((string)(null)), table1);
-#line 27
- testRunner.And("I click the save button");
-#line 28
- testRunner.When("I navigate to the admin page");
-#line 29
- testRunner.Then("I should find a list of posts with one entry");
-#line 30
- testRunner.And("it contains the string \"Demo title\"");
-#line 31
- testRunner.And("it contains the string \"demopost\"");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #endregion

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text.RegularExpressions;
 using NBlog.Specs.Helpers;
 using NUnit.Framework;
 using TJ.Extensions;
@@ -13,6 +10,12 @@ namespace NBlog.Specs.Steps
     [Binding]
     public class PostSteps
     {
+        [BeforeScenario("NoPosts")]
+        public void DeletePosts()
+        {
+            PostHelper.DeletePosts();
+        }
+
         [Then(@"I should find a list of posts with one entry")]
         public void ThenIShouldFindAListWithOneEntry()
         {
@@ -30,6 +33,36 @@ namespace NBlog.Specs.Steps
             if (stringExist.IsFalse())
             {
                 Assert.Fail("Couldn't find the text {0}", stringToLookFor);
+            }
+        }
+
+        [Then(@"it contains an edit post link to (.*)")]
+        public void ThenItContainsAnEditPostLinkToDemopost(string shortUrl)
+        {
+            var editUrlPattern = "Edit/" + shortUrl;
+            CheckIfLinkExists(editUrlPattern);
+        }
+
+        [Then(@"it contains an delete post link to (.*)")]
+        public void ThenItContainsAnDeletePostLinkToDemopost(string shortUrl)
+        {
+            var deleteUrlPattern = "Delete/" + shortUrl;
+            CheckIfLinkExists(deleteUrlPattern);
+        }
+
+        [When(@"I navigate to edit of (.*)")]
+        public void WhenINavigateToEditOfDemopost(string shortUrl)
+        {
+            WebBrowser.Current.GoTo(Config.Configuration.Host + NavigationHelper.Pages["login page"] + shortUrl);
+        }
+
+        private void CheckIfLinkExists(string urlPattern)
+        {
+            var regex = new Regex(urlPattern);
+            var editPostLink = WebBrowser.Current.Link(Find.By("href", regex));
+            if (editPostLink.Exists.IsFalse())
+            {
+                Assert.Fail("Can't find link " + urlPattern);
             }
         }
     }

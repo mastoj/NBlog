@@ -20,53 +20,114 @@ namespace NBlog.Specs.Steps
                                                                {"create", "Create"},
                                                                {"save", "Save"}
                                                            };
+
+        private static Dictionary<string, Action<string, string>> SetFieldMapping =
+            new Dictionary<string, Action<string, string>>
+                {
+                    {"bool", (id, value) => { SetCheckbox(id, value); }},
+                    {"longstring", (id, value) => { SetTextArea(id, value); }},
+                    {"string", (id, value) => { SetTextField(id, value); }},
+                    {"datetime", (id, value) => { SetTextField(id, value); }}
+                };
+
+        private static Dictionary<string, Action<string, string>> CheckFieldMapping =
+            new Dictionary<string, Action<string, string>>
+                {
+                    {"bool", (id, value) => { CheckCheckbox(id, value); }},
+                    {"longstring", (id, value) => { CheckTextField(id, value); }},
+                    {"string", (id, value) => { CheckTextField(id, value); }},
+                    {"datetime", (id, value) => { CheckTextField(id, value); }}
+                };
+
         [When(@"I enter the following information")]
         public void WhenEnterTheFollowingInformation(Table table)
+        {
+            ExecuteTableCommand(table, SetFieldMapping);
+        }
+
+        [Then(@"I should see the following pre-filled form")]
+        public void ThenIShouldSeeTheFollowing(Table table)
+        {
+            ExecuteTableCommand(table, CheckFieldMapping);
+        }
+
+        private void ExecuteTableCommand(Table table, Dictionary<string, Action<string, string>> actionMapping)
         {
             foreach (var row in table.Rows)
             {
                 var id = row["InputField"];
                 var value = row["Input"];
                 var dataType = row.ContainsKey("DataType") ? row["DataType"] : "string";
-                switch (dataType)
+                if (actionMapping.ContainsKey(dataType))
                 {
-                    case "bool":
-                        SetCheckbox(id, value);
-                        break;
-                    case "longstring":
-                        SetTextArea(id, value);
-                        break;
-                    default:
-                        SetTextField(id, value);
-                        break;
+                    actionMapping[dataType](id, value);
+                }
+                else
+                {
+                    Assert.Fail("Unknown data type");
                 }
             }
         }
 
-        private void SetTextArea(string id, string value)
+        private static void CheckTextField(string id, string value)
+        {
+            var field = GetField(id);
+            var isMatch = field.Value == value;
+            AssertIfFalse(isMatch, id, value, field.Value);
+        }
+
+        private static void CheckCheckbox(string id, string value)
+        {
+            var checkBox = GetCheckBox(id);
+            var boolValue = bool.Parse(value);
+            var isMatch = checkBox.Checked == boolValue;
+            AssertIfFalse(isMatch, id, boolValue.ToString(), checkBox.Checked.ToString());
+        }
+
+        private static void AssertIfFalse(bool isMatch, string id, string expected, string actual)
+        {
+            if (isMatch.IsFalse())
+            {
+                Assert.Fail("Field {0} has mismatch. Expected: {1}, Actual: {2}", id, expected, actual);
+            }
+        }
+
+        private static void SetTextArea(string id, string value)
         {
             SetTextField(id, value);
         }
 
-        private void SetTextField(string id, string value)
+        private static void SetTextField(string id, string value)
+        {
+            var field = GetField(id);
+            field.TypeText(value);
+        }
+
+        private static TextField GetField(string id)
         {
             var field = WebBrowser.Current.TextField(Find.ById(id));
             if (field.Exists.IsFalse())
             {
                 Assert.Fail("Missing input field with id {0}", id);
             }
-            field.TypeText(value);
+            return field;
         }
 
-        private void SetCheckbox(string id, string value)
+        private static void SetCheckbox(string id, string value)
+        {
+            var checkBox = GetCheckBox(id);
+            var boolValue = bool.Parse(value);
+            checkBox.Checked = boolValue;
+        }
+
+        private static CheckBox GetCheckBox(string id)
         {
             var checkBox = WebBrowser.Current.CheckBox(Find.ById(id));
             if (checkBox.Exists.IsFalse())
             {
                 Assert.Fail("Missing checkbox with id {0}", id);
             }
-            var boolValue = bool.Parse(value);
-            checkBox.Checked = boolValue;
+            return checkBox;
         }
 
         [When(@"I click the (.*) button")]
@@ -79,7 +140,7 @@ namespace NBlog.Specs.Steps
             }
             button.Click();
         }
-    
+
         [Then(@"I should see a error message")]
         public void ThenIShouldSeeAErrorMessage()
         {

@@ -13,7 +13,8 @@ namespace NBlog.Specs.Helpers
                                                                    {"login page", "/login"},
                                                                    {"admin page", "/Admin"},
                                                                    {"create admin page", "/Account/CreateAdmin"},
-                                                                   {"create post page", "/Admin/Post/Create"}
+                                                                   {"create post page", "/Admin/Post/Create"},
+                                                                   {"edit post page", "/Admin/Post/Edit/"}
                                                                };
 
         private static Dictionary<string, string> _links = new Dictionary<string, string>()
