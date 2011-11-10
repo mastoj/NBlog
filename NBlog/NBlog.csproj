@@ -125,6 +125,8 @@
     <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\_EditCreatePost.cshtml" />
     <None Include="Content\nblog.scss">
       <Generator>ScssGenerator</Generator>
       <LastGenOutput>nblog.css</LastGenOutput>

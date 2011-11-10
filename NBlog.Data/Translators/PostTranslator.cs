@@ -26,13 +26,14 @@ namespace NBlog.Data.Translators
 
         public static T ToIPost<T>(this Post postDto) where T : IPost, new()
         {
+            var currentTimeZone = TimeZone.CurrentTimeZone;
             var post = new T()
                            {
                                Categories = postDto.Categories,
                                Content = postDto.Content,
                                Id = postDto.Id,
                                Publish = postDto.Publish,
-                               PublishDate = postDto.PublishDate,
+                               PublishDate = postDto.PublishDate.HasValue ? currentTimeZone.ToLocalTime(postDto.PublishDate.Value) : (DateTime?) null,
                                ShortUrl = postDto.ShortUrl,
                                Tags = postDto.Tags,
                                Title = postDto.Title

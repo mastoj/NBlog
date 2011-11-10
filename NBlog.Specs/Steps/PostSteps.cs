@@ -10,6 +10,8 @@ namespace NBlog.Specs.Steps
     [Binding]
     public class PostSteps
     {
+        private static readonly string EditPostUrlBase = NavigationHelper.Pages["edit post page"];
+
         [BeforeScenario("NoPosts")]
         public void DeletePosts()
         {
@@ -39,7 +41,7 @@ namespace NBlog.Specs.Steps
         [Then(@"it contains an edit post link to (.*)")]
         public void ThenItContainsAnEditPostLinkToDemopost(string shortUrl)
         {
-            var editUrlPattern = "Edit/" + shortUrl;
+            var editUrlPattern = EditPostUrlBase + shortUrl;
             CheckIfLinkExists(editUrlPattern);
         }
 
@@ -53,7 +55,7 @@ namespace NBlog.Specs.Steps
         [When(@"I navigate to edit of (.*)")]
         public void WhenINavigateToEditOfDemopost(string shortUrl)
         {
-            WebBrowser.Current.GoTo(Config.Configuration.Host + NavigationHelper.Pages["login page"] + shortUrl);
+            WebBrowser.Current.GoTo(Config.Configuration.Host + EditPostUrlBase + shortUrl);
         }
 
         private void CheckIfLinkExists(string urlPattern)

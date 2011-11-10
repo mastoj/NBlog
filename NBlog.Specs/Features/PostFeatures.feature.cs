@@ -65,12 +65,12 @@ namespace NBlog.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("When logged in the logged in user should be able to create a post")]
+        [NUnit.Framework.DescriptionAttribute("When logged in the logged in user should be able to create and edit a post")]
         [NUnit.Framework.CategoryAttribute("LoggedIn")]
         [NUnit.Framework.CategoryAttribute("NoPosts")]
-        public virtual void WhenLoggedInTheLoggedInUserShouldBeAbleToCreateAPost()
+        public virtual void WhenLoggedInTheLoggedInUserShouldBeAbleToCreateAndEditAPost()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When logged in the logged in user should be able to create a post", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When logged in the logged in user should be able to create and edit a post", new string[] {
                         "LoggedIn",
                         "NoPosts"});
 #line 8
@@ -105,11 +105,11 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "Tags",
                         "string",
-                        "tag1 tag2"});
+                        "tag1, tag2"});
             table1.AddRow(new string[] {
                         "Categories",
                         "string",
-                        "cat1 cat2"});
+                        "cat1, cat2"});
 #line 10
  testRunner.When("I enter the following information", ((string)(null)), table1);
 #line 19
@@ -156,26 +156,99 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Tags",
                         "string",
-                        "tag1 tag2"});
+                        "tag1, tag2"});
             table2.AddRow(new string[] {
                         "Categories",
                         "string",
-                        "cat1 cat2"});
+                        "cat1, cat2"});
 #line 27
  testRunner.Then("I should see the following pre-filled form", ((string)(null)), table2);
 #line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a logged in user I should be able to edit an existing blog post")]
-        [NUnit.Framework.CategoryAttribute("LoggedIn")]
-        public virtual void AsALoggedInUserIShouldBeAbleToEditAnExistingBlogPost()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a logged in user I should be able to edit an existing blog post", new string[] {
-                        "LoggedIn"});
-#line 38
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "InputField",
+                        "DataType",
+                        "Input"});
+            table3.AddRow(new string[] {
+                        "Title",
+                        "string",
+                        "Demo title2"});
+            table3.AddRow(new string[] {
+                        "ShortUrl",
+                        "longstring",
+                        "demopost2"});
+            table3.AddRow(new string[] {
+                        "Content",
+                        "string",
+                        "Demo content2"});
+            table3.AddRow(new string[] {
+                        "PublishDate",
+                        "datetime",
+                        "2011-10-02"});
+            table3.AddRow(new string[] {
+                        "Publish",
+                        "bool",
+                        "false"});
+            table3.AddRow(new string[] {
+                        "Tags",
+                        "string",
+                        "tag2, tag3"});
+            table3.AddRow(new string[] {
+                        "Categories",
+                        "string",
+                        "cat2, cat3"});
+#line 36
+ testRunner.When("I enter the following information", ((string)(null)), table3);
+#line 45
+ testRunner.And("I click the save button");
+#line 46
+ testRunner.When("I navigate to the admin page");
+#line 47
+ testRunner.Then("I should find a list of posts with one entry");
+#line 48
+ testRunner.And("it contains the string \"Demo title\"");
+#line 49
+ testRunner.And("it contains the string \"demopost\"");
+#line 50
+ testRunner.And("it contains an edit post link to demopost");
+#line 51
+ testRunner.And("it contains an delete post link to demopost");
+#line 52
+ testRunner.When("I navigate to edit of demopost");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "InputField",
+                        "DataType",
+                        "Input"});
+            table4.AddRow(new string[] {
+                        "Title",
+                        "string",
+                        "Demo title2"});
+            table4.AddRow(new string[] {
+                        "ShortUrl",
+                        "longstring",
+                        "demopost2"});
+            table4.AddRow(new string[] {
+                        "Content",
+                        "string",
+                        "Demo content2"});
+            table4.AddRow(new string[] {
+                        "PublishDate",
+                        "datetime",
+                        "2011-10-02"});
+            table4.AddRow(new string[] {
+                        "Publish",
+                        "bool",
+                        "false"});
+            table4.AddRow(new string[] {
+                        "Tags",
+                        "string",
+                        "tag2, tag3"});
+            table4.AddRow(new string[] {
+                        "Categories",
+                        "string",
+                        "cat2, cat3"});
+#line 53
+ testRunner.Then("I should see the following pre-filled form", ((string)(null)), table4);
 #line hidden
             this.ScenarioCleanup();
         }

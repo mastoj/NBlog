@@ -51,6 +51,17 @@ namespace NBlog.Areas.Admin.Controllers
                 return View("Create");
             }
         }
+
+        public ActionResult Edit(string id)
+        {
+            var post = _postRepository.Single(y => y.ShortUrl == id);
+            if (post.IsNull())
+            {
+                return new HttpNotFoundResult("Can't find post");
+            }
+            var model = post.ToIPost<PostViewModel>();
+            return View("Edit", model);
+        }
     }
 }
 
