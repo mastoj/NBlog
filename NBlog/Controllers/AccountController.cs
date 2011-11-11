@@ -7,10 +7,10 @@ using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Domain.Repositories;
 using NBlog.Domain;
-using NBlog.Domain.Translators;
 using NBlog.Helpers;
 using NBlog.Infrastructure;
 using NBlog.Models;
+using NBlog.Translators;
 using TJ.Extensions;
 using TJ.Mvc.Filter;
 

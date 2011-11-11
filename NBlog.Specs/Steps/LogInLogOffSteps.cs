@@ -6,10 +6,10 @@ using EasySec.Hashing;
 using NBlog.Domain;
 using NBlog.Domain.Mongo;
 using NBlog.Domain.Mongo.Repositories;
-using NBlog.Domain.Translators;
 using NBlog.Models;
 using NBlog.Specs.Config;
 using NBlog.Specs.Helpers;
+using NBlog.Translators;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

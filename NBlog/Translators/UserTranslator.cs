@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NBlog.Domain;
 using NBlog.Domain.Entities;
 
-namespace NBlog.Domain.Translators
+namespace NBlog.Translators
 {
     public static class UserTranslator
     {

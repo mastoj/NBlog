@@ -5,9 +5,9 @@ using Moq;
 using NBlog.Controllers;
 using NBlog.Domain.Extensions;
 using NBlog.Domain;
-using NBlog.Domain.Translators;
 using NBlog.Infrastructure;
 using NBlog.Models;
+using NBlog.Translators;
 using NUnit.Framework;
 
 namespace NBlog.Tests.Controllers

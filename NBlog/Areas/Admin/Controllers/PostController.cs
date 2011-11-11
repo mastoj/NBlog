@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using NBlog.Areas.Admin.Models;
 using NBlog.Domain.Repositories;
 using NBlog.Domain;
-using NBlog.Domain.Translators;
 using NBlog.Helpers;
+using NBlog.Translators;
 using TJ.Extensions;
 
 namespace NBlog.Areas.Admin.Controllers
