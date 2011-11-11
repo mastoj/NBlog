@@ -1,5 +1,5 @@
 using System.Configuration;
-using NBlog.Data.Mongo;
+using NBlog.Domain.Mongo;
 using TJ.Extensions;
 
 namespace NBlog.Configuration

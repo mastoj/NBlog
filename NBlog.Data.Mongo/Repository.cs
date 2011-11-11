@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using NBlog.Data.Repositories;
-using NBlog.Data;
+using NBlog.Domain.Repositories;
+using NBlog.Domain;
 using Norm;
 using Norm.Collections;
 using TJ.Extensions;
 
-namespace NBlog.Data.Mongo
+namespace NBlog.Domain.Mongo
 {
     public abstract class Repository<T> : IRepository<T> where T : IEntity
     {

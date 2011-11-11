@@ -1,6 +1,6 @@
 using System;
 
-namespace NBlog.Data
+namespace NBlog.Domain
 {
     public interface IEntity
     {

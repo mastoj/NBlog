@@ -1,7 +1,7 @@
 ﻿using System;
-using NBlog.Data;
+using NBlog.Domain;
 
-namespace NBlog.Data
+namespace NBlog.Domain
 {
     public abstract class Entity : IEntity
     {

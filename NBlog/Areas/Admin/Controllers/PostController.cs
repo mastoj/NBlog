@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NBlog.Areas.Admin.Models;
-using NBlog.Data.Repositories;
-using NBlog.Data;
-using NBlog.Data.Translators;
+using NBlog.Domain.Repositories;
+using NBlog.Domain;
+using NBlog.Domain.Translators;
 using NBlog.Helpers;
 using TJ.Extensions;
 

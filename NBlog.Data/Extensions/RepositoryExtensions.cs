@@ -1,6 +1,6 @@
-﻿using NBlog.Data.Repositories;
+﻿using NBlog.Domain.Repositories;
 
-namespace NBlog.Data.Extensions
+namespace NBlog.Domain.Extensions
 {
     public static class RepositoryExtensions
     {

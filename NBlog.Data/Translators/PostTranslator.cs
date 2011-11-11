@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NBlog.Data.DTO;
+using NBlog.Domain.Entities;
 
-namespace NBlog.Data.Translators
+namespace NBlog.Domain.Translators
 {
     public static class PostTranslator
     {

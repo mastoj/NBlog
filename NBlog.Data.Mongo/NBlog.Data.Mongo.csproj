@@ -51,9 +51,9 @@
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NBlog.Data\NBlog.Data.csproj">
+    <ProjectReference Include="..\NBlog.Data\NBlog.Domain.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
-      <Name>NBlog.Data</Name>
+      <Name>NBlog.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
       <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>

@@ -1,4 +1,4 @@
-namespace NBlog.Data.Mongo
+namespace NBlog.Domain.Mongo
 {
     public class MongoConfiguration : IMongoConfiguration
     {

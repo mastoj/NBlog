@@ -1,7 +1,7 @@
-﻿using NBlog.Data.DTO;
-using NBlog.Data.Repositories;
+﻿using NBlog.Domain.Entities;
+using NBlog.Domain.Repositories;
 
-namespace NBlog.Data.Mongo.Repositories
+namespace NBlog.Domain.Mongo.Repositories
 {
     public class PostRepository : Repository<Post>, IPostRepository
     {

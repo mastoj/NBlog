@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using NBlog.Data;
+using NBlog.Domain;
 using TJ.Extensions;
 
 namespace NBlog.Areas.Admin.Models

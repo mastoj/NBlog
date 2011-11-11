@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using NBlog.Data.Repositories;
-using NBlog.Data;
-using NBlog.Data;
+using NBlog.Domain.Repositories;
+using NBlog.Domain;
+using NBlog.Domain;
 
 namespace NBlog.Tests
 {

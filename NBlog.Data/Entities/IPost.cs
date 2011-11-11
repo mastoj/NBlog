@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using NBlog.Data;
+using NBlog.Domain;
 
-namespace NBlog.Data
+namespace NBlog.Domain
 {
     public interface IPost : IEntity
     {

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.Extensions.Test", "TJ.Ex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BDAE58CF-66C0-4AFA-8DD4-23AAB5CD6C50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog.Data", "NBlog.Data\NBlog.Data.csproj", "{D17A3739-526E-4400-8B83-2232494DD5F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog.Domain", "NBlog.Data\NBlog.Domain.csproj", "{D17A3739-526E-4400-8B83-2232494DD5F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog.Data.Mongo", "NBlog.Data.Mongo\NBlog.Data.Mongo.csproj", "{906C54D3-3522-4634-80DF-D80EF8370017}"
 EndProject

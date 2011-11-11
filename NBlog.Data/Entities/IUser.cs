@@ -1,6 +1,6 @@
-using NBlog.Data;
+using NBlog.Domain;
 
-namespace NBlog.Data
+namespace NBlog.Domain
 {
     public interface IUser : IEntity
     {        

@@ -1,6 +1,6 @@
-﻿using NBlog.Data.DTO;
+﻿using NBlog.Domain.Entities;
 
-namespace NBlog.Data.Repositories
+namespace NBlog.Domain.Repositories
 {
     public interface IPostRepository : IRepository<Post>
     {

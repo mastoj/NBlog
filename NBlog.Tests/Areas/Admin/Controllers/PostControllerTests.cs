@@ -5,9 +5,9 @@ using System.Text;
 using System.Web.Mvc;
 using NBlog.Areas.Admin.Controllers;
 using NBlog.Areas.Admin.Models;
-using NBlog.Data.DTO;
-using NBlog.Data.Repositories;
-using NBlog.Data;
+using NBlog.Domain.Entities;
+using NBlog.Domain.Repositories;
+using NBlog.Domain;
 using NBlog.Helpers;
 using NUnit.Framework;
 

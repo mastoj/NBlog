@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace NBlog.Data.Repositories
+namespace NBlog.Domain.Repositories
 {
     public interface IRepository<T> : IDisposable
     {

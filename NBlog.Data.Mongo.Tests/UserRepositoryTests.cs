@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using NBlog.Data.DTO;
-using NBlog.Data.Mongo.Repositories;
+using NBlog.Domain.Entities;
+using NBlog.Domain.Mongo.Repositories;
 using NUnit.Framework;
 
-namespace NBlog.Data.Mongo.Tests
+namespace NBlog.Domain.Mongo.Tests
 {
     [TestFixture]
     public class UserRepositoryTests

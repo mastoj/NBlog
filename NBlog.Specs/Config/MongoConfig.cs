@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NBlog.Data.Mongo;
+using NBlog.Domain.Mongo;
 
 namespace NBlog.Specs.Config
 {

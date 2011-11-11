@@ -1,5 +1,5 @@
-using NBlog.Data.DTO;
-using NBlog.Data.Repositories;
+using NBlog.Domain.Entities;
+using NBlog.Domain.Repositories;
 
 namespace NBlog.Tests
 {

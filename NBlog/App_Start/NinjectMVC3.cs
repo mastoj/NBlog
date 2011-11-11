@@ -1,10 +1,10 @@
 using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Configuration;
-using NBlog.Data.Mongo.Repositories;
-using NBlog.Data.Repositories;
-using NBlog.Data;
-using NBlog.Data.Mongo;
+using NBlog.Domain.Mongo.Repositories;
+using NBlog.Domain.Repositories;
+using NBlog.Domain;
+using NBlog.Domain.Mongo;
 using NBlog.Infrastructure;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectMVC3), "Start")]
