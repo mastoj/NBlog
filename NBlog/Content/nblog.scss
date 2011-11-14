@@ -83,14 +83,14 @@ $soft-green:#94ff94;
 	.super-container.error {
 		border-color: $strong-red;
 	}
-	.super-container.info {
+	.super-container.info, .super-container.success {
 		border-color: $strong-green;
 	}
 	.error {
 		background-color: $soft-red;
 		color: $strong-red;
 	}
-	.info {
+	.info, .success {
 		background-color: $soft-green;
 		color: $strong-green;
 	}

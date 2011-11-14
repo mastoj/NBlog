@@ -23,35 +23,6 @@ namespace NBlog.Configuration
             }
         }
 
-        private bool? _isSpecFlowTest;
-        public bool IsSpecFlowTest
-        {
-            get
-            {
-                if (_isSpecFlowTest.HasValue.IsFalse())
-                {
-                    _isSpecFlowTest = false;
-                    var appSetting = GetAppSetting("IsSpecFlowTest") ?? string.Empty;
-                    bool isSpecFlowTest;
-                    if (bool.TryParse(appSetting, out isSpecFlowTest))
-                    {
-                        _isSpecFlowTest = isSpecFlowTest;
-                    }
-                }
-                return _isSpecFlowTest.Value;
-            }
-        }
-
-        private string _specMongoConnection;
-        public string SpecMongoConnection
-        {
-            get 
-            { 
-                _specMongoConnection = _specMongoConnection ?? GetAppSetting("SpecMongoConnection");
-                return _specMongoConnection;
-            }
-        }
-
         private string _mongoHQUrl;
         public string MongoHQUrl
         {

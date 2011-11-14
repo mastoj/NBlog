@@ -45,12 +45,12 @@
   border-width: 2px; }
 .flash-container .super-container.error {
   border-color: #991212; }
-.flash-container .super-container.info {
+.flash-container .super-container.info, .flash-container .super-container.success {
   border-color: #129912; }
 .flash-container .error {
   background-color: #ff9494;
   color: #991212; }
-.flash-container .info {
+.flash-container .info, .flash-container .success {
   background-color: #94ff94;
   color: #129912; }
 

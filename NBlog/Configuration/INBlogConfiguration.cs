@@ -8,8 +8,6 @@ namespace NBlog.Configuration
     public interface INBlogConfiguration
     {
         string Environment { get; }
-        bool IsSpecFlowTest { get; }
-        string SpecMongoConnection { get; }
         string MongoHQUrl { get; }
         bool IsProd { get; }
     }

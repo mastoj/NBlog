@@ -18,15 +18,8 @@ namespace NBlog.Configuration
         {
             get
             {
-                if (NBlogConfiguration.IsProd.IsFalse() && NBlogConfiguration.IsSpecFlowTest.IsTrue())
-                {
-                    _connectionString = NBlogConfiguration.SpecMongoConnection;
-                }
-                else
-                {
-                    _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
-                    _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;                    
-                }
+                _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
+                _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;
                 return _connectionString;
             }
         }
