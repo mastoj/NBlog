@@ -66,11 +66,11 @@ namespace NBlog.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I should have links to all the relevant areas")]
-        [NUnit.Framework.CategoryAttribute("LoggedIn")]
+        [NUnit.Framework.CategoryAttribute("Authenticated")]
         public virtual void IShouldHaveLinksToAllTheRelevantAreas()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I should have links to all the relevant areas", new string[] {
-                        "LoggedIn"});
+                        "Authenticated"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

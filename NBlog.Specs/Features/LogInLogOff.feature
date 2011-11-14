@@ -1,6 +1,5 @@
 ﻿Feature: As a user with an account I should be able to log in and log off
 
-@NotLoggedIn
 Scenario: Setup initial account
 	Given it doesn't exist a user
 	When I navigate to the login page
@@ -16,7 +15,7 @@ Scenario: Setup initial account
 	Then I should be redirected to the admin page
 	And there should be a log off link
 	
-@NotLoggedIn
+@NotAuthenticated
 Scenario: Log in successful
 	Given it exist an account with the credentials
 		| UserName | Password | Name  |
@@ -30,7 +29,7 @@ Scenario: Log in successful
 	Then I should be redirected to the admin page
 	And there should be a log off link
 
-@NotLoggedIn
+@NotAuthenticated
 Scenario: Log in unsuccessful
 	Given it exist an account with the credentials
 		| UserName | Password | Name  |

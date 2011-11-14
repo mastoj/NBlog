@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DeleporterCore.Client;
 using NBlog.Specs.Helpers;
+using NBlog.Specs.Infrastructure;
 using TechTalk.SpecFlow;
 
 namespace NBlog.Specs.Steps

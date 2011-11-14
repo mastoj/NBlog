@@ -27,9 +27,9 @@ namespace NBlog.Tests.Controllers
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
-            var mock = new Mock<IAuthenticationManager>();
+            var mock = new Mock<IAuthenticationHandler>();
             var authenticationManager = mock.Object;
-            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+            var controller = CreateAccountController(userRepository: userRepository, authenticationHandler: authenticationManager);
 
             // act
             var result = controller.CreateAdmin(createAdminModel) as RedirectToRouteResult;
@@ -42,11 +42,11 @@ namespace NBlog.Tests.Controllers
             mock.Verify(y => y.LoginUser(createAdminModel.UserName));
         }
 
-        private AccountController CreateAccountController(InMemoryUserRepository userRepository = null, IHashGenerator hashGenerator = null, IAuthenticationManager authenticationManager = null)
+        private AccountController CreateAccountController(InMemoryUserRepository userRepository = null, IHashGenerator hashGenerator = null, IAuthenticationHandler authenticationHandler = null)
         {
             userRepository = userRepository ?? new InMemoryUserRepository();
             hashGenerator = hashGenerator ?? new HashGenerator();
-            return new AccountController(userRepository, hashGenerator, authenticationManager);
+            return new AccountController(userRepository, hashGenerator, authenticationHandler);
         }
 
         [Test]
@@ -78,9 +78,9 @@ namespace NBlog.Tests.Controllers
         {
             // arrange
             var userRepository = new InMemoryUserRepository();
-            var mock = new Mock<IAuthenticationManager>();
+            var mock = new Mock<IAuthenticationHandler>();
             var authenticationManager = mock.Object;
-            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+            var controller = CreateAccountController(userRepository: userRepository, authenticationHandler: authenticationManager);
 
             // act
             var result = controller.Login() as RedirectToRouteResult;
@@ -153,20 +153,20 @@ namespace NBlog.Tests.Controllers
         public void Login_WithValidCredentialsResultsInLoggedInUserAndRedirect()
         {
             // arrange
-            var hashGenerator = new HashGenerator();
             var user = new CreateAdminModel()
             {
                 UserName = "admin",
-                PasswordHash = hashGenerator.GenerateHash("Password!"),
+                PasswordHash = "Password!",
                 Name = "Tomas"
             };
             var userRepository = new InMemoryUserRepository();
             var userDto = user.ToDTO();
             userRepository.Insert(userDto);
             var userViewModel = new LogInViewModel { UserName = "admin", Password = "Password!" };
-            var mock = new Mock<IAuthenticationManager>();
-            var authenticationManager = mock.Object;
-            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+            var mock = new Mock<IAuthenticationHandler>();
+            mock.Setup(y => y.AuthenticateUser(userViewModel.UserName, userViewModel.Password)).Returns(true);
+            var authenticationHandler = mock.Object;
+            var controller = CreateAccountController(userRepository: userRepository, authenticationHandler: authenticationHandler);
 
             // act 
             var result = controller.Login(userViewModel) as RedirectToRouteResult;
@@ -183,9 +183,9 @@ namespace NBlog.Tests.Controllers
             // arrange
             var userRepository = new InMemoryUserRepository();
             var userViewModel = new LogInViewModel { UserName = "admin", Password = "Password!" };
-            var mock = new Mock<IAuthenticationManager>();
+            var mock = new Mock<IAuthenticationHandler>();
             var authenticationManager = mock.Object;
-            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+            var controller = CreateAccountController(userRepository: userRepository, authenticationHandler: authenticationManager);
 
             // act 
             var result = controller.Login(userViewModel) as ViewResult;
@@ -210,9 +210,9 @@ namespace NBlog.Tests.Controllers
             var userDto = user.ToDTO();
             userRepository.Insert(userDto);
             var userViewModel = new LogInViewModel { UserName = "admin", Password = "WrongPassword!" };
-            var mock = new Mock<IAuthenticationManager>();
+            var mock = new Mock<IAuthenticationHandler>();
             var authenticationManager = mock.Object;
-            var controller = CreateAccountController(userRepository: userRepository, authenticationManager: authenticationManager);
+            var controller = CreateAccountController(userRepository: userRepository, authenticationHandler: authenticationManager);
 
             // act 
             var result = controller.Login(userViewModel) as ViewResult;
@@ -226,9 +226,9 @@ namespace NBlog.Tests.Controllers
         public void Logout_ShouldLogOutUser()
         {
             // arrange
-            var mock = new Mock<IAuthenticationManager>();
+            var mock = new Mock<IAuthenticationHandler>();
             var authenticationManager = mock.Object;
-            var controller = CreateAccountController(authenticationManager: authenticationManager);
+            var controller = CreateAccountController(authenticationHandler: authenticationManager);
 
             // act 
             var result = controller.Logout() as RedirectToRouteResult;

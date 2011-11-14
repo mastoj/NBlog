@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DeleporterCore.Client;
 using EasySec.Hashing;
 using NBlog.Domain;
+using NBlog.Domain.Entities;
 using NBlog.Domain.Mongo;
 using NBlog.Domain.Mongo.Repositories;
+using NBlog.Domain.Repositories;
 using NBlog.Models;
 using NBlog.Specs.Config;
 using NBlog.Specs.Helpers;
+using NBlog.Specs.Infrastructure;
+using NBlog.Tests;
 using NBlog.Translators;
 using TechTalk.SpecFlow;
 
@@ -17,29 +22,26 @@ namespace NBlog.Specs.Steps
     [Binding]
     public class CommonSteps
     {
-        private IHashGenerator _hashGenerator = new HashGenerator();
-
         [BeforeScenario("AdminUserExists")]
         public void AdminUserExists()
         {
-            using (var userRepository = new UserRepository(new MongoConfig()))
-            {
-                userRepository.DeleteAll();
-            }
-            using (var userRepository = new UserRepository(new MongoConfig()))
-            {
-                var user = new CreateAdminModel
-                               {
-                                   Name = "Tomas",
-                                   UserName = "admin",
-                                   PasswordHash = _hashGenerator.GenerateHash("asdf1234")
-                               };
-                var userDto = user.ToDTO();
-                userRepository.Insert(userDto);
-            }
+            Deleporter.Run(
+                () =>
+                {
+                    var inMemoryUserRepository = new InMemoryUserRepository();
+                    var user = new User
+                    {
+                        Id = Guid.Empty,
+                        Name = "Tomas",
+                        UserName = "admin",
+                        PasswordHash = "asdf1234"
+                    };
+                    inMemoryUserRepository.Insert(user);
+                    DeleporterMvcUtils.TemporarilyReplaceBinding<IUserRepository>(inMemoryUserRepository);
+                });
         }
 
-        [BeforeScenario("NotLoggedIn")]
+        [BeforeScenario("NotAuthenticated")]
         public void NotLoggedIn()
         {
             WebBrowser.Current.GoTo(Config.Configuration.Host);
@@ -50,7 +52,7 @@ namespace NBlog.Specs.Steps
             }
         }
 
-        [BeforeScenario("LoggedIn")]
+        [BeforeScenario("Authenticated")]
         public void LoggedIn()
         {
             AdminUserExists();
@@ -65,6 +67,23 @@ namespace NBlog.Specs.Steps
                 formSteps.WhenEnterTheFollowingInformation(table);
                 formSteps.WhenIClickTheButton("log in");
             }
+        }
+
+        [BeforeScenario]
+        public void CommonSetup()
+        {
+            Deleporter.Run(
+                () =>
+                    {
+                        IHashGenerator dumbHashGenerator = new DumbHashGenerator();
+                        DeleporterMvcUtils.TemporarilyReplaceBinding(dumbHashGenerator);
+                    });
+        }
+
+        [AfterScenario]
+        public void CommonCleanUp()
+        {
+            Deleporter.Run(TidyupUtils.PerformTidyup);
         }
     }
 }

@@ -70,7 +70,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NBlog.Data\NBlog.Domain.csproj">
+    <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Domain</Name>
     </ProjectReference>

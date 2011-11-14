@@ -47,7 +47,7 @@ namespace NBlog.Areas.Admin.Controllers
             {
                 var post = model.ToDTO();
                 _postRepository.Insert(post);
-                ViewData.AddInfoMessage("Post created!");
+                ViewData.AddSuccessMessage("Post created!");
                 return View("Create");
             }
         }

@@ -63,7 +63,7 @@ namespace NBlog.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
             kernel.Bind<IPostRepository>().To<PostRepository>().InRequestScope();
 
-            kernel.Bind<IAuthenticationManager>().To<FormsAuthenticationManager>().InSingletonScope();
+            kernel.Bind<IAuthenticationHandler>().To<FormsAuthenticationHandler>().InSingletonScope();
             kernel.Bind<IHashGenerator>().To<HashGenerator>().InSingletonScope();
         }        
     }

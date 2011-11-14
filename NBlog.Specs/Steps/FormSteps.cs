@@ -141,13 +141,19 @@ namespace NBlog.Specs.Steps
             button.Click();
         }
 
-        [Then(@"I should see a error message")]
-        public void ThenIShouldSeeAErrorMessage()
+        [Then(@"I should see a (.*) message")]
+        public void ThenIShouldSeeASuccessMessage(string messageType)
         {
-            var errorContainer = WebBrowser.Current.Element(Find.BySelector("div.error"));
+            var selectorDictionary = new Dictionary<string, string>
+                                         {
+                                             {"success", "div.success"},
+                                             {"error", "div.error"}
+                                         };
+            var selector = selectorDictionary[messageType];
+            var errorContainer = WebBrowser.Current.Element(Find.BySelector(selector));
             if (errorContainer.Exists.IsFalse())
             {
-                Assert.Fail("Can't find an container with .error class");
+                Assert.Fail("Can't find flash for " + messageType);
             }
         }
 

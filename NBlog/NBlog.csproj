@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Deleporter">
+      <HintPath>..\packages\Deleporter.1.0.0.0\lib\Deleporter.dll</HintPath>
+    </Reference>
     <Reference Include="EasySec, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EasySec.1.0\lib\net40\EasySec.dll</HintPath>
     </Reference>
@@ -146,8 +149,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\TempAndViewDataHelpers.cs" />
-    <Compile Include="Infrastructure\FormsAuthenticationManager.cs" />
-    <Compile Include="Infrastructure\IAuthenticationManager.cs" />
+    <Compile Include="Infrastructure\FormsAuthenticationHandler.cs" />
+    <Compile Include="Infrastructure\IAuthenticationHandler.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,7 +274,7 @@
       <Project>{906C54D3-3522-4634-80DF-D80EF8370017}</Project>
       <Name>NBlog.Data.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NBlog.Data\NBlog.Domain.csproj">
+    <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Domain</Name>
     </ProjectReference>

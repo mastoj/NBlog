@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=152368
+  -->
+<configuration>
+  <system.web>
+    <httpModules>
+      <!-- If you're using Visual Studio's built-in web server, or IIS 5 or 6 -->
+      <add name="DeleporterServerModule" type="DeleporterCore.Server.DeleporterServerModule, Deleporter" />
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <modules>
+      <!-- If you're using IIS 7+ -->
+      <add name="DeleporterServerModule" type="DeleporterCore.Server.DeleporterServerModule, Deleporter" />
+    </modules>
+  </system.webServer>
+</configuration>

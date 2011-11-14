@@ -21,13 +21,13 @@ namespace NBlog.Controllers
     {
         private IUserRepository _userRepository;
         private IHashGenerator _hashGenerator;
-        private IAuthenticationManager _authenticationManager;
+        private IAuthenticationHandler _authenticationHandler;
 
-        public AccountController(IUserRepository userRepository, IHashGenerator hashGenerator, IAuthenticationManager authenticationManager)
+        public AccountController(IUserRepository userRepository, IHashGenerator hashGenerator, IAuthenticationHandler authenticationHandler)
         {
             _userRepository = userRepository;
             _hashGenerator = hashGenerator;
-            _authenticationManager = authenticationManager;
+            _authenticationHandler = authenticationHandler;
         }
 
         //
@@ -37,7 +37,7 @@ namespace NBlog.Controllers
         {
             if (UsersExist().IsFalse())
             {
-                _authenticationManager.LogoutUser();
+                _authenticationHandler.LogoutUser();
                 return RedirectToAction("CreateAdmin");
             }
             if (User.Identity.IsAuthenticated.IsTrue())
@@ -52,34 +52,32 @@ namespace NBlog.Controllers
         {
             if (ModelState.IsValid && ValidateCredentials(model))
             {
-                return LoginAndRedirect(model.UserName);
+                return RedirectFromLogin();
             }
             return View(model);
         }
 
-        private ActionResult LoginAndRedirect(string userName)
+        private ActionResult RedirectFromLogin()
         {
-            _authenticationManager.LoginUser(userName);
             return RedirectToAction("Index", "Post", new { area = "Admin" });
         }
 
         private bool ValidateCredentials(LogInViewModel model)
         {
-            var user = _userRepository.Single(y => y.UserName == model.UserName);
-            var isValid = user.IsNotNull() && _hashGenerator.CompareHash(user.PasswordHash, model.Password);
-            if (isValid.IsFalse())
+            var isAuthenticated = _authenticationHandler.AuthenticateUser(model.UserName, model.Password);
+            if (isAuthenticated.IsFalse())
             {
                 var errorMessage = "Invalid user credentials";
                 ModelState.AddModelError("", errorMessage);
                 TempData.AddErrorMessage(errorMessage);
             }
-            return isValid;
+            return isAuthenticated;
         }
 
         public ActionResult Logout()
         {
-            _authenticationManager.LogoutUser();
-            TempData.AddInfoMessage("Successfully signed out");
+            _authenticationHandler.LogoutUser();
+            TempData.AddSuccessMessage("Successfully signed out");
             return RedirectToAction("Index", "Home");
         }
 
@@ -106,7 +104,8 @@ namespace NBlog.Controllers
                     model.PasswordHash = _hashGenerator.GenerateHash(model.Password);
                     var user = model.ToDTO();
                     _userRepository.Insert(user);
-                    return LoginAndRedirect(model.UserName);
+                    _authenticationHandler.LoginUser(model.UserName);
+                    return RedirectFromLogin();
                 }
                 return View(model);
             }

@@ -1,9 +1,14 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+using DeleporterCore.Client;
+using NBlog.Domain.Entities;
 using NBlog.Specs.Helpers;
+using NBlog.Specs.Infrastructure;
 using NUnit.Framework;
 using TJ.Extensions;
 using TechTalk.SpecFlow;
 using WatiN.Core;
+using Table = TechTalk.SpecFlow.Table;
 
 namespace NBlog.Specs.Steps
 {
@@ -56,6 +61,14 @@ namespace NBlog.Specs.Steps
         public void WhenINavigateToEditOfDemopost(string shortUrl)
         {
             WebBrowser.Current.GoTo(Config.Configuration.Host + EditPostUrlBase + shortUrl);
+        }
+
+        [Then(@"a post with the following content should have been created")]
+        public void ThenAPostWithTheFollowingContentShouldHaveBeenCreated(Table table)
+        {
+            var expectedPost = PostHelper.CreatePostsFromTable(table).First();
+            var actualPost = PostRepositoryHelper.GetPosts().First();
+            Assert.AreEqual(expectedPost, actualPost, "Posted post is not same as saved post");
         }
 
         private void CheckIfLinkExists(string urlPattern)

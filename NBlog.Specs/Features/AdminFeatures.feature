@@ -3,7 +3,7 @@
 	As a logged in user
 	I should be able to edit, update and delete content
 
-@LoggedIn
+@Authenticated
 Scenario: I should have links to all the relevant areas
 	Given I am on the admin page
 	Then there should be a pages link
