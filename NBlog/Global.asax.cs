@@ -28,6 +28,13 @@ namespace NBlog
                             new {controller = "Account", action = "LogIn"});
 
             routes.MapRoute(
+                "Post route",
+                "{shortUrl}",
+                new { controller = "Home", action = "Details" },
+                new string[] { "NBlog.Controllers" }
+            );
+
+            routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },

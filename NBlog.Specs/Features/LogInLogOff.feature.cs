@@ -73,11 +73,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
  testRunner.Given("it doesn\'t exist a user");
 #line 5
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line 6
- testRunner.Then("there should be a create button");
+ testRunner.Then("there should be a \"create\" button");
 #line 7
- testRunner.And("no log in button");
+ testRunner.And("no \"log in\" button");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -97,11 +97,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.When("I enter the following information", ((string)(null)), table1);
 #line 14
- testRunner.And("I click the create button");
+ testRunner.And("I click the \"create\" button");
 #line 15
- testRunner.Then("I should be redirected to the admin page");
+ testRunner.Then("I should be redirected to the \"admin page\"");
 #line 16
- testRunner.And("there should be a log off link");
+ testRunner.And("there should be a \"log off\" link");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -127,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
  testRunner.Given("it exist an account with the credentials", ((string)(null)), table2);
 #line 23
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -141,11 +141,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
  testRunner.And("I enter the following information", ((string)(null)), table3);
 #line 28
- testRunner.And("I click the log in button");
+ testRunner.And("I click the \"log in\" button");
 #line 29
- testRunner.Then("I should be redirected to the admin page");
+ testRunner.Then("I should be redirected to the \"admin page\"");
 #line 30
- testRunner.And("there should be a log off link");
+ testRunner.And("there should be a \"log off\" link");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -171,7 +171,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
  testRunner.Given("it exist an account with the credentials", ((string)(null)), table4);
 #line 37
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -185,7 +185,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.And("I enter the following information", ((string)(null)), table5);
 #line 42
- testRunner.And("I click the log in button");
+ testRunner.And("I click the \"log in\" button");
 #line 43
  testRunner.Then("I should see a error message");
 #line hidden

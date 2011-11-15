@@ -16,6 +16,8 @@ namespace NBlog.Domain.Entities
         public DateTime? PublishDate { get; set; }
         public IList<string> Tags { get; set; }
         public IList<string> Categories { get; set; }
+        public string Excerpt { get; set; }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;

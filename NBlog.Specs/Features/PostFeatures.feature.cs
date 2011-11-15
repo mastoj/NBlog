@@ -76,7 +76,7 @@ namespace NBlog.Specs.Features
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Given("I am on the create post page");
+ testRunner.Given("I am on the \"create post page\"");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -113,7 +113,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("I enter the following information", ((string)(null)), table1);
 #line 19
- testRunner.And("I click the save button");
+ testRunner.And("I click the \"save\" button");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",

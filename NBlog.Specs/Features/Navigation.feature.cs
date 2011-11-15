@@ -75,7 +75,7 @@ namespace NBlog.Specs.Features
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.When("I navigate to the start page");
+ testRunner.When("I navigate to the \"start page\"");
 #line 6
  testRunner.Then("I should get a successful response");
 #line 7
@@ -94,7 +94,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line 12
  testRunner.Then("I should get a successful response");
 #line 13
@@ -113,9 +113,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line 18
- testRunner.Then("I should be redirected to the start page");
+ testRunner.Then("I should be redirected to the \"start page\"");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -132,9 +132,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 22
  testRunner.Given("it doesn\'t exist a user");
 #line 23
- testRunner.When("I navigate to the login page");
+ testRunner.When("I navigate to the \"login page\"");
 #line 24
- testRunner.Then("I should be redirected to the create admin page");
+ testRunner.Then("I should be redirected to the \"create admin page\"");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -151,9 +151,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29
- testRunner.When("I navigate to the create admin page");
+ testRunner.When("I navigate to the \"create admin page\"");
 #line 30
- testRunner.Then("I should be redirected to the login page");
+ testRunner.Then("I should be redirected to the \"login page\"");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -170,9 +170,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
- testRunner.When("I navigate to the admin page");
+ testRunner.When("I navigate to the \"admin page\"");
 #line 36
- testRunner.Then("I should be redirected to the login page");
+ testRunner.Then("I should be redirected to the \"login page\"");
 #line hidden
             this.ScenarioCleanup();
         }

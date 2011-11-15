@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NBlog.Domain.Repositories;
 using TJ.Mvc.Filter;
 
 namespace NBlog.Controllers
@@ -10,10 +11,21 @@ namespace NBlog.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        private readonly IPostRepository _postRepository;
+
+        public HomeController(IPostRepository postRepository)
         {
-            return View("Index");
+            _postRepository = postRepository;
         }
 
+        public ViewResult Index()
+        {
+            return View("Index", _postRepository.All());
+        }
+
+        public ActionResult Details(string shorturl)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

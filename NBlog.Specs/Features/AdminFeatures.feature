@@ -5,8 +5,8 @@
 
 @Authenticated
 Scenario: I should have links to all the relevant areas
-	Given I am on the admin page
-	Then there should be a pages link
-	And there should be a posts link
-	And there should be a comments link
-	And there should be a configuration link
+	Given I am on the "admin page"
+	Then there should be a "pages" link
+	And there should be a "posts" link
+	And there should be a "comments" link
+	And there should be a "configuration" link

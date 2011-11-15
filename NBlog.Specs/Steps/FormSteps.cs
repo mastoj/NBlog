@@ -130,7 +130,7 @@ namespace NBlog.Specs.Steps
             return checkBox;
         }
 
-        [When(@"I click the (.*) button")]
+        [When(@"I click the ""(.*)"" button")]
         public void WhenIClickTheButton(string buttonId)
         {
             var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonId]));
@@ -157,7 +157,7 @@ namespace NBlog.Specs.Steps
             }
         }
 
-        [Then(@"there should be a (.*) button")]
+        [Then(@"there should be a ""(.*)"" button")]
         public void ThenThereShouldBeAButton(string buttonIdentifier)
         {
             var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonIdentifier]));
@@ -167,7 +167,7 @@ namespace NBlog.Specs.Steps
             }
         }
 
-        [Then(@"no (.*) button")]
+        [Then(@"no ""(.*)"" button")]
         public void ThenNoLoginButton(string buttonIdentifier)
         {
             var button = WebBrowser.Current.Button(Find.ById(buttonMap[buttonIdentifier]));

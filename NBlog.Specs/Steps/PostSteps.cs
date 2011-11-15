@@ -71,6 +71,21 @@ namespace NBlog.Specs.Steps
             Assert.AreEqual(expectedPost, actualPost, "Posted post is not same as saved post");
         }
 
+        [Given(@"the following posts exists")]
+        public void GivenTheFollowingPostsExists(Table table)
+        {
+            var existingPost = PostHelper.CreatePostsFromTable(table);
+            PostHelper.InsertInRepo(existingPost);
+        }
+
+        [Then(@"I should see the following list of posts")]
+        public void ThenIShouldSeeTheFollowingListOfPosts(Table table)
+        {
+            var expectedPosts = PostHelper.CreatePostsFromTable(table);
+            var actualPost = PostHelper.GetPostsFromRegularListing(WebBrowser.Current);
+        }
+
+
         private void CheckIfLinkExists(string urlPattern)
         {
             var regex = new Regex(urlPattern);

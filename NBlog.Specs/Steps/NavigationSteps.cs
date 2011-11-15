@@ -18,21 +18,21 @@ namespace NBlog.Specs.Steps
         {
         }
 
-        [Given(@"I am on the (.*)")]
+        [Given(@"I am on the ""(.*)""")]
         public void GivenIAmOnTheAdminPage(string page)
         {
             var pageUrl = _pages[page];
             WebBrowser.Current.GoTo(Config.Configuration.Host + pageUrl);
         }
         
-        [When(@"I navigate to the (.*)")]
+        [When(@"I navigate to the ""(.*)""")]
         public void WhenINavigateToAPage(string page)
         {
             var pageUrl = _pages[page];
             WebBrowser.Current.GoTo(Config.Configuration.Host + pageUrl);
         }
 
-        [When(@"I am on the (.*)")]
+        [When(@"I am on the ""(.*)""")]
         public void WhenIAmOnAPage(string page)
         {
             WhenINavigateToAPage(page);
@@ -50,7 +50,7 @@ namespace NBlog.Specs.Steps
             WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
         }
 
-        [Then(@"I should be redirected to the (.*)")]
+        [Then(@"I should be redirected to the ""(.*)""")]
         public void ThenIShouldBeRe_DirectedToThePage(string page)
         {
             WebBrowser.Current.ShouldHave(HttpStatusCode.OK);
@@ -62,7 +62,7 @@ namespace NBlog.Specs.Steps
             }
         }
     
-        [Then(@"there should be a (.*) link")]
+        [Then(@"there should be a ""(.*)"" link")]
         public void ThenThereShouldBeALogOffLink(string linkId)
         {
             var link = WebBrowser.Current.Link(Find.ById(_links[linkId]));

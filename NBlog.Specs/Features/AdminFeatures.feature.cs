@@ -74,15 +74,15 @@ namespace NBlog.Specs.Features
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I am on the admin page");
+ testRunner.Given("I am on the \"admin page\"");
 #line 9
- testRunner.Then("there should be a pages link");
+ testRunner.Then("there should be a \"pages\" link");
 #line 10
- testRunner.And("there should be a posts link");
+ testRunner.And("there should be a \"posts\" link");
 #line 11
- testRunner.And("there should be a comments link");
+ testRunner.And("there should be a \"comments\" link");
 #line 12
- testRunner.And("there should be a configuration link");
+ testRunner.And("there should be a \"configuration\" link");
 #line hidden
             this.ScenarioCleanup();
         }

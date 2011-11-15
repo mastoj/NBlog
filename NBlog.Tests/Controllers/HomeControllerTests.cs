@@ -15,7 +15,7 @@ namespace NBlog.Tests.Controllers
         public void IndexAction_ShouldReturnIndexView()
         {
             // arrange
-            var homeController = new HomeController();
+            var homeController = new HomeController(null);
 
             // act
             var result = homeController.Index();

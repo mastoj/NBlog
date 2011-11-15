@@ -20,7 +20,7 @@ using TechTalk.SpecFlow;
 namespace NBlog.Specs.Steps
 {
     [Binding]
-    public class CommonSteps
+    public class ScenarioSetupTearDown
     {
         [BeforeScenario("AdminUserExists")]
         public void AdminUserExists()
@@ -72,6 +72,8 @@ namespace NBlog.Specs.Steps
         [BeforeScenario]
         public void CommonSetup()
         {
+            // Need to start the browser to make sure the server is started
+            WebBrowser.Current.GoTo(Config.Configuration.Host);
             Deleporter.Run(
                 () =>
                     {

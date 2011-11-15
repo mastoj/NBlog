@@ -46,7 +46,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
             // Assert
             Assert.IsNull(result.Model);
             Assert.AreEqual("Create", result.ViewName);
-            Assert.IsTrue(result.ViewData.GetFlashMessages()["info"].Count > 0);
+            Assert.IsTrue(result.ViewData.GetFlashMessages()["success"].Count > 0);
         }
 
         [Test]
