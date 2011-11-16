@@ -1,6 +1,6 @@
-﻿Feature: As a user I should be able to read posts
+﻿Feature: As a user I should be able to read published posts
 
-Scenario: Post should be listed on the start page
+Scenario: Only published posts should be listed on the start page
 	Given the following posts exists
 		| Title       | ShortUrl  | Content       | Excerpt  | PublishDate | Publish | Tags             | Categories |
 		| Demo title  | demopost  | Demo content2 | Excerpt1 | 2011-10-01  | true    | tag1, tag3       | cat1, cat2 |

@@ -83,6 +83,7 @@ namespace NBlog.Specs.Steps
         {
             var expectedPosts = PostHelper.CreatePostsFromTable(table);
             var actualPost = PostHelper.GetPostsFromRegularListing(WebBrowser.Current);
+
             ScenarioContext.Current.Pending();
         }
 

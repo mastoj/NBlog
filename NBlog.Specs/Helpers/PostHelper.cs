@@ -104,7 +104,8 @@ namespace NBlog.Specs.Helpers
 
         public static IEnumerable<Post> GetPostsFromRegularListing(ObservableBrowser browser)
         {
-            var postEntryContainer = browser.Div(Find.ByClass("posts"));
+            var postEntryContainer = browser.Div(Find.ByClass(y => y.Contains("posts")));
+            var className = postEntryContainer.ClassName;
             var postEntries = postEntryContainer.Divs.Where(y => y.ClassName.Contains("post")).ToList();
             var posts = new List<Post>();
             foreach (var postEntry in postEntries)
@@ -118,9 +119,9 @@ namespace NBlog.Specs.Helpers
         private static Post CreatePostFromRegularListingEntry(Div div)
         {
             var post = new Post();
-            var postLink = div.Link(Find.ByClass("post-link")).Url;
+            var postLink = div.Link(Find.ByClass(y => y.Contains("post-link"))).Url;
             post.ShortUrl = new Uri(postLink).Segments.LastOrDefault();
-            var excerptSpan = div.Span(Find.ByClass("excerpt"));
+            var excerptSpan = div.Span(Find.ByClass(y => y.Contains("excerpt")));
             post.Excerpt = excerptSpan.InnerHtml;
             return post;
         }
