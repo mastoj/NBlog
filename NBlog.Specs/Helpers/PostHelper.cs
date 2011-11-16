@@ -12,6 +12,7 @@ using NBlog.Tests.Areas.Admin.Controllers;
 using NUnit.Framework;
 using TJ.Extensions;
 using WatiN.Core;
+using List = NUnit.Framework.List;
 using Table = TechTalk.SpecFlow.Table;
 using TableRow = TechTalk.SpecFlow.TableRow;
 
@@ -103,13 +104,15 @@ namespace NBlog.Specs.Helpers
 
         public static IEnumerable<Post> GetPostsFromRegularListing(ObservableBrowser browser)
         {
-            var postEntryContainer = browser.Div(Find.BySelector(".posts .post"));
-            var postEntries = postEntryContainer.Divs.Where(y => y.ClassName.Contains("post"));
+            var postEntryContainer = browser.Div(Find.ByClass("posts"));
+            var postEntries = postEntryContainer.Divs.Where(y => y.ClassName.Contains("post")).ToList();
+            var posts = new List<Post>();
             foreach (var postEntry in postEntries)
             {
                 var post = CreatePostFromRegularListingEntry(postEntry);
-                yield return post;
+                posts.Add(post);
             }
+            return posts;
         }
 
         private static Post CreatePostFromRegularListingEntry(Div div)
