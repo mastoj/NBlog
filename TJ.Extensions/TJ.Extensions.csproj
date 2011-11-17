@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoolExtensions.cs" />
+    <Compile Include="EnumerableCompareResult.cs" />
+    <Compile Include="EnumerableCompareResultExtensions.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
