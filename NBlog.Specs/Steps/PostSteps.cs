@@ -87,7 +87,8 @@ namespace NBlog.Specs.Steps
             var expectedPosts = PostHelper.CreatePostsFromTable(table);
             var actualPost = PostHelper.GetPostsFromRegularListing(WebBrowser.Current);
 
-            ScenarioContext.Current.Pending();
+            var areEqual = expectedPosts.Comparer(actualPost).By(y => y.ShortUrl).And(y => y.Excerpt).AreEqual();
+            Assert.IsTrue(areEqual);
         }
 
 
