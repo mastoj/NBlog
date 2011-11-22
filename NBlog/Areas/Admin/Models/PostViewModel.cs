@@ -18,7 +18,7 @@ namespace NBlog.Areas.Admin.Models
         public bool Publish { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
-        public DateTime? PublishDate { get; set; }
+        public DateTime PublishDate { get; set; }
         public string TagsModel { get; set; }
         public string CategoriesModel { get; set; }
         public IList<string> Tags

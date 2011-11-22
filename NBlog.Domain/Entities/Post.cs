@@ -13,7 +13,7 @@ namespace NBlog.Domain.Entities
         public string Content { get; set; }
         public string Title { get; set; }
         public bool Publish { get; set; }
-        public DateTime? PublishDate { get; set; }
+        public DateTime PublishDate { get; set; }
         public IList<string> Tags { get; set; }
         public IList<string> Categories { get; set; }
         public string Excerpt { get; set; }
@@ -65,7 +65,7 @@ namespace NBlog.Domain.Entities
                 result = (result*397) ^ (Content != null ? Content.GetHashCode() : 0);
                 result = (result*397) ^ (Title != null ? Title.GetHashCode() : 0);
                 result = (result*397) ^ Publish.GetHashCode();
-                result = (result*397) ^ (PublishDate.HasValue ? PublishDate.Value.GetHashCode() : 0);
+                result = (result*397) ^ PublishDate.GetHashCode();
                 result = (result*397) ^ (Tags != null ? Tags.GetHashCode() : 0);
                 result = (result*397) ^ (Categories != null ? Categories.GetHashCode() : 0);
                 return result;

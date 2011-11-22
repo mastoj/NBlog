@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NBlog.Domain.Repositories;
+using TJ.Extensions;
 using TJ.Mvc.Filter;
 
 namespace NBlog.Controllers
@@ -20,7 +21,10 @@ namespace NBlog.Controllers
 
         public ViewResult Index()
         {
-            return View("Index", _postRepository.All());
+            var posts = _postRepository.All()
+                .Where(y => y.Publish && y.PublishDate <= DateTime.Now.Date)
+                .OrderByDescending(y => y.PublishDate);
+            return View("Index", posts);
         }
 
         public ActionResult Details(string shorturl)

@@ -10,7 +10,7 @@ namespace NBlog.Domain
         string Content { get; set; }
         string Title { get; set; }
         bool Publish { get; set; }
-        DateTime? PublishDate { get; set; }
+        DateTime PublishDate { get; set; }
         IList<string> Tags { get; set; }
         IList<string> Categories { get; set; }
     }

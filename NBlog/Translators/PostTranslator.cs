@@ -32,7 +32,7 @@ namespace NBlog.Translators
                                Content = postDto.Content,
                                Id = postDto.Id,
                                Publish = postDto.Publish,
-                               PublishDate = postDto.PublishDate.HasValue ? currentTimeZone.ToLocalTime(postDto.PublishDate.Value) : (DateTime?) null,
+                               PublishDate = currentTimeZone.ToLocalTime(postDto.PublishDate),
                                ShortUrl = postDto.ShortUrl,
                                Tags = postDto.Tags,
                                Title = postDto.Title

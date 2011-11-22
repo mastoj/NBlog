@@ -68,11 +68,11 @@ namespace NBlog.Specs.Helpers
                     {"Excerpt", (y, x) => y.Excerpt = x}
                 };
 
-        private static DateTime? ParseDate(string wantedDate)
+        private static DateTime ParseDate(string wantedDate)
         {
             if (wantedDate.IsNullOrEmpty())
             {
-                return null;
+                return DateTime.MinValue;
             }
             if (wantedDate.ToLower().StartsWith("today"))
             {

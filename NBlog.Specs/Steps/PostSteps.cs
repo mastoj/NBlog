@@ -81,7 +81,7 @@ namespace NBlog.Specs.Steps
             PostHelper.InsertInRepo(existingPost);
         }
 
-        [Then(@"I should see the following list of posts")]
+        [Then(@"I should see the following list of posts in this order")]
         public void ThenIShouldSeeTheFollowingListOfPosts(Table table)
         {
             var expectedPosts = PostHelper.CreatePostsFromTable(table);

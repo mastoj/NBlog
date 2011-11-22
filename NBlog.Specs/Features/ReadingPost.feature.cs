@@ -131,15 +131,6 @@ this.ScenarioSetup(scenarioInfo);
                         "Tags",
                         "Categories"});
             table2.AddRow(new string[] {
-                        "Demo title",
-                        "demopost",
-                        "Demo content2",
-                        "Excerpt1",
-                        "2011-10-01",
-                        "true",
-                        "tag1, tag3",
-                        "cat1, cat2"});
-            table2.AddRow(new string[] {
                         "Demo title3",
                         "demopost3",
                         "Demo content4",
@@ -148,8 +139,17 @@ this.ScenarioSetup(scenarioInfo);
                         "true",
                         "tag1, tag2, tag4",
                         "cat2"});
+            table2.AddRow(new string[] {
+                        "Demo title",
+                        "demopost",
+                        "Demo content2",
+                        "Excerpt1",
+                        "2011-10-01",
+                        "true",
+                        "tag1, tag3",
+                        "cat1, cat2"});
 #line 11
- testRunner.Then("I should see the following list of posts", ((string)(null)), table2);
+ testRunner.Then("I should see the following list of posts in this order", ((string)(null)), table2);
 #line hidden
             this.ScenarioCleanup();
         }
