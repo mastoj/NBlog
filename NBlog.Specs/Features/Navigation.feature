@@ -12,8 +12,9 @@ Scenario: Anonymous user can access login page
 	Then I should get a successful response
 	And it should have a title
 
-@Authenticated
+@NotAuthenticated
 Scenario: Logged in user get redirected from the login page
+	Given I am logged in as the admin user
 	When I navigate to the "login page"
 	Then I should be redirected to the "start page"
 

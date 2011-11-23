@@ -17,7 +17,7 @@ using TJ.Mvc.Filter;
 namespace NBlog.Controllers
 {
     [AllowAnonymous]
-    public class AccountController : Controller
+    public partial class AccountController : Controller
     {
         private IUserRepository _userRepository;
         private IHashGenerator _hashGenerator;
@@ -33,33 +33,33 @@ namespace NBlog.Controllers
         //
         // GET: /Account/
 
-        public ActionResult Login()
+        public virtual ActionResult Login()
         {
             if (UsersExist().IsFalse())
             {
                 _authenticationHandler.LogoutUser();
-                return RedirectToAction("CreateAdmin");
+                return RedirectToAction(MVC.Account.CreateAdmin());
             }
             if (User.Identity.IsAuthenticated.IsTrue())
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(MVC.Post.Index());
             }
-            return View();
+            return View(Views.LogIn);
         }
 
         [HttpPost]
-        public ActionResult Login(LogInViewModel model)
+        public virtual ActionResult Login(LogInViewModel model)
         {
             if (ModelState.IsValid && ValidateCredentials(model))
             {
                 return RedirectFromLogin();
             }
-            return View(model);
+            return View(Views.LogIn, model);
         }
 
         private ActionResult RedirectFromLogin()
         {
-            return RedirectToAction("Index", "Post", new { area = "Admin" });
+            return RedirectToAction(MVC.Admin.Post.Index());
         }
 
         private bool ValidateCredentials(LogInViewModel model)
@@ -74,28 +74,28 @@ namespace NBlog.Controllers
             return isAuthenticated;
         }
 
-        public ActionResult Logout()
+        public virtual ActionResult Logout()
         {
             _authenticationHandler.LogoutUser();
             TempData.AddSuccessMessage("Successfully signed out");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Post.Index());
         }
 
-        public ActionResult CreateAdmin()
+        public virtual ActionResult CreateAdmin()
         {
             if (UsersExist())
             {
-                return RedirectToAction("Login");
+                return RedirectToAction(MVC.Account.Login());
             }
-            return View();
+            return View(Views.CreateAdmin);
         }
 
         [HttpPost]
-        public ActionResult CreateAdmin(CreateAdminModel model)
+        public virtual ActionResult CreateAdmin(CreateAdminModel model)
         {
             if (UsersExist().IsTrue())
             {
-                return RedirectToAction("Login");
+                return RedirectToAction(MVC.Account.Login());
             }
             else
             {
@@ -107,7 +107,7 @@ namespace NBlog.Controllers
                     _authenticationHandler.LoginUser(model.UserName);
                     return RedirectFromLogin();
                 }
-                return View(model);
+                return View(Views.CreateAdmin, model);
             }
         }
 

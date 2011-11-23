@@ -85,7 +85,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
             var model = (IEnumerable<PostViewModel>)(result.Model);
 
             // Assert
-            Assert.AreEqual("Index", result.ViewName);
+            Assert.AreEqual(target.Views.Index, result.ViewName);
             Assert.AreEqual(1, model.Count());
             Assert.AreEqual("This is for real", model.First().Title);
         }

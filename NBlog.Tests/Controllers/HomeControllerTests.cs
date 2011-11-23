@@ -20,13 +20,13 @@ namespace NBlog.Tests.Controllers
             // arrange
             var postRepositoryStub = new Mock<IPostRepository>();
             postRepositoryStub.Setup(y => y.All()).Returns(new List<Post>().AsQueryable());
-            var homeController = new HomeController(postRepositoryStub.Object);
+            var homeController = new PostController(postRepositoryStub.Object);
 
             // act
             var result = homeController.Index();
 
             // assert
-            Assert.AreEqual("Index", result.ViewName);
+            Assert.AreEqual(homeController.Views.Index, result.ViewName);
         }
     }
 }

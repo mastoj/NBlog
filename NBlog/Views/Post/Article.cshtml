@@ -1,0 +1,13 @@
+﻿@model NBlog.Domain.Entities.Post
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<article>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+    <div class="display-label">Content</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+</article>

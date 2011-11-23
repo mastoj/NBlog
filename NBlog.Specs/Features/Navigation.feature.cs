@@ -105,16 +105,18 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Logged in user get redirected from the login page")]
-        [NUnit.Framework.CategoryAttribute("Authenticated")]
+        [NUnit.Framework.CategoryAttribute("NotAuthenticated")]
         public virtual void LoggedInUserGetRedirectedFromTheLoginPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logged in user get redirected from the login page", new string[] {
-                        "Authenticated"});
+                        "NotAuthenticated"});
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.When("I navigate to the \"login page\"");
+ testRunner.Given("I am logged in as the admin user");
 #line 18
+ testRunner.When("I navigate to the \"login page\"");
+#line 19
  testRunner.Then("I should be redirected to the \"start page\"");
 #line hidden
             this.ScenarioCleanup();
@@ -127,13 +129,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user get redirected to create admin page if no user exists", new string[] {
                         "NotAuthenticated"});
-#line 21
-this.ScenarioSetup(scenarioInfo);
 #line 22
- testRunner.Given("it doesn\'t exist a user");
+this.ScenarioSetup(scenarioInfo);
 #line 23
- testRunner.When("I navigate to the \"login page\"");
+ testRunner.Given("it doesn\'t exist a user");
 #line 24
+ testRunner.When("I navigate to the \"login page\"");
+#line 25
  testRunner.Then("I should be redirected to the \"create admin page\"");
 #line hidden
             this.ScenarioCleanup();
@@ -148,11 +150,11 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user get redirected to login page if user exists", new string[] {
                         "AdminUserExists",
                         "NotAuthenticated"});
-#line 28
-this.ScenarioSetup(scenarioInfo);
 #line 29
- testRunner.When("I navigate to the \"create admin page\"");
+this.ScenarioSetup(scenarioInfo);
 #line 30
+ testRunner.When("I navigate to the \"create admin page\"");
+#line 31
  testRunner.Then("I should be redirected to the \"login page\"");
 #line hidden
             this.ScenarioCleanup();
@@ -167,11 +169,11 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Anonymous user have no access to the admin area", new string[] {
                         "AdminUserExists",
                         "NotAuthenticated"});
-#line 34
-this.ScenarioSetup(scenarioInfo);
 #line 35
- testRunner.When("I navigate to the \"admin page\"");
+this.ScenarioSetup(scenarioInfo);
 #line 36
+ testRunner.When("I navigate to the \"admin page\"");
+#line 37
  testRunner.Then("I should be redirected to the \"login page\"");
 #line hidden
             this.ScenarioCleanup();

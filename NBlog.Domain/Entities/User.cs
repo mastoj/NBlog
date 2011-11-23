@@ -1,5 +1,8 @@
-﻿namespace NBlog.Domain.Entities
+﻿using System;
+
+namespace NBlog.Domain.Entities
 {
+    [Serializable]
     public class User : Entity
     {
         public string UserName { get; set; }

@@ -25,20 +25,13 @@ namespace NBlog.Specs.Steps
         [BeforeScenario("AdminUserExists")]
         public void AdminUserExists()
         {
-            Deleporter.Run(
-                () =>
-                {
-                    var inMemoryUserRepository = new InMemoryUserRepository();
-                    var user = new User
-                    {
-                        Id = Guid.Empty,
-                        Name = "Tomas",
-                        UserName = "admin",
-                        PasswordHash = "asdf1234"
-                    };
-                    inMemoryUserRepository.Insert(user);
-                    DeleporterMvcUtils.TemporarilyReplaceBinding<IUserRepository>(inMemoryUserRepository);
-                });
+            UserHelper.InsertUser(new User
+                                      {
+                                          Id = Guid.Empty,
+                                          Name = "Tomas",
+                                          UserName = "admin",
+                                          PasswordHash = "asdf1234"
+                                      });
         }
 
         [BeforeScenario("NotAuthenticated")]

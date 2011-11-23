@@ -12,7 +12,7 @@ using TJ.Extensions;
 
 namespace NBlog.Areas.Admin.Controllers
 {
-    public class PostController : Controller
+    public partial class PostController : Controller
     {
         private readonly IPostRepository _postRepository;
 
@@ -24,19 +24,19 @@ namespace NBlog.Areas.Admin.Controllers
         //
         // GET: /Post/
 
-        public ViewResult Index()
+        public virtual ViewResult Index()
         {
             var model = _postRepository.All().ToIPosts<PostViewModel>();
-            return View("Index", model);
+            return View(this.Views.Index, model);
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View(new PostViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(PostViewModel model)
+        public virtual ActionResult Create(PostViewModel model)
         {
             if (ModelState.IsValid.IsFalse())
             {
@@ -52,7 +52,7 @@ namespace NBlog.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Edit(string id)
+        public virtual ActionResult Edit(string id)
         {
             var post = _postRepository.Single(y => y.ShortUrl == id);
             if (post.IsNull())

@@ -1,16 +1,13 @@
 ﻿@using NBlog.Domain.Entities
 @model IEnumerable<Post>
 
-@{
-    ViewBag.Title = "title";
-}
 <article>
     <div class="twelve columns posts alpha">
     @foreach (var post in Model)
     {
         <section>
             <div class="post">
-                <h2>@Html.ActionLink(post.Title, "Details", new { shortUrl = post.ShortUrl }, new { @class = "post-link"})</h2>
+                <h2>@Html.ActionLink(post.Title, MVC.Post.Article(post.ShortUrl), new { @class = "post-link"})</h2>
                 <span class="excerpt">@post.Excerpt</span>
             </div>
         </section>

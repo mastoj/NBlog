@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace NBlog.Areas.Admin.Controllers
 {
-    public class PageController : Controller
+    public partial class PageController : Controller
     {
         //
         // GET: /Admin/Home/
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }

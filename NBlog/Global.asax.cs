@@ -30,14 +30,14 @@ namespace NBlog
             routes.MapRoute(
                 "Post route",
                 "{shortUrl}",
-                new { controller = "Home", action = "Details" },
+                new { controller = "Post", action = "Article" },
                 new string[] { "NBlog.Controllers" }
             );
 
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Post", action = "Index", id = UrlParameter.Optional },
                 new string[] { "NBlog.Controllers"}
             );
 

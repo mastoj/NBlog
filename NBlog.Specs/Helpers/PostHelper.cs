@@ -119,8 +119,9 @@ namespace NBlog.Specs.Helpers
         private static Post CreatePostFromRegularListingEntry(Div div)
         {
             var post = new Post();
-            var postLink = div.Link(Find.ByClass(y => y.Contains("post-link"))).Url;
-            post.ShortUrl = new Uri(postLink).Segments.LastOrDefault();
+            var postTitleLink = div.Link(Find.ByClass(y => y.Contains("post-link")));;
+            post.ShortUrl = new Uri(postTitleLink.Url).Segments.LastOrDefault();
+            post.Title = postTitleLink.InnerHtml;
             var excerptSpan = div.Span(Find.ByClass(y => y.Contains("excerpt")));
             post.Excerpt = excerptSpan.InnerHtml;
             return post;

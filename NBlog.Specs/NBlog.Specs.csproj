@@ -116,6 +116,7 @@
     <Compile Include="Helpers\NavigationObserver.cs" />
     <Compile Include="Helpers\ObservableBrowser.cs" />
     <Compile Include="Helpers\PostHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Infrastructure\DeleporterMvcUtils.cs" />
     <Compile Include="Infrastructure\DumbHashGenerator.cs" />
     <Compile Include="Infrastructure\PostRepositoryHelper.cs" />

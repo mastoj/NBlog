@@ -10,26 +10,31 @@ using TJ.Mvc.Filter;
 namespace NBlog.Controllers
 {
     [AllowAnonymous]
-    public class HomeController : Controller
+    public partial class PostController : Controller
     {
         private readonly IPostRepository _postRepository;
 
-        public HomeController(IPostRepository postRepository)
+        public PostController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
 
-        public ViewResult Index()
+        public virtual ViewResult Index()
         {
             var posts = _postRepository.All()
                 .Where(y => y.Publish && y.PublishDate <= DateTime.Now.Date)
                 .OrderByDescending(y => y.PublishDate);
-            return View("Index", posts);
+            return View(Views.Index, posts);
         }
 
-        public ActionResult Details(string shorturl)
+        public virtual ActionResult Article(string shorturl)
         {
-            throw new NotImplementedException();
+            var article = _postRepository.All().Where(y => y.ShortUrl == shorturl).FirstOrDefault();
+            if (article.IsNull())
+            {
+                return HttpNotFound("Can't find page");
+            }
+            return View(Views.Article, article);
         }
     }
 }

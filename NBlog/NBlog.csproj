@@ -121,6 +121,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.CommentController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.ConfigurationController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.PageController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.PostController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.SharedController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.chirpy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Translators\PostTranslator.cs" />
     <Compile Include="Translators\UserTranslator.cs" />
     <Content Include="Areas\Admin\Views\Web.config" />
@@ -153,7 +182,7 @@
     <Compile Include="Infrastructure\FormsAuthenticationHandler.cs" />
     <Compile Include="Infrastructure\IAuthenticationHandler.cs" />
     <Compile Include="Models\CreateAdminModel.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +198,12 @@
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Shared\_SuperHeader.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <None Include="T4MVC.chirpy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.chirpy.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.settings.t4" />
+    <Content Include="Views\Post\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\base.scss">
@@ -292,12 +327,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
