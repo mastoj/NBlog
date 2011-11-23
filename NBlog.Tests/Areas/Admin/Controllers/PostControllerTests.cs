@@ -29,7 +29,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
 
             // Assert
             Assert.AreSame(model, result.Model);
-            Assert.AreEqual("Create", result.ViewName);
+            Assert.AreEqual(target.Views.Create, result.ViewName);
             Assert.IsTrue(result.ViewData.GetFlashMessages()["error"].Count > 0);
         }
 
@@ -45,7 +45,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
 
             // Assert
             Assert.IsNull(result.Model);
-            Assert.AreEqual("Create", result.ViewName);
+            Assert.AreEqual(target.Views.Create, result.ViewName);
             Assert.IsTrue(result.ViewData.GetFlashMessages()["success"].Count > 0);
         }
 
