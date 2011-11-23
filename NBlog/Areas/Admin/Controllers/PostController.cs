@@ -27,12 +27,12 @@ namespace NBlog.Areas.Admin.Controllers
         public virtual ViewResult Index()
         {
             var model = _postRepository.All().ToIPosts<PostViewModel>();
-            return View(this.Views.Index, model);
+            return View(Views.Index, model);
         }
 
         public virtual ActionResult Create()
         {
-            return View(new PostViewModel());
+            return View(Views.Create, new PostViewModel());
         }
 
         [HttpPost]
@@ -41,14 +41,14 @@ namespace NBlog.Areas.Admin.Controllers
             if (ModelState.IsValid.IsFalse())
             {
                 ViewData.AddErrorMessage("Failed to create post");
-                return View("Create", model);
+                return View(Views.Create, model);
             }
             else
             {
                 var post = model.ToDTO();
                 _postRepository.Insert(post);
                 ViewData.AddSuccessMessage("Post created!");
-                return View("Create");
+                return View(Views.Create);
             }
         }
 
@@ -60,7 +60,7 @@ namespace NBlog.Areas.Admin.Controllers
                 return new HttpNotFoundResult("Can't find post");
             }
             var model = post.ToIPost<PostViewModel>();
-            return View("Edit", model);
+            return View(Views.Edit, model);
         }
     }
 }

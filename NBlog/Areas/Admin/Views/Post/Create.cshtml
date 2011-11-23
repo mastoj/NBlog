@@ -11,7 +11,7 @@
     <fieldset>
         <legend>What will this story be about</legend>
 
-        @Html.Partial("_EditCreatePost", Model)
+        @Html.Partial(MVC.Admin.Post.Views._EditCreatePost, Model)
 
         <p>
             <input type="submit" value="Save" id="Save"/>
@@ -20,5 +20,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", MVC.Admin.Post.Index())
 </div>
