@@ -18,7 +18,8 @@ namespace NBlog.Translators
                                   PublishDate = post.PublishDate,
                                   ShortUrl = post.ShortUrl,
                                   Tags = post.Tags,
-                                  Title = post.Title
+                                  Title = post.Title,
+                                  Excerpt = post.Excerpt
                               };
             return postDto;
         }
@@ -35,7 +36,8 @@ namespace NBlog.Translators
                                PublishDate = currentTimeZone.ToLocalTime(postDto.PublishDate),
                                ShortUrl = postDto.ShortUrl,
                                Tags = postDto.Tags,
-                               Title = postDto.Title
+                               Title = postDto.Title,
+                               Excerpt = postDto.Excerpt
                            };
             return post;
         }

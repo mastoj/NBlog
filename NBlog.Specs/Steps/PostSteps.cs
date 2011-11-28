@@ -66,6 +66,20 @@ namespace NBlog.Specs.Steps
             WebBrowser.Current.GoTo(Config.Configuration.Host + EditPostUrlBase + shortUrl);
         }
 
+        [When(@"I am on the post with the ""(.*)"" adress")]
+        public void WhenIAmOnThePostWithTheDemopostAdress(string shortUrl)
+        {
+            WebBrowser.Current.GoTo(Config.Configuration.Host + "/" + shortUrl);
+        }
+
+        [Then(@"I should see the post")]
+        public void ThenIShouldSeeThePost(Table table)
+        {
+            var expectedPost = PostHelper.CreatePostsFromTable(table).First();
+            var actualPost = PostHelper.GetPostFromPostPage(WebBrowser.Current);
+            Assert.AreEqual(expectedPost, actualPost, "Posted post is not same as saved post");
+        }
+
         [Then(@"a post with the following content should have been created")]
         public void ThenAPostWithTheFollowingContentShouldHaveBeenCreated(Table table)
         {

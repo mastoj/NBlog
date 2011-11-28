@@ -19,6 +19,6 @@ Scenario: Post should have their own page
 		| Demo title  | demopost  | Demo content2 | Excerpt1 | 2011-10-01  | true    | tag1, tag3       | cat1, cat2 |
 	When I am on the post with the "demopost" adress
 	Then I should see the post
-		| Title       | ShortUrl  | Content       | Excerpt  | PublishDate | Publish | Tags             | Categories |
-		| Demo title  | demopost  | Demo content2 | Excerpt1 | 2011-10-01  | true    | tag1, tag3       | cat1, cat2 |
+		| Title       | Content       | PublishDate | Tags             | Categories |
+		| Demo title  | Demo content2 | 2011-10-01  | tag1, tag3       | cat1, cat2 |
 

@@ -187,20 +187,14 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
-                        "ShortUrl",
                         "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
                         "Tags",
                         "Categories"});
             table4.AddRow(new string[] {
                         "Demo title",
-                        "demopost",
                         "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "true",
                         "tag1, tag3",
                         "cat1, cat2"});
 #line 21

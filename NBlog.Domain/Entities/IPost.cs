@@ -8,6 +8,7 @@ namespace NBlog.Domain
     {
         string ShortUrl { get; set; }
         string Content { get; set; }
+        string Excerpt { get; set; }
         string Title { get; set; }
         bool Publish { get; set; }
         DateTime PublishDate { get; set; }

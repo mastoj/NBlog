@@ -105,7 +105,6 @@ namespace NBlog.Specs.Helpers
         public static IEnumerable<Post> GetPostsFromRegularListing(ObservableBrowser browser)
         {
             var postEntryContainer = browser.Div(Find.ByClass(y => y.Contains("posts")));
-            var className = postEntryContainer.ClassName;
             var postEntries = postEntryContainer.Divs.Where(y => y.ClassName.Contains("post")).ToList();
             var posts = new List<Post>();
             foreach (var postEntry in postEntries)
@@ -124,6 +123,17 @@ namespace NBlog.Specs.Helpers
             post.Title = postTitleLink.InnerHtml;
             var excerptSpan = div.Span(Find.ByClass(y => y.Contains("excerpt")));
             post.Excerpt = excerptSpan.InnerHtml;
+            return post;
+        }
+
+        public static Post GetPostFromPostPage(ObservableBrowser browser)
+        {
+            var post = new Post();
+            post.Title = browser.ElementWithTag("h2", Find.ById("Title")).Text;
+            post.PublishDate = DateTime.Parse(browser.Span(Find.ById("PublishDate")).Text);
+            post.Tags = browser.List(Find.ById("Tags")).ListItems.SelectMany(y => y.Links.Select(x => x.Text)).ToList();
+            post.Tags = browser.List(Find.ById("Categories")).ListItems.SelectMany(y => y.Links.Select(x => x.Text)).ToList();
+            post.Content = browser.Div(Find.ById("Content")).Text;
             return post;
         }
     }

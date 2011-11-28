@@ -103,6 +103,10 @@ this.ScenarioSetup(scenarioInfo);
                         "bool",
                         "true"});
             table1.AddRow(new string[] {
+                        "Excerpt",
+                        "string",
+                        "This is the excerpt"});
+            table1.AddRow(new string[] {
                         "Tags",
                         "string",
                         "tag1, tag2"});
@@ -112,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
                         "cat1, cat2"});
 #line 10
  testRunner.When("I enter the following information", ((string)(null)), table1);
-#line 19
+#line 20
  testRunner.And("I click the \"save\" button");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -121,6 +125,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Content",
                         "PublishDate",
                         "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories"});
             table2.AddRow(new string[] {
@@ -129,11 +134,12 @@ this.ScenarioSetup(scenarioInfo);
                         "Demo content",
                         "2011-10-01",
                         "true",
+                        "This is the excerpt",
                         "tag1, tag2",
                         "cat1, cat2"});
-#line 20
+#line 21
  testRunner.Then("a post with the following content should have been created", ((string)(null)), table2);
-#line 23
+#line 24
  testRunner.And("I should see a success message");
 #line hidden
             this.ScenarioCleanup();
