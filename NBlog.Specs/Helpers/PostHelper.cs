@@ -129,11 +129,11 @@ namespace NBlog.Specs.Helpers
         public static Post GetPostFromPostPage(ObservableBrowser browser)
         {
             var post = new Post();
-            post.Title = browser.ElementWithTag("h2", Find.ById("Title")).Text;
-            post.PublishDate = DateTime.Parse(browser.Span(Find.ById("PublishDate")).Text);
-            post.Tags = browser.List(Find.ById("Tags")).ListItems.SelectMany(y => y.Links.Select(x => x.Text)).ToList();
-            post.Tags = browser.List(Find.ById("Categories")).ListItems.SelectMany(y => y.Links.Select(x => x.Text)).ToList();
-            post.Content = browser.Div(Find.ById("Content")).Text;
+            post.Title = browser.ElementWithTag("h2", Find.ById("Title")).Text.Trim();
+            post.PublishDate = DateTime.Parse(browser.Span(Find.ById("PublishDate")).Text.Trim());
+            post.Tags = browser.List(Find.ById("Tags")).ListItems.SelectMany(y => y.Links.Select(x => x.Text.Trim())).ToList();
+            post.Categories = browser.List(Find.ById("Categories")).ListItems.SelectMany(y => y.Links.Select(x => x.Text.Trim())).ToList();
+            post.Content = browser.Div(Find.ById("Content")).Text.Trim();
             return post;
         }
     }

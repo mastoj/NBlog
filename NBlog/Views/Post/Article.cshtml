@@ -1,4 +1,5 @@
-﻿@model NBlog.Domain.Entities.Post
+﻿@using TJ.Extensions
+@model NBlog.Domain.Entities.Post
 
 @{
     ViewBag.Title = Model.Title;
@@ -6,9 +7,31 @@
 
 <article>
 <h2 id="Title">@Html.DisplayFor(model => model.Title)</h2>
-    <span id="PublishDate">@Model.PublishDate.ToShortDateString()</span>
+    <span id="PublishDate">@Model.PublishDate.ToString("yyyy-MM-dd")</span>
     <div class="display-label">Content</div>
     <div class="display-field" id="Content">
         @Html.DisplayFor(model => model.Content)
     </div>
+    @if (Model.Tags.IsNotNull() && Model.Tags.Count > 0)
+    {
+        <ul id="Tags" ul="tags">
+            @foreach(var tag in Model.Tags)
+            {
+                <li class="tag">
+                    <a href="#">@tag</a>
+                </li>
+            }
+        </ul>
+    }
+    @if (Model.Categories.IsNotNull() && Model.Categories.Count > 0)
+    {
+        <ul id="Categories" ul="categories">
+            @foreach(var category in Model.Categories)
+            {
+                <li class="category">
+                    <a href="#">@category</a>
+                </li>
+            }
+        </ul>
+    }
 </article>

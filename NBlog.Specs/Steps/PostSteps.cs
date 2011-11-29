@@ -77,7 +77,13 @@ namespace NBlog.Specs.Steps
         {
             var expectedPost = PostHelper.CreatePostsFromTable(table).First();
             var actualPost = PostHelper.GetPostFromPostPage(WebBrowser.Current);
-            Assert.AreEqual(expectedPost, actualPost, "Posted post is not same as saved post");
+            var tagsAreEqual = expectedPost.Tags.Comparer(actualPost.Tags).By(y => y).AreEqual();
+            var categoriesAreEqual = expectedPost.Categories.Comparer(actualPost.Categories).By(y => y).AreEqual();
+            Assert.AreEqual(expectedPost.Title, actualPost.Title, "Title is not the same");
+            Assert.AreEqual(expectedPost.Content, actualPost.Content, "Content is not the same");
+            Assert.AreEqual(expectedPost.PublishDate, actualPost.PublishDate, "Publish date is not the same");
+            Assert.IsTrue(tagsAreEqual, "Tags are not the same");
+            Assert.IsTrue(categoriesAreEqual, "Categories are not the same");
         }
 
         [Then(@"a post with the following content should have been created")]
