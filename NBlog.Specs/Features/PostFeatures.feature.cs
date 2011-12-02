@@ -112,30 +112,33 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I click the \"save\" button");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Title",
-                        "Version",
                         "ShortUrl",
-                        "Content",
                         "PublishDate",
-                        "Published",
                         "Excerpt",
                         "Tags",
                         "Categories",
                         "LastUpdateDate"});
             table2.AddRow(new string[] {
-                        "Demo title",
-                        "1",
                         "demopost",
-                        "Demo content",
                         "Today",
-                        "false",
                         "This is the excerpt",
                         "tag1, tag2",
                         "cat1, cat2",
                         "Today"});
 #line 19
- testRunner.Then("a post with the following content should have been created", ((string)(null)), table2);
+ testRunner.Then("a post with the following meta data should have been created", ((string)(null)), table2);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table3.AddRow(new string[] {
+                        "Demot title",
+                        "Demo content",
+                        "Today"});
 #line 22
+ testRunner.And("the following post versions", ((string)(null)), table3);
+#line 25
  testRunner.And("I should see a success message");
 #line hidden
             this.ScenarioCleanup();
@@ -150,69 +153,83 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create and publish post", new string[] {
                         "NoPosts",
                         "Authenticated"});
-#line 26
+#line 29
 this.ScenarioSetup(scenarioInfo);
-#line 27
+#line 30
  testRunner.Given("I am on the \"create post page\"");
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
                         "DataType",
                         "Input"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Title",
                         "string",
                         "Demo title"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "ShortUrl",
                         "longstring",
                         "demopost"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Content",
                         "string",
                         "Demo content"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Excerpt",
                         "string",
                         "This is the excerpt"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Tags",
                         "string",
                         "tag1, tag2"});
-            table3.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "Categories",
                         "string",
                         "cat1, cat2"});
-#line 28
- testRunner.When("I enter the following information", ((string)(null)), table3);
-#line 36
+#line 31
+ testRunner.When("I enter the following information", ((string)(null)), table4);
+#line 39
  testRunner.And("I click the \"publish\" button");
 #line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Title",
-                        "Version",
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShortUrl",
-                        "Content",
                         "PublishDate",
-                        "Publish",
                         "Excerpt",
                         "Tags",
                         "Categories",
                         "LastUpdateDate"});
-            table4.AddRow(new string[] {
-                        "Demo title",
-                        "1",
+            table5.AddRow(new string[] {
                         "demopost",
-                        "Demo content",
                         "Today",
-                        "true",
                         "This is the excerpt",
                         "tag1, tag2",
                         "cat1, cat2",
                         "Today"});
-#line 37
- testRunner.Then("a post with the following content should have been created", ((string)(null)), table4);
 #line 40
+ testRunner.Then("a post with the following meta data should have been created", ((string)(null)), table5);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table6.AddRow(new string[] {
+                        "Demot title",
+                        "Demo content",
+                        "Today"});
+#line 43
+ testRunner.And("the following post versions", ((string)(null)), table6);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table7.AddRow(new string[] {
+                        "Demot title",
+                        "Demo content",
+                        "Today"});
+#line 46
+ testRunner.And("with the following published post", ((string)(null)), table7);
+#line 49
  testRunner.And("I should see a success message");
 #line hidden
             this.ScenarioCleanup();
@@ -227,116 +244,10 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create and publish post back in time", new string[] {
                         "NoPosts",
                         "Authenticated"});
-#line 44
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 45
+#line 54
  testRunner.Given("I am on the \"create post page\"");
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "InputField",
-                        "DataType",
-                        "Input"});
-            table5.AddRow(new string[] {
-                        "Title",
-                        "string",
-                        "Demo title"});
-            table5.AddRow(new string[] {
-                        "ShortUrl",
-                        "longstring",
-                        "demopost"});
-            table5.AddRow(new string[] {
-                        "Content",
-                        "string",
-                        "Demo content"});
-            table5.AddRow(new string[] {
-                        "Excerpt",
-                        "string",
-                        "This is the excerpt"});
-            table5.AddRow(new string[] {
-                        "PublishDate",
-                        "datetime",
-                        "2011-10-01"});
-            table5.AddRow(new string[] {
-                        "Tags",
-                        "string",
-                        "tag1, tag2"});
-            table5.AddRow(new string[] {
-                        "Categories",
-                        "string",
-                        "cat1, cat2"});
-#line 46
- testRunner.When("I enter the following information", ((string)(null)), table5);
-#line 55
- testRunner.And("I click the \"publish\" button");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Title",
-                        "Version",
-                        "ShortUrl",
-                        "Content",
-                        "PublishDate",
-                        "Publish",
-                        "Excerpt",
-                        "Tags",
-                        "Categories",
-                        "LastUpdateDate"});
-            table6.AddRow(new string[] {
-                        "Demo title",
-                        "1",
-                        "demopost",
-                        "Demo content",
-                        "2011-10-01",
-                        "true",
-                        "This is the excerpt",
-                        "tag1, tag2",
-                        "cat1, cat2",
-                        "Today"});
-#line 56
- testRunner.Then("a post with the following content should have been created", ((string)(null)), table6);
-#line 59
- testRunner.And("I should see a success message");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating a post with existing short url should fail")]
-        [NUnit.Framework.CategoryAttribute("NoPosts")]
-        [NUnit.Framework.CategoryAttribute("Authenticated")]
-        public virtual void CreatingAPostWithExistingShortUrlShouldFail()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a post with existing short url should fail", new string[] {
-                        "NoPosts",
-                        "Authenticated"});
-#line 63
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
-                        "ShortUrl",
-                        "Content",
-                        "Excerpt",
-                        "PublishDate",
-                        "Publish",
-                        "Tags",
-                        "Categories",
-                        "LastUpdatedDate"});
-            table7.AddRow(new string[] {
-                        "1",
-                        "Demo title",
-                        "demopost",
-                        "Demo content2",
-                        "Excerpt1",
-                        "2011-10-01",
-                        "false",
-                        "tag1, tag3",
-                        "cat1, cat2",
-                        "2011-10-02"});
-#line 64
- testRunner.Given("a post exist with the following versions", ((string)(null)), table7);
-#line 67
- testRunner.And("I am on the \"create post page\"");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
@@ -370,37 +281,141 @@ this.ScenarioSetup(scenarioInfo);
                         "Categories",
                         "string",
                         "cat1, cat2"});
-#line 68
+#line 55
  testRunner.When("I enter the following information", ((string)(null)), table8);
-#line 77
- testRunner.And("I click the \"save\" button");
-#line 78
- testRunner.Then("I should see an error message");
+#line 64
+ testRunner.And("I click the \"publish\" button");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
                         "ShortUrl",
-                        "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories",
-                        "LastUpdatedDate"});
+                        "LastUpdateDate"});
             table9.AddRow(new string[] {
-                        "1",
-                        "Demo title",
                         "demopost",
-                        "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "false",
-                        "tag1, tag3",
+                        "This is the excerpt",
+                        "tag1, tag2",
                         "cat1, cat2",
-                        "2011-10-02"});
+                        "Today"});
+#line 65
+ testRunner.Then("a post with the following meta data should have been created", ((string)(null)), table9);
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table10.AddRow(new string[] {
+                        "Demot title",
+                        "Demo content",
+                        "Today"});
+#line 68
+ testRunner.And("the following post versions", ((string)(null)), table10);
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table11.AddRow(new string[] {
+                        "Demot title",
+                        "Demo content",
+                        "Today"});
+#line 71
+ testRunner.And("with the following published post", ((string)(null)), table11);
+#line 74
+ testRunner.And("I should see a success message");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Creating a post with existing short url should fail")]
+        [NUnit.Framework.CategoryAttribute("NoPosts")]
+        [NUnit.Framework.CategoryAttribute("Authenticated")]
+        public virtual void CreatingAPostWithExistingShortUrlShouldFail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a post with existing short url should fail", new string[] {
+                        "NoPosts",
+                        "Authenticated"});
+#line 78
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ShortUrl",
+                        "PublishDate",
+                        "Excerpt",
+                        "Tags",
+                        "Categories",
+                        "LastUpdateDate"});
+            table12.AddRow(new string[] {
+                        "demopost",
+                        "2011-10-01",
+                        "This is the excerpt",
+                        "tag1, tag2",
+                        "cat1, cat2",
+                        "Today"});
 #line 79
- testRunner.And("the following post version should exist", ((string)(null)), table9);
+ testRunner.Given("a post exist with the following versions", ((string)(null)), table12);
+#line 82
+ testRunner.And("I am on the \"create post page\"");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "InputField",
+                        "DataType",
+                        "Input"});
+            table13.AddRow(new string[] {
+                        "Title",
+                        "string",
+                        "Demo title"});
+            table13.AddRow(new string[] {
+                        "ShortUrl",
+                        "longstring",
+                        "demopost"});
+            table13.AddRow(new string[] {
+                        "Content",
+                        "string",
+                        "Demo content"});
+            table13.AddRow(new string[] {
+                        "Excerpt",
+                        "string",
+                        "This is the excerpt"});
+            table13.AddRow(new string[] {
+                        "PublishDate",
+                        "datetime",
+                        "2011-10-01"});
+            table13.AddRow(new string[] {
+                        "Tags",
+                        "string",
+                        "tag1, tag2"});
+            table13.AddRow(new string[] {
+                        "Categories",
+                        "string",
+                        "cat1, cat2"});
+#line 83
+ testRunner.When("I enter the following information", ((string)(null)), table13);
+#line 92
+ testRunner.And("I click the \"save\" button");
+#line 93
+ testRunner.Then("I should see an error message");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ShortUrl",
+                        "PublishDate",
+                        "Excerpt",
+                        "Tags",
+                        "Categories",
+                        "LastUpdateDate"});
+            table14.AddRow(new string[] {
+                        "demopost",
+                        "2011-10-01",
+                        "This is the excerpt",
+                        "tag1, tag2",
+                        "cat1, cat2",
+                        "Today"});
+#line 94
+ testRunner.And("the following post version should exist", ((string)(null)), table14);
 #line hidden
             this.ScenarioCleanup();
         }
@@ -414,119 +429,131 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating unpublished post", new string[] {
                         "NoPosts",
                         "Authenticated"});
-#line 85
+#line 100
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShortUrl",
-                        "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories",
-                        "LastUpdatedDate"});
-            table10.AddRow(new string[] {
-                        "1",
-                        "Demo title",
+                        "LastUpdateDate"});
+            table15.AddRow(new string[] {
                         "demopost",
-                        "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "true",
-                        "tag1, tag3",
+                        "This is the excerpt",
+                        "tag1, tag2",
                         "cat1, cat2",
+                        "Today"});
+#line 101
+ testRunner.Given("the following post", ((string)(null)), table15);
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table16.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content",
                         "2011-10-02"});
-            table10.AddRow(new string[] {
-                        "2",
+            table16.AddRow(new string[] {
                         "Demo title",
-                        "demopost",
-                        "Demo content2",
-                        "Excerpt1",
-                        "2011-10-01",
-                        "false",
-                        "tag1, tag3",
-                        "cat1, cat2",
+                        "Demo content1",
                         "2011-10-03"});
-#line 86
- testRunner.Given("a post exist with the following versions", ((string)(null)), table10);
-#line 90
+#line 104
+ testRunner.And("the following post versions", ((string)(null)), table16);
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table17.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content",
+                        "2011-10-02"});
+#line 108
+ testRunner.And("with the following published post", ((string)(null)), table17);
+#line 111
  testRunner.And("I am on the \"edit post page\" for \"demopost\"");
 #line hidden
-            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                         "InputField",
                         "DataType",
                         "Input"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "Title",
                         "string",
                         "Demo title2"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "ShortUrl",
                         "longstring",
                         "demopost"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "Content",
                         "string",
                         "Demo content2"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "Excerpt",
                         "string",
                         "This is the excerpt2"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "PublishDate",
                         "datetime",
                         "2011-10-01"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "Tags",
                         "string",
                         "tag1, tag3"});
-            table11.AddRow(new string[] {
+            table18.AddRow(new string[] {
                         "Categories",
                         "string",
                         "cat3, cat2"});
-#line 91
- testRunner.And("I enter the following information", ((string)(null)), table11);
-#line 100
+#line 112
+ testRunner.And("I enter the following information", ((string)(null)), table18);
+#line 121
  testRunner.And("I click the \"save\" button");
 #line hidden
-            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
+            TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShortUrl",
-                        "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories",
-                        "LastUpdatedDate"});
-            table12.AddRow(new string[] {
-                        "1",
-                        "Demo title",
+                        "LastUpdateDate"});
+            table19.AddRow(new string[] {
                         "demopost",
-                        "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "true",
-                        "tag1, tag3",
+                        "This is the excerpt",
+                        "tag1, tag2",
                         "cat1, cat2",
-                        "2011-10-02"});
-            table12.AddRow(new string[] {
-                        "2",
-                        "Demo title2",
-                        "demopost",
-                        "Demo content2",
-                        "This is the excerpt2",
-                        "2011-10-01",
-                        "false",
-                        "tag1, tag3",
-                        "cat3, cat2",
                         "Today"});
-#line 101
- testRunner.Then("I should have the following post versions for post with short url \"demopost\"", ((string)(null)), table12);
+#line 122
+ testRunner.Then("I should have the following post versions for post with short url \"demopost\"", ((string)(null)), table19);
+#line hidden
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table20.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content1",
+                        "2011-10-02"});
+            table20.AddRow(new string[] {
+                        "Demo title2",
+                        "Demo content2",
+                        "Today"});
+#line 125
+ testRunner.And("the following post versions", ((string)(null)), table20);
+#line hidden
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Content",
+                        "SaveDate"});
+            table21.AddRow(new string[] {
+                        "Demo content1",
+                        "2011-10-02"});
+#line 129
+ testRunner.And("with the following published post", ((string)(null)), table21);
 #line hidden
             this.ScenarioCleanup();
         }
@@ -540,119 +567,98 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Publishing unpublished post", new string[] {
                         "NoPosts",
                         "Authenticated"});
-#line 108
+#line 135
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
+            TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShortUrl",
-                        "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories",
-                        "LastUpdatedDate"});
-            table13.AddRow(new string[] {
-                        "1",
-                        "Demo title",
+                        "LastUpdateDate"});
+            table22.AddRow(new string[] {
                         "demopost",
-                        "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "true",
-                        "tag1, tag3",
+                        "This is the excerpt",
+                        "tag1, tag2",
                         "cat1, cat2",
-                        "2011-10-02"});
-            table13.AddRow(new string[] {
-                        "2",
-                        "Demo title",
-                        "demopost",
-                        "Demo content2",
-                        "Excerpt1",
-                        "2011-10-01",
-                        "false",
-                        "tag1, tag3",
-                        "cat1, cat2",
-                        "2011-10-03"});
-#line 109
- testRunner.Given("a post exist with the following versions", ((string)(null)), table13);
-#line 113
- testRunner.And("I am on the \"edit post page\" for \"demopost\"");
+                        "Today"});
+#line 136
+ testRunner.Given("the following post", ((string)(null)), table22);
 #line hidden
-            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                        "InputField",
-                        "DataType",
-                        "Input"});
-            table14.AddRow(new string[] {
+            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
-                        "string",
-                        "Demo title2"});
-            table14.AddRow(new string[] {
-                        "ShortUrl",
-                        "longstring",
-                        "demopost"});
-            table14.AddRow(new string[] {
                         "Content",
-                        "string",
-                        "Demo content2"});
-            table14.AddRow(new string[] {
-                        "Excerpt",
-                        "string",
-                        "This is the excerpt2"});
-            table14.AddRow(new string[] {
-                        "PublishDate",
-                        "datetime",
+                        "SaveDate"});
+            table23.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content",
+                        "2011-10-02"});
+            table23.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content1",
                         "2011-10-03"});
-            table14.AddRow(new string[] {
-                        "Tags",
-                        "string",
-                        "tag1, tag3"});
-            table14.AddRow(new string[] {
-                        "Categories",
-                        "string",
-                        "cat3, cat2"});
-#line 114
- testRunner.And("I enter the following information", ((string)(null)), table14);
-#line 123
+#line 139
+ testRunner.And("the following post versions", ((string)(null)), table23);
+#line hidden
+            TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table24.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content",
+                        "2011-10-02"});
+#line 143
+ testRunner.And("with the following published post", ((string)(null)), table24);
+#line 146
+ testRunner.And("I am on the \"edit post page\" for \"demopost\"");
+#line 147
  testRunner.And("I click the \"publish\" button");
 #line hidden
-            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Version",
-                        "Title",
+            TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShortUrl",
-                        "Content",
-                        "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Excerpt",
                         "Tags",
                         "Categories",
-                        "LastUpdatedDate"});
-            table15.AddRow(new string[] {
-                        "1",
-                        "Demo title",
+                        "LastUpdateDate"});
+            table25.AddRow(new string[] {
                         "demopost",
-                        "Demo content2",
-                        "Excerpt1",
                         "2011-10-01",
-                        "true",
-                        "tag1, tag3",
+                        "This is the excerpt",
+                        "tag1, tag2",
                         "cat1, cat2",
-                        "2011-10-02"});
-            table15.AddRow(new string[] {
-                        "2",
-                        "Demo title2",
-                        "demopost",
-                        "Demo content2",
-                        "This is the excerpt2",
-                        "2011-10-03",
-                        "true",
-                        "tag1, tag3",
-                        "cat3, cat2",
                         "Today"});
-#line 124
- testRunner.Then("I should have the following post versions for post with short url \"demopost\"", ((string)(null)), table15);
+#line 148
+ testRunner.Then("I should have the following post versions for post with short url \"demopost\"", ((string)(null)), table25);
+#line hidden
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table26.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content",
+                        "2011-10-02"});
+            table26.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content1",
+                        "Today"});
+#line 151
+ testRunner.And("the following post versions", ((string)(null)), table26);
+#line hidden
+            TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Content",
+                        "SaveDate"});
+            table27.AddRow(new string[] {
+                        "Demo title",
+                        "Demo content1",
+                        "Today"});
+#line 155
+ testRunner.And("with the following published post", ((string)(null)), table27);
 #line hidden
             this.ScenarioCleanup();
         }

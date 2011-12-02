@@ -18,7 +18,8 @@ namespace NBlog.Specs.Steps
                                                            {
                                                                {"log in", "LogIn"},
                                                                {"create", "Create"},
-                                                               {"save", "Save"}
+                                                               {"save", "Save"},
+                                                               {"publish", "Publish"}
                                                            };
 
         private static Dictionary<string, Action<string, string>> SetFieldMapping =
