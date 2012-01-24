@@ -69,14 +69,20 @@ namespace NBlog.Tests.Areas.Admin.Controllers
         {
             // Arrange
             IPostRepository _postRepository = new InMemoryPostRepository();
+            var postContent = new PostContent
+                                  {
+                                      IsPublished = false,
+                                      Content = "This is some content"
+                                  };
             _postRepository.Insert(new Post()
                                        {
-                                           Content = "This is some content",
-                                           ShortUrl = "short url",
-                                           Title = "This is for real",
+                                           PostMetaData = new PostMetaData
+                                                              {
+                                                                  ShortUrl = "short url",
+                                                                  Title = "This is for real"
+                                                              },
                                            Id = Guid.Empty,
-                                           Publish = false,
-                                           PublishDate = new DateTime(2011, 10, 24)
+                                           PostVersions = new List<PostContent> {postContent}
                                        });
             var target = new PostController(_postRepository);
 

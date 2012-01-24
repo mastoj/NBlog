@@ -6,7 +6,7 @@ using NBlog.Domain;
 
 namespace NBlog.Models
 {
-    public class CreateAdminModel : Entity, IUser
+    public class CreateAdminModel : IUser
     {
         [Required(ErrorMessage = "User name required")]
         [DisplayName("Admin user name")]

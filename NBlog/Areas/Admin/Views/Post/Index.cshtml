@@ -1,4 +1,4 @@
-@model IEnumerable<NBlog.Areas.Admin.Models.PostViewModel>
+@model IEnumerable<NBlog.Areas.Admin.Models.ListViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -32,23 +32,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShortUrl }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShortUrl })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Post.PostMetaData.ShortUrl }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Post.PostMetaData.ShortUrl })
         </td>
         <td>
-			@item.ShortUrl
+			@item.Post.PostMetaData.ShortUrl
         </td>
         <td>
-			@item.Content
+			@item.Post.Published.IsNotNull() ? item.Post.Published.Content : item.Post.PostVersions.First().Content 
         </td>
         <td>
-			@item.Title
+			@item.Post.Published.IsNotNull() ? item.Post.Published.Title : item.Post.PostVersions.First().Title 
         </td>
         <td>
-			@(item.Tags == null ? "None" : item.Tags.Count.ToString())
+			@(item.Post.PostMetaData.Tags == null ? "None" : item.Post.PostMetaData.Tags.Count.ToString())
         </td>
         <td>
-			@(item.Categories == null ? "None" : item.Categories.Count.ToString())
+			@(item.Post.PostMetaData.Categories == null ? "None" : item.Post.PostMetaData.Categories.Count.ToString())
         </td>
     </tr>
 }

@@ -2,7 +2,7 @@ using NBlog.Domain;
 
 namespace NBlog.Domain
 {
-    public interface IUser : IEntity
+    public interface IUser
     {        
         string UserName { get; set; }
         string Name { get; set; }

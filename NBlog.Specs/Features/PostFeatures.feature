@@ -17,11 +17,12 @@ Scenario: Create post
 		| Categories  | string     | cat1, cat2          |
 	And I click the "save" button
 	Then a post with the following meta data should have been created
-		| ShortUrl | PublishDate | Excerpt             | Tags       | Categories | LastUpdateDate |
-		| demopost | Today       | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
+		| Title      | ShortUrl | Excerpt             | Tags       | Categories | LastUpdateDate |
+		| Demo title | demopost | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
 	And the following post versions
-		| Title       | Content      | SaveDate |
-		| Demot title | Demo content | Today    |
+		| Content      | SaveDate |
+		| Demo content | Today    |
+	And no published posts
 	And I should see a success message
 
 @NoPosts
@@ -29,23 +30,23 @@ Scenario: Create post
 Scenario: Create and publish post
 	Given I am on the "create post page"
 	When I enter the following information
-		| InputField  | DataType   | Input               |
-		| Title       | string     | Demo title          |
-		| ShortUrl    | longstring | demopost            |
-		| Content     | string     | Demo content        |
-		| Excerpt     | string     | This is the excerpt |
-		| Tags        | string     | tag1, tag2          |
-		| Categories  | string     | cat1, cat2          |
+		| InputField | DataType   | Input               |
+		| Title      | string     | Demo title          |
+		| ShortUrl   | string     | demopost            |
+		| Content    | longstring | Demo content        |
+		| Excerpt    | string     | This is the excerpt |
+		| Tags       | string     | tag1, tag2          |
+		| Categories | string     | cat1, cat2          |
 	And I click the "publish" button
 	Then a post with the following meta data should have been created
-		| ShortUrl | PublishDate | Excerpt             | Tags       | Categories | LastUpdateDate |
-		| demopost | Today       | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
+		| ShortUrl | Excerpt             | Tags       | Categories | LastUpdateDate |
+		| demopost | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
 	And the following post versions
 		| Title       | Content      | SaveDate |
 		| Demot title | Demo content | Today    |
 	And with the following published post
-		| Title       | Content      | SaveDate |
-		| Demot title | Demo content | Today    |
+		| Title       | PublishDate | Content      | SaveDate |
+		| Demot title | Today       | Demo content | Today    |
 	And I should see a success message
 
 @NoPosts
@@ -63,14 +64,14 @@ Scenario: Create and publish post back in time
 		| Categories  | string     | cat1, cat2          |
 	And I click the "publish" button
 	Then a post with the following meta data should have been created
-		| ShortUrl | PublishDate | Excerpt             | Tags       | Categories | LastUpdateDate |
-		| demopost | 2011-10-01  | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
+		| ShortUrl | Excerpt             | Tags       | Categories | LastUpdateDate |
+		| demopost | This is the excerpt | tag1, tag2 | cat1, cat2 | Today          |
 	And the following post versions
 		| Title       | Content      | SaveDate |
 		| Demot title | Demo content | Today    |
 	And with the following published post
-		| Title       | Content      | SaveDate |
-		| Demot title | Demo content | Today    |
+		| Title      | PublishDate | Content      | SaveDate |
+		| Demo title | 2011-10-01  | Demo content | Today    |
 	And I should see a success message
 
 @NoPosts

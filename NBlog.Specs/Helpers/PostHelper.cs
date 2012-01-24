@@ -46,26 +46,31 @@ namespace NBlog.Specs.Helpers
 
         public static IEnumerable<Post> CreatePostsFromTable(Table table)
         {
-            var posts = new List<Post>();
+            var posts = CreateSomethingFromTable(table, configurePostDictionary);
+            return posts;
+        }
+
+        private static IEnumerable<T> CreateSomethingFromTable<T>(Table table, Dictionary<string, Action<T, string>> actionDictionary) where T : new()
+        {
+            var items = new List<T>();
             foreach (var row in table.Rows)
             {
-                var post = CreatePostFromRow(row);
-                posts.Add(post);
+                var item = CreateItemFromRow(row, actionDictionary);
+                items.Add(item);
             }
-            return posts;
+            return items;
         }
 
         private static Dictionary<string, Action<Post, string>> configurePostDictionary =
             new Dictionary<string, Action<Post, string>>
                 {
-                    {"Title", (y, x) => y.Title = x},
-                    {"ShortUrl", (y, x) => y.ShortUrl = x},
-                    {"Content", (y, x) => y.Content = x},
-                    {"PublishDate", (y, x) => y.PublishDate = ParseDate(x)},
-                    {"Publish", (y, x) => y.Publish = bool.Parse(x)},
-                    {"Tags", (y, x) => y.Tags = x.Split(',').Select(z => z.Trim()).ToList()},
-                    {"Categories", (y, x) => y.Categories = x.Split(',').Select(z => z.Trim()).ToList()},
-                    {"Excerpt", (y, x) => y.Excerpt = x}
+                    {"Title", (y, x) => y.PostMetaData.Title = x},
+                    {"ShortUrl", (y, x) => y.PostMetaData.ShortUrl = x},
+                    {"Content", (y, x) => y.PublishedPost.Content = x},
+                    {"PublishDate", (y, x) => y.PublishedPost.PublishDate = ParseDate(x)},
+                    {"Tags", (y, x) => y.PostMetaData.Tags = x.Split(',').Select(z => z.Trim()).ToList()},
+                    {"Categories", (y, x) => y.PostMetaData.Categories = x.Split(',').Select(z => z.Trim()).ToList()},
+                    {"Excerpt", (y, x) => y.PostMetaData.Excerpt = x}
                 };
 
         private static DateTime ParseDate(string wantedDate)
@@ -84,22 +89,22 @@ namespace NBlog.Specs.Helpers
             return DateTime.ParseExact(wantedDate, "yyyy-MM-dd", null);
         }
 
-        private static Post CreatePostFromRow(TableRow row)
+        private static T CreateItemFromRow<T>(TableRow row, Dictionary<string, Action<T, string>> actionDictionary) where T : new()
         {
-            var post = new Post();
+            var item = new T();
             foreach (var key in row.Keys)
             {
                 var value = row[key];
-                if (configurePostDictionary.ContainsKey(key).IsTrue())
+                if (actionDictionary.ContainsKey(key).IsTrue())
                 {
-                    configurePostDictionary[key](post, value);
+                    actionDictionary[key](item, value);
                 }
                 else
                 {
                     Assert.Fail("Missing key: {0}", key);
                 }
             }
-            return post;
+            return item;
         }
 
         public static IEnumerable<Post> GetPostsFromRegularListing(ObservableBrowser browser)
@@ -117,24 +122,60 @@ namespace NBlog.Specs.Helpers
 
         private static Post CreatePostFromRegularListingEntry(Div div)
         {
-            var post = new Post();
             var postTitleLink = div.Link(Find.ByClass(y => y.Contains("post-link")));;
-            post.ShortUrl = new Uri(postTitleLink.Url).Segments.LastOrDefault();
-            post.Title = postTitleLink.InnerHtml;
             var excerptSpan = div.Span(Find.ByClass(y => y.Contains("excerpt")));
-            post.Excerpt = excerptSpan.InnerHtml;
+            var post = new Post
+                           {
+                               PostMetaData = new PostMetaData
+                                                  {
+                                                      ShortUrl = new Uri(postTitleLink.Url).Segments.LastOrDefault(),
+                                                      Title = postTitleLink.InnerHtml,
+                                                      Excerpt = excerptSpan.InnerHtml
+                                                  }
+                           };
             return post;
         }
 
         public static Post GetPostFromPostPage(ObservableBrowser browser)
         {
-            var post = new Post();
-            post.Title = browser.ElementWithTag("h2", Find.ById("Title")).Text.Trim();
-            post.PublishDate = DateTime.Parse(browser.Span(Find.ById("PublishDate")).Text.Trim());
-            post.Tags = browser.List(Find.ById("Tags")).ListItems.SelectMany(y => y.Links.Select(x => x.Text.Trim())).ToList();
-            post.Categories = browser.List(Find.ById("Categories")).ListItems.SelectMany(y => y.Links.Select(x => x.Text.Trim())).ToList();
-            post.Content = browser.Div(Find.ById("Content")).Text.Trim();
+            var post = new Post
+                           {
+                               PostMetaData = new PostMetaData
+                                                  {
+                                                      Tags =
+                                                          browser.List(Find.ById("Tags")).ListItems.SelectMany(
+                                                              y => y.Links.Select(x => x.Text.Trim())).ToList(),
+                                                      Categories =
+                                                          browser.List(Find.ById("Categories")).ListItems.SelectMany(
+                                                              y => y.Links.Select(x => x.Text.Trim())).ToList(),
+                                                      Title =
+                                                          browser.ElementWithTag("h2", Find.ById("Title")).Text.Trim()
+                                                  },
+                               PublishedPost = new PostContent
+                                                   {
+                                                       Content = browser.Div(Find.ById("Content")).Text.Trim(),
+                                                       PublishDate =
+                                                           DateTime.Parse(
+                                                               browser.Span(Find.ById("PublishDate")).Text.Trim())
+                                                   }
+                           };
             return post;
+        }
+
+
+        private static Dictionary<string, Action<PostMetaData, string>> configurePostMetaDataDictionary =
+            new Dictionary<string, Action<PostMetaData, string>>
+                {
+                    {"Title", (y, x) => y.Title = x},
+                    {"ShortUrl", (y, x) => y.ShortUrl = x},
+                    {"Tags", (y, x) => y.Tags = x.Split(',').Select(z => z.Trim()).ToList()},
+                    {"Categories", (y, x) => y.Categories = x.Split(',').Select(z => z.Trim()).ToList()},
+                    {"Excerpt", (y, x) => y.Excerpt = x}
+                };
+
+        public static IEnumerable<PostMetaData> CreateMetaDataFromTable(Table table)
+        {
+            return CreateSomethingFromTable(table, configurePostMetaDataDictionary);
         }
     }
 }

@@ -4,11 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using NBlog.Domain;
+using NBlog.Domain.Entities;
 using TJ.Extensions;
 
 namespace NBlog.Areas.Admin.Models
 {
-    public class PostViewModel : Entity, IPost
+    public class ListPostViewModel
+    {
+        public Post Post { get; set; }
+    }
+
+    public class PostViewModel
     {
         [Required]
         public string Title { get; set; }

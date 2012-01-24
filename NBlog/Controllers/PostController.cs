@@ -22,14 +22,14 @@ namespace NBlog.Controllers
         public virtual ViewResult Index()
         {
             var posts = _postRepository.All()
-                .Where(y => y.Publish && y.PublishDate <= DateTime.Now.Date)
-                .OrderByDescending(y => y.PublishDate);
+                .Where(y => y.PublishedPost != null && y.PublishedPost.PublishDate <= DateTime.Now.Date)
+                .OrderByDescending(y => y.PublishedPost.PublishDate);
             return View(Views.Index, posts);
         }
 
         public virtual ActionResult Article(string shorturl)
         {
-            var article = _postRepository.All().Where(y => y.ShortUrl == shorturl).FirstOrDefault();
+            var article = _postRepository.All().Where(y => y.PostMetaData.ShortUrl == shorturl).FirstOrDefault();
             if (article.IsNull())
             {
                 return HttpNotFound("Can't find page");

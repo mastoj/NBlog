@@ -9,7 +9,6 @@ namespace NBlog.Translators
         {
             var userDTO = new User()
                               {
-                                  Id = user.Id,
                                   Name = user.Name,
                                   PasswordHash = user.PasswordHash,
                                   UserName = user.UserName
@@ -21,7 +20,6 @@ namespace NBlog.Translators
         {
             T iuser = new T()
                           {
-                              Id = user.Id,
                               Name = user.Name,
                               PasswordHash = user.PasswordHash,
                               UserName = user.UserName

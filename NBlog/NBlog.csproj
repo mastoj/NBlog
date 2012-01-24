@@ -150,7 +150,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Translators\PostTranslator.cs" />
     <Compile Include="Translators\UserTranslator.cs" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />

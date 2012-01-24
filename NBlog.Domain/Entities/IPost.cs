@@ -4,7 +4,7 @@ using NBlog.Domain;
 
 namespace NBlog.Domain
 {
-    public interface IPost : IEntity
+    public interface IPost
     {
         string ShortUrl { get; set; }
         string Content { get; set; }
