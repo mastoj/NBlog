@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NBlog.Areas.Admin.Models;
+using NBlog.Domain.Builders;
 using NBlog.Domain.Entities;
 using NBlog.Domain.Repositories;
 using NBlog.Domain;
@@ -16,10 +17,12 @@ namespace NBlog.Areas.Admin.Controllers
     public partial class PostController : Controller
     {
         private readonly IPostRepository _postRepository;
+        private readonly IBuild<Post> _postBuilder;
 
-        public PostController(IPostRepository postRepository)
+        public PostController(IPostRepository postRepository, IBuild<Post> postBuilder)
         {
             _postRepository = postRepository;
+            _postBuilder = postBuilder;
         }
 
         //
@@ -64,24 +67,21 @@ namespace NBlog.Areas.Admin.Controllers
 
             };
 
-            var post = new Post
-                           {
-                               Id = Guid.NewGuid(),
-                               PostMetaData = new PostMetaData
-                                                  {
-                                                      Categories = postViewModel.Categories,
-                                                      Excerpt = postViewModel.Excerpt,
-                                                      ShortUrl = postViewModel.ShortUrl,
-                                                      Title = postViewModel.Title,
-                                                      Tags = postViewModel.Tags
-                                                  },
-                               PostVersions = new List<PostContent>
-                                                  {
-                                                      postContent
-                                                  },
-                               PublishedPost = postContent
-                           };
-            _postRepository.Insert(post);
+            var post = _postBuilder.Build();
+            post.PostMetaData = new PostMetaData
+                                    {
+                                        Categories = postViewModel.Categories,
+                                        Excerpt = postViewModel.Excerpt,
+                                        ShortUrl = postViewModel.ShortUrl,
+                                        Title = postViewModel.Title,
+                                        Tags = postViewModel.Tags
+                                    };
+            post.PostVersions = new List<PostContent>
+                                    {
+                                        postContent
+                                    };
+            post.PublishedPost = postContent;
+            post.CreateOrUpdate();
         }
 
         public virtual ActionResult Edit(string id)

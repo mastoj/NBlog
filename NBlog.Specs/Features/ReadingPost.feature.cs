@@ -77,7 +77,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Content",
                         "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Published",
                         "Tags",
                         "Categories"});
             table1.AddRow(new string[] {
@@ -127,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Content",
                         "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Published",
                         "Tags",
                         "Categories"});
             table2.AddRow(new string[] {
@@ -168,7 +168,7 @@ this.ScenarioSetup(scenarioInfo);
                         "Content",
                         "Excerpt",
                         "PublishDate",
-                        "Publish",
+                        "Published",
                         "Tags",
                         "Categories"});
             table3.AddRow(new string[] {

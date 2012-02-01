@@ -102,16 +102,6 @@
       <DependentUpon>Navigation.feature</DependentUpon>
     </Compile>
     <Compile Include="Config\Configuration.cs" />
-    <Compile Include="Features\PostFeatures.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostFeatures.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\ReadingPost.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReadingPost.feature</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\NavigationObserver.cs" />
     <Compile Include="Helpers\ObservableBrowser.cs" />
@@ -144,14 +134,6 @@
     <None Include="Features\Navigation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Navigation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\PostFeatures.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostFeatures.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\ReadingPost.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ReadingPost.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

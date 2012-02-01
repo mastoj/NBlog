@@ -1,4 +1,5 @@
-@model IEnumerable<NBlog.Areas.Admin.Models.ListViewModel>
+@using TJ.Extensions
+@model IEnumerable<NBlog.Areas.Admin.Models.ListPostViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -39,10 +40,10 @@
 			@item.Post.PostMetaData.ShortUrl
         </td>
         <td>
-			@item.Post.Published.IsNotNull() ? item.Post.Published.Content : item.Post.PostVersions.First().Content 
+			@item.Post.PublishedPost.IsNotNull() ? item.Post.Published.Content : item.Post.PostVersions.First().Content 
         </td>
         <td>
-			@item.Post.Published.IsNotNull() ? item.Post.Published.Title : item.Post.PostVersions.First().Title 
+			@item.Post.PublishedPost.IsNotNull() ? item.Post.Published.Title : item.Post.PostVersions.First().Title 
         </td>
         <td>
 			@(item.Post.PostMetaData.Tags == null ? "None" : item.Post.PostMetaData.Tags.Count.ToString())

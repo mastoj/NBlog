@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using NBlog.Domain.Event;
 using TJ.Extensions;
 
 namespace NBlog.Domain.Entities
@@ -92,9 +93,21 @@ namespace NBlog.Domain.Entities
 
     public class Post : Entity
     {
-        public IList<PostContent> PostVersions { get; set; }
-        public PostMetaData PostMetaData { get; set; }
-        public PostContent PublishedPost { get; set; }
+        private readonly IDomainEventManager _domainEventHandler;
+        private IList<PostContent> _postVersions;
+        public IList<PostContent> PostVersions { get { return _postVersions; } set { _postVersions = value; } }
+        private PostMetaData _postMetaData;
+        public PostMetaData PostMetaData { get { return _postMetaData; } set { _postMetaData = value; } }
+        private PostContent _publishedPost;
+        public PostContent PublishedPost { get { return _publishedPost; } set { _publishedPost = value; } }
+
+        public Post(IDomainEventManager domainEventHandler)
+        {
+            _domainEventHandler = domainEventHandler;
+            _postMetaData = new PostMetaData();
+            _postVersions = new List<PostContent>();
+            _publishedPost = new PostContent();
+        }
 
         public override bool Equals(object obj)
         {
@@ -124,6 +137,11 @@ namespace NBlog.Domain.Entities
                 result = (result*397) ^ (PublishedPost != null ? PublishedPost.GetHashCode() : 0);
                 return result;
             }
+        }
+
+        public void CreateOrUpdate()
+        {
+            throw new NotImplementedException();
         }
     }
 

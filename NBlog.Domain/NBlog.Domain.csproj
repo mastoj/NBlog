@@ -44,14 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\IBuild.cs" />
+    <Compile Include="Builders\PostBuilder.cs" />
     <Compile Include="Command\CommandHandleManager.cs" />
     <Compile Include="Command\ICommandHandleManager.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Event\IDomainEventManager.cs" />
     <Compile Include="Extensions\RepositoryExtensions.cs" />
-    <Compile Include="Infrastructure\IHandle.cs" />
+    <Compile Include="Event\IHandle.cs" />
     <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -68,9 +71,7 @@
       <Name>TJ.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Event\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

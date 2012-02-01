@@ -1,4 +1,4 @@
-namespace NBlog.Domain.Infrastructure
+namespace NBlog.Domain.Event
 {
     public interface IHandle<T> where T : class
     {

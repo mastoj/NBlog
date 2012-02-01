@@ -88,12 +88,12 @@ namespace NBlog.Tests.Areas.Admin.Controllers
 
             // Act
             var result = target.Index() as ViewResult;
-            var model = (IEnumerable<PostViewModel>)(result.Model);
+            var model = (IEnumerable<ListPostViewModel>)(result.Model);
 
             // Assert
             Assert.AreEqual(target.Views.Index, result.ViewName);
             Assert.AreEqual(1, model.Count());
-            Assert.AreEqual("This is for real", model.First().Title);
+            Assert.AreEqual("This is for real", model.First().Post.PostMetaData.Title);
         }
 
         private PostViewModel CreateValidPostViewModel()
