@@ -35,6 +35,9 @@
     <Reference Include="EasySec">
       <HintPath>..\packages\EasySec.1.0\lib\net40\EasySec.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,8 +49,6 @@
   <ItemGroup>
     <Compile Include="Builders\IBuild.cs" />
     <Compile Include="Builders\PostBuilder.cs" />
-    <Compile Include="Command\CommandHandleManager.cs" />
-    <Compile Include="Command\ICommandHandleManager.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Entity.cs" />
