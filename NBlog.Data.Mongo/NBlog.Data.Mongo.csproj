@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\EventStore.cs" />
     <Compile Include="IMongoConfiguration.cs" />
     <Compile Include="MongoConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

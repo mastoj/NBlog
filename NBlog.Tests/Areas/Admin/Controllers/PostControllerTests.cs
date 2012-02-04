@@ -5,7 +5,9 @@ using System.Text;
 using System.Web.Mvc;
 using NBlog.Areas.Admin.Controllers;
 using NBlog.Areas.Admin.Models;
+using NBlog.Domain.Builders;
 using NBlog.Domain.Entities;
+using NBlog.Domain.Event;
 using NBlog.Domain.Repositories;
 using NBlog.Domain;
 using NBlog.Helpers;
@@ -109,7 +111,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
         private PostController CreatePostController(IPostRepository postRepository = null)
         {
             postRepository = postRepository ?? new InMemoryPostRepository();
-            return new PostController(postRepository);
+            return new PostController(postRepository, null);
         }
     }
 }

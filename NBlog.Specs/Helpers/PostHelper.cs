@@ -46,16 +46,17 @@ namespace NBlog.Specs.Helpers
 
         public static IEnumerable<Post> CreatePostsFromTable(Table table)
         {
-            var posts = CreateSomethingFromTable(table, configurePostDictionary);
+            Func<Post> builderFunc = () => new Post(null);
+            var posts = CreateSomethingFromTable(table, configurePostDictionary, builderFunc);
             return posts;
         }
 
-        private static IEnumerable<T> CreateSomethingFromTable<T>(Table table, Dictionary<string, Action<T, string>> actionDictionary) where T : new()
+        private static IEnumerable<T> CreateSomethingFromTable<T>(Table table, Dictionary<string, Action<T, string>> actionDictionary, Func<T> builderFunc)
         {
             var items = new List<T>();
             foreach (var row in table.Rows)
             {
-                var item = CreateItemFromRow(row, actionDictionary);
+                var item = CreateItemFromRow(row, actionDictionary, builderFunc);
                 items.Add(item);
             }
             return items;
@@ -89,7 +90,7 @@ namespace NBlog.Specs.Helpers
             return DateTime.ParseExact(wantedDate, "yyyy-MM-dd", null);
         }
 
-        private static T CreateItemFromRow<T>(TableRow row, Dictionary<string, Action<T, string>> actionDictionary) where T : new()
+        private static T CreateItemFromRow<T>(TableRow row, Dictionary<string, Action<T, string>> actionDictionary, Func<T> builderFunc)
         {
             var item = new T();
             foreach (var key in row.Keys)

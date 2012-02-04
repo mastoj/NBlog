@@ -11,13 +11,13 @@ using TJ.Extensions;
 
 namespace NBlog.Domain.Mongo
 {
-    public abstract class Repository<T> : IRepository<T> where T : IEntity
+    public class Repository<T> : IRepository<T> where T : IEntity
     {
         private IMongo _provider;
         public IMongoDatabase Database { get { return _provider.Database; } }
-        public abstract string CollectionName { get; }
+        public virtual string CollectionName { get; set; }
 
-        protected Repository(IMongoConfiguration mongoConfiguration = null)
+        public Repository(IMongoConfiguration mongoConfiguration = null)
         {
             if (mongoConfiguration.IsNull())
             {
@@ -76,7 +76,10 @@ namespace NBlog.Domain.Mongo
 
         private IMongoCollection<T> GetCollection()
         {
-            return _provider.GetCollection<T>(CollectionName);
+            var collection = CollectionName.IsNullOrEmpty()
+                                 ? _provider.GetCollection<T>()
+                                 : _provider.GetCollection<T>(CollectionName);
+            return collection;
         }
     }
 }
