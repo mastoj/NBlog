@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.DDD.Infrastructure", "TJ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.DDD.MongoEvent.Tests", "TJ.DDD.MongoEvent.Tests\TJ.DDD.MongoEvent.Tests.csproj", "{AA787FB9-CE62-475F-9984-C77D6B8B8B49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.DDD.Infrastructure.Tests", "TJ.DDD.Infrastructure.Tests\TJ.DDD.Infrastructure.Tests.csproj", "{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{AA787FB9-CE62-475F-9984-C77D6B8B8B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA787FB9-CE62-475F-9984-C77D6B8B8B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA787FB9-CE62-475F-9984-C77D6B8B8B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +110,6 @@ Global
 		{9F30232C-AF9D-4FEF-9AEA-7AB9F620802A} = {BDAE58CF-66C0-4AFA-8DD4-23AAB5CD6C50}
 		{B6C0197B-AE50-42F5-BE37-5FD27F7A49A5} = {BDAE58CF-66C0-4AFA-8DD4-23AAB5CD6C50}
 		{AA787FB9-CE62-475F-9984-C77D6B8B8B49} = {BDAE58CF-66C0-4AFA-8DD4-23AAB5CD6C50}
+		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1} = {BDAE58CF-66C0-4AFA-8DD4-23AAB5CD6C50}
 	EndGlobalSection
 EndGlobal
