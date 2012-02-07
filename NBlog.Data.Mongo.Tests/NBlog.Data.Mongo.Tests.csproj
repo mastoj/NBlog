@@ -60,8 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainEventBase.cs" />
-    <Compile Include="EventRepository.cs" />
     <Compile Include="UserRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

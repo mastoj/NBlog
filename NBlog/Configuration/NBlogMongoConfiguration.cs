@@ -13,15 +13,15 @@ namespace NBlog.Configuration
             NBlogConfiguration = nBlogConfiguration;
         }
 
-        private string _connectionString;
-        public override string ConnectionString
-        {
-            get
-            {
-                _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
-                _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;
-                return _connectionString;
-            }
-        }
+//        private string _connectionString;
+//        public override string ConnectionString
+//        {
+//            get
+//            {
+//                _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
+////                _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;
+//                return _connectionString;
+//            }
+//        }
     }
 }

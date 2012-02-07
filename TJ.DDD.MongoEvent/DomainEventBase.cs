@@ -1,10 +1,10 @@
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using NBlog.Domain.Event;
+using TJ.DDD.Infrastructure;
 using TJ.Extensions;
 
-namespace NBlog.Data.Mongo.Tests
+namespace TJ.DDD.MongoEvent
 {
     public abstract class DomainEventBase : IDomainEvent
     {

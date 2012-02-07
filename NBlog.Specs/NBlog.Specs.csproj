@@ -154,6 +154,10 @@
       <Project>{329CA254-3C99-4F77-BB7A-1D715F5339C8}</Project>
       <Name>NBlog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
+      <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
+      <Name>TJ.DDD.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
       <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
       <Name>TJ.Extensions</Name>

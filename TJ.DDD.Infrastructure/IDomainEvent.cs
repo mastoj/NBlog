@@ -1,6 +1,6 @@
 using System;
 
-namespace NBlog.Domain.Event
+namespace TJ.DDD.Infrastructure
 {
     public interface IDomainEvent
     {

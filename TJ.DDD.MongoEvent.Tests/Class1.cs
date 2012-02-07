@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using NBlog.Domain.Event;
-using NBlog.Domain.Mongo;
 using NUnit.Framework;
+using TJ.DDD.Infrastructure;
+using TJ.DDD.MongoEvent;
+using TJ.Mongo.Util;
 
 namespace NBlog.Data.Mongo.Tests.EventRepository
 {
@@ -22,12 +19,16 @@ namespace NBlog.Data.Mongo.Tests.EventRepository
         public void Setup()
         {
             // Arrange
-            var eventRepository = new EventRepository();
-            _myEvent = new MyEvent(Guid.NewGuid()) {SomeText = "text"};
+            var mongoConfig = new MongoConfiguration()
+            {
+                DatabaseName = "EventTestDB"
+            };
+            var eventStore = new EventStore(mongoConfig);
+            _myEvent = new MyEvent(Guid.NewGuid()) { SomeText = "text" };
 
             // Act
-            eventRepository.Insert(_myEvent);
-            _events = eventRepository.GetEvents(_myEvent.AggregateId).ToList();            
+            eventStore.Insert(_myEvent);
+            _events = eventStore.GetEvents(_myEvent.AggregateId).ToList();
         }
 
         [Test]
@@ -42,7 +43,7 @@ namespace NBlog.Data.Mongo.Tests.EventRepository
         {
             var storedEvent = _events.First();
             storedEvent.Should().Be(_myEvent);
-            storedEvent.GetType().Should().Be(typeof (MyEvent));
+            storedEvent.GetType().Should().Be(typeof(MyEvent));
             (storedEvent as MyEvent).SomeText.Should().Be("text");
         }
     }
@@ -57,15 +58,19 @@ namespace NBlog.Data.Mongo.Tests.EventRepository
         public void Setup()
         {
             // Arrange
-            var eventRepository = new EventRepository();
+            var mongoConfig = new MongoConfiguration()
+            {
+                DatabaseName = "EventTestDB"
+            };
+            var eventStore = new EventStore(mongoConfig);
             var aggregateId = Guid.NewGuid();
-            _myEvent = new MyEvent(aggregateId) {SomeText = "My EventText"};
-            _myEvent2 = new MyEvent2(aggregateId) {SomeText2 = "My Event2Text"};
+            _myEvent = new MyEvent(aggregateId) { SomeText = "My EventText" };
+            _myEvent2 = new MyEvent2(aggregateId) { SomeText2 = "My Event2Text" };
 
             // Act
-            eventRepository.Insert(_myEvent);
-            eventRepository.Insert(_myEvent2);
-            _events = eventRepository.GetEvents(aggregateId).ToList();
+            eventStore.Insert(_myEvent);
+            eventStore.Insert(_myEvent2);
+            _events = eventStore.GetEvents(aggregateId).ToList();
         }
 
         [Test]
@@ -85,11 +90,11 @@ namespace NBlog.Data.Mongo.Tests.EventRepository
             {
                 if (domainEvent is MyEvent)
                 {
-                    ((MyEvent) domainEvent).SomeText.Should().Be("My EventText");
+                    ((MyEvent)domainEvent).SomeText.Should().Be("My EventText");
                 }
                 else
                 {
-                    ((MyEvent2)domainEvent).SomeText2.Should().Be("My Event2Text");                    
+                    ((MyEvent2)domainEvent).SomeText2.Should().Be("My Event2Text");
                 }
             }
         }
@@ -112,44 +117,5 @@ namespace NBlog.Data.Mongo.Tests.EventRepository
         {
         }
         public string SomeText2 { get; set; }
-    }
-
-    public interface IDomainEventRepository
-    {
-
-    }
-
-    public class EventRepository : IDomainEventRepository
-    {
-        private MongoServer _server;
-        private MongoDatabase _database;
-
-        public EventRepository()
-        {
-            _server = MongoServer.Create();
-            _database = _server.GetDatabase("EventTestDB");
-        }
-
-        public void Insert(IDomainEvent domainEvent)
-        {
-            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>("Events");
-            events.Insert(domainEvent);
-        }
-
-        public IEnumerable<IDomainEvent> GetEvents(Guid aggregateId)
-        {
-            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>("Events");
-            var query = Query.EQ("AggregateId", aggregateId);
-            var cursor = events.FindAs<IDomainEvent>(query);
-            foreach (var domainEvent in cursor)
-            {
-                yield return domainEvent;
-            }
-        }
-
-        public void DeleteCollection()
-        {
-            _database.DropCollection("Events");
-        }
     }
 }

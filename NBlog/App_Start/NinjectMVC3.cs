@@ -65,8 +65,8 @@ namespace NBlog.App_Start
             kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
 
             // Repositores
-            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
-            kernel.Bind<IPostRepository>().To<PostRepository>().InRequestScope();
+            //kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+            //kernel.Bind<IPostRepository>().To<PostRepository>().InRequestScope();
 
             // Builders
             kernel.Bind<IBuild<Post>>().To<PostBuilder>().InRequestScope();

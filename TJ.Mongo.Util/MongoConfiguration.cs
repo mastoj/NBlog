@@ -1,20 +1,7 @@
-using MongoDB.Driver;
-
-namespace NBlog.Domain.Mongo
+namespace TJ.Mongo.Util
 {
     public class MongoConfiguration : IMongoConfiguration
     {
-        //private string _options;
-        //public virtual string Options
-        //{
-        //    get 
-        //    {
-        //        _options = _options ?? "strict=false";
-        //        return _options;
-        //    }
-        //    set { _options = value; }
-        //}
-
         private string _databaseName;
         public string DatabaseName
         {
