@@ -57,7 +57,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
             // Arrange
             IPostRepository _postRepository = new InMemoryPostRepository(); 
             var model = CreateValidPostViewModel();
-            var target = new PostController(_postRepository);
+            var target = new PostController(_postRepository, null);
 
             // Act
             var result = target.Create(model) as ViewResult;
@@ -76,7 +76,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
                                       IsPublished = false,
                                       Content = "This is some content"
                                   };
-            _postRepository.Insert(new Post()
+            _postRepository.Insert(new Post(null)
                                        {
                                            PostMetaData = new PostMetaData
                                                               {
@@ -86,7 +86,7 @@ namespace NBlog.Tests.Areas.Admin.Controllers
                                            Id = Guid.Empty,
                                            PostVersions = new List<PostContent> {postContent}
                                        });
-            var target = new PostController(_postRepository);
+            var target = new PostController(_postRepository, null);
 
             // Act
             var result = target.Index() as ViewResult;

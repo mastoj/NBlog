@@ -3,17 +3,17 @@ using NBlog.Domain.Repositories;
 
 namespace NBlog.Domain.Mongo.Repositories
 {
-    public class PostRepository : Repository<Post>, IPostRepository
+    public class PostRepository/// : //IPostRepository // Repository<Post>, 
     {
         public PostRepository(IMongoConfiguration mongoConfiguration)
-            : base(mongoConfiguration)
+//            : base(mongoConfiguration)
         {
             
         }
 
-        public override string CollectionName
-        {
-            get { return "Posts"; }
-        }
+        //public override string CollectionName
+        //{
+        //    get { return "Posts"; }
+        //}
     }
 }

@@ -53,7 +53,10 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Event\EventStore.cs" />
+    <Compile Include="Event\IDomainEvent.cs" />
     <Compile Include="Event\IDomainEventManager.cs" />
+    <Compile Include="Event\IEventStore.cs" />
     <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="Event\IHandle.cs" />
     <Compile Include="Repositories\IPostRepository.cs" />

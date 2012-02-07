@@ -35,12 +35,6 @@ namespace NBlog.Domain.Event
         IEventStore<T> GetEventStore<T>() where T : class, IDomainEvent;
     }
 
-    public interface IEventStore<T> where T : class, IDomainEvent
-    {
-        void SaveEvent(T @event);
-        IEnumerable<T> GetEvents();
-    }
-
     public class EventHandlerFactory : IEventHandlerFactory
     {
         private Dictionary<Type, IEnumerable<IHandle<object>>> _handlerDictionary;
@@ -70,45 +64,5 @@ namespace NBlog.Domain.Event
     public interface IDomainEventManager
     {
         void RaiseEvent<TEvent>(TEvent @event) where TEvent : class, IDomainEvent;
-    }
-
-    public interface IDomainEvent : IEntity
-    {
-    }
-
-    public abstract class DomainEventBase : IDomainEvent
-    {
-        public DateTime TimeStamp { get; set; }
-
-        public DomainEventBase()
-        {
-            TimeStamp = DateTime.UtcNow;
-            Id = Guid.NewGuid();
-        }
-
-        public Guid Id { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (DomainEventBase)) return false;
-            return Equals((DomainEventBase) obj);
-        }
-
-        public bool Equals(DomainEventBase other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return other.Id.Equals(Id);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return Id.GetHashCode();
-            }
-        }
     }
 }

@@ -92,7 +92,7 @@ namespace NBlog.Specs.Helpers
 
         private static T CreateItemFromRow<T>(TableRow row, Dictionary<string, Action<T, string>> actionDictionary, Func<T> builderFunc)
         {
-            var item = new T();
+            var item = builderFunc();
             foreach (var key in row.Keys)
             {
                 var value = row[key];
@@ -125,7 +125,7 @@ namespace NBlog.Specs.Helpers
         {
             var postTitleLink = div.Link(Find.ByClass(y => y.Contains("post-link")));;
             var excerptSpan = div.Span(Find.ByClass(y => y.Contains("excerpt")));
-            var post = new Post
+            var post = new Post(null)
                            {
                                PostMetaData = new PostMetaData
                                                   {
@@ -139,7 +139,7 @@ namespace NBlog.Specs.Helpers
 
         public static Post GetPostFromPostPage(ObservableBrowser browser)
         {
-            var post = new Post
+            var post = new Post(null)
                            {
                                PostMetaData = new PostMetaData
                                                   {
@@ -176,7 +176,7 @@ namespace NBlog.Specs.Helpers
 
         public static IEnumerable<PostMetaData> CreateMetaDataFromTable(Table table)
         {
-            return CreateSomethingFromTable(table, configurePostMetaDataDictionary);
+            return CreateSomethingFromTable(table, configurePostMetaDataDictionary, () => new PostMetaData());
         }
     }
 }

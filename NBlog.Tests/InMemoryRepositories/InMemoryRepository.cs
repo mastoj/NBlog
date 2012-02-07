@@ -8,7 +8,7 @@ using NBlog.Domain;
 
 namespace NBlog.Tests
 {
-    public class InMemoryRepository<T> : IRepository<T> where T : IEntity
+    public class InMemoryRepository<T> : IRepository<T>
     {
         private List<T> _items = new List<T>();
 
@@ -39,7 +39,6 @@ namespace NBlog.Tests
 
         public void Insert(T item)
         {
-            item.Id = Guid.NewGuid();
             _items.Add(item);
         }
 
