@@ -8,18 +8,26 @@ namespace TJ.DDD.MongoEvent
 {
     public abstract class DomainEventBase : IDomainEvent
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
         public DateTime TimeStamp { get; set; }
 
-        public DomainEventBase(Guid aggregateId)
+        public DomainEventBase()
         {
-            AggregateId = aggregateId;
             TimeStamp = DateTime.UtcNow;
         }
 
-        public Guid AggregateId { get; set; }
+        [BsonId]
+        public ObjectId Id { get; set; }
+        public Guid AggregateId { get; private set; }
+        public int EventNumber { get; private set; }
+        public void SetEventNumber(int eventNumber)
+        {
+            EventNumber = eventNumber;
+        }
+
+        public void SetAggregateId(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+        }
 
         public override bool Equals(object obj)
         {

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using NBlog.Data.Mongo.Tests.EventRepository;
-using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure
 {
@@ -21,40 +18,42 @@ namespace TJ.DDD.Infrastructure
             _registeredEventHandlers.Add(typeof(TEvent), @event => eventHandler(@event as TEvent));
         }
 
-        public void Apply(IDomainEvent @event)
+        protected void Apply<TEvent>(TEvent @event) where TEvent : IDomainEvent
         {
-            var eventType = @event.GetType();
+            var eventType = typeof(TEvent);
+            @event.SetAggregateId(AggregateId);
+            var eventNumber = Version + 1;
+            @event.SetEventNumber(eventNumber);
+            Version = eventNumber;
+            Apply(eventType, @event);
+        }
+
+        public void LoadAggregate(IEnumerable<IDomainEvent> events)
+        {
+            foreach (var domainEvent in events)
+            {
+                var eventType = domainEvent.GetType();
+                Apply(eventType, domainEvent);
+            }
+        }
+
+        private void Apply(Type eventType, IDomainEvent @event)
+        {
             if (_registeredEventHandlers.ContainsKey(eventType))
             {
-                _registeredEventHandlers[eventType](@event);
+                Action<IDomainEvent> eventHandler;
+                eventHandler = _registeredEventHandlers[eventType];
+                eventHandler(@event);
             }
         }
 
         public Guid AggregateId { get; set; }
-    }
 
-    public class AggregateRootFactory
-    {
-        private readonly IEventStore _eventStore;
+        public int Version { get; set; }
 
-        public AggregateRootFactory(IEventStore eventStore)
+        public IEnumerable<IDomainEvent> GetChanges()
         {
-            _eventStore = eventStore;
-        }
-
-        public T Load<T>(Guid aggregateId) where T : AggregateRoot, new()
-        {
-            var events = _eventStore.GetEvents(aggregateId).ToList();
-            if (events.IsNotNull() && events.Count > 0)
-            {
-                T aggregate = new T();
-                foreach (var domainEvent in events)
-                {
-                    aggregate.Apply(domainEvent);
-                }
-                return aggregate;
-            }
-            throw new ArgumentException("No aggregate with id: " + aggregateId, "aggregateId");
+            throw new NotImplementedException();
         }
     }
 }

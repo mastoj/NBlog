@@ -12,6 +12,7 @@ namespace TJ.DDD.MongoEvent
     {
         private MongoServer _server;
         private MongoDatabase _database;
+        private string _collectionName = "Events";
 
         public EventStore(IMongoConfiguration mongoConfiguration)
         {
@@ -22,13 +23,13 @@ namespace TJ.DDD.MongoEvent
 
         public void Insert(IDomainEvent domainEvent)
         {
-            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>("Events");
+            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>(_collectionName);
             events.Insert(domainEvent);
         }
 
         public IEnumerable<IDomainEvent> GetEvents(Guid aggregateId)
         {
-            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>("Events");
+            MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>(_collectionName);
             var query = Query.EQ("AggregateId", aggregateId);
             var cursor = events.FindAs<IDomainEvent>(query);
             foreach (var domainEvent in cursor)
@@ -39,7 +40,7 @@ namespace TJ.DDD.MongoEvent
 
         public void DeleteCollection()
         {
-            _database.DropCollection("Events");
+            _database.DropCollection(_collectionName);
         }
     }
 }

@@ -35,10 +35,14 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
         public void Setup()
         {
             var eventStoreStub = new InMemoryEventStoreStub();
-            eventStoreStub.Insert(
-                new SetNameSuccessEvent(_aggregateId) { NewName = _expectedName });
-            eventStoreStub.Insert(
-                new SetAgeSuccess(_aggregateId) { NewAge = _expectedAge });
+            var nameEvent = new SetNameSuccessEvent() {NewName = _expectedName};
+            nameEvent.SetAggregateId(_aggregateId);
+            nameEvent.SetEventNumber(0);
+            eventStoreStub.Insert(nameEvent);
+            var ageEvent = new SetAgeSuccess() {NewAge = _expectedAge};
+            ageEvent.SetAggregateId(_aggregateId);
+            ageEvent.SetEventNumber(1);
+            eventStoreStub.Insert(ageEvent);
             var aggregateRootFactory = new Infrastructure.AggregateRootFactory(eventStoreStub);
             _person = aggregateRootFactory.Load<Person>(_aggregateId);
         }
@@ -105,21 +109,11 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
 
     internal class SetAgeSuccess : DomainEventBase
     {
-        public SetAgeSuccess(Guid aggregateId)
-            : base(aggregateId)
-        {
-        }
-
         public int NewAge { get; set; }
     }
 
     internal class SetNameSuccessEvent : DomainEventBase
     {
-        public SetNameSuccessEvent(Guid aggregateId)
-            : base(aggregateId)
-        {
-        }
-
         public string NewName { get; set; }
     }
 }

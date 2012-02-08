@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Post\When_Creating_A_Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,14 @@
     <ProjectReference Include="..\NBlog.Tests\NBlog.Tests.csproj">
       <Project>{026504B6-1335-4EB8-9E3A-2548CB4E917A}</Project>
       <Name>NBlog.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
+      <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
+      <Name>TJ.DDD.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TJ.DDD.MongoEvent\TJ.DDD.MongoEvent.csproj">
+      <Project>{1B7FEE73-5097-457A-A05A-73C478F4A620}</Project>
+      <Name>TJ.DDD.MongoEvent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,9 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregateRoot.cs" />
+    <Compile Include="AggregateRootFactory.cs" />
+    <Compile Include="IAggregateRootFactory.cs" />
     <Compile Include="IDomainEvent.cs" />
     <Compile Include="IEventStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
+      <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
+      <Name>TJ.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
