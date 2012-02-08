@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using FluentAssertions;
-using NBlog.Data.Mongo.Tests.EventRepository;
 using NUnit.Framework;
+using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.MongoEvent;
-using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
 {
@@ -39,7 +37,7 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
             nameEvent.SetAggregateId(_aggregateId);
             nameEvent.SetEventNumber(0);
             eventStoreStub.Insert(nameEvent);
-            var ageEvent = new SetAgeSuccess() {NewAge = _expectedAge};
+            var ageEvent = new SetAgeSuccessEvent() {NewAge = _expectedAge};
             ageEvent.SetAggregateId(_aggregateId);
             ageEvent.SetEventNumber(1);
             eventStoreStub.Insert(ageEvent);
@@ -93,7 +91,7 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
         private void RegisterEventHandlers()
         {
             RegisterEventHandler<SetNameSuccessEvent>(SetNameSuccess);
-            RegisterEventHandler<SetAgeSuccess>(SetAgeSuccess);
+            RegisterEventHandler<SetAgeSuccessEvent>(SetAgeSuccess);
         }
 
         void SetNameSuccess(SetNameSuccessEvent setNameSuccessEvent)
@@ -101,13 +99,13 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
             _name = setNameSuccessEvent.NewName;
         }
 
-        void SetAgeSuccess(SetAgeSuccess setAgeSuccess)
+        void SetAgeSuccess(SetAgeSuccessEvent setAgeSuccessEvent)
         {
-            _age = setAgeSuccess.NewAge;
+            _age = setAgeSuccessEvent.NewAge;
         }
     }
 
-    internal class SetAgeSuccess : DomainEventBase
+    internal class SetAgeSuccessEvent : DomainEventBase
     {
         public int NewAge { get; set; }
     }

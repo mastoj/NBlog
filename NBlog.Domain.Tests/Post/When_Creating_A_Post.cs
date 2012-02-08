@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentAssertions;
+using NBlog.Domain.Post;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure;
+using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.MongoEvent;
 
-namespace NBlog.Domain.Tests.Post
+namespace NBlog.Domain.Tests
 {
     [TestFixture]
     public class When_Creating_A_Post
     {
         private string _title;
         private string _shortUrl;
-        private Post _createdPost;
+        private Domain.Post.Post _createdPost;
+        private CreatePostCommand _createPostCommand;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            _createdPost = Post.Create(_title, _shortUrl);
+            _createPostCommand = new CreatePostCommand(_title, _shortUrl);
+
+            _createdPost = Domain.Post.Post.Create(_title, _shortUrl);
         }
 
         [Test]
@@ -36,39 +41,17 @@ namespace NBlog.Domain.Tests.Post
         }
     }
 
-    public class Post : AggregateRoot
+    public class CreatePostCommand : Command
     {
         private readonly string _title;
         private readonly string _shortUrl;
 
-        public Post()
-        {
-            
-        }
-
-        private Post(string title, string shortUrl) : this()
+        public CreatePostCommand(string title, string shortUrl)
+            : base(Guid.NewGuid())
         {
             _title = title;
             _shortUrl = shortUrl;
-            var createEvent = new PostCreatedEvent(title, shortUrl);
-            Apply(createEvent);
-        }
-
-        public static Post Create(string title, string shortUrl)
-        {
-            return new Post(title, shortUrl);
         }
     }
 
-    public class PostCreatedEvent : DomainEventBase
-    {
-        public string Title { get; private set; }
-        public string ShortUrl { get; private set; }
-
-        public PostCreatedEvent(string title, string shortUrl)
-        {
-            Title = title;
-            ShortUrl = shortUrl;
-        }
-    }
 }

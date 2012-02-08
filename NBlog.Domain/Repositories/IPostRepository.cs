@@ -2,7 +2,7 @@
 
 namespace NBlog.Domain.Repositories
 {
-    public interface IPostRepository : IRepository<Post>
+    public interface IPostRepository : IRepository<Entities.Post>
     {
     }
 }

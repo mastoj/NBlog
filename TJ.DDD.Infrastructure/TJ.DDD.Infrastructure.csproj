@@ -42,10 +42,19 @@
   <ItemGroup>
     <Compile Include="AggregateRoot.cs" />
     <Compile Include="AggregateRootFactory.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\CommandManager.cs" />
+    <Compile Include="Command\ICommandManager.cs" />
+    <Compile Include="Event\DomainEventBase.cs" />
+    <Compile Include="Exceptions\UnregisteredEventException.cs" />
     <Compile Include="IAggregateRootFactory.cs" />
-    <Compile Include="IDomainEvent.cs" />
-    <Compile Include="IEventStore.cs" />
+    <Compile Include="Command\ICommandRepository.cs" />
+    <Compile Include="Event\IDomainEvent.cs" />
+    <Compile Include="Event\IEventStore.cs" />
+    <Compile Include="IHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Exceptions\UnregisteredCommandException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using NBlog.Data.Mongo.Tests.EventRepository;
 using TJ.DDD.Infrastructure;
+using TJ.DDD.Infrastructure.Event;
 using TJ.Mongo.Util;
 
 namespace TJ.DDD.MongoEvent

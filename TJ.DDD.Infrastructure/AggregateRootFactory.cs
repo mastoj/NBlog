@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using NBlog.Data.Mongo.Tests.EventRepository;
+using TJ.DDD.Infrastructure.Event;
 using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure

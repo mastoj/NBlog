@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TJ.DDD.Infrastructure.Event;
+using TJ.DDD.Infrastructure.Exceptions;
 
 namespace TJ.DDD.Infrastructure
 {
@@ -36,7 +38,7 @@ namespace TJ.DDD.Infrastructure
             foreach (var domainEvent in events)
             {
                 var eventType = domainEvent.GetType();
-//                Version = domainEvent.EventNumber;
+                Version = domainEvent.EventNumber;
                 Apply(eventType, domainEvent);
             }
         }
@@ -48,6 +50,10 @@ namespace TJ.DDD.Infrastructure
                 Action<IDomainEvent> eventHandler;
                 eventHandler = _registeredEventHandlers[eventType];
                 eventHandler(@event);
+            }
+            else
+            {
+                throw new UnregisteredEventException("No event handler registered for event type: {0}" + eventType);
             }
         }
 

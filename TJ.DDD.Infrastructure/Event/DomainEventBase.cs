@@ -1,10 +1,7 @@
 using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using TJ.DDD.Infrastructure;
 using TJ.Extensions;
 
-namespace TJ.DDD.MongoEvent
+namespace TJ.DDD.Infrastructure.Event
 {
     public abstract class DomainEventBase : IDomainEvent
     {
@@ -15,8 +12,7 @@ namespace TJ.DDD.MongoEvent
             TimeStamp = DateTime.UtcNow;
         }
 
-        [BsonId]
-        public ObjectId Id { get; set; }
+        public Guid Id { get; set; }
         public Guid AggregateId { get; private set; }
         public int EventNumber { get; private set; }
         public void SetEventNumber(int eventNumber)

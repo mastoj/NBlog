@@ -3,7 +3,7 @@ using NBlog.Domain.Event;
 
 namespace NBlog.Domain.Builders
 {
-    public class PostBuilder : IBuild<Post>
+    public class PostBuilder : IBuild<Entities.Post>
     {
         private IDomainEventManager _domainEventHandler;
 
@@ -12,9 +12,9 @@ namespace NBlog.Domain.Builders
             _domainEventHandler = domainEventHandler;
         }
 
-        public Post Build()
+        public Entities.Post Build()
         {
-            return new Post(_domainEventHandler);
+            return new Entities.Post(_domainEventHandler);
         }
     }
 }

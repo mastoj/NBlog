@@ -1,7 +1,7 @@
-﻿using System;
-using TJ.DDD.MongoEvent;
+﻿using TJ.DDD.Infrastructure;
+using TJ.DDD.Infrastructure.Event;
 
-namespace NBlog.Data.Mongo.Tests.EventRepository
+namespace TJ.DDD.MongoEvent.Tests
 {
     public class MyEvent : DomainEventBase
     {

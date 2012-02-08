@@ -1,6 +1,6 @@
 using System;
 
-namespace TJ.DDD.Infrastructure
+namespace TJ.DDD.Infrastructure.Event
 {
     public interface IDomainEvent
     {

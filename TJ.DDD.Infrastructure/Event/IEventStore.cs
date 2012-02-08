@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using TJ.DDD.Infrastructure;
 
-namespace NBlog.Data.Mongo.Tests.EventRepository
+namespace TJ.DDD.Infrastructure.Event
 {
     public interface IEventStore
     {

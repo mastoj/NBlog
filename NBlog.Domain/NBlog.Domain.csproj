@@ -56,6 +56,7 @@
     <Compile Include="Event\IDomainEventManager.cs" />
     <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="Event\IHandle.cs" />
+    <Compile Include="Post\Post.cs" />
     <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
       <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
       <Name>TJ.DDD.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TJ.DDD.MongoEvent\TJ.DDD.MongoEvent.csproj">
+      <Project>{1B7FEE73-5097-457A-A05A-73C478F4A620}</Project>
+      <Name>TJ.DDD.MongoEvent</Name>
     </ProjectReference>
     <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
       <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
