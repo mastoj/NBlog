@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentAssertions;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure;
 using TJ.DDD.MongoEvent;
@@ -25,7 +26,13 @@ namespace NBlog.Domain.Tests.Post
         public void The_Post_Should_Be_Created()
         {
             // Assert
-            IEnumerable<IDomainEvent> changes = _createdPost.GetChanges();
+            var changes = _createdPost.GetChanges().ToList();
+            changes.Count.Should().Be(1);
+            var postCreatedEvent = changes.First() as PostCreatedEvent;
+            postCreatedEvent.Should().NotBeNull();
+            postCreatedEvent.Title.Should().Be(_title);
+            postCreatedEvent.ShortUrl.Should().Be(_shortUrl);
+            _createdPost.Version.Should().Be(1);
         }
     }
 
@@ -44,7 +51,7 @@ namespace NBlog.Domain.Tests.Post
             _title = title;
             _shortUrl = shortUrl;
             var createEvent = new PostCreatedEvent(title, shortUrl);
-            
+            Apply(createEvent);
         }
 
         public static Post Create(string title, string shortUrl)

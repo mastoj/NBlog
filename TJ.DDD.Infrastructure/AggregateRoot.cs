@@ -7,10 +7,12 @@ namespace TJ.DDD.Infrastructure
     public abstract class AggregateRoot
     {
         private Dictionary<Type, Action<IDomainEvent>> _registeredEventHandlers;
+        private List<IDomainEvent> _changes;
 
         public AggregateRoot()
         {
             _registeredEventHandlers = new Dictionary<Type, Action<IDomainEvent>>();
+            _changes = new List<IDomainEvent>();
         }
 
         protected void RegisterEventHandler<TEvent>(Action<TEvent> eventHandler) where TEvent : class, IDomainEvent
@@ -25,6 +27,7 @@ namespace TJ.DDD.Infrastructure
             var eventNumber = Version + 1;
             @event.SetEventNumber(eventNumber);
             Version = eventNumber;
+            _changes.Add(@event);
             Apply(eventType, @event);
         }
 
@@ -33,6 +36,7 @@ namespace TJ.DDD.Infrastructure
             foreach (var domainEvent in events)
             {
                 var eventType = domainEvent.GetType();
+//                Version = domainEvent.EventNumber;
                 Apply(eventType, domainEvent);
             }
         }
@@ -53,7 +57,7 @@ namespace TJ.DDD.Infrastructure
 
         public IEnumerable<IDomainEvent> GetChanges()
         {
-            throw new NotImplementedException();
+            return _changes;
         }
     }
 }
