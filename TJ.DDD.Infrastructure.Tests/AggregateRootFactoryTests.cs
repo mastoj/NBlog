@@ -6,7 +6,7 @@ using NUnit.Framework;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.MongoEvent;
 
-namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
+namespace TJ.DDD.Infrastructure.Tests.AggregateRepository
 {
     [TestFixture]
     public class When_Loading_An_Aggregate_From_History_With_0_Events
@@ -15,8 +15,8 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
         public void An_Argument_Exception_Should_Be_Raised()
         {
             var eventStoreStub = new InMemoryEventStoreStub();
-            var aggregateRootFactory = new Infrastructure.AggregateRootFactory(eventStoreStub);
-            Action act = () => { aggregateRootFactory.Load<Person>(Guid.Empty); };
+            var aggregateRootFactory = new AggregateRespository<Person>(eventStoreStub);
+            Action act = () => { aggregateRootFactory.Get(Guid.Empty); };
             act.ShouldThrow<ArgumentException>();
         }
     }
@@ -41,8 +41,8 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
             ageEvent.SetAggregateId(_aggregateId);
             ageEvent.SetEventNumber(1);
             eventStoreStub.Insert(ageEvent);
-            var aggregateRootFactory = new Infrastructure.AggregateRootFactory(eventStoreStub);
-            _person = aggregateRootFactory.Load<Person>(_aggregateId);
+            var aggregateRootFactory = new AggregateRespository<Person>(eventStoreStub);
+            _person = aggregateRootFactory.Get(_aggregateId);
         }
 
         [Test]
@@ -56,6 +56,14 @@ namespace TJ.DDD.Infrastructure.Tests.AggregateRootFactory
     class InMemoryEventStoreStub : IEventStore
     {
         List<IDomainEvent> _events = new List<IDomainEvent>();
+
+        public T Get<T>(Guid aggregateId) where T : AggregateRoot, new()
+        {
+            var aggregate = new T();
+            var events = GetEvents(aggregateId);
+            aggregate.LoadAggregate(events);
+            return aggregate;
+        }
 
         public void Insert(IDomainEvent domainEvent)
         {

@@ -17,7 +17,7 @@ namespace TJ.DDD.Infrastructure.Tests
         [TestFixtureSetUp]
         public void Setup()
         {
-            _commandManager = new CommandManager(new CommandRepositoryStub());
+            _commandManager = new CommandManager(new CommandProviderStub(), null);
         }
 
         [Test]
@@ -35,14 +35,15 @@ namespace TJ.DDD.Infrastructure.Tests
         private CommandManager _commandManager;
         private StubCommandHandler _commandHandler;
         private StubCommand _command;
+        private StubUnitOfWork _unitOfWork;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            CommandRepositoryStub commandRepository = new CommandRepositoryStub();
+            CommandProviderStub commandProvider = new CommandProviderStub();
             _commandHandler = new StubCommandHandler();
-            commandRepository.AddHandler(_commandHandler);
-            _commandManager = new CommandManager(commandRepository);
+            commandProvider.AddHandler(_commandHandler);
+            _commandManager = new CommandManager(commandProvider, _unitOfWork);
             _command = new StubCommand();
             _commandManager.Execute(_command);
         }
@@ -52,7 +53,40 @@ namespace TJ.DDD.Infrastructure.Tests
         {
             _commandHandler.ExecutedCommand.Should().BeSameAs(_command);
         }
+
+        [Test]
+        public void And_The_Changes_Should_Be_Persisted()
+        {
+            _unitOfWork.CommitCount.Should().Be(1);
+        }
     }
+
+    internal class StubUnitOfWork : IUnitOfWork
+    {
+        private int _commitCount = 0;
+        private decimal _undoChangesCount;
+
+        public int CommitCount
+        {
+            get { return _commitCount; }
+        }
+
+        public decimal UndoChangesCount
+        {
+            get { return _undoChangesCount; }
+        }
+
+        public void UndoChanges()
+        {
+            _undoChangesCount++;
+        }
+
+        public void Commit()
+        {
+            _commitCount++;
+        }
+    }
+
     public class StubCommandHandler : IHandle<StubCommand>
     {
         public StubCommand ExecutedCommand { get; set; }
@@ -72,7 +106,7 @@ namespace TJ.DDD.Infrastructure.Tests
         }
     }
 
-    public class CommandRepositoryStub : ICommandRepository
+    public class CommandProviderStub : ICommandProvider
     {
         private IDictionary<Type, object> _commandHandlers = new Dictionary<Type, object>();
 

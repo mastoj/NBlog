@@ -65,5 +65,10 @@ namespace TJ.DDD.Infrastructure
         {
             return _changes;
         }
+
+        public void ClearChanges()
+        {
+            _changes = new List<IDomainEvent>();
+        }
     }
 }

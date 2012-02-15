@@ -41,15 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateRoot.cs" />
-    <Compile Include="AggregateRootFactory.cs" />
+    <Compile Include="AggregateRespository.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\Command.cs" />
     <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Command\ICommandManager.cs" />
     <Compile Include="Event\DomainEventBase.cs" />
     <Compile Include="Exceptions\UnregisteredEventException.cs" />
-    <Compile Include="IAggregateRootFactory.cs" />
-    <Compile Include="Command\ICommandRepository.cs" />
+    <Compile Include="IAggregateRespository.cs" />
+    <Compile Include="Command\ICommandProvider.cs" />
     <Compile Include="Event\IDomainEvent.cs" />
     <Compile Include="Event\IEventStore.cs" />
     <Compile Include="IHandle.cs" />

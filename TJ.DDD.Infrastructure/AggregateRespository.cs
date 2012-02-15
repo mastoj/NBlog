@@ -1,20 +1,22 @@
 using System;
 using System.Linq;
+using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Event;
 using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure
 {
-    public class AggregateRootFactory : IAggregateRootFactory
+    public class AggregateRespository<T> //: IAggregateRespository<T> 
+        where T : AggregateRoot, new()
     {
         private readonly IEventStore _eventStore;
 
-        public AggregateRootFactory(IEventStore eventStore)
+        public AggregateRespository(IEventStore eventStore)
         {
             _eventStore = eventStore;
         }
 
-        public T Load<T>(Guid aggregateId) where T : AggregateRoot, new()
+        public T Get(Guid aggregateId)
         {
             var events = _eventStore.GetEvents(aggregateId).ToList();
             if (events.IsNotNull() && events.Count > 0)

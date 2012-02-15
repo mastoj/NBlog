@@ -6,11 +6,13 @@ namespace TJ.DDD.Infrastructure.Command
 {
     public class CommandManager : ICommandManager
     {
+        private readonly IUnitOfWork _unitOfWork;
         private IDictionary<Type, object> _commandHandlers;
 
-        public CommandManager(ICommandRepository commandRepository)
+        public CommandManager(ICommandProvider commandProvider, IUnitOfWork unitOfWork)
         {
-            _commandHandlers = commandRepository.GetCommandHandlers();
+            _unitOfWork = unitOfWork;
+            _commandHandlers = commandProvider.GetCommandHandlers();
         }
 
         public void Execute<TCommand>(TCommand command) where TCommand : ICommand
@@ -20,11 +22,18 @@ namespace TJ.DDD.Infrastructure.Command
             {
                 var commandHandler = _commandHandlers[commandType] as IHandle<TCommand>;
                 commandHandler.Execute(command);
+                _unitOfWork.Commit();
             }
             else
             {
                 throw new UnregisteredCommandException("No command handler registered for command type: " + commandType);
             }
         }
+    }
+
+    public interface IUnitOfWork
+    {
+        void UndoChanges();
+        void Commit();
     }
 }
