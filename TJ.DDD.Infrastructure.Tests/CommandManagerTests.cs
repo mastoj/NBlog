@@ -115,7 +115,7 @@ namespace TJ.DDD.Infrastructure.Tests
             return _commandHandlers;
         }
 
-        public void AddHandler<TCommand>(IHandle<TCommand> commandHandler) where TCommand : ICommand
+        public void AddHandler<TCommand>(IHandle<TCommand> commandHandler) where TCommand : class, ICommand
         {
             _commandHandlers.Add(typeof(TCommand), commandHandler);
         }

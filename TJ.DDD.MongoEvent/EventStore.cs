@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Driver;
@@ -6,6 +7,7 @@ using MongoDB.Driver.Builders;
 using TJ.DDD.Infrastructure;
 using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Event;
+using TJ.DDD.Infrastructure.Exceptions;
 using TJ.Extensions;
 using TJ.Mongo.Util;
 
@@ -13,13 +15,15 @@ namespace TJ.DDD.MongoEvent
 {
     public class EventStore : IEventStore, IUnitOfWork
     {
+        private readonly IEventBus _eventBus;
         private MongoServer _server;
         private MongoDatabase _database;
         private string _collectionName = "Events";
         private Dictionary<Guid, AggregateRoot> _aggregateDictionary;
 
-        public EventStore(IMongoConfiguration mongoConfiguration)
+        public EventStore(IMongoConfiguration mongoConfiguration, IEventBus eventBus)
         {
+            _eventBus = eventBus;
             _server = MongoServer.Create(mongoConfiguration.Url);
             var mongoDatabaseSettings = _server.CreateDatabaseSettings(mongoConfiguration.DatabaseName);
             _database = _server.GetDatabase(mongoDatabaseSettings);
@@ -71,6 +75,7 @@ namespace TJ.DDD.MongoEvent
             MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>(_collectionName);
             var uncommitedEvents = GetUncommitedEvents();
             events.InsertBatch(uncommitedEvents);
+            _eventBus.Publish(uncommitedEvents);
             ClearEvents();
         }
 

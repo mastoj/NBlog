@@ -24,7 +24,7 @@ namespace NBlog.Data.Mongo.Tests.EventStore
                                   {
                                       DatabaseName = "EventTestDB"
                                   };
-            var eventStore = new TJ.DDD.MongoEvent.EventStore(mongoConfig);
+            var eventStore = new TJ.DDD.MongoEvent.EventStore(mongoConfig, null);
             eventStore.DeleteCollection();
             _myEvent = new MyEvent() { SomeText = "text" };
             _myEvent.SetAggregateId(Guid.NewGuid());
@@ -67,7 +67,7 @@ namespace NBlog.Data.Mongo.Tests.EventStore
             {
                 DatabaseName = "EventTestDB"
             };
-            var eventStore = new TJ.DDD.MongoEvent.EventStore(mongoConfig);
+            var eventStore = new TJ.DDD.MongoEvent.EventStore(mongoConfig, null);
             var aggregateId = Guid.NewGuid();
             _myEvent = new MyEvent() { SomeText = "My EventText" };
             _myEvent.SetAggregateId(aggregateId);

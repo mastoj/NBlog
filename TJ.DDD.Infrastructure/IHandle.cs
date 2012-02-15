@@ -2,8 +2,8 @@ using TJ.DDD.Infrastructure.Command;
 
 namespace TJ.DDD.Infrastructure
 {
-    public interface IHandle<T> where T : ICommand
+    public interface IHandle<T>
     {
-        void Execute(T command);
+        void Execute(T thingToHandle);
     }
 }

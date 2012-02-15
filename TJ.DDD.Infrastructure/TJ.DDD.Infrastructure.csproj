@@ -46,7 +46,11 @@
     <Compile Include="Command\Command.cs" />
     <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Command\ICommandManager.cs" />
+    <Compile Include="Event\EventHandlerFactory.cs" />
     <Compile Include="Event\DomainEventBase.cs" />
+    <Compile Include="Event\EventBus.cs" />
+    <Compile Include="Event\IEventBus.cs" />
+    <Compile Include="Event\IEventHandlerFactory.cs" />
     <Compile Include="Exceptions\UnregisteredEventException.cs" />
     <Compile Include="IAggregateRespository.cs" />
     <Compile Include="Command\ICommandProvider.cs" />

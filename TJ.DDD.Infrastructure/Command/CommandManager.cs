@@ -15,7 +15,7 @@ namespace TJ.DDD.Infrastructure.Command
             _commandHandlers = commandProvider.GetCommandHandlers();
         }
 
-        public void Execute<TCommand>(TCommand command) where TCommand : ICommand
+        public void Execute<TCommand>(TCommand command) where TCommand : class, ICommand
         {
             var commandType = command.GetType();
             if (_commandHandlers.ContainsKey(commandType))
