@@ -43,6 +43,7 @@ namespace TJ.DDD.Infrastructure.Tests
             CommandProviderStub commandProvider = new CommandProviderStub();
             _commandHandler = new StubCommandHandler();
             commandProvider.AddHandler(_commandHandler);
+            _unitOfWork = new StubUnitOfWork();
             _commandManager = new CommandManager(commandProvider, _unitOfWork);
             _command = new StubCommand();
             _commandManager.Execute(_command);

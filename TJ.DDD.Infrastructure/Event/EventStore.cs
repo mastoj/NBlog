@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TJ.DDD.Infrastructure;
 using TJ.DDD.Infrastructure.Command;
-using TJ.DDD.Infrastructure.Event;
 
-namespace TJ.DDD.MongoEvent
+namespace TJ.DDD.Infrastructure.Event
 {
     public abstract class EventStore : IEventStore, IUnitOfWork
     {
@@ -46,7 +44,6 @@ namespace TJ.DDD.MongoEvent
             _eventBus.Publish(uncommitedEvents);
             ClearEvents();
         }
-
 
         private void ClearEvents()
         {
