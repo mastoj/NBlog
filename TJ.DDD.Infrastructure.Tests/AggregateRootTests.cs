@@ -43,8 +43,8 @@ namespace TJ.DDD.Infrastructure.Tests
             for (int i = 0; i < 5; i++)
             {
                 var validEvent = new ValidEvent();
-                validEvent.SetAggregateId(aggregateId);
-                validEvent.SetEventNumber(i);
+                validEvent.AggregateId = aggregateId;
+                validEvent.EventNumber = i;
                 events.Add(validEvent);
             }
             _aggregate.LoadAggregate(events);
@@ -54,7 +54,7 @@ namespace TJ.DDD.Infrastructure.Tests
         public void The_Next_Event_Should_Get_Next_Version_Number()
         {
             _aggregate.DoThis();
-            _aggregate.GetChanges().First().EventNumber.Should().Be(5);
+            _aggregate.GetChanges().First().EventNumber.Should().Be(4);
         }
     }
 

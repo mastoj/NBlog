@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
@@ -58,24 +57,11 @@ namespace NBlog.Data.Mongo.Tests
             for (int i = 0; i < appliedEvents.Count; i++ )
             {
                 appliedEvents[i].EventNumber.Should().Be(i + 1);
-                appliedEvents[i].GetType().Should().Be(i%2 == 0 ? typeof (ValidEvent) : typeof (AnotherValidEvent));
+                if (i % 2 == 0)
+                    appliedEvents[i].GetType().Should().Be(typeof(ValidEvent));
+                else
+                    appliedEvents[i].GetType().Should().Be(typeof (AnotherValidEvent));
             }
-
-        }
-    }
-
-    public class StubEventBus : IEventBus
-    {
-        private IEnumerable<IDomainEvent> _publishedEvents;
-
-        public IEnumerable<IDomainEvent> PublishedEvents
-        {
-            get { return _publishedEvents; }
-        }
-
-        public void Publish(IEnumerable<IDomainEvent> uncommitedEvents)
-        {
-            _publishedEvents = uncommitedEvents;
         }
     }
 }

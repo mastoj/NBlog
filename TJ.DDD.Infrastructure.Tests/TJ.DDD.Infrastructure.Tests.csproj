@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateRootTests.cs" />
+    <Compile Include="BaseTestSetup.cs" />
     <Compile Include="CommandManagerTests.cs" />
     <Compile Include="EventStoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StubEventBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

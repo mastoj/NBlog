@@ -5,9 +5,7 @@ namespace TJ.DDD.Infrastructure.Event
     public interface IDomainEvent
     {
         DateTime TimeStamp { get; }
-        Guid AggregateId { get; }
-        int EventNumber { get; }
-        void SetEventNumber(int eventNumber);
-        void SetAggregateId(Guid aggregateId);
+        Guid AggregateId { get; set; }
+        int EventNumber { get; set; }
     }
 }

@@ -13,17 +13,8 @@ namespace TJ.DDD.Infrastructure.Event
         }
 
         public Guid Id { get; set; }
-        public Guid AggregateId { get; private set; }
-        public int EventNumber { get; private set; }
-        public void SetEventNumber(int eventNumber)
-        {
-            EventNumber = eventNumber;
-        }
-
-        public void SetAggregateId(Guid aggregateId)
-        {
-            AggregateId = aggregateId;
-        }
+        public Guid AggregateId { get; set; }
+        public int EventNumber { get; set; }
 
         public override bool Equals(object obj)
         {

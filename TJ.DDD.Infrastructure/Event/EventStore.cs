@@ -26,6 +26,10 @@ namespace TJ.DDD.Infrastructure.Event
                 return _aggregateDictionary[aggregateId] as T;
             }
             var events = GetEvents(aggregateId).ToList();
+            if (events.Count == 0)
+            {
+                throw new ArgumentException("No aggregate with id " + aggregateId.ToString(), "aggregateId");
+            }
             T aggregate = new T();
             aggregate.LoadAggregate(events);
             _aggregateDictionary.Add(aggregateId, aggregate);
