@@ -32,7 +32,12 @@ namespace TJ.DDD.Infrastructure.Event
             return aggregate;
         }
 
-        public void UndoChanges()
+        public void Insert<TAggregate>(TAggregate aggregate) where TAggregate : AggregateRoot
+        {
+            _aggregateDictionary.Add(aggregate.AggregateId, aggregate);
+        }
+
+        public void Rollback()
         {
             ClearEvents();
         }
@@ -51,6 +56,7 @@ namespace TJ.DDD.Infrastructure.Event
             {
                 aggregateRoot.Value.ClearChanges();
             }
+            _aggregateDictionary = new Dictionary<Guid, AggregateRoot>();
         }
 
         private List<IDomainEvent> GetUncommitedEvents()

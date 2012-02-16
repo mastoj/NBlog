@@ -5,6 +5,7 @@ namespace TJ.DDD.Infrastructure.Event
 {
     public interface IEventStore
     {
-        T Get<T>(Guid aggregateId) where T : AggregateRoot, new();
+        TAggregate Get<TAggregate>(Guid aggregateId) where TAggregate : AggregateRoot, new();
+        void Insert<TAggregate>(TAggregate aggregate) where TAggregate : AggregateRoot;
     }
 }

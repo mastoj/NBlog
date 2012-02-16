@@ -62,7 +62,7 @@ namespace TJ.DDD.Infrastructure.Tests
         }
     }
 
-    internal class StubUnitOfWork : IUnitOfWork
+    public class StubUnitOfWork : IUnitOfWork
     {
         private int _commitCount = 0;
         private decimal _undoChangesCount;
@@ -77,7 +77,7 @@ namespace TJ.DDD.Infrastructure.Tests
             get { return _undoChangesCount; }
         }
 
-        public void UndoChanges()
+        public void Rollback()
         {
             _undoChangesCount++;
         }

@@ -30,10 +30,4 @@ namespace TJ.DDD.Infrastructure.Command
             }
         }
     }
-
-    public interface IUnitOfWork
-    {
-        void UndoChanges();
-        void Commit();
-    }
 }

@@ -25,7 +25,7 @@ namespace TJ.DDD.MongoEvent
         {
             MongoCollection<IDomainEvent> events = _database.GetCollection<IDomainEvent>(_collectionName);
             var query = Query.EQ("AggregateId", aggregateId);
-            var cursor = events.FindAs<IDomainEvent>(query);
+            var cursor = events.FindAs<IDomainEvent>(query).SetSortOrder(SortBy.Ascending("EventNumber"));
             foreach (var domainEvent in cursor)
             {
                 yield return domainEvent;

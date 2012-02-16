@@ -60,9 +60,15 @@ namespace TJ.DDD.Infrastructure.Tests
 
     public class StubAggregate : AggregateRoot
     {
+        private List<IDomainEvent> _eventsTriggered;
+
+        public List<IDomainEvent> EventsTriggered { get { return _eventsTriggered; } } 
+
         public StubAggregate()
         {
             RegisterEventHandler<ValidEvent>(OkAction);
+            RegisterEventHandler<AnotherValidEvent>(AnotherOkAction);
+            _eventsTriggered = new List<IDomainEvent>();
         }
 
         public void DoThis()
@@ -70,8 +76,19 @@ namespace TJ.DDD.Infrastructure.Tests
             Apply(new ValidEvent());
         }
 
+        public void DoSomethingElse()
+        {
+            Apply(new AnotherValidEvent());
+        }
+
         private void OkAction(ValidEvent obj)
         {
+            _eventsTriggered.Add(obj);
+        }
+
+        private void AnotherOkAction(AnotherValidEvent obj)
+        {
+            _eventsTriggered.Add(obj);
         }
 
         public void SomethingIShouldNotDo()
@@ -81,6 +98,10 @@ namespace TJ.DDD.Infrastructure.Tests
     }
 
     public class ValidEvent : DomainEventBase
+    {
+    }
+
+    public class AnotherValidEvent : DomainEventBase
     {
     }
 

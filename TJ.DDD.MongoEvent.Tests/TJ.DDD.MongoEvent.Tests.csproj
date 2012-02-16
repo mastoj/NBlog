@@ -54,12 +54,16 @@
   <ItemGroup>
     <Compile Include="EventStubs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EventStoreTests.cs" />
+    <Compile Include="MongoEventStoreTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TJ.DDD.Infrastructure.Tests\TJ.DDD.Infrastructure.Tests.csproj">
+      <Project>{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}</Project>
+      <Name>TJ.DDD.Infrastructure.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
       <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
       <Name>TJ.DDD.Infrastructure</Name>
