@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentAssertions;
-using NBlog.Domain.Post;
+using NBlog.Domain.Entities;
+using NBlog.Domain.Event;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure;
 using TJ.DDD.Infrastructure.Command;
@@ -16,15 +17,14 @@ namespace NBlog.Domain.Tests
     {
         private string _title;
         private string _shortUrl;
-        private Domain.Post.Post _createdPost;
+        private Post _createdPost;
         private CreatePostCommand _createPostCommand;
 
         [TestFixtureSetUp]
         public void Setup()
         {
             _createPostCommand = new CreatePostCommand(_title, _shortUrl);
-
-            _createdPost = Domain.Post.Post.Create(_title, _shortUrl);
+//            _createdPost = Post.Create(_title, _shortUrl);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace NBlog.Domain.Tests
             // Assert
             var changes = _createdPost.GetChanges().ToList();
             changes.Count.Should().Be(1);
-            var postCreatedEvent = changes.First() as PostCreatedEvent;
+            var postCreatedEvent = changes.First() as CreatePostEvent;
             postCreatedEvent.Should().NotBeNull();
             postCreatedEvent.Title.Should().Be(_title);
             postCreatedEvent.ShortUrl.Should().Be(_shortUrl);

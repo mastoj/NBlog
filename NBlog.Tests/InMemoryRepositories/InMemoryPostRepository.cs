@@ -3,7 +3,7 @@ using NBlog.Domain.Repositories;
 
 namespace NBlog.Tests.Areas.Admin.Controllers
 {
-    public class InMemoryPostRepository : InMemoryRepository<Post>, IPostRepository
+    public class InMemoryPostRepository : InMemoryRepository<Post>
     {
     }
 }

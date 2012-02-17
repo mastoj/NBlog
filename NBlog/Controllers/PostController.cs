@@ -12,29 +12,26 @@ namespace NBlog.Controllers
     [AllowAnonymous]
     public partial class PostController : Controller
     {
-        private readonly IPostRepository _postRepository;
-
-        public PostController(IPostRepository postRepository)
+        public PostController()
         {
-            _postRepository = postRepository;
         }
 
         public virtual ViewResult Index()
         {
-            var posts = _postRepository.All()
-                .Where(y => y.PublishedPost != null && y.PublishedPost.PublishDate <= DateTime.Now.Date)
-                .OrderByDescending(y => y.PublishedPost.PublishDate);
-            return View(Views.Index, posts);
+            //var posts = _postRepository.All()
+            //    .Where(y => y.PublishedPost != null && y.PublishedPost.PublishDate <= DateTime.Now.Date)
+            //    .OrderByDescending(y => y.PublishedPost.PublishDate);
+            return View(Views.Index);
         }
 
         public virtual ActionResult Article(string shorturl)
         {
-            var article = _postRepository.All().Where(y => y.PostMetaData.ShortUrl == shorturl).FirstOrDefault();
-            if (article.IsNull())
-            {
-                return HttpNotFound("Can't find page");
-            }
-            return View(Views.Article, article);
+//            var article = _postRepository.All().Where(y => y.PostMetaData.ShortUrl == shorturl).FirstOrDefault();
+            //if (article.IsNull())
+            //{
+            //    return HttpNotFound("Can't find page");
+            //}
+            return View(Views.Article);//, article);
         }
     }
 }

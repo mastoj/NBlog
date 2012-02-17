@@ -61,36 +61,6 @@ namespace TJ.DDD.Infrastructure.Tests
         }
     }
 
-    internal class StubEventHandlerFactory : IEventHandlerFactory
-    {
-        private Dictionary<Type, object> _handlersDictionary;
-
-        public StubEventHandlerFactory()
-        {
-            _handlersDictionary = new Dictionary<Type, object>();
-        }
-
-        public IEnumerable<IHandle<IDomainEvent>> GetEventHandlers<TEvent>(TEvent domainEvent) where TEvent : IDomainEvent
-        {
-            var type = domainEvent.GetType();
-            if (_handlersDictionary.ContainsKey(type))
-            {
-                return _handlersDictionary[type] as List<IHandle<IDomainEvent>>;
-            }
-            return new List<IHandle<IDomainEvent>>();
-        }
-
-        public void AddHandler<T>(int numberOfHandlers) where T : IDomainEvent
-        {
-            var handlers = new List<IHandle<IDomainEvent>>();
-            for (int i = 0; i < numberOfHandlers; i++)
-            {
-                handlers.Add(new EventHandler<IDomainEvent>());
-            }
-            _handlersDictionary.Add(typeof (T), handlers);
-        }
-    }
-
     internal class EventHandler<T> : IHandle<T> where T : IDomainEvent
     {
         private int _executionCount;

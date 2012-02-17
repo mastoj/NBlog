@@ -1,23 +1,14 @@
-using System.Collections.Generic;
-using System.Web.Mvc;
-using System.Web.Security;
 using EasySec.Hashing;
 using NBlog.Configuration;
-using NBlog.Domain.Builders;
 using NBlog.Domain.Entities;
-using NBlog.Domain.Mongo.Repositories;
-using NBlog.Domain.Repositories;
-using NBlog.Domain;
 using NBlog.Domain.Mongo;
 using NBlog.Infrastructure;
-using Ninject.Activation;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectMVC3), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NBlog.App_Start.NinjectMVC3), "Stop")]
 
 namespace NBlog.App_Start
 {
-    using System.Reflection;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Mvc;
@@ -69,8 +60,6 @@ namespace NBlog.App_Start
             //kernel.Bind<IPostRepository>().To<PostRepository>().InRequestScope();
 
             // Builders
-            kernel.Bind<IBuild<Post>>().To<PostBuilder>().InRequestScope();
-
             kernel.Bind<IAuthenticationHandler>().To<FormsAuthenticationHandler>().InSingletonScope();
             kernel.Bind<IHashGenerator>().To<HashGenerator>().InSingletonScope();
         }        
