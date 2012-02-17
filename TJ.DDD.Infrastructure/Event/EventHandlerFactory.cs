@@ -7,11 +7,11 @@ namespace TJ.DDD.Infrastructure.Event
 {
     public class EventHandlerFactory : IEventHandlerFactory
     {
-        private Dictionary<Type, List<IHandle<IDomainEvent>>> _eventHandlers;
+        private Dictionary<Type, object> _eventHandlers;
 
         public EventHandlerFactory()
         {
-            _eventHandlers = new Dictionary<Type, List<IHandle<IDomainEvent>>>();
+            _eventHandlers = new Dictionary<Type, object>();
         }
 
         public void RegisterEventHandler<TEvent>(IHandle<IDomainEvent> eventHandler) where TEvent : IDomainEvent
@@ -21,15 +21,16 @@ namespace TJ.DDD.Infrastructure.Event
             {
                 _eventHandlers.Add(typeOfEvent, new List<IHandle<IDomainEvent>>());
             }
-            _eventHandlers[typeOfEvent].Add(eventHandler);
+            var handlersForType = _eventHandlers[typeOfEvent] as List<IHandle<IDomainEvent>>;
+            handlersForType.Add(eventHandler);
         }
 
         public IEnumerable<IHandle<IDomainEvent>> GetEventHandlers<TEvent>(TEvent domainEvent) where TEvent : IDomainEvent
         {
-            var typeOfEvent = typeof(TEvent);
+            var typeOfEvent = domainEvent.GetType();
             if (_eventHandlers.ContainsKey(typeOfEvent))
             {
-                return _eventHandlers[typeOfEvent];
+                return _eventHandlers[typeOfEvent] as List<IHandle<IDomainEvent>>;
             }
             return new List<IHandle<IDomainEvent>>();
         }
