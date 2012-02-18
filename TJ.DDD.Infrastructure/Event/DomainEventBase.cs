@@ -12,7 +12,6 @@ namespace TJ.DDD.Infrastructure.Event
             TimeStamp = DateTime.UtcNow;
         }
 
-        public Guid Id { get; set; }
         public Guid AggregateId { get; set; }
         public int EventNumber { get; set; }
 

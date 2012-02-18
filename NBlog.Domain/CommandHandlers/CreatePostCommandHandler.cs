@@ -13,10 +13,12 @@ namespace NBlog.Domain.CommandHandlers
     public class CreatePostCommandHandler : IHandle<CreatePostCommand>
     {
         private readonly IDomainRepository<Post> _postRepository;
+        private readonly IDomainRepository<Blog> _blogRepository;
 
-        public CreatePostCommandHandler(IDomainRepository<Post> postRepository)
+        public CreatePostCommandHandler(IDomainRepository<Post> postRepository, IDomainRepository<Blog> blogRepository)
         {
             _postRepository = postRepository;
+            _blogRepository = blogRepository;
         }
 
         public void Execute(CreatePostCommand createPostCommand)

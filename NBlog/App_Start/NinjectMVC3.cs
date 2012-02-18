@@ -1,7 +1,5 @@
 using EasySec.Hashing;
 using NBlog.Configuration;
-using NBlog.Domain.Entities;
-using NBlog.Domain.Mongo;
 using NBlog.Infrastructure;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectMVC3), "Start")]
@@ -53,7 +51,7 @@ namespace NBlog.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<INBlogConfiguration>().To<NBlogConfiguration>().InSingletonScope();
-            kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
+//            kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
 
             // Repositores
             //kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();

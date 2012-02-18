@@ -1,10 +1,6 @@
-using System.Configuration;
-using NBlog.Domain.Mongo;
-using TJ.Extensions;
-
 namespace NBlog.Configuration
 {
-    public class NBlogMongoConfiguration : MongoConfiguration
+    public class NBlogMongoConfiguration //: MongoConfiguration
     {
         public INBlogConfiguration NBlogConfiguration { get; set; }
 

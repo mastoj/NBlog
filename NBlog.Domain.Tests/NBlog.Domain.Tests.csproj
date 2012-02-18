@@ -67,6 +67,10 @@
       <Project>{026504B6-1335-4EB8-9E3A-2548CB4E917A}</Project>
       <Name>NBlog.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TJ.DDD.Infrastructure.Tests\TJ.DDD.Infrastructure.Tests.csproj">
+      <Project>{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}</Project>
+      <Name>TJ.DDD.Infrastructure.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
       <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
       <Name>TJ.DDD.Infrastructure</Name>
@@ -74,6 +78,10 @@
     <ProjectReference Include="..\TJ.DDD.MongoEvent\TJ.DDD.MongoEvent.csproj">
       <Project>{1B7FEE73-5097-457A-A05A-73C478F4A620}</Project>
       <Name>TJ.DDD.MongoEvent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TJ.Mongo.Util\TJ.Mongo.Util.csproj">
+      <Project>{F687A644-FB6F-4038-9025-75CE192D98CE}</Project>
+      <Name>TJ.Mongo.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

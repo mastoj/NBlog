@@ -65,7 +65,7 @@
 //        public void Index_ModelShouldContainOneElement_IfRepositoryReturnsOneElement()
 //        {
 //            // Arrange
-//            IPostRepository _postRepository = new InMemoryPostRepository();
+//            4 _postRepository = new InMemoryPostRepository();
 //            var postContent = new PostContent
 //                                  {
 //                                      IsPublished = false,

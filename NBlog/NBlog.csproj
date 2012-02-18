@@ -305,10 +305,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NBlog.Data.Mongo\NBlog.Data.Mongo.csproj">
-      <Project>{906C54D3-3522-4634-80DF-D80EF8370017}</Project>
-      <Name>NBlog.Data.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Domain</Name>

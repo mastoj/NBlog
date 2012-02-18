@@ -56,7 +56,7 @@ namespace NBlog.Data.Mongo.Tests
             appliedEvents.Count.Should().Be(4);
             for (int i = 0; i < appliedEvents.Count; i++ )
             {
-                appliedEvents[i].EventNumber.Should().Be(i + 1);
+                appliedEvents[i].EventNumber.Should().Be(i);
                 if (i % 2 == 0)
                     appliedEvents[i].GetType().Should().Be(typeof(ValidEvent));
                 else
