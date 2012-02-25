@@ -16,7 +16,7 @@ namespace TJ.DDD.Infrastructure.Tests
             get
             {
                 _exceptionIsChecked = true;
-                return _caughtException;
+                return _caughtException ?? new Exception();
             }
         }
 

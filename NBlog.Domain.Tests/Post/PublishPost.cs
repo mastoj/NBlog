@@ -69,4 +69,36 @@ namespace NBlog.Domain.Tests.Post.Publish
             return post;
         }
     }
+
+    public class When_Publishing_A_Post_That_Is_Already_Published : BaseTestSetup
+    {
+        protected override void Given()
+        {
+            _aggregateId = Guid.NewGuid();
+            Entities.Post post = CreatePublishedPost();
+            var postRepository = new StubPostRepository();
+            postRepository.Insert(post);
+            var publishPostCommand = new PublishPostCommand(_aggregateId);
+            var publishPostCommandHandler = new PublishPostCommandHandler(postRepository);
+            publishPostCommandHandler.Execute(publishPostCommand);
+        }
+
+        [Test]
+        public void A_Post_Already_Published_Exception_Should_Be_Raised()
+        {
+            CaughtException.Should().BeOfType<PostAlreadyPublishedException>();
+        }
+
+        private Guid _aggregateId;
+
+        private Entities.Post CreatePublishedPost()
+        {
+            var post = Entities.Post.Create("Title", "content", "shortUrl", new List<string> { "tag1", "tag2" }, "excerpt", _aggregateId);
+            post.Publish();
+            var changes = post.GetChanges();
+            post.LoadAggregate(changes);
+            post.ClearChanges();
+            return post;
+        }
+    }
 }

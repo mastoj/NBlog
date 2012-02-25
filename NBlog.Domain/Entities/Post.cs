@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NBlog.Domain.Event;
+using NBlog.Domain.Exceptions;
 using TJ.DDD.Infrastructure;
 using TJ.DDD.Infrastructure.Event;
 
@@ -114,6 +115,10 @@ namespace NBlog.Domain.Entities
 
         public void Publish()
         {
+            if (_published)
+            {
+                throw new PostAlreadyPublishedException();
+            }
             var publishTime = DateTime.Now;
             var publishEvent = new PublishPostEvent(publishTime, AggregateId);
             Apply(publishEvent);

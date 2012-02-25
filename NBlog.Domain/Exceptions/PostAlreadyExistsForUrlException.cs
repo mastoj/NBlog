@@ -2,7 +2,6 @@
 
 namespace NBlog.Domain.Exceptions
 {
-
     public class PostAlreadyExistsForUrlException : Exception
     {
         public PostAlreadyExistsForUrlException()
