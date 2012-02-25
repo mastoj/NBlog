@@ -52,8 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Post\When_Creating_A_Post.cs" />
+    <Compile Include="Post\PublishPost.cs" />
+    <Compile Include="Post\UpdatePost.cs" />
+    <Compile Include="Post\CreatePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\StubPostRepository.cs" />
+    <Compile Include="Stubs\StubPostView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

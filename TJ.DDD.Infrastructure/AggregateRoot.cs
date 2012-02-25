@@ -25,7 +25,6 @@ namespace TJ.DDD.Infrastructure
         protected void Apply<TEvent>(TEvent @event) where TEvent : IDomainEvent
         {
             var eventType = typeof(TEvent);
-            @event.AggregateId = AggregateId;
             var eventNumber = Version;
             @event.EventNumber = eventNumber;
             Version = Version + 1;

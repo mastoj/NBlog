@@ -52,6 +52,7 @@ namespace NBlog.Domain.Entities
         private List<string> _tags;
         private string _content;
         private bool _published;
+        private DateTime _publishTime;
 
         public Post()
         {
@@ -61,6 +62,14 @@ namespace NBlog.Domain.Entities
         private void RegisterHandlers()
         {
             RegisterEventHandler<CreatePostEvent>(PostCreated);
+            RegisterEventHandler<UpdatePostEvent>(PostUpdated);
+            RegisterEventHandler<PublishPostEvent>(PostPublished);
+        }
+
+        private void PostPublished(PublishPostEvent postPublishedEvent)
+        {
+            _publishTime = postPublishedEvent.PublishTime;
+            _published = true;
         }
 
         private void PostCreated(CreatePostEvent postCreatedEvent)
@@ -74,16 +83,40 @@ namespace NBlog.Domain.Entities
             _published = false;
         }
 
-        private Post(string title, string shortUrl, string content, List<string> tags, string excerpt, Guid aggregateId)
+        private void PostUpdated(UpdatePostEvent postUpdatedEvent)
+        {
+            _title = postUpdatedEvent.Title;
+            _shortUrl = postUpdatedEvent.ShortUrl;
+            _tags = postUpdatedEvent.Tags;
+            _excerpt = postUpdatedEvent.Excerpt;
+            _content = postUpdatedEvent.Content;
+        }
+
+        private Post(string title, string content, string shortUrl, List<string> tags, string excerpt, Guid aggregateId)
             : this()
         {
-            var createEvent = new CreatePostEvent(title, content, shortUrl, tags, excerpt, aggregateId);
+            var creationDate = DateTime.Now;
+            var createEvent = new CreatePostEvent(title, content, shortUrl, tags, excerpt, creationDate, aggregateId);
             Apply(createEvent);
         }
 
         public static Post Create(string title, string content, string shortUrl, List<string> tags, string excerpt, Guid aggregateId)
         {
             return new Post(title, content, shortUrl, tags, excerpt, aggregateId);
+        }
+
+        public void Update(string title, string content, string shortUrl, List<string> tags, string excerpt)
+        {
+            var lastSaveTime = DateTime.Now;
+            var updateEvent = new UpdatePostEvent(title, content, shortUrl, tags, excerpt, lastSaveTime, AggregateId);
+            Apply(updateEvent);
+        }
+
+        public void Publish()
+        {
+            var publishTime = DateTime.Now;
+            var publishEvent = new PublishPostEvent(publishTime, AggregateId);
+            Apply(publishEvent);
         }
     }
 }
