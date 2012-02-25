@@ -79,6 +79,10 @@
       <Project>{1B7FEE73-5097-457A-A05A-73C478F4A620}</Project>
       <Name>TJ.DDD.MongoEvent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
+      <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
+      <Name>TJ.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TJ.Mongo.Util\TJ.Mongo.Util.csproj">
       <Project>{F687A644-FB6F-4038-9025-75CE192D98CE}</Project>
       <Name>TJ.Mongo.Util</Name>

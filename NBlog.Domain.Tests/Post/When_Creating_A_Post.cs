@@ -6,138 +6,79 @@ using NBlog.Domain.CommandHandlers;
 using NBlog.Domain.Commands;
 using NBlog.Domain.Entities;
 using NBlog.Domain.Event;
+using NBlog.Domain.Exceptions;
 using NBlog.Domain.Repositories;
+using NBlog.Domain.Views;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure;
 using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Respositories;
 using TJ.DDD.Infrastructure.Tests;
 using TJ.DDD.MongoEvent;
+using TJ.Extensions;
 
 namespace NBlog.Domain.Tests
 {
-    public class When_Creating_The_Blog : BaseTestSetup
-    {
-        private StubBlogRepository _blogRepository;
-
-        protected override void Given()
-        {
-            _blogRepository = new StubBlogRepository();
-            var createBlogCommand = new CreateBlogCommand("Title");
-            var createBlogCommandHandler = new CreateBlogCommandHandler(_blogRepository);
-            createBlogCommandHandler.Execute(createBlogCommand);
-        }
-
-        [Test]
-        public void It_Should_Create_The_Blog()
-        {
-            _blogRepository.Blogs.Count.Should().Be(1);
-        }
-    }
-
-    public class When_Trying_To_Create_The_Blog_When_Already_Created : BaseTestSetup
+    [TestFixture]
+    public class When_Creating_A_Post_With_Existing_Shorturl : BaseTestSetup
     {
         protected override void Given()
         {
-            IDomainRepository<Blog> blogRepository = new StubBlogRepository();
-            var createBlogCommand = new CreateBlogCommand("Title");
-            var createBlogCommandHandler = new CreateBlogCommandHandler(blogRepository);
-            createBlogCommandHandler.Execute(createBlogCommand);
+            var title = "Title";
+            var content = "content";
+            var shortUrl = "shortUrl";
+            var tags = new List<string>() { "tag1", "tag2" };
+            var excerpt = "excerpt";
+            var createPostCommand = new CreatePostCommand(title, content, shortUrl, tags, excerpt);
+            var postRepository = new StubPostRepository();
+            IPostView postView = new StubPostView();
+            postView.Insert(new PostViewItem() {ShortUrl = shortUrl, PostId = Guid.NewGuid()});
+            var createPostCommandHandler = new CreatePostCommandHandler(postRepository, postView);
+            createPostCommandHandler.Execute(createPostCommand);
         }
 
         [Test]
-        public void It_Should_Throw_Blog_Already_Created_Exception()
+        public void An_Post_Already_Exist_For_Url_Exception_Should_Be_Thrown()
         {
-            CaughtException.Should().BeOfType<BlogAlreadyCreatedException>();
+            CaughtException.Should().BeOfType<PostAlreadyExistsForUrlException>();
         }
     }
 
-    public class BlogAlreadyCreatedException : Exception
+    public class StubPostView : IPostView
     {
-        public BlogAlreadyCreatedException()
+        private List<PostViewItem> _posts;
+
+        public StubPostView()
         {
-            
+            _posts = new List<PostViewItem>();
         }
 
-        public BlogAlreadyCreatedException(string message) : base(message)
+        public void Insert(PostViewItem postViewItem)
         {
-            
-        }
-    }
-
-    public class CreateBlogCommandHandler : IHandle<CreateBlogCommand>
-    {
-        private readonly IDomainRepository<Blog> _blogRepository;
-        private readonly IBlogView _blogView;
-
-        public CreateBlogCommandHandler(IDomainRepository<Blog> blogRepository, IBlogView blogView)
-        {
-            _blogRepository = blogRepository;
-            _blogView = blogView;
+            _posts.Add(postViewItem);
         }
 
-        public void Execute(CreateBlogCommand createBlogCommand)
+        public IEnumerable<PostViewItem> Get()
         {
-            if (_blogView.GetBlog().IsNotNull())
-            {
-                throw new BlogAlreadyCreatedException("The blog has already been created");
-            }
-            var blog = Blog.Create(createBlogCommand.Title, createBlogCommand.AggregateId);
-            _blogRepository.Insert(blog);
-        }
-    }
-
-    public interface IBlogView
-    {
-    }
-
-    public class CreateBlogCommand : ICommand
-    {
-        private readonly string _title;
-        private Guid _aggregateId;
-
-        public CreateBlogCommand(string title)
-        {
-            _title = title;
-            _aggregateId = Guid.NewGuid();
-        }
-
-        public string Title
-        {
-            get { return _title; }
-        }
-
-        public Guid AggregateId
-        {
-            get { return _aggregateId; }
+            return _posts;
         }
     }
 
     [TestFixture]
     public class When_Creating_A_Post : BaseTestSetup
     {
-        private string _title;
-        private string _shortUrl;
-        private CreatePostCommand _createPostCommand;
-        private string _excerpt;
-        private string _content;
-        private List<string> _tags;
-        private CreatePostCommandHandler _createPostCommandHandler;
-        private StubPostRepository _postRepository;
-        private StubBlogRepository _blogRepository;
-
         protected override void Given()
         {
-            _title = "Title";
-            _content = "content";
-            _shortUrl = "shortUrl";
-            _tags = new List<string>() {"tag1", "tag2"};
-            _excerpt = "excerpt";
-            _createPostCommand = new CreatePostCommand(_title, _content, _shortUrl, _tags, _excerpt);
+            var title = "Title";
+            var content = "content";
+            var shortUrl = "shortUrl";
+            var tags = new List<string>() {"tag1", "tag2"};
+            var excerpt = "excerpt";
+            var createPostCommand = new CreatePostCommand(title, content, shortUrl, tags, excerpt);
             _postRepository = new StubPostRepository();
-            _blogRepository = new StubBlogRepository();
-            _createPostCommandHandler = new CreatePostCommandHandler(_postRepository, _blogRepository);
-            _createPostCommandHandler.Execute(_createPostCommand);
+            IPostView postView = new StubPostView();
+            var createPostCommandHandler = new CreatePostCommandHandler(_postRepository, postView);
+            createPostCommandHandler.Execute(createPostCommand);
         }
 
         [Test]
@@ -146,20 +87,8 @@ namespace NBlog.Domain.Tests
             // Assert
             _postRepository.Posts.Count.Should().Be(1);
         }
-    }
 
-    public class StubBlogRepository : IDomainRepository<Blog>
-    {
-        private List<Blog> _blogs = new List<Blog>();
-        public List<Blog> Blogs
-        {
-            get { return _blogs; }
-        }
-
-        public void Insert(Blog aggregate)
-        {
-            _blogs.Add(aggregate);
-        }
+        private StubPostRepository _postRepository;
     }
 
     public class StubPostRepository : IDomainRepository<Post>
