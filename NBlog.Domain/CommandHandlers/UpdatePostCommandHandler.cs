@@ -20,7 +20,7 @@ namespace NBlog.Domain.CommandHandlers
             _postView = postView;
         }
 
-        public void Execute(UpdatePostCommand updatePostCommand)
+        public void Handle(UpdatePostCommand updatePostCommand)
         {
             var postWithSameShortUrl =
                 _postView.Get().FirstOrDefault(

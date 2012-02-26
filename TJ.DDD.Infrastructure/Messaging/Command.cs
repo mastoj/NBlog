@@ -1,6 +1,6 @@
 using System;
 
-namespace TJ.DDD.Infrastructure.Command
+namespace TJ.DDD.Infrastructure.Messaging
 {
     public class Command : ICommand
     {

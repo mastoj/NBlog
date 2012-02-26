@@ -28,7 +28,7 @@ namespace NBlog.Domain.Tests.Post.Create
             IPostView postView = new StubPostView();
             postView.Insert(new PostViewItem() {ShortUrl = shortUrl, PostId = Guid.NewGuid()});
             var createPostCommandHandler = new CreatePostCommandHandler(postRepository, postView);
-            createPostCommandHandler.Execute(createPostCommand);
+            createPostCommandHandler.Handle(createPostCommand);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace NBlog.Domain.Tests.Post.Create
             _postRepository = new StubPostRepository();
             IPostView postView = new StubPostView();
             var createPostCommandHandler = new CreatePostCommandHandler(_postRepository, postView);
-            createPostCommandHandler.Execute(createPostCommand);
+            createPostCommandHandler.Handle(createPostCommand);
         }
 
         [Test]

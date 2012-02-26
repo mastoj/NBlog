@@ -3,6 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure.Event;
+using TJ.DDD.Infrastructure.Messaging;
 using TJ.DDD.Infrastructure.Tests;
 using TJ.Mongo.Util;
 
@@ -13,18 +14,18 @@ namespace NBlog.Data.Mongo.Tests
     {
         private Guid _aggregateId;
         private StubAggregate _aggregate;
-        private IEventBus _unitOfWork;
+        private IPublishEvent _eventPublisher;
 
         [TestFixtureSetUp]
         public void Setup()
         {
             // Arrange
-            _unitOfWork = new StubEventBus();
+            _eventPublisher = new StubEventBus();
             var mongoConfig = new MongoConfiguration()
             {
                 DatabaseName = "EventTestDB"
             };
-            var eventStore = new TJ.DDD.MongoEvent.MongoEventStore(mongoConfig, _unitOfWork);
+            var eventStore = new TJ.DDD.MongoEvent.MongoEventStore(mongoConfig, _eventPublisher);
             eventStore.DeleteCollection();
             _aggregate = new StubAggregate();
             _aggregate.AggregateId = Guid.NewGuid();
@@ -50,7 +51,7 @@ namespace NBlog.Data.Mongo.Tests
             {
                 DatabaseName = "EventTestDB"
             };
-            var eventStore = new TJ.DDD.MongoEvent.MongoEventStore(mongoConfig, _unitOfWork);
+            var eventStore = new TJ.DDD.MongoEvent.MongoEventStore(mongoConfig, _eventPublisher);
             var loadedAggregate = eventStore.Get<StubAggregate>(_aggregateId);
             var appliedEvents = loadedAggregate.EventsTriggered;
             appliedEvents.Count.Should().Be(4);

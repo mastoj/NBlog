@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.DDD.MongoEvent.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TJ.DDD.Infrastructure.Tests", "TJ.DDD.Infrastructure.Tests\TJ.DDD.Infrastructure.Tests.csproj", "{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBlog.Views", "NBlog.Views\NBlog.Views.csproj", "{04296F85-1CEF-4842-995B-62B93180CD25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7D7BB98-832F-4215-AF2E-80904ACDD4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04296F85-1CEF-4842-995B-62B93180CD25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04296F85-1CEF-4842-995B-62B93180CD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04296F85-1CEF-4842-995B-62B93180CD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04296F85-1CEF-4842-995B-62B93180CD25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

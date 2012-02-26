@@ -24,7 +24,7 @@ namespace NBlog.Domain.CommandHandlers
             _postView = postView;
         }
 
-        public void Execute(CreatePostCommand createPostCommand)
+        public void Handle(CreatePostCommand createPostCommand)
         {
             var postViewItem = _postView.Get().SingleOrDefault(y => y.ShortUrl == createPostCommand.ShortUrl);
             if (postViewItem.IsNotNull())

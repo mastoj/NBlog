@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using TJ.DDD.Infrastructure.Event;
+using TJ.DDD.Infrastructure.Messaging;
 using TJ.Mongo.Util;
 
 namespace TJ.DDD.MongoEvent
@@ -13,8 +14,8 @@ namespace TJ.DDD.MongoEvent
         private MongoServer _server;
         private string _collectionName = "Events";
 
-        public MongoEventStore(IMongoConfiguration mongoConfiguration, IEventBus eventBus)
-            : base(eventBus)
+        public MongoEventStore(IMongoConfiguration mongoConfiguration, IPublishEvent eventPublisher)
+            : base(eventPublisher)
         {
             _server = MongoServer.Create(mongoConfiguration.Url);
             var mongoDatabaseSettings = _server.CreateDatabaseSettings(mongoConfiguration.DatabaseName);

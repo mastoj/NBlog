@@ -5,6 +5,7 @@ using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure.Event;
+using TJ.DDD.Infrastructure.Messaging;
 
 namespace TJ.DDD.Infrastructure.Tests
 {
@@ -13,7 +14,7 @@ namespace TJ.DDD.Infrastructure.Tests
     {
         protected override void Given()
         {
-            IEventBus stubUnitOfWork = new StubEventBus();
+            IPublishEvent stubUnitOfWork = new StubEventBus();
             var eventStore = new StubEventStore(stubUnitOfWork);
             eventStore.Get<StubAggregate>(Guid.Empty);
         }
@@ -73,13 +74,13 @@ namespace TJ.DDD.Infrastructure.Tests
 
         protected override void Given()
         {
-            IEventBus stubUnitOfWork = new StubEventBus();
+            IPublishEvent stubUnitOfWork = new StubEventBus();
             var eventStore = new StubEventStore(stubUnitOfWork);
             var events = new List<IDomainEvent>();
-            events.Add(new ValidEvent() { AggregateId = Guid.Empty, EventNumber = 0 });
-            events.Add(new AnotherValidEvent() { AggregateId = Guid.Empty, EventNumber = 1 });
-            events.Add(new ValidEvent() { AggregateId = Guid.Empty, EventNumber = 2 });
-            events.Add(new AnotherValidEvent() { AggregateId = Guid.Empty, EventNumber = 3 });
+            events.Add(new ValidEvent(Guid.Empty) { EventNumber = 0 });
+            events.Add(new AnotherValidEvent(Guid.Empty) { EventNumber = 1 });
+            events.Add(new ValidEvent(Guid.Empty) { EventNumber = 2 });
+            events.Add(new AnotherValidEvent(Guid.Empty) { EventNumber = 3 });
             eventStore.AddEventsForAggregate(Guid.Empty, events);
             _aggregate = eventStore.Get<StubAggregate>(Guid.Empty);
         }
@@ -113,7 +114,7 @@ namespace TJ.DDD.Infrastructure.Tests
         private IEnumerable<IDomainEvent> _insertedEvents;
         private Dictionary<Guid, IEnumerable<IDomainEvent>> _aggregateEventDictionary;
 
-        public StubEventStore(IEventBus eventBus) : base(eventBus)
+        public StubEventStore(IPublishEvent eventPublisher) : base(eventPublisher)
         {
             _aggregateEventDictionary = new Dictionary<Guid, IEnumerable<IDomainEvent>>();
         }

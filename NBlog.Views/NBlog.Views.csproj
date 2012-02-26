@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</ProjectGuid>
+    <ProjectGuid>{04296F85-1CEF-4842-995B-62B93180CD25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TJ.DDD.Infrastructure</RootNamespace>
-    <AssemblyName>TJ.DDD.Infrastructure</AssemblyName>
+    <RootNamespace>NBlog.Views</RootNamespace>
+    <AssemblyName>NBlog.Views</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,30 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateRoot.cs" />
-    <Compile Include="Messaging\ICommand.cs" />
-    <Compile Include="Messaging\Command.cs" />
-    <Compile Include="Messaging\IPublishEvent.cs" />
-    <Compile Include="Bus\InMemoryBus.cs" />
-    <Compile Include="Messaging\ISendCommand.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Event\DomainEventBase.cs" />
-    <Compile Include="Event\EventStore.cs" />
-    <Compile Include="Exceptions\UnregisteredEventException.cs" />
-    <Compile Include="Messaging\IDomainEvent.cs" />
-    <Compile Include="Event\IEventStore.cs" />
-    <Compile Include="IHandle.cs" />
-    <Compile Include="Messaging\IMessage.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Exceptions\UnregisteredCommandException.cs" />
-    <Compile Include="Respositories\DomainRepository.cs" />
-    <Compile Include="Respositories\IDomainRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
-      <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
-      <Name>TJ.Extensions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

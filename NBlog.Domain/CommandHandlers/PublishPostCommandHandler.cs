@@ -16,7 +16,7 @@ namespace NBlog.Domain.CommandHandlers
             _postRepository = postRepository;
         }
 
-        public void Execute(PublishPostCommand publishPostCommand)
+        public void Handle(PublishPostCommand publishPostCommand)
         {
             var post = _postRepository.Get(publishPostCommand.AggregateId);
             if (post.IsNull())

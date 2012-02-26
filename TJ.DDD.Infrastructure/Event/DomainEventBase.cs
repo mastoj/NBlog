@@ -1,4 +1,5 @@
 using System;
+using TJ.DDD.Infrastructure.Messaging;
 using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure.Event
@@ -12,6 +13,7 @@ namespace TJ.DDD.Infrastructure.Event
             TimeStamp = DateTime.UtcNow;
         }
 
+        public Guid Id { get; set; }
         public Guid AggregateId { get; set; }
         public int EventNumber { get; set; }
 

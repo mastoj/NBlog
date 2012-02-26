@@ -6,6 +6,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Exceptions;
+using TJ.DDD.Infrastructure.Messaging;
 using TJ.DDD.MongoEvent;
 
 namespace TJ.DDD.Infrastructure.Tests
@@ -42,8 +43,7 @@ namespace TJ.DDD.Infrastructure.Tests
             var events = new List<IDomainEvent>();
             for (int i = 0; i < 5; i++)
             {
-                var validEvent = new ValidEvent();
-                validEvent.AggregateId = aggregateId;
+                var validEvent = new ValidEvent(aggregateId);
                 validEvent.EventNumber = i;
                 events.Add(validEvent);
             }
@@ -73,12 +73,12 @@ namespace TJ.DDD.Infrastructure.Tests
 
         public void DoThis()
         {
-            Apply(new ValidEvent());
+            Apply(new ValidEvent(AggregateId));
         }
 
         public void DoSomethingElse()
         {
-            Apply(new AnotherValidEvent());
+            Apply(new AnotherValidEvent(AggregateId));
         }
 
         private void OkAction(ValidEvent obj)
@@ -93,19 +93,31 @@ namespace TJ.DDD.Infrastructure.Tests
 
         public void SomethingIShouldNotDo()
         {
-            Apply(new ShouldNotEvent());
+            Apply(new ShouldNotEvent(AggregateId));
         }
     }
 
     public class ValidEvent : DomainEventBase
     {
+        public ValidEvent(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+        }
     }
 
     public class AnotherValidEvent : DomainEventBase
     {
+        public AnotherValidEvent(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+        }
     }
 
     public class ShouldNotEvent : DomainEventBase
     {
+        public ShouldNotEvent(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+        }
     }
 }

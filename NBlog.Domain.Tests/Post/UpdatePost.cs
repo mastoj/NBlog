@@ -30,7 +30,7 @@ namespace NBlog.Domain.Tests.Post.Update
                                                           aggregateId);
             var postView = new StubPostView();
             var updatePostCommandHandler = new UpdatePostCommandHandler(postRepository, postView);
-            updatePostCommandHandler.Execute(updatePostCommand);
+            updatePostCommandHandler.Handle(updatePostCommand);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace NBlog.Domain.Tests.Post.Update
                                                           _aggregateId);
             var postView = new StubPostView();
             var updatePostCommandHandler = new UpdatePostCommandHandler(_postRepository, postView);
-            updatePostCommandHandler.Execute(updatePostCommand);
+            updatePostCommandHandler.Handle(updatePostCommand);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace NBlog.Domain.Tests.Post.Update
             postView.Insert(new PostViewItem() { PostId = _aggregateId, ShortUrl = "shortUrl" });
             postView.Insert(new PostViewItem() { PostId = Guid.Empty, ShortUrl = _newShortUrl });
             var updatePostCommandHandler = new UpdatePostCommandHandler(_postRepository, postView);
-            updatePostCommandHandler.Execute(updatePostCommand);
+            updatePostCommandHandler.Handle(updatePostCommand);
         }
 
         private Entities.Post CreatePost()

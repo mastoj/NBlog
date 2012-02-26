@@ -12,19 +12,19 @@ namespace TJ.DDD.Infrastructure.Tests
     [TestFixture]
     public class When_Executing_An_Unregistered_Command
     {
-        private CommandManager _commandManager;
+        private InMemoryBus _inMemoryBus;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            _commandManager = new CommandManager(new CommandProviderStub(), null);
+            _inMemoryBus = new InMemoryBus(null);
         }
 
         [Test]
         public void Then_An_Unregistered_Command_Exception_Should_Be_Thrown()
         {
             // Assert
-            Action act = () => _commandManager.Execute(new StubCommand());
+            Action act = () => _inMemoryBus.Send(new StubCommand());
             act.ShouldThrow<UnregisteredCommandException>();
         }
     }
@@ -32,27 +32,30 @@ namespace TJ.DDD.Infrastructure.Tests
     [TestFixture]
     public class When_Executing_A_Registered_Command
     {
-        private CommandManager _commandManager;
-        private StubCommandHandler _commandHandler;
+        private InMemoryBus _inMemoryBus;
+        private StubCommandHandler _commandHandler1;
+        private StubCommandHandler _commandHandler2;
         private StubCommand _command;
         private StubUnitOfWork _unitOfWork;
 
         [TestFixtureSetUp]
         public void Setup()
         {
-            CommandProviderStub commandProvider = new CommandProviderStub();
-            _commandHandler = new StubCommandHandler();
-            commandProvider.AddHandler(_commandHandler);
+            _commandHandler1 = new StubCommandHandler();
+            _commandHandler2 = new StubCommandHandler();
             _unitOfWork = new StubUnitOfWork();
-            _commandManager = new CommandManager(commandProvider, _unitOfWork);
+            _inMemoryBus = new InMemoryBus(_unitOfWork);
+            _inMemoryBus.Register<StubCommand>(_commandHandler1.Handle);
+            _inMemoryBus.Register<StubCommand>(_commandHandler2.Handle);
             _command = new StubCommand();
-            _commandManager.Execute(_command);
+            _inMemoryBus.Send(_command);
         }
 
         [Test]
-        public void Then_The_Command_Should_Be_Executed()
+        public void Then_All_The_Command_Should_Be_Executed()
         {
-            _commandHandler.ExecutedCommand.Should().BeSameAs(_command);
+            _commandHandler2.ExecutedCommand.Should().BeSameAs(_command);
+            _commandHandler1.ExecutedCommand.Should().BeSameAs(_command);
         }
 
         [Test]
@@ -92,33 +95,18 @@ namespace TJ.DDD.Infrastructure.Tests
     {
         public StubCommand ExecutedCommand { get; set; }
 
-        public void Execute(StubCommand command)
+        public void Handle(StubCommand command)
         {
             ExecutedCommand = command;
         }
     }
 
-    public class StubCommand : Command.Command
+    public class StubCommand : Messaging.Command
     {
         public StubCommand()
             : base(Guid.NewGuid())
         {
 
-        }
-    }
-
-    public class CommandProviderStub : ICommandProvider
-    {
-        private IDictionary<Type, object> _commandHandlers = new Dictionary<Type, object>();
-
-        public IDictionary<Type, object> GetCommandHandlers()
-        {
-            return _commandHandlers;
-        }
-
-        public void AddHandler<TCommand>(IHandle<TCommand> commandHandler) where TCommand : class, ICommand
-        {
-            _commandHandlers.Add(typeof(TCommand), commandHandler);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Exceptions;
+using TJ.DDD.Infrastructure.Messaging;
 
 namespace TJ.DDD.Infrastructure
 {

@@ -21,7 +21,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             var postRepository = new StubPostRepository();
             var publishPostCommand = new PublishPostCommand(aggregateId);
             var publishPostCommandHandler = new PublishPostCommandHandler(postRepository);
-            publishPostCommandHandler.Execute(publishPostCommand);
+            publishPostCommandHandler.Handle(publishPostCommand);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             _postRepository.Insert(post);
             var publishPostCommand = new PublishPostCommand(_aggregateId);
             var publishPostCommandHandler = new PublishPostCommandHandler(_postRepository);
-            publishPostCommandHandler.Execute(publishPostCommand);
+            publishPostCommandHandler.Handle(publishPostCommand);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             postRepository.Insert(post);
             var publishPostCommand = new PublishPostCommand(_aggregateId);
             var publishPostCommandHandler = new PublishPostCommandHandler(postRepository);
-            publishPostCommandHandler.Execute(publishPostCommand);
+            publishPostCommandHandler.Handle(publishPostCommand);
         }
 
         [Test]
