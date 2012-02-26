@@ -5,6 +5,7 @@ using NUnit.Framework;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Messaging;
 using TJ.DDD.Infrastructure.Tests;
+using TJ.DDD.Infrastructure.Tests.Stub;
 using TJ.Mongo.Util;
 
 namespace NBlog.Data.Mongo.Tests
@@ -14,7 +15,7 @@ namespace NBlog.Data.Mongo.Tests
     {
         private Guid _aggregateId;
         private StubAggregate _aggregate;
-        private IPublishEvent _eventPublisher;
+        private IBus _eventPublisher;
 
         [TestFixtureSetUp]
         public void Setup()

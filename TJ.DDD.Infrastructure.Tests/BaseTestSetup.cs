@@ -1,5 +1,7 @@
 using System;
 using NUnit.Framework;
+using TJ.DDD.Infrastructure.Messaging;
+using TJ.DDD.Infrastructure.Tests.Stub;
 using TJ.Extensions;
 
 namespace TJ.DDD.Infrastructure.Tests
@@ -10,6 +12,14 @@ namespace TJ.DDD.Infrastructure.Tests
         private Exception _caughtException;
         private bool _exceptionIsChecked;
         private bool _exceptionOccured;
+        private IUnitOfWork _unitOfWork;
+        private InMemoryBus _bus;
+
+        public BaseTestSetup()
+        {
+            _bus = new InMemoryBus();
+            _unitOfWork = new StubEventStore(_bus);
+        }
 
         protected Exception CaughtException
         {

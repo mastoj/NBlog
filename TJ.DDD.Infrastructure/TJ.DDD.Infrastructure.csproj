@@ -44,7 +44,7 @@
     <Compile Include="Messaging\ICommand.cs" />
     <Compile Include="Messaging\Command.cs" />
     <Compile Include="Messaging\IPublishEvent.cs" />
-    <Compile Include="Bus\InMemoryBus.cs" />
+    <Compile Include="Messaging\InMemoryBus.cs" />
     <Compile Include="Messaging\ISendCommand.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Event\DomainEventBase.cs" />
@@ -65,6 +65,7 @@
       <Name>TJ.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

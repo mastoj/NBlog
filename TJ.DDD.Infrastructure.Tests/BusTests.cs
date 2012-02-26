@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Messaging;
 
@@ -19,7 +18,7 @@ namespace TJ.DDD.Infrastructure.Tests
 
         protected override void Given()
         {
-            _eventBus = new InMemoryBus(null);
+            _eventBus = new InMemoryBus();
             _validEventHandler1 = new EventHandler<ValidEvent>();
             _validEventHandler2 = new EventHandler<ValidEvent>();
             _anotherValidEventHandler = new EventHandler<AnotherValidEvent>();

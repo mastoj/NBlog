@@ -10,7 +10,6 @@ using NBlog.Domain.Exceptions;
 using NBlog.Domain.Tests.Stubs;
 using NBlog.Domain.Views;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Tests;
 
 namespace NBlog.Domain.Tests.Post.Update

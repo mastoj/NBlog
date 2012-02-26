@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Messaging;
 
 namespace TJ.DDD.Infrastructure.Event
 {
     public abstract class EventStore : IEventStore, IUnitOfWork
     {
-        private readonly IPublishEvent _eventPublisher;
+        private readonly IBus _bus;
         private Dictionary<Guid, AggregateRoot> _aggregateDictionary;
 
         protected abstract void InsertBatch(IEnumerable<IDomainEvent> eventBatch);
         protected abstract IEnumerable<IDomainEvent> GetEvents(Guid aggregateId);
 
-        public EventStore(IPublishEvent eventPublisher)
+        public EventStore(IBus bus)
         {
-            _eventPublisher = eventPublisher;
+            _bus = bus;
+            _bus.Commit += Commit;
             _aggregateDictionary = new Dictionary<Guid, AggregateRoot>();
         }
 
@@ -53,7 +53,7 @@ namespace TJ.DDD.Infrastructure.Event
             InsertBatch(uncommitedEvents);
             foreach (var uncommitedEvent in uncommitedEvents)
             {
-                _eventPublisher.Publish(uncommitedEvent);
+                _bus.Publish(uncommitedEvent);
             }
             ClearEvents();
         }

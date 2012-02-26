@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Messaging;
 
 namespace NBlog.Domain.Commands

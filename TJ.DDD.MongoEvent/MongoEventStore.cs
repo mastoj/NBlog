@@ -14,8 +14,8 @@ namespace TJ.DDD.MongoEvent
         private MongoServer _server;
         private string _collectionName = "Events";
 
-        public MongoEventStore(IMongoConfiguration mongoConfiguration, IPublishEvent eventPublisher)
-            : base(eventPublisher)
+        public MongoEventStore(IMongoConfiguration mongoConfiguration, IBus bus)
+            : base(bus)
         {
             _server = MongoServer.Create(mongoConfiguration.Url);
             var mongoDatabaseSettings = _server.CreateDatabaseSettings(mongoConfiguration.DatabaseName);

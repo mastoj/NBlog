@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Messaging;
+using TJ.DDD.Infrastructure.Tests.Stub;
 
 namespace TJ.DDD.Infrastructure.Tests
 {
@@ -14,7 +14,7 @@ namespace TJ.DDD.Infrastructure.Tests
     {
         protected override void Given()
         {
-            IPublishEvent stubUnitOfWork = new StubEventBus();
+            IBus stubUnitOfWork = new StubEventBus();
             var eventStore = new StubEventStore(stubUnitOfWork);
             eventStore.Get<StubAggregate>(Guid.Empty);
         }
@@ -74,7 +74,7 @@ namespace TJ.DDD.Infrastructure.Tests
 
         protected override void Given()
         {
-            IPublishEvent stubUnitOfWork = new StubEventBus();
+            IBus stubUnitOfWork = new StubEventBus();
             var eventStore = new StubEventStore(stubUnitOfWork);
             var events = new List<IDomainEvent>();
             events.Add(new ValidEvent(Guid.Empty) { EventNumber = 0 });
@@ -107,40 +107,5 @@ namespace TJ.DDD.Infrastructure.Tests
                     events[i].GetType().Should().Be(typeof(AnotherValidEvent));
             }
         }        
-    }
-
-    public class StubEventStore : EventStore
-    {
-        private IEnumerable<IDomainEvent> _insertedEvents;
-        private Dictionary<Guid, IEnumerable<IDomainEvent>> _aggregateEventDictionary;
-
-        public StubEventStore(IPublishEvent eventPublisher) : base(eventPublisher)
-        {
-            _aggregateEventDictionary = new Dictionary<Guid, IEnumerable<IDomainEvent>>();
-        }
-
-        public IEnumerable<IDomainEvent> InsertedEvents
-        {
-            get { return _insertedEvents; }
-        }
-
-        protected override void InsertBatch(IEnumerable<IDomainEvent> eventBatch)
-        {
-            _insertedEvents = eventBatch;
-        }
-
-        protected override IEnumerable<IDomainEvent> GetEvents(Guid aggregateId)
-        {
-            if (_aggregateEventDictionary.ContainsKey(aggregateId))
-            {
-                return _aggregateEventDictionary[aggregateId];
-            }
-            return new List<IDomainEvent>();
-        }
-
-        public void AddEventsForAggregate(Guid aggregateId, IEnumerable<IDomainEvent> events)
-        {
-            _aggregateEventDictionary.Add(aggregateId, events);
-        }
     }
 }

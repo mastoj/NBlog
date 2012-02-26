@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Command;
 using TJ.DDD.Infrastructure.Exceptions;
+using TJ.DDD.Infrastructure.Messaging;
 
 namespace TJ.DDD.Infrastructure.Tests
 {
@@ -17,7 +17,7 @@ namespace TJ.DDD.Infrastructure.Tests
         [TestFixtureSetUp]
         public void Setup()
         {
-            _inMemoryBus = new InMemoryBus(null);
+            _inMemoryBus = new InMemoryBus();
         }
 
         [Test]
@@ -44,7 +44,8 @@ namespace TJ.DDD.Infrastructure.Tests
             _commandHandler1 = new StubCommandHandler();
             _commandHandler2 = new StubCommandHandler();
             _unitOfWork = new StubUnitOfWork();
-            _inMemoryBus = new InMemoryBus(_unitOfWork);
+            _inMemoryBus = new InMemoryBus();
+            _inMemoryBus.Commit += _unitOfWork.Commit;
             _inMemoryBus.Register<StubCommand>(_commandHandler1.Handle);
             _inMemoryBus.Register<StubCommand>(_commandHandler2.Handle);
             _command = new StubCommand();
