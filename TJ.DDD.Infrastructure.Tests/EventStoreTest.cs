@@ -12,17 +12,19 @@ namespace TJ.DDD.Infrastructure.Tests
     [TestFixture]
     public class When_Loading_Aggregate_With_Empty_Event_Store : BaseTestSetup
     {
+        private StubAggregate _aggregate;
+
         protected override void Given()
         {
-            IBus stubUnitOfWork = new StubEventBus();
+            IBus stubUnitOfWork = new InMemoryBus(new MessageRouter());
             var eventStore = new StubEventStore(stubUnitOfWork);
-            eventStore.Get<StubAggregate>(Guid.Empty);
+            _aggregate = eventStore.Get<StubAggregate>(Guid.Empty);
         }
 
         [Test]
-        public void An_Argument_Exception_Should_Be_Thrown()
+        public void Null_Should_Be_Returned()
         {
-            CaughtException.Should().BeOfType<ArgumentException>();
+            _aggregate.Should().BeNull();
         }
     }
 
@@ -30,12 +32,12 @@ namespace TJ.DDD.Infrastructure.Tests
     public class When_Commiting_Changes_On_A_Inserted_Aggregate : EventStoreTestBase
     {
         private StubAggregate _aggregate;
-        private StubEventBus _stubEventBus;
+        private InMemoryBus _stubEventBus;
         private StubEventStore _eventStore;
 
         protected override void Given()
         {
-            _stubEventBus = new StubEventBus();
+            _stubEventBus = new InMemoryBus(new MessageRouter());
             _eventStore = new StubEventStore(_stubEventBus);
             _aggregate = new StubAggregate();
             _aggregate.DoThis();
@@ -74,14 +76,14 @@ namespace TJ.DDD.Infrastructure.Tests
 
         protected override void Given()
         {
-            IBus stubUnitOfWork = new StubEventBus();
+            IBus stubUnitOfWork = new InMemoryBus(new MessageRouter());
             var eventStore = new StubEventStore(stubUnitOfWork);
             var events = new List<IDomainEvent>();
             events.Add(new ValidEvent(Guid.Empty) { EventNumber = 0 });
             events.Add(new AnotherValidEvent(Guid.Empty) { EventNumber = 1 });
             events.Add(new ValidEvent(Guid.Empty) { EventNumber = 2 });
             events.Add(new AnotherValidEvent(Guid.Empty) { EventNumber = 3 });
-            eventStore.AddEventsForAggregate(Guid.Empty, events);
+            eventStore.InsertEvents(events);
             _aggregate = eventStore.Get<StubAggregate>(Guid.Empty);
         }
 

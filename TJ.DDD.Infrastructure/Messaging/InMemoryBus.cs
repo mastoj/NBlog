@@ -6,38 +6,30 @@ using TJ.Extensions;
 namespace TJ.DDD.Infrastructure.Messaging
 {
     public interface IBus : ISendCommand, IPublishEvent, ICommitMessages
-    {}
+    { }
 
     public class InMemoryBus : IBus
     {
-        private Dictionary<Type, List<Action<IMessage>>> _messageRoutes;
+        private readonly IMessageRouter _messageRouter;
+        private List<IDomainEvent> _publishedEvents;
 
-        public InMemoryBus()
+        public InMemoryBus(IMessageRouter messageRouter)
         {
-            _messageRoutes = new Dictionary<Type, List<Action<IMessage>>>();
-        }
-
-        public void Register<TMessage>(Action<TMessage> route) where TMessage : class, IMessage
-        {
-            List<Action<IMessage>> routes;
-            var type = typeof (TMessage);
-            if (_messageRoutes.TryGetValue(type, out routes).IsFalse())
-            {
-                routes = new List<Action<IMessage>>();
-                _messageRoutes.Add(type, routes);
-            }
-            routes.Add((y) => route(y as TMessage));
+            _messageRouter = messageRouter;
+#if DEBUG
+            _publishedEvents = new List<IDomainEvent>();
+#endif
         }
 
         public void Send<TCommand>(TCommand command) where TCommand : class, ICommand
         {
             var commandType = command.GetType();
             List<Action<IMessage>> handlers;
-            if (_messageRoutes.TryGetValue(commandType, out handlers))
+            if (_messageRouter.TryGetValue(commandType, out handlers))
             {
                 foreach (var handler in handlers)
                 {
-                    handler(command);                    
+                    handler(command);
                 }
                 Commit();
             }
@@ -47,27 +39,35 @@ namespace TJ.DDD.Infrastructure.Messaging
             }
         }
 
-        public void Publish<TEvent>(TEvent @event) where TEvent : class, IDomainEvent
+        public void PublishEvent<TEvent>(TEvent @event) where TEvent : class, IDomainEvent
         {
             var eventType = @event.GetType();
             List<Action<IMessage>> eventHandlers;
-            if (_messageRoutes.TryGetValue(eventType, out eventHandlers).IsFalse())
+            if (_messageRouter.TryGetValue(eventType, out eventHandlers).IsTrue())
             {
-                return;
+                foreach (var eventHandler in eventHandlers)
+                {
+                    eventHandler(@event);
+                }
             }
-            foreach (var eventHandler in eventHandlers)
+#if DEBUG
+            _publishedEvents.Add(@event);
+#endif
+        }
+
+        public void PublishEvents<TEvent>(IEnumerable<TEvent> events) where TEvent : class, IDomainEvent
+        {
+            foreach (var @event in events)
             {
-                eventHandler(@event);
+                PublishEvent(@event);
             }
         }
 
+        public List<IDomainEvent> PublishedEvents
+        {
+            get { return _publishedEvents; }
+        }
+
         public event CommitMessageHandler Commit = () => { };
-    }
-
-
-    public delegate void CommitMessageHandler();
-    public interface ICommitMessages
-    {
-        event CommitMessageHandler Commit;
     }
 }

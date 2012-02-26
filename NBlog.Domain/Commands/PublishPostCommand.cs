@@ -3,18 +3,10 @@ using TJ.DDD.Infrastructure.Messaging;
 
 namespace NBlog.Domain.Commands
 {
-    public class PublishPostCommand : ICommand
+    public class PublishPostCommand : Command
     {
-        private readonly Guid _aggregateId;
-
-        public PublishPostCommand(Guid aggregateId)
+        public PublishPostCommand(Guid aggregateId) : base(aggregateId)
         {
-            _aggregateId = aggregateId;
-        }
-
-        public Guid AggregateId
-        {
-            get { return _aggregateId; }
         }
     }
 }

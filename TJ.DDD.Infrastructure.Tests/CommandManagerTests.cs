@@ -17,7 +17,7 @@ namespace TJ.DDD.Infrastructure.Tests
         [TestFixtureSetUp]
         public void Setup()
         {
-            _inMemoryBus = new InMemoryBus();
+            _inMemoryBus = new InMemoryBus(new MessageRouter());
         }
 
         [Test]
@@ -43,11 +43,12 @@ namespace TJ.DDD.Infrastructure.Tests
         {
             _commandHandler1 = new StubCommandHandler();
             _commandHandler2 = new StubCommandHandler();
+            var messageRouter = new MessageRouter();
+            messageRouter.Register<StubCommand>(_commandHandler1.Handle);
+            messageRouter.Register<StubCommand>(_commandHandler2.Handle);
             _unitOfWork = new StubUnitOfWork();
-            _inMemoryBus = new InMemoryBus();
+            _inMemoryBus = new InMemoryBus(messageRouter);
             _inMemoryBus.Commit += _unitOfWork.Commit;
-            _inMemoryBus.Register<StubCommand>(_commandHandler1.Handle);
-            _inMemoryBus.Register<StubCommand>(_commandHandler2.Handle);
             _command = new StubCommand();
             _inMemoryBus.Send(_command);
         }

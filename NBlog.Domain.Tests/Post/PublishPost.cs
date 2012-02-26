@@ -20,7 +20,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             var aggregateId = Guid.NewGuid();
             var postRepository = new StubPostRepository();
             var publishPostCommand = new PublishPostCommand(aggregateId);
-            var publishPostCommandHandler = new PublishPostCommandHandler(postRepository);
+            var publishPostCommandHandler = new PostCommandHandlers(postRepository);
             publishPostCommandHandler.Handle(publishPostCommand);
         }
 
@@ -41,7 +41,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             _postRepository = new StubPostRepository();
             _postRepository.Insert(post);
             var publishPostCommand = new PublishPostCommand(_aggregateId);
-            var publishPostCommandHandler = new PublishPostCommandHandler(_postRepository);
+            var publishPostCommandHandler = new PostCommandHandlers(_postRepository);
             publishPostCommandHandler.Handle(publishPostCommand);
         }
 
@@ -79,7 +79,7 @@ namespace NBlog.Domain.Tests.Post.Publish
             var postRepository = new StubPostRepository();
             postRepository.Insert(post);
             var publishPostCommand = new PublishPostCommand(_aggregateId);
-            var publishPostCommandHandler = new PublishPostCommandHandler(postRepository);
+            var publishPostCommandHandler = new PostCommandHandlers(postRepository);
             publishPostCommandHandler.Handle(publishPostCommand);
         }
 

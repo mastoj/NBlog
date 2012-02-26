@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TJ.DDD.Infrastructure.Event;
 using TJ.DDD.Infrastructure.Messaging;
 
@@ -7,12 +8,12 @@ namespace TJ.DDD.Infrastructure.Tests.Stub
 {
     public class StubEventStore : EventStore
     {
-        private IEnumerable<IDomainEvent> _insertedEvents;
+        private List<IDomainEvent> _insertedEvents;
         private Dictionary<Guid, IEnumerable<IDomainEvent>> _aggregateEventDictionary;
 
         public StubEventStore(IBus bus) : base(bus)
         {
-            _aggregateEventDictionary = new Dictionary<Guid, IEnumerable<IDomainEvent>>();
+            _insertedEvents = new List<IDomainEvent>();
         }
 
         public IEnumerable<IDomainEvent> InsertedEvents
@@ -22,21 +23,17 @@ namespace TJ.DDD.Infrastructure.Tests.Stub
 
         protected override void InsertBatch(IEnumerable<IDomainEvent> eventBatch)
         {
-            _insertedEvents = eventBatch;
+            _insertedEvents.AddRange(eventBatch);
         }
 
         protected override IEnumerable<IDomainEvent> GetEvents(Guid aggregateId)
         {
-            if (_aggregateEventDictionary.ContainsKey(aggregateId))
-            {
-                return _aggregateEventDictionary[aggregateId];
-            }
-            return new List<IDomainEvent>();
+            return _insertedEvents.Where(y => y.AggregateId == aggregateId);
         }
 
-        public void AddEventsForAggregate(Guid aggregateId, IEnumerable<IDomainEvent> events)
+        public void InsertEvents(IEnumerable<IDomainEvent> eventBatch)
         {
-            _aggregateEventDictionary.Add(aggregateId, events);
+            _insertedEvents.AddRange(eventBatch);
         }
     }
 }

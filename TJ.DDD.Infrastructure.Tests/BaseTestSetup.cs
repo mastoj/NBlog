@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using TJ.DDD.Infrastructure.Messaging;
 using TJ.DDD.Infrastructure.Tests.Stub;
@@ -17,7 +18,7 @@ namespace TJ.DDD.Infrastructure.Tests
 
         public BaseTestSetup()
         {
-            _bus = new InMemoryBus();
+            _bus = new InMemoryBus(new MessageRouter());
             _unitOfWork = new StubEventStore(_bus);
         }
 

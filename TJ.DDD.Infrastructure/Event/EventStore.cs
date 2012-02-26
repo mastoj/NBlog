@@ -29,7 +29,7 @@ namespace TJ.DDD.Infrastructure.Event
             var events = GetEvents(aggregateId).ToList();
             if (events.Count == 0)
             {
-                throw new ArgumentException("No aggregate with id " + aggregateId.ToString(), "aggregateId");
+                return null;
             }
             T aggregate = new T();
             aggregate.LoadAggregate(events);
@@ -51,10 +51,7 @@ namespace TJ.DDD.Infrastructure.Event
         {
             var uncommitedEvents = GetUncommitedEvents();
             InsertBatch(uncommitedEvents);
-            foreach (var uncommitedEvent in uncommitedEvents)
-            {
-                _bus.Publish(uncommitedEvent);
-            }
+            _bus.PublishEvents(uncommitedEvents);
             ClearEvents();
         }
 

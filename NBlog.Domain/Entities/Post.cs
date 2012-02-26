@@ -7,44 +7,6 @@ using TJ.DDD.Infrastructure.Event;
 
 namespace NBlog.Domain.Entities
 {
-    public class Blog : AggregateRoot
-    {
-        private string _title;
-
-        private Blog(string title, Guid aggregateId) : this()
-        {
-            var createEvent = new CreateBlogEvent(title, aggregateId);
-            Apply(createEvent);
-        }
-
-        private Blog()
-        {
-            RegisterEventHandler<CreateBlogEvent>(BlogCreated);
-        }
-
-        private void BlogCreated(CreateBlogEvent createBlogEvent)
-        {
-            _title = createBlogEvent.Title;
-            AggregateId = createBlogEvent.AggregateId;
-        }
-
-        public static Blog Create(string title, Guid aggregateId)
-        {
-            return new Blog(title, aggregateId);
-        }
-    }
-
-    public class CreateBlogEvent : DomainEventBase
-    {
-        public string Title { get; set; }
-
-        public CreateBlogEvent(string title, Guid aggregateId)
-        {
-            Title = title;
-            AggregateId = aggregateId;
-        }
-    }
-
     public class Post : AggregateRoot
     {
         private string _title;

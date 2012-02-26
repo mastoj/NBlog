@@ -18,15 +18,16 @@ namespace TJ.DDD.Infrastructure.Tests
 
         protected override void Given()
         {
-            _eventBus = new InMemoryBus();
             _validEventHandler1 = new EventHandler<ValidEvent>();
             _validEventHandler2 = new EventHandler<ValidEvent>();
             _anotherValidEventHandler = new EventHandler<AnotherValidEvent>();
-            _eventBus.Register<ValidEvent>(_validEventHandler1.Handle);
-            _eventBus.Register<ValidEvent>(_validEventHandler2.Handle);
-            _eventBus.Register<AnotherValidEvent>(_anotherValidEventHandler.Handle);
+            var messageRouter = new MessageRouter();
+            messageRouter.Register<ValidEvent>(_validEventHandler1.Handle);
+            messageRouter.Register<ValidEvent>(_validEventHandler2.Handle);
+            messageRouter.Register<AnotherValidEvent>(_anotherValidEventHandler.Handle);
+            _eventBus = new InMemoryBus(messageRouter);
 
-            _eventBus.Publish(new ValidEvent(Guid.Empty));
+            _eventBus.PublishEvent(new ValidEvent(Guid.Empty));
         }
 
         [Test]

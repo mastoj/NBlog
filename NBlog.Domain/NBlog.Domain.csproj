@@ -47,9 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\CreatePostCommandHandler.cs" />
-    <Compile Include="CommandHandlers\PublishPostCommandHandler.cs" />
-    <Compile Include="CommandHandlers\UpdatePostCommandHandler.cs" />
+    <Compile Include="NBlogConfiguration.cs" />
+    <Compile Include="CommandHandlers\PostCommandHandlers.cs" />
     <Compile Include="Commands\CreatePostCommand.cs" />
     <Compile Include="Commands\PublishPostCommand.cs" />
     <Compile Include="Commands\UpdatePostCommand.cs" />
@@ -58,6 +57,7 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Event\CreatePostEvent.cs" />
     <Compile Include="Event\UpdatePostEvent.cs" />
+    <Compile Include="Exceptions\DuplicatePostIdException.cs" />
     <Compile Include="Exceptions\PostAlreadyExistsForUrlException.cs" />
     <Compile Include="Exceptions\PostAlreadyPublishedException.cs" />
     <Compile Include="Exceptions\PostDoesNotExistException.cs" />

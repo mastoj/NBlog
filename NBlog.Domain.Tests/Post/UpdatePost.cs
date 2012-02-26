@@ -27,8 +27,7 @@ namespace NBlog.Domain.Tests.Post.Update
             var newExcerpt = "NewExcerpt";
             var updatePostCommand = new UpdatePostCommand(newTitle, newContent, newShortUrl, newTags, newExcerpt,
                                                           aggregateId);
-            var postView = new StubPostView();
-            var updatePostCommandHandler = new UpdatePostCommandHandler(postRepository, postView);
+            var updatePostCommandHandler = new PostCommandHandlers(postRepository);
             updatePostCommandHandler.Handle(updatePostCommand);
         }
 
@@ -55,8 +54,7 @@ namespace NBlog.Domain.Tests.Post.Update
             _newExcerpt = "NewExcerpt";
             var updatePostCommand = new UpdatePostCommand(_newTitle, _newContent, _newShortUrl, _newTags, _newExcerpt,
                                                           _aggregateId);
-            var postView = new StubPostView();
-            var updatePostCommandHandler = new UpdatePostCommandHandler(_postRepository, postView);
+            var updatePostCommandHandler = new PostCommandHandlers(_postRepository);
             updatePostCommandHandler.Handle(updatePostCommand);
         }
 
@@ -92,45 +90,5 @@ namespace NBlog.Domain.Tests.Post.Update
         private StubPostRepository _postRepository;
         private Guid _aggregateId;
         private DateTime _lowestPossibleDate;
-    }
-
-    public class When_Updating_A_Post_That_Exist_To_A_ShorUrl_That_Another_Post_Has : BaseTestSetup
-    {
-        private Guid _aggregateId;
-
-        protected override void Given()
-        {
-            _aggregateId = Guid.NewGuid();
-            Entities.Post post = CreatePost();
-            var _postRepository = new StubPostRepository();
-            _postRepository.Insert(post);
-            var _newTitle = "NewTitle";
-            var _newContent = "NewContent";
-            var _newShortUrl = "NewShortUrl";
-            var _newTags = new List<string> { "tag4", "tag5", "tag6" };
-            var _newExcerpt = "NewExcerpt";
-            var updatePostCommand = new UpdatePostCommand(_newTitle, _newContent, _newShortUrl, _newTags, _newExcerpt,
-                                                          _aggregateId);
-            var postView = new StubPostView();
-            postView.Insert(new PostViewItem() { PostId = _aggregateId, ShortUrl = "shortUrl" });
-            postView.Insert(new PostViewItem() { PostId = Guid.Empty, ShortUrl = _newShortUrl });
-            var updatePostCommandHandler = new UpdatePostCommandHandler(_postRepository, postView);
-            updatePostCommandHandler.Handle(updatePostCommand);
-        }
-
-        private Entities.Post CreatePost()
-        {
-            var post = Entities.Post.Create("Title", "content", "shortUrl", new List<string> { "tag1", "tag2" }, "excerpt", _aggregateId);
-            var changes = post.GetChanges();
-            post.LoadAggregate(changes);
-            post.ClearChanges();
-            return post;
-        }
-
-        [Test]
-        public void An_Post_Already_Exist_For_Url_Exception_Should_Be_Thrown()
-        {
-            CaughtException.Should().BeOfType<PostAlreadyExistsForUrlException>();
-        }
     }
 }

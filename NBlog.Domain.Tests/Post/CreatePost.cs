@@ -14,34 +14,9 @@ using TJ.DDD.Infrastructure.Tests;
 namespace NBlog.Domain.Tests.Post.Create
 {
     [TestFixture]
-    public class When_Creating_A_Post_With_Existing_Shorturl : BaseTestSetup
+    public class When_Creating_A_Post : BaseCommandTest<CreatePostCommand>
     {
-        protected override void Given()
-        {
-            var title = "Title";
-            var content = "content";
-            var shortUrl = "shortUrl";
-            var tags = new List<string>() { "tag1", "tag2" };
-            var excerpt = "excerpt";
-            var createPostCommand = new CreatePostCommand(title, content, shortUrl, tags, excerpt);
-            var postRepository = new StubPostRepository();
-            IPostView postView = new StubPostView();
-            postView.Insert(new PostViewItem() {ShortUrl = shortUrl, PostId = Guid.NewGuid()});
-            var createPostCommandHandler = new CreatePostCommandHandler(postRepository, postView);
-            createPostCommandHandler.Handle(createPostCommand);
-        }
-
-        [Test]
-        public void An_Post_Already_Exist_For_Url_Exception_Should_Be_Thrown()
-        {
-            CaughtException.Should().BeOfType<PostAlreadyExistsForUrlException>();
-        }
-    }
-
-    [TestFixture]
-    public class When_Creating_A_Post : BaseTestSetup
-    {
-        protected override void Given()
+        protected override CreatePostCommand When()
         {
             _lowestPossibleDate = DateTime.Now;
             _title = "Title";
@@ -49,34 +24,14 @@ namespace NBlog.Domain.Tests.Post.Create
             _shortUrl = "shortUrl";
             _tags = new List<string>() {"tag1", "tag2"};
             _excerpt = "excerpt";
-            var createPostCommand = new CreatePostCommand(_title, _content, _shortUrl, _tags, _excerpt);
-            _postRepository = new StubPostRepository();
-            IPostView postView = new StubPostView();
-            var createPostCommandHandler = new CreatePostCommandHandler(_postRepository, postView);
-            createPostCommandHandler.Handle(createPostCommand);
+            var createPostCommand = new CreatePostCommand(_title, _content, _shortUrl, _tags, _excerpt, Guid.NewGuid());
+            return createPostCommand;
         }
 
         [Test]
-        public void The_Post_Should_Be_Created()
+        public void A_Create_Post_Event_Should_Be_Published()
         {
-            // Assert
-            _postRepository.Posts.Count.Should().Be(1);
-        }
-
-        [Test]
-        public void The_Post_Should_Contain_One_Uncommited_Event()
-        {
-            var post = _postRepository.Posts.First();
-            var changes = post.GetChanges();
-            changes.Count().Should().Be(1);
-            changes.First().Should().BeOfType<CreatePostEvent>();
-        }
-
-        [Test]
-        public void The_Uncommited_Event_Should_Have_The_Right_Information_Set()
-        {
-            var createPostEvent =
-            _postRepository.Posts.First().GetChanges().First() as CreatePostEvent;
+            var createPostEvent = GetPublishedEvents().First() as CreatePostEvent;
             createPostEvent.Content.Should().Be(_content);
             createPostEvent.EventNumber.Should().Be(0);
             createPostEvent.Excerpt.Should().Be(_excerpt);
@@ -93,5 +48,24 @@ namespace NBlog.Domain.Tests.Post.Create
         private List<string> _tags;
         private string _excerpt;
         private DateTime _lowestPossibleDate;
+    }
+
+    public class When_Creating_A_Post_But_Id_Is_Take : BaseCommandTest<CreatePostCommand>
+    {
+        protected override void Given()
+        {
+            PreSetCommand(new CreatePostCommand("title", "content", "shortUrl", null, "excerpt", Guid.Empty));
+        }
+
+        protected override CreatePostCommand When()
+        {
+            return new CreatePostCommand("title", "content", "shortUrl", null, "excerpt", Guid.Empty);
+        }
+
+        [Test]
+        public void A_Duplicate_Post_Id_Exception_Is_Thrown()
+        {
+            CaughtException.Should().BeOfType<DuplicatePostIdException>();
+        }
     }
 }
