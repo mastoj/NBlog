@@ -67,7 +67,7 @@ namespace NBlog.Domain.Tests.Post.Update
             updateEvent.ShortUrl.Should().Be(_newShortUrl);
             updateEvent.Tags.SequenceEqual(_newTags);
             updateEvent.Title.Should().Be(_newTitle);
-            updateEvent.LastSaveTime.Should().BeAfter(_lowestPossibleDate);
+            updateEvent.LastSaveTime.Should().BeOnOrAfter(_lowestPossibleDate);
         }
 
         private string _newTitle;

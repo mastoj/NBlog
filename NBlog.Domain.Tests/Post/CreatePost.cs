@@ -38,7 +38,7 @@ namespace NBlog.Domain.Tests.Post.Create
             createPostEvent.ShortUrl.Should().Be(_shortUrl);
             createPostEvent.Tags.SequenceEqual(_tags);
             createPostEvent.Title.Should().Be(_title);
-            createPostEvent.CreationDate.Should().BeAfter(_lowestPossibleDate);
+            createPostEvent.CreationDate.Should().BeOnOrAfter(_lowestPossibleDate);
         }
 
         private string _title;

@@ -49,7 +49,8 @@ namespace NBlog.Domain.Tests.Post.Publish
         {
             var latestEvent = GetPublishedEvents().LastOrDefault() as PublishPostEvent;
             latestEvent.Should().NotBeNull();
-            latestEvent.PublishTime.Should().BeAfter(_lowestPossibleTime);
+            latestEvent.PublishTime.Should().BeOnOrAfter(_lowestPossibleTime);
+            latestEvent.PublishTime.Should().BeOnOrAfter(_lowestPossibleTime);
         }
 
         private Guid _aggregateId;
