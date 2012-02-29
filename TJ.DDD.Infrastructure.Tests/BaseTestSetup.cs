@@ -13,14 +13,6 @@ namespace TJ.DDD.Infrastructure.Tests
         private Exception _caughtException;
         private bool _exceptionIsChecked;
         private bool _exceptionOccured;
-        private IUnitOfWork _unitOfWork;
-        private InMemoryBus _bus;
-
-        public BaseTestSetup()
-        {
-            _bus = new InMemoryBus(new MessageRouter());
-            _unitOfWork = new StubEventStore(_bus);
-        }
 
         protected Exception CaughtException
         {

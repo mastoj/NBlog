@@ -13,15 +13,13 @@ using TJ.DDD.Infrastructure.Tests;
 
 namespace NBlog.Domain.Tests.Post.Publish
 {
-    public class When_Publishing_A_Post_That_Does_Not_Exist : BaseTestSetup
+    public class When_Publishing_A_Post_That_Does_Not_Exist : BaseCommandTest<PublishPostCommand>
     {
-        protected override void Given()
+        protected override PublishPostCommand When()
         {
             var aggregateId = Guid.NewGuid();
-            var postRepository = new StubPostRepository();
             var publishPostCommand = new PublishPostCommand(aggregateId);
-            var publishPostCommandHandler = new PostCommandHandlers(postRepository);
-            publishPostCommandHandler.Handle(publishPostCommand);
+            return publishPostCommand;
         }
 
         [Test]
@@ -31,56 +29,46 @@ namespace NBlog.Domain.Tests.Post.Publish
         }
     }
 
-    public class When_Publishing_A_Post_That_Does_Exist : BaseTestSetup
+    public class When_Publishing_A_Post_That_Does_Exist : BaseCommandTest<PublishPostCommand>
     {
         protected override void Given()
         {
-            _lowestPossibleTime = DateTime.Now;
             _aggregateId = Guid.NewGuid();
-            Entities.Post post = CreatePost();
-            _postRepository = new StubPostRepository();
-            _postRepository.Insert(post);
+            PreSetCommand(new CreatePostCommand("This exist", "Some serious content", "url", new List<string>() {"tag"}, "excerpt", _aggregateId));
+        }
+
+        protected override PublishPostCommand When()
+        {
+            _lowestPossibleTime = DateTime.Now;
             var publishPostCommand = new PublishPostCommand(_aggregateId);
-            var publishPostCommandHandler = new PostCommandHandlers(_postRepository);
-            publishPostCommandHandler.Handle(publishPostCommand);
+            return publishPostCommand;
         }
 
         [Test]
         public void The_Post_Should_Be_Published()
         {
-            var post = _postRepository.Get(_aggregateId);
-            post.Should().NotBeNull();
-            var changes = post.GetChanges();
-            changes.Count().Should().Be(1);
-            var publishEvent = changes.FirstOrDefault() as PublishPostEvent;
-            publishEvent.PublishTime.Should().BeAfter(_lowestPossibleTime);
+            var latestEvent = GetPublishedEvents().LastOrDefault() as PublishPostEvent;
+            latestEvent.Should().NotBeNull();
+            latestEvent.PublishTime.Should().BeAfter(_lowestPossibleTime);
         }
 
         private Guid _aggregateId;
-        private StubPostRepository _postRepository;
         private DateTime _lowestPossibleTime;
-
-        private Entities.Post CreatePost()
-        {
-            var post = Entities.Post.Create("Title", "content", "shortUrl", new List<string> { "tag1", "tag2" }, "excerpt", _aggregateId);
-            var changes = post.GetChanges();
-            post.LoadAggregate(changes);
-            post.ClearChanges();
-            return post;
-        }
     }
 
-    public class When_Publishing_A_Post_That_Is_Already_Published : BaseTestSetup
+    public class When_Publishing_A_Post_That_Is_Already_Published : BaseCommandTest<PublishPostCommand>
     {
         protected override void Given()
         {
             _aggregateId = Guid.NewGuid();
-            Entities.Post post = CreatePublishedPost();
-            var postRepository = new StubPostRepository();
-            postRepository.Insert(post);
+            PreSetCommand(new CreatePostCommand("This exist", "Some serious content", "url", new List<string>() {"tag"}, "excerpt", _aggregateId));
+            PreSetCommand(new PublishPostCommand(_aggregateId));
+        }
+
+        protected override PublishPostCommand When()
+        {
             var publishPostCommand = new PublishPostCommand(_aggregateId);
-            var publishPostCommandHandler = new PostCommandHandlers(postRepository);
-            publishPostCommandHandler.Handle(publishPostCommand);
+            return publishPostCommand;
         }
 
         [Test]
@@ -90,15 +78,5 @@ namespace NBlog.Domain.Tests.Post.Publish
         }
 
         private Guid _aggregateId;
-
-        private Entities.Post CreatePublishedPost()
-        {
-            var post = Entities.Post.Create("Title", "content", "shortUrl", new List<string> { "tag1", "tag2" }, "excerpt", _aggregateId);
-            post.Publish();
-            var changes = post.GetChanges();
-            post.LoadAggregate(changes);
-            post.ClearChanges();
-            return post;
-        }
     }
 }

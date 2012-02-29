@@ -41,7 +41,6 @@ namespace NBlog.Domain.Tests.Post.Create
             createPostEvent.CreationDate.Should().BeAfter(_lowestPossibleDate);
         }
 
-        private StubPostRepository _postRepository;
         private string _title;
         private string _content;
         private string _shortUrl;
