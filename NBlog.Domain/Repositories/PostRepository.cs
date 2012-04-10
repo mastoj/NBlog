@@ -1,6 +1,6 @@
 ﻿using NBlog.Domain.Entities;
-using TJ.DDD.Infrastructure.Event;
-using TJ.DDD.Infrastructure.Respositories;
+using TJ.CQRS.Event;
+using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.Repositories
 {

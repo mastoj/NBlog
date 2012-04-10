@@ -15,7 +15,7 @@ namespace NBlog.Configuration
         }
 
         private bool? _isProd;
-        public bool IsProd   
+        public bool IsProd
         {
             get { 
                 _isProd = _isProd ?? Environment == "Release";

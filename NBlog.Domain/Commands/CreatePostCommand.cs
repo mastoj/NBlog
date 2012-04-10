@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TJ.DDD.Infrastructure.Messaging;
+using TJ.CQRS.Messaging;
 
 namespace NBlog.Domain.Commands
 {

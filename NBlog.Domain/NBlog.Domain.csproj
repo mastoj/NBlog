@@ -45,6 +45,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TJ.CQRS">
+      <HintPath>..\packages\TJ.CQRS.0.1.0.0\lib\net40\TJ.CQRS.dll</HintPath>
+    </Reference>
+    <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NBlogConfiguration.cs" />
@@ -74,20 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TJ.DDD.Infrastructure\TJ.DDD.Infrastructure.csproj">
-      <Project>{164C0B94-A366-42A8-A979-C9B03F14A5D0}</Project>
-      <Name>TJ.DDD.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TJ.DDD.MongoEvent\TJ.DDD.MongoEvent.csproj">
-      <Project>{1B7FEE73-5097-457A-A05A-73C478F4A620}</Project>
-      <Name>TJ.DDD.MongoEvent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TJ.Extensions\TJ.Extensions.csproj">
-      <Project>{3E250570-640C-43D7-9107-3375B36051AE}</Project>
-      <Name>TJ.Extensions</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

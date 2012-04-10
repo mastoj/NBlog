@@ -7,8 +7,8 @@ using NBlog.Domain.Entities;
 using NBlog.Domain.Exceptions;
 using NBlog.Domain.Repositories;
 using NBlog.Domain.Views;
-using TJ.DDD.Infrastructure;
-using TJ.DDD.Infrastructure.Respositories;
+using TJ.CQRS;
+using TJ.CQRS.Respositories;
 using TJ.Extensions;
 
 namespace NBlog.Domain.CommandHandlers

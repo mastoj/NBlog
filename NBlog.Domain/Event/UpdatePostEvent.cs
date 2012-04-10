@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TJ.DDD.Infrastructure.Event;
+using TJ.CQRS.Event;
 
 namespace NBlog.Domain.Event
 {

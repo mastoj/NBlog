@@ -1,5 +1,5 @@
 using System;
-using TJ.DDD.Infrastructure.Messaging;
+using TJ.CQRS.Messaging;
 
 namespace NBlog.Domain.Commands
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TJ.DDD.Infrastructure.Event;
+using TJ.CQRS.Event;
 
 namespace NBlog.Domain.Event
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
-using TJ.DDD.Infrastructure;
-using TJ.DDD.Infrastructure.Event;
+using TJ.CQRS;
+using TJ.CQRS.Event;
 
 namespace NBlog.Domain.Entities
 {

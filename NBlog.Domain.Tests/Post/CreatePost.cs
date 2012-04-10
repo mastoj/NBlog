@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NBlog.Domain.CommandHandlers;
 using NBlog.Domain.Commands;
 using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
-using NBlog.Domain.Tests.Stubs;
-using NBlog.Domain.Views;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Tests;
 
 namespace NBlog.Domain.Tests.Post.Create
 {

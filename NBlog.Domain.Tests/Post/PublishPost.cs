@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using FluentAssertions;
-using NBlog.Domain.CommandHandlers;
 using NBlog.Domain.Commands;
 using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
-using NBlog.Domain.Tests.Stubs;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Tests;
 
 namespace NBlog.Domain.Tests.Post.Publish
 {

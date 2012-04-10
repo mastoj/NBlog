@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using NBlog.Domain.Repositories;
 using NBlog.Domain.Tests.Stubs;
 using NUnit.Framework;
-using TJ.DDD.Infrastructure.Event;
-using TJ.DDD.Infrastructure.Messaging;
-using TJ.DDD.Infrastructure.Tests.Stub;
+using TJ.CQRS.Event;
+using TJ.CQRS.Messaging;
 using TJ.Extensions;
 
 namespace NBlog.Domain.Tests
@@ -60,9 +59,9 @@ namespace NBlog.Domain.Tests
             _exceptionOccured = false;
             _exceptionIsChecked = false;
             Given();
+            var commandUnderTest = When();
             try
             {
-                var commandUnderTest = When();
                 _bus.Send(commandUnderTest);
             }
             catch (Exception ex)
