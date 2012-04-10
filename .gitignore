@@ -41,6 +41,8 @@ deploy/*
 
 # Ignoring NuGet packages for this project
 **/*.nupkg
+packages
+packages/*
 
 _FileCache
 _FileCache/*
@@ -52,3 +54,7 @@ _FileCache/*
 
 Uploads
 Uploads/*
+
+# Ignoring ncrunch stuff
+*.ncrunchsolution
+*.ncrunchsolution.user
