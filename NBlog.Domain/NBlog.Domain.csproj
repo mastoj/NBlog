@@ -54,6 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DeletePostCommand.cs" />
+    <Compile Include="Event\PostDeletedEvent.cs" />
+    <Compile Include="Event\PostPublishedEvent.cs" />
     <Compile Include="NBlogConfiguration.cs" />
     <Compile Include="CommandHandlers\PostCommandHandlers.cs" />
     <Compile Include="Commands\CreatePostCommand.cs" />
@@ -62,8 +65,8 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\IEntity.cs" />
-    <Compile Include="Event\CreatePostEvent.cs" />
-    <Compile Include="Event\UpdatePostEvent.cs" />
+    <Compile Include="Event\PostCreatedEvent.cs" />
+    <Compile Include="Event\PostUpdatedEvent.cs" />
     <Compile Include="Exceptions\DuplicatePostIdException.cs" />
     <Compile Include="Exceptions\PostAlreadyExistsForSlugException.cs" />
     <Compile Include="Exceptions\PostAlreadyPublishedException.cs" />

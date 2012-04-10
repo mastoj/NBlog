@@ -55,5 +55,15 @@ namespace NBlog.Domain.CommandHandlers
             post.Update(updatePostCommand.Title, updatePostCommand.Content, updatePostCommand.Slug,
                         updatePostCommand.Tags, updatePostCommand.Excerpt);
         }
+
+        public void Handle(DeletePostCommand deletePostCommand)
+        {
+            var post = _postRepository.Get(deletePostCommand.AggregateId);
+            if (post.IsNull())
+            {
+                throw new PostDoesNotExistException();
+            }
+            post.Delete();
+        }
     }
 }

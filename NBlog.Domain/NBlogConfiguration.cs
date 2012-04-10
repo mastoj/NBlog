@@ -25,6 +25,7 @@ namespace NBlog.Domain
             messageRouter.Register<CreatePostCommand>(postCommandHandlers.Handle);
             messageRouter.Register<PublishPostCommand>(postCommandHandlers.Handle);
             messageRouter.Register<UpdatePostCommand>(postCommandHandlers.Handle);
+            messageRouter.Register<DeletePostCommand>(postCommandHandlers.Handle);
         }
     }
 }

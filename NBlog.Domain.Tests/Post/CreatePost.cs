@@ -27,7 +27,7 @@ namespace NBlog.Domain.Tests.Post.Create
         [Test]
         public void The_Post_Should_Be_Created()
         {
-            var createPostEvent = GetPublishedEvents().Last() as CreatePostEvent;
+            var createPostEvent = GetPublishedEvents().Last() as PostCreatedEvent;
             createPostEvent.Content.Should().Be(_content);
             createPostEvent.EventNumber.Should().Be(0);
             createPostEvent.Excerpt.Should().Be(_excerpt);
@@ -88,7 +88,7 @@ namespace NBlog.Domain.Tests.Post.Create
         [Test]
         public void The_Post_Should_Be_Created()
         {
-            var createPostEvent = GetPublishedEvents().Last() as CreatePostEvent;
+            var createPostEvent = GetPublishedEvents().Last() as PostCreatedEvent;
             createPostEvent.Content.Should().Be(_content);
             createPostEvent.EventNumber.Should().Be(0);
             createPostEvent.Excerpt.Should().Be(_excerpt);

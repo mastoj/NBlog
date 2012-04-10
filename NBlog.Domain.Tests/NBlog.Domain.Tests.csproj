@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseCommandTest.cs" />
+    <Compile Include="Post\DeletePost.cs" />
     <Compile Include="Post\PublishPost.cs" />
     <Compile Include="Post\UpdatePost.cs" />
     <Compile Include="Post\CreatePost.cs" />

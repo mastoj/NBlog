@@ -16,6 +16,7 @@ namespace NBlog.Domain.Entities
         private string _content;
         private bool _published;
         private DateTime _publishTime;
+        private bool _isDeleted;
 
         public Post()
         {
@@ -24,42 +25,48 @@ namespace NBlog.Domain.Entities
 
         private void RegisterHandlers()
         {
-            RegisterEventHandler<CreatePostEvent>(PostCreated);
-            RegisterEventHandler<UpdatePostEvent>(PostUpdated);
-            RegisterEventHandler<PublishPostEvent>(PostPublished);
+            RegisterEventHandler<PostCreatedEvent>(PostCreated);
+            RegisterEventHandler<PostUpdatedEvent>(PostUpdated);
+            RegisterEventHandler<PostPublishedEvent>(PostPublished);
+            RegisterEventHandler<PostDeletedEvent>(PostDeleted);
         }
 
-        private void PostPublished(PublishPostEvent postPublishedEvent)
+        private void PostDeleted(PostDeletedEvent postDeletedEvent)
         {
-            _publishTime = postPublishedEvent.PublishTime;
+            _isDeleted = true;
+        }
+
+        private void PostPublished(PostPublishedEvent postPublishedEventPublishedEvent)
+        {
+            _publishTime = postPublishedEventPublishedEvent.PublishTime;
             _published = true;
         }
 
-        private void PostCreated(CreatePostEvent postCreatedEvent)
+        private void PostCreated(PostCreatedEvent postCreatedEventCreatedEvent)
         {
-            AggregateId = postCreatedEvent.AggregateId;
-            _title = postCreatedEvent.Title;
-            _slug = postCreatedEvent.Slug;
-            _tags = postCreatedEvent.Tags;
-            _excerpt = postCreatedEvent.Excerpt;
-            _content = postCreatedEvent.Content;
+            AggregateId = postCreatedEventCreatedEvent.AggregateId;
+            _title = postCreatedEventCreatedEvent.Title;
+            _slug = postCreatedEventCreatedEvent.Slug;
+            _tags = postCreatedEventCreatedEvent.Tags;
+            _excerpt = postCreatedEventCreatedEvent.Excerpt;
+            _content = postCreatedEventCreatedEvent.Content;
             _published = false;
         }
 
-        private void PostUpdated(UpdatePostEvent postUpdatedEvent)
+        private void PostUpdated(PostUpdatedEvent postUpdatedEventUpdatedEvent)
         {
-            _title = postUpdatedEvent.Title;
-            _slug = postUpdatedEvent.Slug;
-            _tags = postUpdatedEvent.Tags;
-            _excerpt = postUpdatedEvent.Excerpt;
-            _content = postUpdatedEvent.Content;
+            _title = postUpdatedEventUpdatedEvent.Title;
+            _slug = postUpdatedEventUpdatedEvent.Slug;
+            _tags = postUpdatedEventUpdatedEvent.Tags;
+            _excerpt = postUpdatedEventUpdatedEvent.Excerpt;
+            _content = postUpdatedEventUpdatedEvent.Content;
         }
 
         private Post(string title, string content, string slug, List<string> tags, string excerpt, Guid aggregateId)
             : this()
         {
             var creationDate = DateTime.Now;
-            var createEvent = new CreatePostEvent(title, content, slug, tags, excerpt, creationDate, aggregateId);
+            var createEvent = new PostCreatedEvent(title, content, slug, tags, excerpt, creationDate, aggregateId);
             Apply(createEvent);
         }
 
@@ -71,7 +78,7 @@ namespace NBlog.Domain.Entities
         public void Update(string title, string content, string slug, List<string> tags, string excerpt)
         {
             var lastSaveTime = DateTime.Now;
-            var updateEvent = new UpdatePostEvent(title, content, slug, tags, excerpt, lastSaveTime, AggregateId);
+            var updateEvent = new PostUpdatedEvent(title, content, slug, tags, excerpt, lastSaveTime, AggregateId);
             Apply(updateEvent);
         }
 
@@ -82,8 +89,14 @@ namespace NBlog.Domain.Entities
                 throw new PostAlreadyPublishedException();
             }
             var publishTime = DateTime.Now;
-            var publishEvent = new PublishPostEvent(publishTime, AggregateId);
+            var publishEvent = new PostPublishedEvent(publishTime, AggregateId);
             Apply(publishEvent);
+        }
+
+        public void Delete()
+        {
+            var postDeletedEvent = new PostDeletedEvent(AggregateId);
+            Apply(postDeletedEvent);
         }
     }
 }

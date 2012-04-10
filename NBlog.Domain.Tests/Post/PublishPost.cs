@@ -43,7 +43,7 @@ namespace NBlog.Domain.Tests.Post.Publish
         [Test]
         public void The_Post_Should_Be_Published()
         {
-            var latestEvent = GetPublishedEvents().LastOrDefault() as PublishPostEvent;
+            var latestEvent = GetPublishedEvents().LastOrDefault() as PostPublishedEvent;
             latestEvent.Should().NotBeNull();
             latestEvent.PublishTime.Should().BeOnOrAfter(_lowestPossibleTime);
             latestEvent.PublishTime.Should().BeOnOrAfter(_lowestPossibleTime);

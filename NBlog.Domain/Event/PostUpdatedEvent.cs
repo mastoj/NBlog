@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TJ.CQRS.Event;
 
 namespace NBlog.Domain.Event
 {
-    public class CreatePostEvent : DomainEventBase
+    public class PostUpdatedEvent : DomainEventBase
     {
         public string Title { get; set; }
 
@@ -18,16 +16,16 @@ namespace NBlog.Domain.Event
 
         public string Excerpt { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime LastSaveTime { get; set; }
 
-        public CreatePostEvent(string title, string content, string slug, List<string> tags, string excerpt, DateTime creationDate, Guid aggregateId)
+        public PostUpdatedEvent(string title, string content, string slug, List<string> tags, string excerpt, DateTime lastSaveTime, Guid aggregateId)
         {
             Title = title;
             Content = content;
             Slug = slug;
             Tags = tags;
             Excerpt = excerpt;
-            CreationDate = creationDate;
+            LastSaveTime = lastSaveTime;
             AggregateId = aggregateId;
         }
     }

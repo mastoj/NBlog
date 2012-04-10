@@ -55,7 +55,7 @@ namespace NBlog.Domain.Tests.Post.Update
         [Test]
         public void The_Post_Should_Be_Updated()
         {
-            var updateEvent = GetPublishedEvents().LastOrDefault() as UpdatePostEvent;
+            var updateEvent = GetPublishedEvents().LastOrDefault() as PostUpdatedEvent;
             updateEvent.Should().NotBeNull();
             updateEvent.Content.Should().Be(_newContent);
             updateEvent.Excerpt.Should().Be(_newExcerpt);
