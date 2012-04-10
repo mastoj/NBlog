@@ -10,16 +10,16 @@ namespace NBlog.Domain.Commands
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public string ShortUrl { get; set; }
+        public string Slug { get; set; }
         public List<string> Tags { get; set; }
         public string Excerpt { get; set; }
 
-        public CreatePostCommand(string title, string content, string shortUrl, List<string> tags, string excerpt, Guid aggregateId)
+        public CreatePostCommand(string title, string content, string slug, List<string> tags, string excerpt, Guid aggregateId)
             : base(aggregateId)
         {
             Title = title;
             Content = content;
-            ShortUrl = shortUrl;
+            Slug = slug;
             Tags = tags;
             Excerpt = excerpt;
         }

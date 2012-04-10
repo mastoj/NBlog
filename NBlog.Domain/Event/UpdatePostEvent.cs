@@ -10,7 +10,7 @@ namespace NBlog.Domain.Event
 
         public string Content { get; set; }
 
-        public string ShortUrl { get; set; }
+        public string Slug { get; set; }
 
         public List<string> Tags { get; set; }
 
@@ -18,11 +18,11 @@ namespace NBlog.Domain.Event
 
         public DateTime LastSaveTime { get; set; }
 
-        public UpdatePostEvent(string title, string content, string shortUrl, List<string> tags, string excerpt, DateTime lastSaveTime, Guid aggregateId)
+        public UpdatePostEvent(string title, string content, string slug, List<string> tags, string excerpt, DateTime lastSaveTime, Guid aggregateId)
         {
             Title = title;
             Content = content;
-            ShortUrl = shortUrl;
+            Slug = slug;
             Tags = tags;
             Excerpt = excerpt;
             LastSaveTime = lastSaveTime;

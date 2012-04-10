@@ -73,9 +73,9 @@ namespace NBlog.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Article(string shorturl) {
+        public override System.Web.Mvc.ActionResult Article(string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Article);
-            callInfo.RouteValueDictionary.Add("shorturl", shorturl);
+            callInfo.RouteValueDictionary.Add("slug", slug);
             return callInfo;
         }
 

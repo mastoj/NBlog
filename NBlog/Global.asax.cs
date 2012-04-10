@@ -29,7 +29,7 @@ namespace NBlog
 
             routes.MapRoute(
                 "Post route",
-                "{shortUrl}",
+                "{slug}",
                 new { controller = "Post", action = "Article" },
                 new string[] { "NBlog.Controllers" }
             );

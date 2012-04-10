@@ -7,7 +7,7 @@
     {
         <section>
             <div class="post">
-                <h2>@Html.ActionLink(post.PostMetaData.Title, MVC.Post.Article(post.PostMetaData.ShortUrl), new { @class = "post-link"})</h2>
+                <h2>@Html.ActionLink(post.PostMetaData.Title, MVC.Post.Article(post.PostMetaData.Slug), new { @class = "post-link"})</h2>
                 <span class="excerpt">@post.PostMetaData.Excerpt</span>
             </div>
         </section>

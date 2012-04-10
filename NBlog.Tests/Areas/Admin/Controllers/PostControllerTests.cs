@@ -75,7 +75,7 @@
 //                                       {
 //                                           PostMetaData = new PostMetaData
 //                                                              {
-//                                                                  ShortUrl = "short url",
+//                                                                  Slug = "short url",
 //                                                                  Title = "This is for real"
 //                                                              },
 //                                           Id = Guid.Empty,
@@ -99,7 +99,7 @@
 //                       {
 //                           Title = "Title",
 //                           Content = "Post content",
-//                           ShortUrl = "ShortUrl"
+//                           Slug = "Slug"
 //                       };
 //        }
 

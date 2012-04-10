@@ -24,9 +24,9 @@ namespace NBlog.Controllers
             return View(Views.Index);
         }
 
-        public virtual ActionResult Article(string shorturl)
+        public virtual ActionResult Article(string slug)
         {
-//            var article = _postRepository.All().Where(y => y.PostMetaData.ShortUrl == shorturl).FirstOrDefault();
+//            var article = _postRepository.All().Where(y => y.PostMetaData.Slug == slug).FirstOrDefault();
             //if (article.IsNull())
             //{
             //    return HttpNotFound("Can't find page");

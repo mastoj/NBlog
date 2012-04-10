@@ -14,7 +14,7 @@
     <tr>
         <th></th>
         <th>
-            ShortUrl
+            Slug
         </th>
         <th>
             Post
@@ -33,11 +33,11 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Post.PostMetaData.ShortUrl }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Post.PostMetaData.ShortUrl })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Post.PostMetaData.Slug }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Post.PostMetaData.Slug })
         </td>
         <td>
-			@item.Post.PostMetaData.ShortUrl
+			@item.Post.PostMetaData.Slug
         </td>
         <td>
 			@item.Post.PublishedPost.IsNotNull() ? item.Post.Published.Content : item.Post.PostVersions.First().Content 

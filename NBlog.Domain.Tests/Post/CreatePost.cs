@@ -17,10 +17,10 @@ namespace NBlog.Domain.Tests.Post.Create
             _lowestPossibleDate = DateTime.Now;
             _title = "Title";
             _content = "content";
-            _shortUrl = "shortUrl";
+            _slug = "slug";
             _tags = new List<string>() {"tag1", "tag2"};
             _excerpt = "excerpt";
-            var createPostCommand = new CreatePostCommand(_title, _content, _shortUrl, _tags, _excerpt, Guid.NewGuid());
+            var createPostCommand = new CreatePostCommand(_title, _content, _slug, _tags, _excerpt, Guid.NewGuid());
             return createPostCommand;
         }
 
@@ -31,7 +31,7 @@ namespace NBlog.Domain.Tests.Post.Create
             createPostEvent.Content.Should().Be(_content);
             createPostEvent.EventNumber.Should().Be(0);
             createPostEvent.Excerpt.Should().Be(_excerpt);
-            createPostEvent.ShortUrl.Should().Be(_shortUrl);
+            createPostEvent.Slug.Should().Be(_slug);
             createPostEvent.Tags.SequenceEqual(_tags);
             createPostEvent.Title.Should().Be(_title);
             createPostEvent.CreationDate.Should().BeOnOrAfter(_lowestPossibleDate);
@@ -39,7 +39,7 @@ namespace NBlog.Domain.Tests.Post.Create
 
         private string _title;
         private string _content;
-        private string _shortUrl;
+        private string _slug;
         private List<string> _tags;
         private string _excerpt;
         private DateTime _lowestPossibleDate;
@@ -49,12 +49,12 @@ namespace NBlog.Domain.Tests.Post.Create
     {
         protected override void Given()
         {
-            PreSetCommand(new CreatePostCommand("title", "content", "shortUrl", null, "excerpt", Guid.Empty));
+            PreSetCommand(new CreatePostCommand("title", "content", "slug", null, "excerpt", Guid.Empty));
         }
 
         protected override CreatePostCommand When()
         {
-            return new CreatePostCommand("title", "content", "shortUrl", null, "excerpt", Guid.Empty);
+            return new CreatePostCommand("title", "content", "slug", null, "excerpt", Guid.Empty);
         }
 
         [Test]

@@ -10,7 +10,7 @@ namespace NBlog.Domain.Entities
     public class Post : AggregateRoot
     {
         private string _title;
-        private string _shortUrl;
+        private string _slug;
         private string _excerpt;
         private List<string> _tags;
         private string _content;
@@ -39,7 +39,7 @@ namespace NBlog.Domain.Entities
         {
             AggregateId = postCreatedEvent.AggregateId;
             _title = postCreatedEvent.Title;
-            _shortUrl = postCreatedEvent.ShortUrl;
+            _slug = postCreatedEvent.Slug;
             _tags = postCreatedEvent.Tags;
             _excerpt = postCreatedEvent.Excerpt;
             _content = postCreatedEvent.Content;
@@ -49,29 +49,29 @@ namespace NBlog.Domain.Entities
         private void PostUpdated(UpdatePostEvent postUpdatedEvent)
         {
             _title = postUpdatedEvent.Title;
-            _shortUrl = postUpdatedEvent.ShortUrl;
+            _slug = postUpdatedEvent.Slug;
             _tags = postUpdatedEvent.Tags;
             _excerpt = postUpdatedEvent.Excerpt;
             _content = postUpdatedEvent.Content;
         }
 
-        private Post(string title, string content, string shortUrl, List<string> tags, string excerpt, Guid aggregateId)
+        private Post(string title, string content, string slug, List<string> tags, string excerpt, Guid aggregateId)
             : this()
         {
             var creationDate = DateTime.Now;
-            var createEvent = new CreatePostEvent(title, content, shortUrl, tags, excerpt, creationDate, aggregateId);
+            var createEvent = new CreatePostEvent(title, content, slug, tags, excerpt, creationDate, aggregateId);
             Apply(createEvent);
         }
 
-        public static Post Create(string title, string content, string shortUrl, List<string> tags, string excerpt, Guid aggregateId)
+        public static Post Create(string title, string content, string slug, List<string> tags, string excerpt, Guid aggregateId)
         {
-            return new Post(title, content, shortUrl, tags, excerpt, aggregateId);
+            return new Post(title, content, slug, tags, excerpt, aggregateId);
         }
 
-        public void Update(string title, string content, string shortUrl, List<string> tags, string excerpt)
+        public void Update(string title, string content, string slug, List<string> tags, string excerpt)
         {
             var lastSaveTime = DateTime.Now;
-            var updateEvent = new UpdatePostEvent(title, content, shortUrl, tags, excerpt, lastSaveTime, AggregateId);
+            var updateEvent = new UpdatePostEvent(title, content, slug, tags, excerpt, lastSaveTime, AggregateId);
             Apply(updateEvent);
         }
 

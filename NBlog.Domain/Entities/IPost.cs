@@ -6,7 +6,7 @@ namespace NBlog.Domain
 {
     public interface IPost
     {
-        string ShortUrl { get; set; }
+        string Slug { get; set; }
         string Content { get; set; }
         string Excerpt { get; set; }
         string Title { get; set; }

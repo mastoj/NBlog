@@ -65,7 +65,7 @@
     <Compile Include="Event\CreatePostEvent.cs" />
     <Compile Include="Event\UpdatePostEvent.cs" />
     <Compile Include="Exceptions\DuplicatePostIdException.cs" />
-    <Compile Include="Exceptions\PostAlreadyExistsForUrlException.cs" />
+    <Compile Include="Exceptions\PostAlreadyExistsForSlugException.cs" />
     <Compile Include="Exceptions\PostAlreadyPublishedException.cs" />
     <Compile Include="Exceptions\PostDoesNotExistException.cs" />
     <Compile Include="Extensions\RepositoryExtensions.cs" />

@@ -30,7 +30,7 @@ namespace NBlog.Domain.CommandHandlers
             {
                 throw new DuplicatePostIdException();
             }
-            post = Post.Create(createPostCommand.Title, createPostCommand.Content, createPostCommand.ShortUrl,
+            post = Post.Create(createPostCommand.Title, createPostCommand.Content, createPostCommand.Slug,
                                createPostCommand.Tags, createPostCommand.Excerpt, createPostCommand.AggregateId);
             _postRepository.Insert(post);
         }
@@ -52,7 +52,7 @@ namespace NBlog.Domain.CommandHandlers
             {
                 throw new PostDoesNotExistException();
             }
-            post.Update(updatePostCommand.Title, updatePostCommand.Content, updatePostCommand.ShortUrl,
+            post.Update(updatePostCommand.Title, updatePostCommand.Content, updatePostCommand.Slug,
                         updatePostCommand.Tags, updatePostCommand.Excerpt);
         }
     }
