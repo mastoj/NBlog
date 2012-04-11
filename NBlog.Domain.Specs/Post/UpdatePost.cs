@@ -7,7 +7,7 @@ using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
 using NUnit.Framework;
 
-namespace NBlog.Domain.Tests.Post.Update
+namespace NBlog.Domain.Specs.Post.Update
 {
     public class When_Updating_A_Post_That_Does_Not_Exist : BaseCommandTest<UpdatePostCommand>
     {

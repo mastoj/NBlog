@@ -7,7 +7,7 @@ using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
 using NUnit.Framework;
 
-namespace NBlog.Domain.Tests.Post.Delete
+namespace NBlog.Domain.Specs.Post.Delete
 {
     [TestFixture]
     public class When_Deleting_A_Post_That_Does_Not_Exist : BaseCommandTest<DeletePostCommand>

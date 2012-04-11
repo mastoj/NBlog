@@ -14,7 +14,7 @@ namespace NBlog.Domain
     {
         private IDomainRepository<Post> _postRepository;
 
-        public NBlogConfiguration(IDomainRepository<Post> postRepository)
+        public NBlogConfiguration( IDomainRepository<Post> postRepository)
         {
             _postRepository = postRepository;
         }

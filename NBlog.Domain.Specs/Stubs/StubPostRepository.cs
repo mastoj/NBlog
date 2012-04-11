@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TJ.CQRS.Respositories;
 
-namespace NBlog.Domain.Tests.Stubs
+namespace NBlog.Domain.Specs.Stubs
 {
     public class StubPostRepository : IDomainRepository<Entities.Post>
     {

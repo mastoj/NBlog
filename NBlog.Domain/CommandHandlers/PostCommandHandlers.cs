@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NBlog.Domain.Commands;
+﻿using NBlog.Domain.Commands;
 using NBlog.Domain.Entities;
 using NBlog.Domain.Exceptions;
-using NBlog.Domain.Repositories;
-using NBlog.Domain.Views;
 using TJ.CQRS;
 using TJ.CQRS.Respositories;
 using TJ.Extensions;

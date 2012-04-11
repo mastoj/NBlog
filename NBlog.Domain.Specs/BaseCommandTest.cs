@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using NBlog.Domain.Repositories;
-using NBlog.Domain.Tests.Stubs;
+using NBlog.Domain.Specs.Stubs;
+using NBlog.Views;
 using NUnit.Framework;
 using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
 using TJ.Extensions;
 
-namespace NBlog.Domain.Tests
+namespace NBlog.Domain.Specs
 {
     [TestFixture]
     public abstract class BaseCommandTest<TCommand> where TCommand : class, ICommand
@@ -52,6 +53,8 @@ namespace NBlog.Domain.Tests
         {
             return _bus.PublishedEvents;
         }
+
+        protected PostView PostView { get; private set; }
 
         [TestFixtureSetUp]
         public void Setup()

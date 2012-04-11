@@ -79,8 +79,6 @@
     <Compile Include="Entities\IPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\IUser.cs" />
-    <Compile Include="Views\IPostView.cs" />
-    <Compile Include="Views\PostViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

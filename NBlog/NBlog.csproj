@@ -116,9 +116,6 @@
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="WatiN.Core">
-      <HintPath>..\packages\WatiN.2.1.0\lib\net40\WatiN.Core.dll</HintPath>
-    </Reference>
     <Reference Include="WebActivator">
       <HintPath>..\packages\WebActivator.1.4.2\lib\net40\WebActivator.dll</HintPath>
     </Reference>

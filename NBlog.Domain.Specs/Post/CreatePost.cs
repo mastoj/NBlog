@@ -5,9 +5,10 @@ using FluentAssertions;
 using NBlog.Domain.Commands;
 using NBlog.Domain.Event;
 using NBlog.Domain.Exceptions;
+using NBlog.Views;
 using NUnit.Framework;
 
-namespace NBlog.Domain.Tests.Post.Create
+namespace NBlog.Domain.Specs.Post.Create
 {
     [TestFixture]
     public class When_Creating_A_Post : BaseCommandTest<CreatePostCommand>
@@ -35,6 +36,13 @@ namespace NBlog.Domain.Tests.Post.Create
             createPostEvent.Tags.SequenceEqual(_tags);
             createPostEvent.Title.Should().Be(_title);
             createPostEvent.CreationDate.Should().BeOnOrAfter(_lowestPossibleDate);
+        }
+
+        [Test]
+        public void The_Post_Should_Be_Created2()
+        {
+            //var posts = PostView.GetPosts();
+            //posts.Count().Should().Be(1);
         }
 
         private string _title;

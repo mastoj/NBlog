@@ -38,10 +38,26 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TJ.CQRS">
+      <HintPath>..\packages\TJ.CQRS.0.1.0.0\lib\net40\TJ.CQRS.dll</HintPath>
+    </Reference>
+    <Reference Include="TJ.Extensions">
+      <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="PostView.cs" />
+    <Compile Include="PostItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
+      <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
+      <Name>NBlog.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
