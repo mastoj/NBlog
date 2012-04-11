@@ -81,6 +81,12 @@
       <HintPath>..\packages\JsonValue.0.3.0\lib\40\Microsoft.ServiceModel.Web.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="MongoDB.Bson, Version=1.3.1.4349, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.3.1.4349, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
@@ -113,6 +119,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TJ.CQRS, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TJ.CQRS.0.1.0.0\lib\net40\TJ.CQRS.dll</HintPath>
+    </Reference>
+    <Reference Include="TJ.CQRS.MongoEvent, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TJ.CQRS.MongoEvent.0.1.0.0\lib\net40\TJ.CQRS.MongoEvent.dll</HintPath>
+    </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
     </Reference>
@@ -139,6 +152,7 @@
     <Compile Include="Admin.SharedController.generated.cs">
       <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Configuration\NBlogDomainConfiguration.cs" />
     <Compile Include="PostController.generated.cs">
       <DependentUpon>T4MVC.chirpy.tt</DependentUpon>
     </Compile>
@@ -171,8 +185,8 @@
     <Compile Include="Areas\Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Models\PostViewModel.cs" />
-    <Compile Include="Configuration\INBlogConfiguration.cs" />
-    <Compile Include="Configuration\NBlogConfiguration.cs" />
+    <Compile Include="Configuration\INBlogWebConfiguration.cs" />
+    <Compile Include="Configuration\NBlogWebConfiguration.cs" />
     <Compile Include="Configuration\NBlogMongoConfiguration.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -308,6 +322,10 @@
     <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NBlog.Views\NBlog.Views.csproj">
+      <Project>{04296F85-1CEF-4842-995B-62B93180CD25}</Project>
+      <Name>NBlog.Views</Name>
     </ProjectReference>
     <ProjectReference Include="..\TJ.Mvc\TJ.Mvc.csproj">
       <Project>{B8F5BAD9-D6C1-4556-BC97-4E5C53999814}</Project>

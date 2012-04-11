@@ -2,11 +2,11 @@ namespace NBlog.Configuration
 {
     public class NBlogMongoConfiguration //: MongoConfiguration
     {
-        public INBlogConfiguration NBlogConfiguration { get; set; }
+        public INBlogWebConfiguration InBlogWebConfiguration { get; set; }
 
-        public NBlogMongoConfiguration(INBlogConfiguration nBlogConfiguration)
+        public NBlogMongoConfiguration(INBlogWebConfiguration inBlogWebConfiguration)
         {
-            NBlogConfiguration = nBlogConfiguration;
+            InBlogWebConfiguration = inBlogWebConfiguration;
         }
 
 //        private string _connectionString;
@@ -14,7 +14,7 @@ namespace NBlog.Configuration
 //        {
 //            get
 //            {
-//                _connectionString = _connectionString ?? NBlogConfiguration.MongoHQUrl;
+//                _connectionString = _connectionString ?? NBlogWebConfiguration.MongoHQUrl;
 ////                _connectionString = _connectionString.IsNullOrEmpty() ? base.ConnectionString : _connectionString;
 //                return _connectionString;
 //            }

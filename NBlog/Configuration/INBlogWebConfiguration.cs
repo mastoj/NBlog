@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NBlog.Configuration
 {
-    public interface INBlogConfiguration
+    public interface INBlogWebConfiguration
     {
         string Environment { get; }
         string MongoHQUrl { get; }

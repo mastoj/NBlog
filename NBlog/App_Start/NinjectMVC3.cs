@@ -50,7 +50,7 @@ namespace NBlog.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INBlogConfiguration>().To<NBlogConfiguration>().InSingletonScope();
+            kernel.Bind<INBlogWebConfiguration>().To<NBlogWebConfiguration>().InSingletonScope();
 //            kernel.Bind<IMongoConfiguration>().To<NBlogMongoConfiguration>().InSingletonScope();
 
             // Repositores

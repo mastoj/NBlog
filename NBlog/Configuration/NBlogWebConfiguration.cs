@@ -3,7 +3,7 @@ using TJ.Extensions;
 
 namespace NBlog.Configuration
 {
-    public class NBlogConfiguration : INBlogConfiguration
+    public class NBlogWebConfiguration : INBlogWebConfiguration
     {
         private string _environment;
         public string Environment

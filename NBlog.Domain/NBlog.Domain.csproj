@@ -57,7 +57,7 @@
     <Compile Include="Commands\DeletePostCommand.cs" />
     <Compile Include="Event\PostDeletedEvent.cs" />
     <Compile Include="Event\PostPublishedEvent.cs" />
-    <Compile Include="NBlogConfiguration.cs" />
+    <Compile Include="INBlogDomainConfiguration.cs" />
     <Compile Include="CommandHandlers\PostCommandHandlers.cs" />
     <Compile Include="Commands\CreatePostCommand.cs" />
     <Compile Include="Commands\PublishPostCommand.cs" />

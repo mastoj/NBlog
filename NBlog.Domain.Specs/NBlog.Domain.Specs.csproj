@@ -64,6 +64,7 @@
     <Compile Include="Post\PublishPost.cs" />
     <Compile Include="Post\UpdatePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\PostViewRepostioryStub.cs" />
     <Compile Include="Stubs\StubEventStore.cs" />
     <Compile Include="Stubs\StubPostRepository.cs" />
   </ItemGroup>
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\NBlog.Views\NBlog.Views.csproj">
       <Project>{04296F85-1CEF-4842-995B-62B93180CD25}</Project>
       <Name>NBlog.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NBlog\NBlog.csproj">
+      <Project>{329CA254-3C99-4F77-BB7A-1D715F5339C8}</Project>
+      <Name>NBlog</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

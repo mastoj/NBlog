@@ -41,8 +41,8 @@ namespace NBlog.Domain.Specs.Post.Create
         [Test]
         public void The_Post_Should_Be_Created2()
         {
-            //var posts = PostView.GetPosts();
-            //posts.Count().Should().Be(1);
+            var posts = PostView.GetPosts();
+            posts.Count().Should().Be(1);
         }
 
         private string _title;
