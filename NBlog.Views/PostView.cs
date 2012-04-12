@@ -26,7 +26,8 @@ namespace NBlog.Views
                 Content = postCreatedEvent.Content,
                 Excerpt = postCreatedEvent.Excerpt,
                 CreationDate = postCreatedEvent.CreationDate,
-                PostId = postCreatedEvent.AggregateId
+                PostId = postCreatedEvent.AggregateId,
+                LastSaveTime = postCreatedEvent.CreationDate
             };
             _postViewRepostiory.Insert(postItem);
         }
@@ -57,6 +58,20 @@ namespace NBlog.Views
             if (post.IsNotNull())
             {
                 post.IsDeleted = true;
+            }
+        }
+
+        public void Handle(PostUpdatedEvent postUpdatedEvent)
+        {
+            var post = _postViewRepostiory.Find(y => y.PostId == postUpdatedEvent.AggregateId);
+            if (post != null)
+            {
+                post.LastSaveTime = postUpdatedEvent.LastSaveTime;
+                post.Content = postUpdatedEvent.Content;
+                post.Excerpt = postUpdatedEvent.Excerpt;
+                post.Slug = postUpdatedEvent.Slug;
+                post.Tags = postUpdatedEvent.Tags;
+                post.Title = postUpdatedEvent.Title;
             }
         }
     }

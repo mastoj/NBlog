@@ -15,5 +15,6 @@ namespace NBlog.Views
         public DateTime PublishedTime { get; set; }
         public bool IsPublished { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime LastSaveTime { get; set; }
     }
 }

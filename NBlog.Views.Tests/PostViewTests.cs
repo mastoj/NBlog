@@ -37,6 +37,7 @@ namespace NBlog.Views.Tests
             post.Title.Should().Be(_postCreatedEvent.Title);
             post.Tags.Should().Contain(_postCreatedEvent.Tags);
             post.IsPublished.Should().BeFalse();
+            post.LastSaveTime.Should().Be(post.CreationDate);
         }
 
         private PostCreatedEvent _postCreatedEvent;
@@ -121,6 +122,20 @@ namespace NBlog.Views.Tests
     }
 
     [TestFixture]
+    public class When_Trying_To_Publish_A_Post_That_Do_Not_Exist : PostViewTestBase
+    {
+        public override void When()
+        {
+            PostView.Handle(new PostPublishedEvent(DateTime.Now, Guid.Empty));
+        }
+
+        [Test]
+        public void Then_Nothing_Should_Happen()
+        {
+        }
+    }
+
+    [TestFixture]
     public class When_Published_Post_Is_Deleted : PostViewTestBase
     {
         public override void Given()
@@ -173,6 +188,44 @@ namespace NBlog.Views.Tests
         private Guid _postId;
         private PostDeletedEvent _postDeletedEvent;
         private int _initialPostCount;
+    }
+
+    public class When_Unpublished_Post_Is_Updated : PostViewTestBase
+    {
+        public override void Given()
+        {
+            _postId = Guid.NewGuid();
+            _postCreatedEvent = new PostCreatedEvent("Title", "Content", "slug", new List<string>() { "tag1", "tag2" }, "Excerpt", DateTime.Now.AddDays(-1), _postId);
+            PostView.Handle(_postCreatedEvent);
+            PostView.Handle(new PostPublishedEvent(DateTime.Now, _postId));
+            AddXPostItemsToView(5, PostView);
+        }
+
+        public override void When()
+        {
+            _newDate = DateTime.Now;
+            _postUpdatedEvent = new PostUpdatedEvent("Title2", "Content2", "Slug2",
+                                                        new List<string>() {"tag3", "tag4"}, "Excerpt2", _newDate,
+                                                        _postId);
+            PostView.Handle(_postUpdatedEvent);
+        }
+
+        [Test]
+        public void The_Post_Should_Be_Updated()
+        {
+            var post = PostView.GetPosts().First();
+            post.Title.Should().Be(_postUpdatedEvent.Title);
+            post.Content.Should().Be(_postUpdatedEvent.Content);
+            post.Slug.Should().Be(_postUpdatedEvent.Slug);
+            post.Tags.Should().Contain(_postUpdatedEvent.Tags);
+            post.Excerpt.Should().Be(_postUpdatedEvent.Excerpt);
+            post.LastSaveTime.Should().Be(_postUpdatedEvent.LastSaveTime);
+        }
+
+        private Guid _postId;
+        private PostCreatedEvent _postCreatedEvent;
+        private DateTime _newDate;
+        private PostUpdatedEvent _postUpdatedEvent;
     }
 
     [TestFixture]
