@@ -235,7 +235,7 @@ namespace NBlog.Views.Tests
 
         public PostViewTestBase()
         {
-            IPostViewRepostiory postViewRepostioryStub = new PostViewRepositoryStub();
+            var postViewRepostioryStub = new ViewRepositoryStub<PostItem>();
             PostView = new PostView(postViewRepostioryStub);
         }
 
@@ -261,31 +261,6 @@ namespace NBlog.Views.Tests
                                                             DateTime.Now.AddDays(-1), Guid.NewGuid());
                 postView.Handle(postCreatedEvent);
             }
-        }
-    }
-
-    public class PostViewRepositoryStub : IPostViewRepostiory
-    {
-        private List<PostItem> _posts;
-
-        public PostViewRepositoryStub()
-        {
-            _posts = new List<PostItem>();
-        }
-
-        public void Insert(PostItem postItem)
-        {
-            _posts.Add(postItem);
-        }
-
-        public PostItem Find(Func<PostItem, bool> func)
-        {
-            return _posts.FirstOrDefault(func);
-        }
-
-        public IEnumerable<PostItem> All(Func<PostItem, bool> func)
-        {
-            return _posts.Where(func);
         }
     }
 }

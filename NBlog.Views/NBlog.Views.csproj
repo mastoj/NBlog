@@ -46,6 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorView.cs" />
+    <Compile Include="BlogView.cs" />
+    <Compile Include="IViewRepository.cs" />
     <Compile Include="PostView.cs" />
     <Compile Include="PostItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

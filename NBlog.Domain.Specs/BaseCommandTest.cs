@@ -26,9 +26,14 @@ namespace NBlog.Domain.Specs
             _bus = new InMemoryBus(messageRouter);
             _eventStore = new StubEventStore(_bus);
             var postRepository = new PostRepository(_eventStore);
-            var postViewRepository = new PostViewRepostioryStub();
-            var handlerConfiguration = new NBlogDomainConfiguration(postRepository, postViewRepository);
+            var blogRepository = new BlogRepository(_eventStore);
+            var postViewRepository = new ViewRepositoryStub<PostItem>();
+            var blogViewRepository = new ViewRepositoryStub<BlogViewItem>();
+            var authorViewRepository = new ViewRepositoryStub<Author>();
+            var handlerConfiguration = new NBlogDomainConfiguration(postRepository, blogRepository, postViewRepository, blogViewRepository, authorViewRepository);
             PostView = handlerConfiguration.PostView;
+            BlogView = handlerConfiguration.BlogView;
+            AuthorView = handlerConfiguration.AuthorView;
             handlerConfiguration.ConfigureMessageRouter(messageRouter);
         }
 
@@ -57,8 +62,6 @@ namespace NBlog.Domain.Specs
             return _bus.PublishedEvents;
         }
 
-        protected PostView PostView { get; private set; }
-
         [TestFixtureSetUp]
         public void Setup()
         {
@@ -85,5 +88,17 @@ namespace NBlog.Domain.Specs
                 throw _caughtException;
             }
         }
+
+        #region views
+
+
+        protected PostView PostView { get; private set; }
+
+        protected BlogView BlogView { get; private set; }
+
+        protected AuthorView AuthorView { get; private set; }
+
+
+        #endregion
     }
 }

@@ -58,8 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogViewTests.cs" />
     <Compile Include="PostViewTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewRepositoryStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

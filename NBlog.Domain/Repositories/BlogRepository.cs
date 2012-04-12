@@ -1,12 +1,12 @@
-﻿using NBlog.Domain.Entities;
+using NBlog.Domain.Entities;
 using TJ.CQRS.Event;
 using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.Repositories
 {
-    public class PostRepository : DomainRepository<Post>
+    public class BlogRepository : DomainRepository<Blog>
     {
-        public PostRepository(IEventStore eventStore)
+        public BlogRepository(IEventStore eventStore)
             : base(eventStore)
         {
         }

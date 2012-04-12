@@ -9,9 +9,9 @@ namespace NBlog.Views
 {
     public class PostView
     {
-        private readonly IPostViewRepostiory _postViewRepostiory;
+        private readonly IViewRepository<PostItem> _postViewRepostiory;
 
-        public PostView(IPostViewRepostiory postViewRepostiory)
+        public PostView(IViewRepository<PostItem> postViewRepostiory)
         {
             _postViewRepostiory = postViewRepostiory;
         }
@@ -74,12 +74,5 @@ namespace NBlog.Views
                 post.Title = postUpdatedEvent.Title;
             }
         }
-    }
-
-    public interface IPostViewRepostiory
-    {
-        void Insert(PostItem postItem);
-        PostItem Find(Func<PostItem, bool> func);
-        IEnumerable<PostItem> All(Func<PostItem, bool> func);
     }
 }

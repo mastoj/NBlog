@@ -54,7 +54,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\BlogCommandHandlers.cs" />
+    <Compile Include="Commands\CreateBlogCommand.cs" />
     <Compile Include="Commands\DeletePostCommand.cs" />
+    <Compile Include="Entities\Blog.cs" />
+    <Compile Include="Event\BlogCreatedEvent.cs" />
     <Compile Include="Event\PostDeletedEvent.cs" />
     <Compile Include="Event\PostPublishedEvent.cs" />
     <Compile Include="INBlogDomainConfiguration.cs" />
@@ -73,10 +77,10 @@
     <Compile Include="Exceptions\PostDoesNotExistException.cs" />
     <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="Entities\Post.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Entities\IPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\IUser.cs" />
   </ItemGroup>
