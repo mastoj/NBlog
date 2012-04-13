@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TJ.Extensions;
 
 namespace NBlog.Views
 {
@@ -20,12 +21,12 @@ namespace NBlog.Views
 
         public T Find(Func<T, bool> predicate)
         {
-            return _blogViewItems.FirstOrDefault(predicate);
+            return _blogViewItems.FirstOrDefault(y => predicate.IsNull() || predicate(y));
         }
 
         public IEnumerable<T> All(Func<T, bool> predicate)
         {
-            return _blogViewItems.Where(predicate);
+            return _blogViewItems.Where(y => predicate.IsNull() || predicate(y));
         }
     }
 }

@@ -16,7 +16,6 @@ namespace NBlog.Domain.Entities
         private string _content;
         private bool _published;
         private DateTime _publishTime;
-        private bool _isDeleted;
 
         public Post()
         {
@@ -33,7 +32,6 @@ namespace NBlog.Domain.Entities
 
         private void PostDeleted(PostDeletedEvent postDeletedEvent)
         {
-            _isDeleted = true;
         }
 
         private void PostPublished(PostPublishedEvent postPublishedEventPublishedEvent)
