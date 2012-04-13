@@ -29,9 +29,6 @@ namespace T4MVC {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
-            public readonly string _MasterLayout = "~/Views/Shared/_MasterLayout.cshtml";
-            public readonly string _Menu = "~/Views/Shared/_Menu.cshtml";
-            public readonly string _SuperHeader = "~/Views/Shared/_SuperHeader.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
         }
     }

@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,12 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InMemoryRepositories\InMemoryPostRepository.cs" />
-    <Compile Include="Areas\Admin\Controllers\PostControllerTests.cs" />
-    <Compile Include="Controllers\AccountControllerTests.cs" />
-    <Compile Include="Controllers\HomeControllerTests.cs" />
-    <Compile Include="InMemoryRepositories\InMemoryRepository.cs" />
-    <Compile Include="InMemoryRepositories\InMemoryUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,15 +77,13 @@
       <Project>{D17A3739-526E-4400-8B83-2232494DD5F4}</Project>
       <Name>NBlog.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NBlog\NBlog.csproj">
-      <Project>{329CA254-3C99-4F77-BB7A-1D715F5339C8}</Project>
-      <Name>NBlog</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

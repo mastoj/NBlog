@@ -39,7 +39,7 @@ namespace NBlog.Views.Tests
 
         public BlogViewTestBase()
         {
-            var blogViewRepository = new ViewRepositoryStub<BlogViewItem>();
+            var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
             BlogView = new BlogView(blogViewRepository);
         }
 

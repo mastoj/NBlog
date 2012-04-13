@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NBlog.Configuration;
 using NBlog.Domain.Repositories;
 using NBlog.Domain.Specs.Stubs;
+using NBlog.Infrastructure;
 using NBlog.Views;
 using NUnit.Framework;
 using TJ.CQRS.Event;
@@ -27,9 +27,9 @@ namespace NBlog.Domain.Specs
             _eventStore = new StubEventStore(_bus);
             var postRepository = new PostRepository(_eventStore);
             var blogRepository = new BlogRepository(_eventStore);
-            var postViewRepository = new ViewRepositoryStub<PostItem>();
-            var blogViewRepository = new ViewRepositoryStub<BlogViewItem>();
-            var authorViewRepository = new ViewRepositoryStub<Author>();
+            var postViewRepository = new InMemoryViewRepository<PostItem>();
+            var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
+            var authorViewRepository = new InMemoryViewRepository<Author>();
             var handlerConfiguration = new NBlogDomainConfiguration(postRepository, blogRepository, postViewRepository, blogViewRepository, authorViewRepository);
             PostView = handlerConfiguration.PostView;
             BlogView = handlerConfiguration.BlogView;

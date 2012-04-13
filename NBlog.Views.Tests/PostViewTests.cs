@@ -235,7 +235,7 @@ namespace NBlog.Views.Tests
 
         public PostViewTestBase()
         {
-            var postViewRepostioryStub = new ViewRepositoryStub<PostItem>();
+            var postViewRepostioryStub = new InMemoryViewRepository<PostItem>();
             PostView = new PostView(postViewRepostioryStub);
         }
 
