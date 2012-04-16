@@ -344,21 +344,6 @@ namespace Links {
         private const string URLPATH = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string bootstrap_responsive_css = Url("bootstrap-responsive.css");
-        public static readonly string bootstrap_responsive_min_css = Url("bootstrap-responsive.min.css");
-        public static readonly string bootstrap_css = Url("bootstrap.css");
-        public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class css {
-            private const string URLPATH = "~/Content/css";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string bootstrap_css = Url("bootstrap.css");
-            public static readonly string mash_css_chirp_config = Url("mash.css.chirp.config");
-            public static readonly string style_min_css = Url("style.min.css");
-            public static readonly string responsive_css = Url("responsive.css");
-        }
-    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class img {
             private const string URLPATH = "~/Content/img";
@@ -402,6 +387,7 @@ namespace Links {
             public static readonly string reset_less = Url("reset.less");
             public static readonly string responsive_less = Url("responsive.less");
             public static readonly string scaffolding_less = Url("scaffolding.less");
+            public static readonly string site_less = Url("site.less");
             public static readonly string sprites_less = Url("sprites.less");
             public static readonly string tables_less = Url("tables.less");
             public static readonly string thumbnails_less = Url("thumbnails.less");
@@ -412,7 +398,6 @@ namespace Links {
             public static readonly string wells_less = Url("wells.less");
         }
     
-        public static readonly string Site_css = Url("Site.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
             private const string URLPATH = "~/Content/themes";

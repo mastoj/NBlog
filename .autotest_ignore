@@ -1,4 +1,4 @@
-# .gitignore for .NET projects3
+# .gitignore for .NET projects
 
 # Thanks to Derick Bailey
 
@@ -59,3 +59,7 @@ Uploads/*
 # Ignoring ncrunch stuff
 *.ncrunchsolution
 *.ncrunchsolution.user
+
+# Ignore css and file changes
+*.css
+*.less
