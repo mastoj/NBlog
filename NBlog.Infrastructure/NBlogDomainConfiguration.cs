@@ -8,7 +8,7 @@ using TJ.CQRS.Respositories;
 
 namespace NBlog.Infrastructure
 {
-    public class NBlogDomainConfiguration
+    public class NBlogDomainConfiguration : INBlogDomainConfiguration
     {
         private IDomainRepository<Post> _postRepository;
         private readonly IDomainRepository<Blog> _blogRepository;

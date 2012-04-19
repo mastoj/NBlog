@@ -4,7 +4,7 @@ using NBlog.Domain.Event;
 
 namespace NBlog.Views
 {
-    public class BlogView
+    public class BlogView : IBlogView
     {
         private readonly IViewRepository<BlogViewItem> _blogViewRepository;
 

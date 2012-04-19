@@ -9,14 +9,16 @@ namespace NBlog.Domain.Commands
         public string Subtitle { get; set; }
         public string AdminId { get; set; }
         public string AuthorName { get; set; }
+        public string AuthorEmail { get; set; }
 
-        public CreateBlogCommand(string blogTitle, string subtitle, string adminId, string authorName)
+        public CreateBlogCommand(string blogTitle, string subtitle, string adminId, string authorName, string authorEmail)
             : base(Guid.NewGuid())
         {
             BlogTitle = blogTitle;
             Subtitle = subtitle;
             AdminId = adminId;
             AuthorName = authorName;
+            AuthorEmail = authorEmail;
         }
     }
 }

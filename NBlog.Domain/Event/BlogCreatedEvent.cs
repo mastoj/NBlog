@@ -7,11 +7,13 @@ namespace NBlog.Domain.Event
     {
         public string AdminId { get; set; }
         public string AuthorName { get; set; }
+        public string Email { get; set; }
 
-        public UserAddedEvent(string adminId, string authorName, Guid aggregateId)
+        public UserAddedEvent(string adminId, string authorName, string authorEmail, Guid aggregateId)
         {
             AdminId = adminId;
             AuthorName = authorName;
+            Email = authorEmail;
             AggregateId = aggregateId;
         }
     }

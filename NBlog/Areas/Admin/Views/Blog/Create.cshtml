@@ -1,0 +1,42 @@
+﻿@model NBlog.Areas.Admin.Models.CreateBlogModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CreateBlogModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SubTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SubTitle)
+            @Html.ValidationMessageFor(model => model.SubTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlogTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BlogTitle)
+            @Html.ValidationMessageFor(model => model.BlogTitle)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

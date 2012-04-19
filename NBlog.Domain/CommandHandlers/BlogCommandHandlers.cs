@@ -17,7 +17,7 @@ namespace NBlog.Domain.CommandHandlers
         public void Handle(CreateBlogCommand createBlogCommand)
         {
             var blog = Blog.Create(createBlogCommand.BlogTitle, createBlogCommand.Subtitle, createBlogCommand.AdminId,
-                                   createBlogCommand.AuthorName, createBlogCommand.AggregateId);
+                                   createBlogCommand.AuthorName, createBlogCommand.AuthorEmail, createBlogCommand.AggregateId);
             _blogRepository.Insert(blog);
         }
     }

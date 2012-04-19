@@ -23,11 +23,20 @@ using T4MVC;
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static class MVC {
+    static readonly AdminClass s_Admin = new AdminClass();
+    public static AdminClass Admin { get { return s_Admin; } }
     public static NBlog.Controllers.HomeController Home = new NBlog.Controllers.T4MVC_HomeController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
 namespace T4MVC {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class AdminClass {
+        public readonly string Name = "Admin";
+        public NBlog.Areas.Admin.Controllers.AccountController Account = new NBlog.Areas.Admin.Controllers.T4MVC_AccountController();
+        public NBlog.Areas.Admin.Controllers.BlogController Blog = new NBlog.Areas.Admin.Controllers.T4MVC_BlogController();
+        public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
+    }
 }
 
    

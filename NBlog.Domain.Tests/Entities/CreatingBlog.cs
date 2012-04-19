@@ -15,7 +15,7 @@ namespace NBlog.Domain.Tests.Entities
         [TestFixtureSetUp]
         public void When()
         {
-            _blog = Blog.Create("Title", "SubTitle", "adminId", "authorName", Guid.Empty);
+            _blog = Blog.Create("Title", "SubTitle", "adminId", "authorName", "author@Name.com", Guid.Empty);
         }
 
         [Test]
@@ -36,6 +36,7 @@ namespace NBlog.Domain.Tests.Entities
             var userAddedEvent = events.First();
             userAddedEvent.AdminId.Should().Be("adminId");
             userAddedEvent.AuthorName.Should().Be("authorName");
+            userAddedEvent.Email.Should().Be("author@Name.com");
         }
 
         private Blog _blog;
