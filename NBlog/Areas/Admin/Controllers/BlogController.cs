@@ -27,7 +27,7 @@ namespace NBlog.Areas.Admin.Controllers
         [Authorize]
         public virtual ActionResult Create()
         {
-            return View();
+            return View(MVC.Admin.Blog.Views.Create);
         }
 
         [HttpPost]

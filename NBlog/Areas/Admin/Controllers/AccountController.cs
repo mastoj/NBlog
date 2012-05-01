@@ -35,7 +35,7 @@ namespace NBlog.Areas.Admin.Controllers
             var response = openIdRelyingParty.GetResponse();
             if (response == null)
             {
-                var identifier = Identifier.Parse("google");
+                var identifier = Identifier.Parse("https://www.google.com/accounts/o8/id");
                 var request = openIdRelyingParty.CreateRequest(identifier);
                 return request.RedirectingResponse.AsActionResult();
             }
@@ -62,7 +62,11 @@ namespace NBlog.Areas.Admin.Controllers
                     }
                     var authCookie = FormsAuthentication.GetAuthCookie(userName, false);
                     Response.SetCookie(authCookie);
-                    return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+                    if(string.IsNullOrEmpty(returnUrl))
+                    {
+                        return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+                    }
+                    return Redirect(returnUrl);
 
                 case AuthenticationStatus.Canceled:
                     ViewBag.Message = "Canceled at provider";

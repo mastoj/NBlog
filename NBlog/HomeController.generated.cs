@@ -40,6 +40,11 @@ namespace NBlog.Controllers {
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Show() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Show);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -56,20 +61,30 @@ namespace NBlog.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Index = "Index";
+            public readonly string Show = "Show";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
+            public const string Show = "Show";
         }
 
 
+        static readonly ActionParamsClass_Show s_params_Show = new ActionParamsClass_Show();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Show ShowParams { get { return s_params_Show; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Show {
+            public readonly string slug = "slug";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string Show = "~/Views/Home/Show.cshtml";
         }
     }
 
@@ -79,6 +94,12 @@ namespace NBlog.Controllers {
 
         public override System.Web.Mvc.ActionResult Index() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Show(string slug) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Show);
+            callInfo.RouteValueDictionary.Add("slug", slug);
             return callInfo;
         }
 

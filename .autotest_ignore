@@ -63,3 +63,5 @@ Uploads/*
 # Ignore css and file changes
 *.css
 *.less
+**/*.less
+**/*.css

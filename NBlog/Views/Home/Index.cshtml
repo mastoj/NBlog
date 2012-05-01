@@ -1,5 +1,19 @@
-﻿@{
+﻿@model IEnumerable<NBlog.Views.PostItem>
+
+@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<section class="posts">
+    @foreach (var postItem in Model)
+    {
+        <article class="post">
+            <h2>
+                @Html.ActionLink(postItem.Title, MVC.Home.ActionNames.Show, MVC.Home.Name, new { slug= postItem.Slug }, null)
+            </h2>
+            <div class="excerpt">
+                @postItem.Excerpt
+            </div>
+        </article>
+    }
+</section>
