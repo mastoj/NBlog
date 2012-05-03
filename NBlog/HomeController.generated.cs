@@ -62,12 +62,14 @@ namespace NBlog.Controllers {
         public class ActionNamesClass {
             public readonly string Index = "Index";
             public readonly string Show = "Show";
+            public readonly string RecentPosts = "RecentPosts";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
             public const string Show = "Show";
+            public const string RecentPosts = "RecentPosts";
         }
 
 
@@ -83,6 +85,7 @@ namespace NBlog.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _RecentPosts = "~/Views/Home/_RecentPosts.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
             public readonly string Show = "~/Views/Home/Show.cshtml";
         }
@@ -100,6 +103,11 @@ namespace NBlog.Controllers {
         public override System.Web.Mvc.ActionResult Show(string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Show);
             callInfo.RouteValueDictionary.Add("slug", slug);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult RecentPosts() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.RecentPosts);
             return callInfo;
         }
 

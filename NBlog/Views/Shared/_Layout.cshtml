@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Tomas Jansson world of magic</a>
+          <a class="brand" href="#">Tomas Jansson's world of magic</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -49,17 +49,7 @@
                   @RenderBody()
               </div>
               <aside class="side span4">
-                  <div>
-                      <ul>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                          <li>Comment 1</li>
-                      </ul>
-                  </div>          
+                @{ Html.RenderAction("RecentPosts", "Home");}
               </aside>
           </div>
       </div> <!-- /container -->
