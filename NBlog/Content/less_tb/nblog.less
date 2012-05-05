@@ -1,0 +1,20 @@
+﻿.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+	display: table;
+	content: "";
+  }
+  &:after {
+	clear: both;
+  }
+}
+
+
+body {
+	font: 16px/26px Helvetica,Helvetica Neue,Arial;
+}
+
+.wrapper {
+	max-width: 1200px;
+}

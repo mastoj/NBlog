@@ -367,6 +367,16 @@ namespace Links {
             private const string URLPATH = "~/Content/less";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string nblog_less = Url("nblog.less");
+            public static readonly string reset_less = Url("reset.less");
+            public static readonly string site_less = Url("site.less");
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class less_tb {
+            private const string URLPATH = "~/Content/less_tb";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string accordion_less = Url("accordion.less");
             public static readonly string alerts_less = Url("alerts.less");
             public static readonly string badges_less = Url("badges.less");
