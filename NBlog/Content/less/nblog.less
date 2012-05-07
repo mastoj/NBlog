@@ -1,4 +1,6 @@
-﻿.clearfix {
+﻿@container-padding: 10px;
+
+.clearfix {
   *zoom: 1;
   &:before,
   &:after {
@@ -26,19 +28,24 @@ body {
 	header {
 		background-color: #5d5d5d;
 		color: #f8f8f8;
-	}
-	nav {
-		background-color: #cdcdcd;
-		width: 100%;
-		ul {
-			list-style-type: none;
-			li {
-				float: left;
-				a {
-					color: #5d5d5d;
+		hgroup {
+			padding: @container-padding;
+		}
+		nav {
+			padding: @container-padding;
+			background-color: #cdcdcd;
+			width: auto;
+			ul {
+				list-style-type: none;
+				li {
+					float: left;
+					a {
+						color: #5d5d5d;
+						text-decoration: none;
+					}
 				}
+				.clearfix();
 			}
-			.clearfix();
 		}
 	}
 }
@@ -47,6 +54,13 @@ body {
 	.main {
 		background-color: #ebebeb;
 		#content {
+			h1 { font-size: 2em; line-height: 2em; }
+			h2 { font-size: 1.5em; line-height: 2em; }
+			h3 { font-size: 1.3em; line-height: 2em; }
+			font-size: 1.1em;
+			line-height: 1.4em;
+
+			padding: @container-padding;
 			background-color: #f8f8f8;
 			width: auto;
 			float: left;
@@ -54,20 +68,38 @@ body {
 			overflow: visible;
 			border-right: 1px solid #e0e0e0; 
 			.clearfix();
-		}
-		#content > div,
-		#content > article,
-		#content > section {
-			float: left;
-			width: 100%;
-		}
-		aside {
-			width: 260px;
-			overflow: hidden;
-			margin: 0 -100% 0 0;
-			clear: none;
-			float: left;
-			.clearfix();
+			&>div, &>article, &>section {
+				float: left;
+				width: 100%;
+			}
+			aside {
+				width: 260px;
+				overflow: hidden;
+				margin: 0 -100% 0 0;
+				clear: none;
+				float: left;
+				padding: 0px 20px 0px;
+				.clearfix();
+				ul {
+					list-style-type: none;
+				}
+			}
 		}
 	}
+}
+
+.post {
+	.clearfix();
+}
+
+.read-more {
+	margin: 20px 0 10px 0;
+	a {
+		padding: 6px;
+		background-color: #cdcdcd;
+		color: #5d5d5d;
+		text-decoration: none;
+	}
+	float: left;
+	.clearfix();
 }
