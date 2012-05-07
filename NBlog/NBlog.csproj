@@ -236,6 +236,7 @@
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Chirpy.ReadMe.txt" />
+    <Content Include="Content\fonts\lato.css" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Areas\Admin\Views\Web.config" />
