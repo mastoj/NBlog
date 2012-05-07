@@ -1,4 +1,13 @@
-﻿@container-padding: 10px;
+﻿// Colors
+@header-bg: #3D5d5D;
+@header-fg: #f8f8f8;
+
+@xlarge-padding: 30px;
+@large-padding: 20px;
+@normal-padding: 10px;
+@small-padding: 5px;
+
+
 
 .clearfix {
   *zoom: 1;
@@ -26,13 +35,21 @@ body {
 
 #header-container {
 	header {
-		background-color: #5d5d5d;
-		color: #f8f8f8;
+		background-color: @header-bg;
+		color: @header-fg;
 		hgroup {
-			padding: @container-padding;
+			vertical-align: bottom;
+			height: 30px;
+			* {
+				display: inline;
+				position: relative;
+			}
+			h1 {  font-size: 3em; }
+			padding: @large-padding;
+			.clearfix();
 		}
 		nav {
-			padding: @container-padding;
+			padding: @normal-padding @large-padding;
 			background-color: #cdcdcd;
 			width: auto;
 			ul {
@@ -60,7 +77,7 @@ body {
 			font-size: 1.1em;
 			line-height: 1.4em;
 
-			padding: @container-padding;
+			padding: @large-padding;
 			background-color: #f8f8f8;
 			width: auto;
 			float: left;
@@ -78,7 +95,7 @@ body {
 				margin: 0 -100% 0 0;
 				clear: none;
 				float: left;
-				padding: 0px 20px 0px;
+				padding: 0px @xlarge-padding 0px;
 				.clearfix();
 				ul {
 					list-style-type: none;
@@ -93,7 +110,7 @@ body {
 }
 
 .read-more {
-	margin: 20px 0 10px 0;
+	margin: @large-padding 0 @normal-padding 0;
 	a {
 		padding: 6px;
 		background-color: #cdcdcd;
