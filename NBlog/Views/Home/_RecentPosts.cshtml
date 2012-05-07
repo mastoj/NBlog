@@ -8,7 +8,7 @@
     <ul id="recent_posts">
         @foreach (var postItem in Model)
         {
-            <li class="post">
+            <li class="post block-link">
                 @Html.ActionLink(postItem.Title, MVC.Home.ActionNames.Show, MVC.Home.Name, new { slug= postItem.Slug }, null)
             </li>
         }

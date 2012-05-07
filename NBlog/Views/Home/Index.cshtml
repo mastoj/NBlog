@@ -16,7 +16,7 @@
             <div class="excerpt">
                 @postItem.Excerpt
             </div>
-            <div class="read-more">
+            <div class="block-link read-more">
                 @Html.ActionLink("Read more", MVC.Home.ActionNames.Show, MVC.Home.Name, new { slug= postItem.Slug }, null)
             </div>
         </article>

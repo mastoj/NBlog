@@ -241,6 +241,7 @@
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
+    <None Include="Content\less\elements.less" />
     <None Include="Content\less\nblog.less" />
     <None Include="Content\less\site.less" />
     <None Include="Content\less_tb\nblog.less" />

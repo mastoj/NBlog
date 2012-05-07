@@ -1,6 +1,16 @@
-﻿// Colors
-@header-bg: #3D5d5D;
-@header-fg: #f8f8f8;
+﻿@import "elements.less";
+
+// Colors
+@header-bg: #252525;
+@header-main: #f8f8f8;
+@header-secondary: #959595;
+@link-color: #2397aa;
+@main-color: #555;
+@bg-color: #252525;
+@content-bg: #f8f8f8;
+@nav-bg: #E0E0E0;
+@nav-bg-gradient-start: #CCCCCC;
+@nav-bg-gradient-end: #b0b0b0;
 
 @xlarge-padding: 30px;
 @large-padding: 20px;
@@ -21,9 +31,19 @@
   }
 }
 
+.right { float: right; }
+.left { float: left; }
+
 body {
 	font: 16px/26px 'Lato',Helvetica,Arial,sans-serif;
-	background-color:#252525;
+	background-color: @bg-color;
+	color: @main-color;
+	h1, h2 {
+		font-weight: normal;
+	}
+	a {
+		color: @link-color;
+	}
 }
 
 .container {
@@ -36,7 +56,7 @@ body {
 #header-container {
 	header {
 		background-color: @header-bg;
-		color: @header-fg;
+		color: @header-main;
 		hgroup {
 			vertical-align: bottom;
 			height: 30px;
@@ -45,20 +65,37 @@ body {
 				position: relative;
 			}
 			h1 {  font-size: 3em; }
+			h2 { color: @header-secondary; }
 			padding: @large-padding;
 			.clearfix();
 		}
 		nav {
-			padding: @normal-padding @large-padding;
-			background-color: #cdcdcd;
 			width: auto;
+			padding: 0 @xlarge-padding;
 			ul {
 				list-style-type: none;
 				li {
+					margin-left: @small-padding;
+					padding: 0;
 					float: left;
+					&.right {
+						.right();
+					}
 					a {
-						color: #5d5d5d;
+						display: block;
+						padding: @small-padding @normal-padding;
+						color: @header-secondary;
 						text-decoration: none;
+						&:hover {
+							background-color: @link-color;						
+							color: @content-bg;
+						}
+					}
+					&.active {
+						a {
+							background-color: @content-bg;
+							color: @main-color;
+						}
 					}
 				}
 				.clearfix();
@@ -105,18 +142,33 @@ body {
 	}
 }
 
+#recent_posts {
+	list-style-type: none;
+	.post {
+		margin-top: 0px;
+		a {
+			line-height: 1.2em; 
+		}
+	}
+}
+
 .post {
 	.clearfix();
 }
 
 .read-more {
+	float: left;
+	.clearfix();
+}
+
+.block-link {
 	margin: @large-padding 0 @normal-padding 0;
 	a {
 		padding: 6px;
-		background-color: #cdcdcd;
-		color: #5d5d5d;
-		text-decoration: none;
+		color: @link-color;
+		&:hover {
+			color: @content-bg;
+			background-color: @link-color;
+		}
 	}
-	float: left;
-	.clearfix();
 }
