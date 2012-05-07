@@ -3,7 +3,7 @@
 // Colors
 @header-bg: #252525;
 @header-main: #f8f8f8;
-@header-secondary: #959595;
+@main-secondary: #959595;
 @link-color: #2397aa;
 @main-color: #555;
 @bg-color: #252525;
@@ -65,7 +65,7 @@ body {
 				position: relative;
 			}
 			h1 {  font-size: 3em; }
-			h2 { color: @header-secondary; }
+			h2 { color: @main-secondary; }
 			padding: @large-padding;
 			.clearfix();
 		}
@@ -84,7 +84,7 @@ body {
 					a {
 						display: block;
 						padding: @small-padding @normal-padding;
-						color: @header-secondary;
+						color: @main-secondary;
 						text-decoration: none;
 						&:hover {
 							background-color: @link-color;						
@@ -152,13 +152,26 @@ body {
 	}
 }
 
-.post {
-	.clearfix();
-}
-
-.read-more {
-	float: left;
-	.clearfix();
+section.posts {
+	.post {
+		.clearfix();
+		header {
+			padding-top: @normal-padding;
+			position: relative;
+			time {
+				position: absolute;
+				font-style: italic;
+				font-size: 0.8em;
+				color: @main-secondary;
+				top: 0px;
+			}
+		}
+		.read-more {
+			float: left;
+			margin-bottom: @large-padding;
+			.clearfix();
+		}
+	}
 }
 
 .block-link {

@@ -40,7 +40,8 @@ namespace NBlog.Controllers
                                      Excerpt = GenerateListString(20).Aggregate((y, x) => y + x),
                                      Title = GenerateString(),
                                      Slug = "slug" + i,
-                                     Content = GenerateListString(60).Aggregate((y, x) => y + x)
+                                     Content = GenerateListString(60).Aggregate((y, x) => y + x),
+                                     PublishedTime = DateTime.UtcNow
                                  };
             }
         }
