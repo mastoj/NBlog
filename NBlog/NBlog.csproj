@@ -242,7 +242,9 @@
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
-    <None Include="Content\less\media.less" />
+    <Content Include="Content\less\media.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\less\elements.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -252,7 +254,9 @@
     <Content Include="Content\less\site.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\less\variables.less" />
+    <Content Include="Content\less\variables.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\less_tb\nblog.less" />
     <Content Include="Content\less\reset.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
