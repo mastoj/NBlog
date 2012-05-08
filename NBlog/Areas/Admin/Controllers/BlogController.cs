@@ -24,7 +24,7 @@ namespace NBlog.Areas.Admin.Controllers
             _commandBus = commandBus;
         }
 
-        [Authorize]
+        //[Authorize]
         public virtual ActionResult Create()
         {
             return View(MVC.Admin.Blog.Views.Create);

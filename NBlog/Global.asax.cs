@@ -36,7 +36,8 @@ namespace NBlog
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
+                defaults: new { controller = "Home", action = "Index" },
+                namespaces: new[] { "NBlog.Controllers" }
             );
         }
 
