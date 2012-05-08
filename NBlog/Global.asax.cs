@@ -19,6 +19,7 @@ namespace NBlog
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
 
             routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -29,12 +30,13 @@ namespace NBlog
             routes.MapRoute(
                 name: "Slug",
                 url: "{slug}",
-                defaults: new { controller = "Home", action = "Show" });
+                defaults: new { controller = "Post", action = "Show" },
+                constraints: new { slug = @".+"});
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
 

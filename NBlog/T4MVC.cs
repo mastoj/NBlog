@@ -26,6 +26,7 @@ public static class MVC {
     static readonly AdminClass s_Admin = new AdminClass();
     public static AdminClass Admin { get { return s_Admin; } }
     public static NBlog.Controllers.HomeController Home = new NBlog.Controllers.T4MVC_HomeController();
+    public static NBlog.Controllers.PostController Post = new NBlog.Controllers.T4MVC_PostController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

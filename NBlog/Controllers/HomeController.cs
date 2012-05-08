@@ -18,19 +18,6 @@ namespace NBlog.Controllers
             return View(articles);
         }
 
-        public virtual ActionResult Show(string slug)
-        {
-            var postItem = PostItems().First();
-            return View(postItem);
-        }
-
-        [ChildActionOnly]
-        public virtual ActionResult RecentPosts()
-        {
-            IEnumerable<PostItem> recentPosts = PostItems().Take(10);
-            return PartialView("_RecentPosts", recentPosts);
-        }
-
         private IEnumerable<PostItem> PostItems()
         {
             for (int i = 0; i < 20; i++)
