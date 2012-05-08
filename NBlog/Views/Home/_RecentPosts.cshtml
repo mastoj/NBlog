@@ -1,16 +1,14 @@
 ﻿@model IEnumerable<NBlog.Views.PostItem>
-<section class="span4">
-    @if(Model.Count() == 0)
+@if(Model.Count() == 0)
+{
+    <span>No recent posts</span>
+}
+<h1>Recent posts</h1>
+<ul id="recent_posts">
+    @foreach (var postItem in Model)
     {
-        <span>No recent posts</span>
+        <li class="post block-link">
+            @Html.ActionLink(postItem.Title, MVC.Home.ActionNames.Show, MVC.Home.Name, new { slug= postItem.Slug }, null)
+        </li>
     }
-    <h1>Recent posts</h1>
-    <ul id="recent_posts">
-        @foreach (var postItem in Model)
-        {
-            <li class="post block-link">
-                @Html.ActionLink(postItem.Title, MVC.Home.ActionNames.Show, MVC.Home.Name, new { slug= postItem.Slug }, null)
-            </li>
-        }
-    </ul>
-</section>
+</ul>

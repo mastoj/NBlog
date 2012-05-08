@@ -1,23 +1,5 @@
 ﻿@import "elements.less";
-
-// Colors
-@header-bg: #252525;
-@header-main: #f8f8f8;
-@main-secondary: #959595;
-@link-color: #2397aa;
-@main-color: #555;
-@bg-color: #252525;
-@content-bg: #f8f8f8;
-@nav-bg: #E0E0E0;
-@nav-bg-gradient-start: #CCCCCC;
-@nav-bg-gradient-end: #b0b0b0;
-
-@xlarge-padding: 30px;
-@large-padding: 20px;
-@normal-padding: 10px;
-@small-padding: 5px;
-
-
+@import "variables.less";
 
 .clearfix {
   *zoom: 1;
@@ -106,7 +88,7 @@ body {
 
 #main-container {
 	.main {
-		background-color: #ebebeb;
+		background-color: @main-bg;
 		#content {
 			h1 { font-size: 2em; line-height: 2em; }
 			h2 { font-size: 1.5em; line-height: 2em; }
@@ -114,17 +96,17 @@ body {
 			font-size: 1.1em;
 			line-height: 1.4em;
 
-			padding: @large-padding;
-			background-color: #f8f8f8;
+			background-color: @content-bg;
 			width: auto;
 			float: left;
 			margin-right: 300px;
 			overflow: visible;
-			border-right: 1px solid #e0e0e0; 
+			border-right: 1px solid @nav-bg; 
 			.clearfix();
 			&>div, &>article, &>section {
 				float: left;
-				width: 100%;
+				width: auto;
+				padding: @large-padding;
 			}
 			aside {
 				width: 260px;
@@ -132,7 +114,8 @@ body {
 				margin: 0 -100% 0 0;
 				clear: none;
 				float: left;
-				padding: 0px @xlarge-padding 0px;
+				padding: 0px @large-padding 0px;
+				background-color: @main-bg;
 				.clearfix();
 				ul {
 					list-style-type: none;
@@ -185,3 +168,4 @@ section.posts {
 		}
 	}
 }
+
