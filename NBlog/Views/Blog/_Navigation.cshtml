@@ -1,9 +1,11 @@
-﻿@{
+﻿@model IEnumerable<NBlog.Models.NavigationItem>
+@{
     Layout = null;
 }
 
 <ul>
-	<li class="active"><a href="#">Home</a></li>
-	<li><a href="#about">About</a></li>
-	<li><a href="#contact">Contact</a></li>                            
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.Text,MVC.Post.ActionNames.Show, MVC.Post.Name, new { slug = item.Slug}, null)</li>        
+    }
 </ul>

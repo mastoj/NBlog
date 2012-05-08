@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using NBlog.Models;
 using NBlog.Views;
 
 namespace NBlog.Controllers
@@ -30,7 +31,13 @@ namespace NBlog.Controllers
         [OutputCache(Duration = 10)]
         public virtual ActionResult Navigation()
         {
-            return View("_Navigation");
+            var navigationItems = new List<NavigationItem>
+                                      {
+                                          new NavigationItem() {Slug = "home", Text = "Home"},
+                                          new NavigationItem() {Slug = "about", Text = "About"},
+                                          new NavigationItem() {Slug = "contact", Text = "Contact"}
+                                      };
+            return View("_Navigation", navigationItems);
         }
     }
 }
