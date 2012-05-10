@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NBlog">
+</Property><Property Name="Solution File" Value="C:\git\NBlog\NBlog.sln">
+</Property><Property Name="User Options File" Value="C:\git\NBlog\NBlog.v11.suo">
+</Property><Property Name="Date" Value="10. mai 2012">
+</Property><Property Name="Time" Value="23:44">
+</Property></Properties><Event ErrorLevel="3" Project="" Source="NBlog.sln" Description="SafeUpgrade">
+</Event><Event ErrorLevel="0" Project="" Source="NBlog.sln" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog.sln">
+</Event><Event ErrorLevel="0" Project="" Source="NBlog.v11.suo" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog.v11.suo">
+</Event><Event ErrorLevel="3" Project="NBlog" Source="NBlog\NBlog.csproj" Description="SafeUpgrade">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\NBlog.csproj" Description="Project file successfully backed up as C:\git\NBlog\Backup\NBlog\NBlog.csproj">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\NBlog.csproj.user" Description="Project user file successfully backed up as C:\git\NBlog\Backup\NBlog\NBlog.csproj.user">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Admin.AccountController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Admin.AccountController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Admin.BlogController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Admin.BlogController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Admin.SharedController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Admin.SharedController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\App_Start\NinjectWebCommon.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\App_Start\NinjectWebCommon.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\AdminAreaRegistration.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\AdminAreaRegistration.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\Controllers\AccountController.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\Controllers\AccountController.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\Controllers\BlogController.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\Controllers\BlogController.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\Models\CreateBlogModel.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\Models\CreateBlogModel.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\BlogController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\BlogController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Controllers\BlogController.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Controllers\BlogController.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Controllers\PostController.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Controllers\PostController.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Controllers\HomeController.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Controllers\HomeController.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Global.asax.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Global.asax.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\helpers\DateTimeHelper.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\helpers\DateTimeHelper.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\HomeController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\HomeController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Models\NavigationItem.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Models\NavigationItem.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\PostController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\PostController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\SharedController.generated.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\SharedController.generated.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\T4MVC.cs" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\T4MVC.cs">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\nblog.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\nblog.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\site.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\site.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\mash.js.chirp.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\mash.js.chirp.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\accordion.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\accordion.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\alerts.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\alerts.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\badges.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\badges.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\bootstrap.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\bootstrap.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\breadcrumbs.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\breadcrumbs.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\button-groups.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\button-groups.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\buttons.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\buttons.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\carousel.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\carousel.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\close.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\close.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\code.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\code.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\component-animations.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\component-animations.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\dropdowns.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\dropdowns.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\forms.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\forms.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\grid.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\grid.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\hero-unit.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\hero-unit.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\labels.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\labels.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\layouts.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\layouts.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\mixins.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\mixins.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\modals.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\modals.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\navbar.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\navbar.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\navs.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\navs.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\pager.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\pager.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\pagination.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\pagination.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\popovers.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\popovers.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\progress-bars.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\progress-bars.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\reset.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\reset.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\responsive.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\responsive.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\scaffolding.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\scaffolding.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\sprites.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\sprites.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\tables.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\tables.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\thumbnails.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\thumbnails.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\tooltip.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\tooltip.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\type.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\type.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\utilities.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\utilities.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\variables.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\variables.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less_tb\wells.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less_tb\wells.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\T4MVC.tt" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\T4MVC.tt">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\T4MVC.tt.settings.t4" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\T4MVC.tt.settings.t4">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\App_Readme\DCCreative.DNOA4Glimpse.Readme.txt" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\App_Readme\DCCreative.DNOA4Glimpse.Readme.txt">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\App_Readme\glimpse.mvc3.readme.txt" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\App_Readme\glimpse.mvc3.readme.txt">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\App_Readme\glimpse.readme.txt" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\App_Readme\glimpse.readme.txt">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Chirpy.ReadMe.txt" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Chirpy.ReadMe.txt">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\fonts\lato.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\fonts\lato.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\img\glyphicons-halflings-white.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\img\glyphicons-halflings-white.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\img\glyphicons-halflings.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\img\glyphicons-halflings.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\Views\Web.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\Views\Web.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Areas\Admin\Views\Blog\Create.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Areas\Admin\Views\Blog\Create.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\media.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\media.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\elements.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\elements.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\nblog.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\nblog.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\site.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\site.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\variables.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\variables.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\less\reset.less" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\less\reset.less">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-icons_222222_256x240.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-icons_222222_256x240.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-icons_2e83ff_256x240.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-icons_2e83ff_256x240.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-icons_454545_256x240.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-icons_454545_256x240.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-icons_888888_256x240.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-icons_888888_256x240.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\images\ui-icons_cd0a0a_256x240.png" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\images\ui-icons_cd0a0a_256x240.png">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.accordion.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.accordion.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.all.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.all.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.autocomplete.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.autocomplete.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.base.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.base.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.button.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.button.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.core.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.core.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.datepicker.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.datepicker.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.dialog.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.dialog.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.progressbar.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.progressbar.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.resizable.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.resizable.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.selectable.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.selectable.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.slider.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.slider.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.tabs.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.tabs.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Content\themes\base\jquery.ui.theme.css" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Content\themes\base\jquery.ui.theme.css">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Global.asax" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Global.asax">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\bootstrap.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\bootstrap.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\bootstrap.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\bootstrap.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery-1.7.1-vsdoc.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery-1.7.1-vsdoc.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery-1.7.1.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery-1.7.1.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery-1.7.1.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery-1.7.1.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery-ui-1.8.18.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery-ui-1.8.18.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery-ui-1.8.18.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery-ui-1.8.18.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.unobtrusive-ajax.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.unobtrusive-ajax.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.unobtrusive-ajax.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.unobtrusive-ajax.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.validate-vsdoc.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.validate-vsdoc.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.validate.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.validate.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.validate.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.validate.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.validate.unobtrusive.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.validate.unobtrusive.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\jquery.validate.unobtrusive.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\jquery.validate.unobtrusive.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\knockout.debug.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\knockout.debug.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\knockout.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\knockout.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\less.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\less.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\modernizr-2.5.3.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\modernizr-2.5.3.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\site.min.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\site.min.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Scripts\_references.js" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Scripts\_references.js">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Web.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Web.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Web.Debug.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Web.Debug.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Web.Release.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Web.Release.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Web.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Web.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\_ViewStart.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\_ViewStart.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Shared\Error.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Shared\Error.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Shared\_Layout.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Shared\_Layout.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Home\Index.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Home\Index.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Post\Show.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Post\Show.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Post\_RecentPosts.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Post\_RecentPosts.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Blog\_Header.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Blog\_Header.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\Views\Blog\_Navigation.cshtml" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\Views\Blog\_Navigation.cshtml">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\packages.config" Description="File successfully backed up as C:\git\NBlog\Backup\NBlog\packages.config">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\NBlog.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NBlog" Source="NBlog\NBlog.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="NBlog.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="NBlog.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NBlog" Source="NBlog\NBlog.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
