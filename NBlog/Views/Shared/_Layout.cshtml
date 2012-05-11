@@ -35,17 +35,19 @@
 		</div>
 		<div id="main-container" class="container">
 			<div class="main wrapper clearfix">
-				<div id="content">
-					@RenderBody()
-					<aside>
-						<section class="first">
-							@{ Html.RenderAction("RecentPosts", "Post");}
-						</section>
-						<section>
-							@{ Html.RenderAction("RecentPosts", "Post");}                    
-						</section>					
-					</aside>
-				</div>
+                <div id="content">
+                    <div>
+                        @RenderBody()
+                    </div>
+                    <aside>
+                        <section class="first">
+                            @{ Html.RenderAction("RecentPosts", "Post");}
+                        </section>
+                        <section>
+                            @{ Html.RenderAction("RecentPosts", "Post");}                    
+                        </section>					
+                    </aside>
+                </div>
 			</div>
 		</div>
 		<!-- Le javascript

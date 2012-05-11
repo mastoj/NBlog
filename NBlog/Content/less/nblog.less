@@ -96,14 +96,21 @@ body {
 			font-size: 1.1em;
 			line-height: 1.4em;
 
-			background-color: @content-bg;
-			width: auto;
+			background-color: @main-bg;
 			float: left;
-			margin-right: 300px;
+			width: auto;
+//			margin-right: 300px;
 			overflow: visible;
 			border-right: 1px solid @nav-bg; 
 			.clearfix();
-			&>div, &>article, &>section {
+			&>div {
+				.left();
+				.clearfix();
+				background-color: @content-bg;
+				width: auto;
+				margin-right: 300px;
+			}
+			div>article, div>section {
 				float: left;
 				width: auto;
 				padding: @large-padding;
@@ -111,12 +118,13 @@ body {
 			aside {
 				width: 260px;
 				overflow: hidden;
-				margin: 0 -100% 0 1px;
+				margin: 0 0 0 1px;
+				margin: 0 0 0 -100%;
 				clear: none;
-				float: left;
+				.right();
 				padding: 0px @large-padding 0px;
 				background-color: @main-bg;
-				.clearfix();
+//				.clearfix();
 				ul {
 					list-style-type: none;
 				}
