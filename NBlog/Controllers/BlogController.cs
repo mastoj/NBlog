@@ -31,11 +31,12 @@ namespace NBlog.Controllers
         [OutputCache(Duration = 10)]
         public virtual ActionResult Navigation()
         {
+            //@Html.ActionLink(item.Text,MVC.Post.ActionNames.Show, MVC.Post.Name, new { slug = item.Url}, null)
             var navigationItems = new List<NavigationItem>
                                       {
-                                          new NavigationItem() {Slug = "home", Text = "Home"},
-                                          new NavigationItem() {Slug = "about", Text = "About"},
-                                          new NavigationItem() {Slug = "contact", Text = "Contact"}
+                                          new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "home"}) , Text = "Home"},
+                                          new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "about"}) , Text = "About"},
+                                          new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "contact"}) , Text = "Contact"}
                                       };
             return View("_Navigation", navigationItems);
         }

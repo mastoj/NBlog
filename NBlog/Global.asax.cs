@@ -28,7 +28,7 @@ namespace NBlog
             );
 
             routes.MapRoute(
-                name: "Slug",
+                name: "Url",
                 url: "{slug}",
                 defaults: new { controller = "Post", action = "Show" },
                 constraints: new { slug = @".+"});

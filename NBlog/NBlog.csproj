@@ -283,6 +283,8 @@
     <Content Include="Content\less\variables.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Content\less_tb\nblog.less" />
     <Content Include="Content\less\reset.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -354,12 +356,11 @@
     <Content Include="Views\Post\Show.cshtml" />
     <Content Include="Views\Post\_RecentPosts.cshtml" />
     <Content Include="Views\Blog\_Header.cshtml" />
-    <Content Include="Views\Blog\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

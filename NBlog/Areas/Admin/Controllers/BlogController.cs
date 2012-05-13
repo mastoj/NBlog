@@ -24,6 +24,11 @@ namespace NBlog.Areas.Admin.Controllers
             _commandBus = commandBus;
         }
 
+        public virtual ActionResult Index()
+        {
+            return View(MVC.Admin.Blog.Views.Create);
+        }
+
         //[Authorize]
         public virtual ActionResult Create()
         {

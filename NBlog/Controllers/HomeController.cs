@@ -20,7 +20,7 @@ namespace NBlog.Controllers
 
         private IEnumerable<PostItem> PostItems()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 2   ; i++)
             {
                 yield return new PostItem()
                                  {

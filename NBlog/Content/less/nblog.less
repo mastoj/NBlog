@@ -96,35 +96,33 @@ body {
 			font-size: 1.1em;
 			line-height: 1.4em;
 
-			background-color: @main-bg;
+			background-color: @content-bg;
+			margin-right: 300px;
 			float: left;
-			width: auto;
-//			margin-right: 300px;
 			overflow: visible;
 			border-right: 1px solid @nav-bg; 
 			.clearfix();
 			&>div {
 				.left();
 				.clearfix();
-				background-color: @content-bg;
 				width: auto;
-				margin-right: 300px;
 			}
-			div>article, div>section {
+			&>div>article, &>div>section {
 				float: left;
 				width: auto;
-				padding: @large-padding;
+				padding: @normal-padding;
 			}
 			aside {
-				width: 260px;
+				&>div {
+					padding: @normal-padding;
+					width: 280px;
+				} 
+				width: 300px;
 				overflow: hidden;
-				margin: 0 0 0 1px;
-				margin: 0 0 0 -100%;
+				margin: 0 -100% 0 0;
 				clear: none;
-				.right();
-				padding: 0px @large-padding 0px;
+				.left();
 				background-color: @main-bg;
-//				.clearfix();
 				ul {
 					list-style-type: none;
 				}

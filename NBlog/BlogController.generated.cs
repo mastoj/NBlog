@@ -69,7 +69,6 @@ namespace NBlog.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string _Header = "~/Views/Blog/_Header.cshtml";
-            public readonly string _Navigation = "~/Views/Blog/_Navigation.cshtml";
         }
     }
 
