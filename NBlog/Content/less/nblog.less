@@ -112,24 +112,28 @@ body {
 				width: auto;
 				padding: @normal-padding;
 			}
-			aside {
-				&>div {
-					padding: @normal-padding;
-					width: 280px;
-				} 
-				width: 300px;
-				overflow: hidden;
-				margin: 0 -100% 0 0;
-				clear: none;
-				.left();
-				background-color: @main-bg;
-				ul {
-					list-style-type: none;
-				}
-			}
 		}
 	}
 }
+
+aside {
+	&.right-sidebar {
+		margin: 0 -100% 0 0;
+		.left();
+	}
+	&>div {
+		padding: @normal-padding;
+		width: 280px;
+	} 
+	width: 300px;
+	overflow: hidden;
+	clear: none;
+	background-color: @main-bg;
+	ul {
+		list-style-type: none;
+	}
+}
+
 
 #recent_posts {
 	list-style-type: none;

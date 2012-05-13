@@ -9,21 +9,21 @@
 		.main {
 			#content {
 				margin-right: 0px;
-				aside {
-					margin: auto;
-					width: 100%;
-					float: none;
-					&>div {
-						width: 100%;
-						section {
-							float: left;
-							width: 30%;
-							margin-left: 5%;
-							&.first {
-								margin-left: 0;
-							}
-						}
-					}
+			}
+		}
+	}
+	aside.right-sidebar {
+		margin: auto;
+		width: 100%;
+		float: none;
+		&>div {
+			width: 100%;
+			section {
+				float: left;
+				width: 30%;
+				margin-left: 5%;
+				&.first {
+					margin-left: 0;
 				}
 			}
 		}
@@ -31,16 +31,12 @@
 }
 
 @media only screen and (max-width: 767px) {
-	#main-container {
-		.main {
-			#content {
-				aside {
-					section {
-						float: none;
-						width: auto;
-						margin-left: auto;
-					}
-				}
+	aside.right-sidebar {
+		&>div {
+			section {
+				float: none;
+				width: auto;
+				margin-left: auto;
 			}
 		}
 	}
