@@ -355,6 +355,7 @@
     <Content Include="Views\Post\_RecentPosts.cshtml" />
     <Content Include="Views\Blog\_Header.cshtml" />
     <Content Include="Views\Blog\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
