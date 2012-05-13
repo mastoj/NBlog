@@ -42,6 +42,16 @@ namespace NBlog.Areas.Admin.Controllers {
         public System.Web.Mvc.ActionResult Login() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Login);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult AuthenticateUser() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.AuthenticateUser);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult RegisterUser() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.RegisterUser);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AccountController Actions { get { return MVC.Admin.Account; } }
@@ -58,11 +68,15 @@ namespace NBlog.Areas.Admin.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Login = "Login";
+            public readonly string AuthenticateUser = "AuthenticateUser";
+            public readonly string RegisterUser = "RegisterUser";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Login = "Login";
+            public const string AuthenticateUser = "AuthenticateUser";
+            public const string RegisterUser = "RegisterUser";
         }
 
 
@@ -73,11 +87,27 @@ namespace NBlog.Areas.Admin.Controllers {
         public class ActionParamsClass_Login {
             public readonly string returnUrl = "returnUrl";
         }
+        static readonly ActionParamsClass_AuthenticateUser s_params_AuthenticateUser = new ActionParamsClass_AuthenticateUser();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AuthenticateUser AuthenticateUserParams { get { return s_params_AuthenticateUser; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AuthenticateUser {
+            public readonly string returnUrl = "returnUrl";
+        }
+        static readonly ActionParamsClass_RegisterUser s_params_RegisterUser = new ActionParamsClass_RegisterUser();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RegisterUser RegisterUserParams { get { return s_params_RegisterUser; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RegisterUser {
+            public readonly string returnUrl = "returnUrl";
+            public readonly string createUserCommand = "createUserCommand";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string RegisterUser = "~/Areas/Admin/Views/Account/RegisterUser.cshtml";
         }
     }
 
@@ -88,6 +118,19 @@ namespace NBlog.Areas.Admin.Controllers {
         public override System.Web.Mvc.ActionResult Login(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Login);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult AuthenticateUser(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AuthenticateUser);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult RegisterUser(string returnUrl, NBlog.Domain.Commands.CreateUserCommand createUserCommand) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.RegisterUser);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            callInfo.RouteValueDictionary.Add("createUserCommand", createUserCommand);
             return callInfo;
         }
 

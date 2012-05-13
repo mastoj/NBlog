@@ -36,6 +36,9 @@
     <Reference Include="EasySec">
       <HintPath>..\packages\EasySec.1.0\lib\net40\EasySec.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
@@ -58,6 +61,7 @@
     <Compile Include="CommandHandlers\BlogCommandHandlers.cs" />
     <Compile Include="Commands\CreateBlogCommand.cs" />
     <Compile Include="Commands\DeletePostCommand.cs" />
+    <Compile Include="Commands\Validators\UserValidators.cs" />
     <Compile Include="Entities\Blog.cs" />
     <Compile Include="Event\BlogCreatedEvent.cs" />
     <Compile Include="Event\PostDeletedEvent.cs" />

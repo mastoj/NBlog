@@ -29,7 +29,7 @@ namespace NBlog.Areas.Admin.Controllers
             return View(MVC.Admin.Blog.Views.Create);
         }
 
-        //[Authorize]
+        [Authorize]
         public virtual ActionResult Create()
         {
             return View(MVC.Admin.Blog.Views.Create);

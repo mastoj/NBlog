@@ -11,6 +11,18 @@ using TJ.CQRS.Messaging;
 namespace NBlog.Domain.Specs.Blog
 {
     [TestFixture]
+    public class When_Creating_A_User : BaseCommandTest<CreateUserCommand>
+    {
+        protected override CreateUserCommand When()
+        {
+            _createUserCommand = new CreateUserCommand();
+            return _createUserCommand;
+        }
+
+        private CreateUserCommand _createUserCommand;
+    }
+
+    [TestFixture]
     public class When_Creating_The_Blog: BaseCommandTest<CreateBlogCommand>
     {
         protected override CreateBlogCommand When()

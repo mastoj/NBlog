@@ -3,6 +3,8 @@ using System.Threading;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FluentValidation.Mvc;
+using NBlog.Filters;
 
 namespace NBlog
 {
@@ -47,6 +49,8 @@ namespace NBlog
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }

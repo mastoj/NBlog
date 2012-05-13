@@ -1,4 +1,10 @@
+using System.Collections.Generic;
+using System.Web.Mvc;
+using NBlog.Filters;
+using NBlog.Services;
 using NBlog.Views;
+using Ninject.Modules;
+using Ninject.Web.Mvc.FilterBindingSyntax;
 using TJ.CQRS.Messaging;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectWebCommon), "Start")]
@@ -56,12 +62,22 @@ namespace NBlog.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlogView>().To<BlogView>();
-            kernel.Bind<IAuthorView>().To<AuthorView>();
-            kernel.Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>();
-            kernel.Bind<IViewRepository<Author>>().To<InMemoryViewRepository<Author>>();
-            kernel.Bind<ISendCommand>().To<InMemoryBus>();
-            kernel.Bind<IMessageRouter>().To<MessageRouter>();
+            kernel.Load(new NBlogNinjectModule());
         }        
+    }
+
+    internal class NBlogNinjectModule : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<IBlogView>().To<BlogView>();
+            Bind<IAuthorView>().To<AuthorView>();
+            Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>();
+            Bind<IViewRepository<Author>>().To<InMemoryViewRepository<Author>>();
+            Bind<ISendCommand>().To<InMemoryBus>();
+            Bind<IMessageRouter>().To<MessageRouter>();
+            Bind<IAuthenticationService>().To<AuthenticationService>();
+            this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
+        }
     }
 }
