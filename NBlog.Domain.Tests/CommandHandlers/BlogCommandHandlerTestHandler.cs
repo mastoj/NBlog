@@ -15,8 +15,9 @@ namespace NBlog.Domain.Tests.CommandHandlers
         [TestFixtureSetUp]
         public void When()
         {
-            _blogRepository = new DomainRepositoryStub<Blog>();
-            _blogCommandHandlers = new BlogCommandHandlers(_blogRepository);
+            var repositoryFactory = new DomainRepositoryStubFactory();
+            _blogRepository = repositoryFactory.GetDomainRepository<Blog>();
+            _blogCommandHandlers = new BlogCommandHandlers(repositoryFactory);
             _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", "adminId");
             _blogCommandHandlers.Handle(_createBlogCommand);
         }

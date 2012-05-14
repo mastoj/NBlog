@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using NBlog.Filters;
+using NBlog.Infrastructure;
 using NBlog.Services;
 using NBlog.Views;
 using Ninject.Modules;
@@ -76,6 +77,7 @@ namespace NBlog.App_Start
             Bind<IViewRepository<UserViewItem>>().To<InMemoryViewRepository<UserViewItem>>();
             Bind<ISendCommand>().To<InMemoryBus>();
             Bind<IMessageRouter>().To<MessageRouter>();
+            Bind<INBlogDomainConfiguration>().To<NBlogDomainConfiguration>();
 
 #if DEBUG
             Bind<IAuthenticationService>().To<AuthenticationServiceStub>();

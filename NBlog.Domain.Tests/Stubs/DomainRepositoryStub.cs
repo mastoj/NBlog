@@ -5,9 +5,17 @@ using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.Tests.CommandHandlers
 {
+    public class DomainRepositoryStubFactory : IDomainRepositoryFactory
+    {
+        public IDomainRepository<TAggregate> GetDomainRepository<TAggregate>() where TAggregate : AggregateRoot, new()
+        {
+            return new DomainRepositoryStub<TAggregate>();
+        }
+    }
+
     public class DomainRepositoryStub<T> : IDomainRepository<T> where T : AggregateRoot
     {
-        private Dictionary<Guid, T> _aggregateDictionary;
+        private static Dictionary<Guid, T> _aggregateDictionary;
 
         public DomainRepositoryStub()
         {

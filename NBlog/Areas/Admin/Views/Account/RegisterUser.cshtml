@@ -1,0 +1,25 @@
+﻿@model NBlog.Domain.Commands.CreateUserCommand
+
+@{
+    ViewBag.Title = "Please register the account";
+}
+
+<h2>Register god damn it!</h2>
+@using(Html.BeginForm(MVC.Admin.Account.ActionNames.RegisterUser, MVC.Admin.Account.Name))
+{
+    <div class="form-input">
+        @Html.LabelFor(model => model.Email, "Email: ")
+        @Html.TextBoxFor(model => model.Email, new { @class= "normal"})
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="form-input">
+        @Html.LabelFor(model => model.Name, "Name: ")
+        @Html.TextBoxFor(model => model.Name, new { @class = "normal" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    @Html.HiddenFor(model => model.UserId)
+    @Html.AntiForgeryToken()
+
+    <input type="submit" value="Register account" />
+}

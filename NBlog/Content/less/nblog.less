@@ -1,20 +1,6 @@
 ﻿@import "elements.less";
 @import "variables.less";
-
-.clearfix {
-  *zoom: 1;
-  &:before,
-  &:after {
-	display: table;
-	content: "";
-  }
-  &:after {
-	clear: both;
-  }
-}
-
-.right { float: right; }
-.left { float: left; }
+@import "mixins.less";
 
 body {
 	font: 16px/26px 'Lato',Helvetica,Arial,sans-serif;

@@ -11,9 +11,9 @@ namespace NBlog.Domain.CommandHandlers
     {
         private readonly IDomainRepository<Post> _postRepository;
 
-        public PostCommandHandlers(IDomainRepository<Post> postRepository)
+        public PostCommandHandlers(IDomainRepositoryFactory repositoryFactory)
         {
-            _postRepository = postRepository;
+            _postRepository = repositoryFactory.GetDomainRepository<Post>();
         }
 
         public void Handle(CreatePostCommand createPostCommand)

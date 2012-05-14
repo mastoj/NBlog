@@ -1,0 +1,26 @@
+@using NBlog.Models
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Navigation {
+    @{ Html.RenderPartial(MVC.Shared.Views._Navigation, new List<NavigationItem>
+                                                                         {
+                                                                             new NavigationItem() { Text = "Blog", Url = Url.Action(MVC.Admin.Blog.ActionNames.Index, MVC.Admin.Blog.Name)}
+                                                                         }); }
+}
+
+<div class="admincontent">
+    <div>
+        @RenderBody()
+    </div>
+</div>
+@*<aside>
+    <section class="first">
+        @{ Html.RenderAction("RecentPosts", "Post");}
+    </section>
+    <section>
+        @{ Html.RenderAction("RecentPosts", "Post");}                    
+    </section>					
+</aside>
+*@

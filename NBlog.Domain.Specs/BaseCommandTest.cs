@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NBlog.Domain.Repositories;
 using NBlog.Domain.Specs.Stubs;
 using NBlog.Infrastructure;
 using NBlog.Views;
@@ -26,13 +25,11 @@ namespace NBlog.Domain.Specs
             var messageRouter = new MessageRouter();
             _bus = new InMemoryBus(messageRouter);
             _eventStore = new StubEventStore(_bus);
-            var postRepository = new PostRepository(_eventStore);
-            var blogRepository = new BlogRepository(_eventStore);
-            var userRepository = new UserRepository(_eventStore);
+            var domainRepositoryFactory = new DomainRepositoryFactory(_eventStore);
             var postViewRepository = new InMemoryViewRepository<PostItem>();
             var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
             var userViewRepository = new InMemoryViewRepository<UserViewItem>();
-            var handlerConfiguration = new NBlogDomainConfiguration(postRepository, blogRepository, userRepository, postViewRepository, blogViewRepository, userViewRepository);
+            var handlerConfiguration = new NBlogDomainConfiguration(domainRepositoryFactory, postViewRepository, blogViewRepository, userViewRepository);
             PostView = handlerConfiguration.PostView;
             BlogView = handlerConfiguration.BlogView;
             UserView = handlerConfiguration.UserView;

@@ -9,9 +9,9 @@ namespace NBlog.Domain.CommandHandlers
     {
         private readonly IDomainRepository<Blog> _blogRepository;
 
-        public BlogCommandHandlers(IDomainRepository<Blog> blogRepository)
+        public BlogCommandHandlers(IDomainRepositoryFactory repositoryFactory)
         {
-            _blogRepository = blogRepository;
+            _blogRepository = repositoryFactory.GetDomainRepository<Blog>();
         }
 
         public void Handle(CreateBlogCommand createBlogCommand)

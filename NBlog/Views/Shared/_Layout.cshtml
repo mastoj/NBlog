@@ -6,8 +6,10 @@
     @{ Html.RenderAction(MVC.Blog.ActionNames.Navigation, MVC.Blog.Name); }
 }
 
-<div>
-    @RenderBody()
+<div id="content">
+    <div>
+        @RenderBody()
+    </div>
 </div>
 <aside class="right-sidebar">
     <div>

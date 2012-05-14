@@ -10,9 +10,7 @@ namespace NBlog.Infrastructure
 {
     public class NBlogDomainConfiguration : INBlogDomainConfiguration
     {
-        private readonly IDomainRepository<Post> _postRepository;
-        private readonly IDomainRepository<Blog> _blogRepository;
-        private readonly IDomainRepository<User> _userRepository;
+        private readonly IDomainRepositoryFactory _domainRepositoryFactory;
         private readonly IViewRepository<PostItem> _postViewRepostiory;
         private readonly IViewRepository<BlogViewItem> _blogViewRepository;
         private readonly IViewRepository<UserViewItem> _userViewRepository;
@@ -23,22 +21,18 @@ namespace NBlog.Infrastructure
         private UserView _userEventHandlers;
         private UserCommandHandlers _userCommandHandlers;
 
-        public NBlogDomainConfiguration(IDomainRepository<Post> postRepository,
-            IDomainRepository<Blog> blogRepository,
-            IDomainRepository<User> userRepository,
+        public NBlogDomainConfiguration(IDomainRepositoryFactory domainRepositoryFactory,
             IViewRepository<PostItem> postViewRepostiory, 
             IViewRepository<BlogViewItem> blogViewRepository,
             IViewRepository<UserViewItem> userViewRepository)
         {
-            _postRepository = postRepository;
-            _blogRepository = blogRepository;
-            _userRepository = userRepository;
+            _domainRepositoryFactory = domainRepositoryFactory;
             _postViewRepostiory = postViewRepostiory;
             _blogViewRepository = blogViewRepository;
             _userViewRepository = userViewRepository;
-            _postCommandHandlers = new PostCommandHandlers(_postRepository);
-            _blogCommandHandlers = new BlogCommandHandlers(_blogRepository);
-            _userCommandHandlers = new UserCommandHandlers(_userRepository);
+            _postCommandHandlers = new PostCommandHandlers(_domainRepositoryFactory);
+            _blogCommandHandlers = new BlogCommandHandlers(_domainRepositoryFactory);
+            _userCommandHandlers = new UserCommandHandlers(_domainRepositoryFactory);
             _postEventHandlers = new PostView(_postViewRepostiory);
             _blogEventHandlers = new BlogView(_blogViewRepository);
             _userEventHandlers = new UserView(_userViewRepository);

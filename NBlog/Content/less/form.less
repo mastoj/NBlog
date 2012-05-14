@@ -1,0 +1,25 @@
+﻿@import "variables.less";
+@import "mixins.less";
+
+form {
+	width: auto;
+	padding: @large-padding;
+    .form-input {
+		width: 100%;
+		float: none;
+		.clearfix();
+		* {
+			.left();
+		}
+		label {
+			width: 250px;
+			display: block;
+		}
+		input.normal {
+			width: 300px;
+		}
+		input.large {
+			width: auto;
+		}
+	}
+}
