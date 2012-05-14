@@ -3,21 +3,17 @@ using TJ.CQRS.Event;
 
 namespace NBlog.Domain.Event
 {
-    public class UserAddedEvent : DomainEventBase
+    public class UserAddedToBlogEvent : DomainEventBase
     {
-        public string AdminId { get; set; }
-        public string AuthorName { get; set; }
-        public string Email { get; set; }
+        public string UserId { get; set; }
+        public Guid AggregateId { get; set; }
 
-        public UserAddedEvent(string adminId, string authorName, string authorEmail, Guid aggregateId)
+        public UserAddedToBlogEvent(string userId, Guid aggregateId)
         {
-            AdminId = adminId;
-            AuthorName = authorName;
-            Email = authorEmail;
+            UserId = userId;
             AggregateId = aggregateId;
         }
     }
-
     public class BlogCreatedEvent : DomainEventBase
     {
         public BlogCreatedEvent(string blogTitle, string subTitle, DateTime creationTime, Guid aggregateId)

@@ -7,6 +7,7 @@ using NBlog.Views;
 using NUnit.Framework;
 using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
+using TJ.CQRS.Respositories;
 using TJ.Extensions;
 
 namespace NBlog.Domain.Specs
@@ -27,13 +28,14 @@ namespace NBlog.Domain.Specs
             _eventStore = new StubEventStore(_bus);
             var postRepository = new PostRepository(_eventStore);
             var blogRepository = new BlogRepository(_eventStore);
+            var userRepository = new UserRepository(_eventStore);
             var postViewRepository = new InMemoryViewRepository<PostItem>();
             var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
-            var authorViewRepository = new InMemoryViewRepository<Author>();
-            var handlerConfiguration = new NBlogDomainConfiguration(postRepository, blogRepository, postViewRepository, blogViewRepository, authorViewRepository);
+            var userViewRepository = new InMemoryViewRepository<UserViewItem>();
+            var handlerConfiguration = new NBlogDomainConfiguration(postRepository, blogRepository, userRepository, postViewRepository, blogViewRepository, userViewRepository);
             PostView = handlerConfiguration.PostView;
             BlogView = handlerConfiguration.BlogView;
-            AuthorView = handlerConfiguration.AuthorView;
+            UserView = handlerConfiguration.UserView;
             handlerConfiguration.ConfigureMessageRouter(messageRouter);
         }
 
@@ -96,7 +98,7 @@ namespace NBlog.Domain.Specs
 
         protected BlogView BlogView { get; private set; }
 
-        protected AuthorView AuthorView { get; private set; }
+        protected UserView UserView { get; private set; }
 
 
         #endregion

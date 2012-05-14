@@ -3,10 +3,10 @@ using NBlog.Domain.Event;
 
 namespace NBlog.Views
 {
-    public interface IAuthorView
+    public interface IUserView
     {
-        IEnumerable<Author> GetAuthors();
-        void Handle(UserAddedEvent userAddedEvent);
-        Author GetAuthor(string identity);
+        IEnumerable<UserViewItem> GetUsers();
+        void Handle(UserCreatedEvent userAddedEvent);
+        UserViewItem GetUser(string identity);
     }
 }

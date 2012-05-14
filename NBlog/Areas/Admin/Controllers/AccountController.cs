@@ -14,14 +14,14 @@ namespace NBlog.Areas.Admin.Controllers
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly ISendCommand _commandBus;
-        private readonly IAuthorView _authorView;
+        private readonly IUserView _userView;
         //
         // GET: /Admin/Account/
-        public AccountController(IAuthenticationService authenticationService, ISendCommand commandBus, IAuthorView authorView)
+        public AccountController(IAuthenticationService authenticationService, ISendCommand commandBus, IUserView userView)
         {
             _authenticationService = authenticationService;
             _commandBus = commandBus;
-            _authorView = authorView;
+            _userView = userView;
         }
 
         public virtual ActionResult Login(string returnUrl)
@@ -37,10 +37,10 @@ namespace NBlog.Areas.Admin.Controllers
         public virtual ActionResult AuthenticateUser(string returnUrl)
         {
             var openIdData = _authenticationService.ParseOpenIdResponse();
-            Author user;
+            UserViewItem user;
             if (_authenticationService.TryAuthenticateUser(openIdData, out user))
             {
-                SetAuthenticationCookie(user.AuthorId);
+                SetAuthenticationCookie(user.UserId);
                 return new RedirectResult(returnUrl);                
             }
             if (UserDoesNotExist())
@@ -48,8 +48,7 @@ namespace NBlog.Areas.Admin.Controllers
 
                 var createUserComand = new CreateUserCommand()
                                            {
-                                               OpenId = openIdData.OpenId,
-                                               FriendlyName = openIdData.FriendlyName
+                                               UserId = openIdData.OpenId
                                            };
                 return View(MVC.Admin.Account.Views.RegisterUser, createUserComand);
             }
@@ -82,7 +81,7 @@ namespace NBlog.Areas.Admin.Controllers
 
         private bool UserDoesNotExist()
         {
-            return _authorView.GetAuthors().Count() == 0;
+            return _userView.GetUsers().Count() == 0;
         }
     }
 }

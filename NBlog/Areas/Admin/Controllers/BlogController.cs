@@ -13,14 +13,14 @@ namespace NBlog.Areas.Admin.Controllers
     public partial class BlogController : Controller
     {
         private readonly IBlogView _blogView;
-        private readonly IAuthorView _authorView;
+        private readonly IUserView _userView;
         private readonly ISendCommand _commandBus;
         //
         // GET: /Admin/Blog/
-        public BlogController(IBlogView blogView, IAuthorView authorView, ISendCommand commandBus)
+        public BlogController(IBlogView blogView, IUserView userView, ISendCommand commandBus)
         {
             _blogView = blogView;
-            _authorView = authorView;
+            _userView = userView;
             _commandBus = commandBus;
         }
 
@@ -45,8 +45,8 @@ namespace NBlog.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                var author = _authorView.GetAuthor(User.Identity.Name);
-                var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, author.AuthorId, author.AuthorName, author.AuthorEmail);
+                var user = _userView.GetUser(User.Identity.Name);
+                var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, user.UserId);
                 _commandBus.Send(createBlogCommand);
             }
             

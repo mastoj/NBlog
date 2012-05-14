@@ -15,7 +15,7 @@ namespace NBlog.Domain.Tests.Entities
         [TestFixtureSetUp]
         public void When()
         {
-            _blog = Blog.Create("Title", "SubTitle", "adminId", "authorName", "author@Name.com", Guid.Empty);
+            _blog = Blog.Create("Title", "SubTitle", "adminId", Guid.Empty);
         }
 
         [Test]
@@ -31,12 +31,10 @@ namespace NBlog.Domain.Tests.Entities
         [Test]
         public void Then_A_Admin_Added_Event_Should_Be_Raised()
         {
-            var events = _blog.GetChanges().OfType<UserAddedEvent>();
+            var events = _blog.GetChanges().OfType<UserAddedToBlogEvent>();
             events.Count().Should().Be(1);
             var userAddedEvent = events.First();
-            userAddedEvent.AdminId.Should().Be("adminId");
-            userAddedEvent.AuthorName.Should().Be("authorName");
-            userAddedEvent.Email.Should().Be("author@Name.com");
+            userAddedEvent.UserId.Should().Be("adminId");
         }
 
         private Blog _blog;

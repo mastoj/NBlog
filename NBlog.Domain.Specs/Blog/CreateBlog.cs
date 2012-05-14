@@ -11,23 +11,11 @@ using TJ.CQRS.Messaging;
 namespace NBlog.Domain.Specs.Blog
 {
     [TestFixture]
-    public class When_Creating_A_User : BaseCommandTest<CreateUserCommand>
-    {
-        protected override CreateUserCommand When()
-        {
-            _createUserCommand = new CreateUserCommand();
-            return _createUserCommand;
-        }
-
-        private CreateUserCommand _createUserCommand;
-    }
-
-    [TestFixture]
     public class When_Creating_The_Blog: BaseCommandTest<CreateBlogCommand>
     {
         protected override CreateBlogCommand When()
         {
-            _createBlogCommand = new CreateBlogCommand("Blog title", "Subtitle", "AdminId", "User Name", "author@Name.com");
+            _createBlogCommand = new CreateBlogCommand("Blog title", "Subtitle", "AdminId");
             return _createBlogCommand;
         }
 
@@ -40,11 +28,10 @@ namespace NBlog.Domain.Specs.Blog
         }
 
         [Test]
-        public void Then_Admin_Author_Should_Be_Added_To_Blog()
+        public void Then_User_Should_Be_Added_To_Blog()
         {
-            var events = GetPublishedEvents().OfType<UserAddedEvent>();
+            var events = GetPublishedEvents().OfType<UserAddedToBlogEvent>();
             events.Count().Should().Be(1);
-            AuthorView.GetAuthors().Count().Should().Be(1);
         }
 
         private CreateBlogCommand _createBlogCommand;

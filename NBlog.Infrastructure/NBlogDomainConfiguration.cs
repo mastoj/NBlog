@@ -10,33 +10,38 @@ namespace NBlog.Infrastructure
 {
     public class NBlogDomainConfiguration : INBlogDomainConfiguration
     {
-        private IDomainRepository<Post> _postRepository;
+        private readonly IDomainRepository<Post> _postRepository;
         private readonly IDomainRepository<Blog> _blogRepository;
+        private readonly IDomainRepository<User> _userRepository;
         private readonly IViewRepository<PostItem> _postViewRepostiory;
         private readonly IViewRepository<BlogViewItem> _blogViewRepository;
-        private readonly IViewRepository<Author> _authorViewRepository;
+        private readonly IViewRepository<UserViewItem> _userViewRepository;
         private PostCommandHandlers _postCommandHandlers;
         private PostView _postEventHandlers;
         private BlogCommandHandlers _blogCommandHandlers;
         private BlogView _blogEventHandlers;
-        private AuthorView _authorEventHandlers;
+        private UserView _userEventHandlers;
+        private UserCommandHandlers _userCommandHandlers;
 
-        public NBlogDomainConfiguration(IDomainRepository<Post> postRepository, 
-            IDomainRepository<Blog> blogRepository, 
+        public NBlogDomainConfiguration(IDomainRepository<Post> postRepository,
+            IDomainRepository<Blog> blogRepository,
+            IDomainRepository<User> userRepository,
             IViewRepository<PostItem> postViewRepostiory, 
             IViewRepository<BlogViewItem> blogViewRepository,
-            IViewRepository<Author> authorViewRepository)
+            IViewRepository<UserViewItem> userViewRepository)
         {
             _postRepository = postRepository;
             _blogRepository = blogRepository;
+            _userRepository = userRepository;
             _postViewRepostiory = postViewRepostiory;
             _blogViewRepository = blogViewRepository;
-            _authorViewRepository = authorViewRepository;
+            _userViewRepository = userViewRepository;
             _postCommandHandlers = new PostCommandHandlers(_postRepository);
             _blogCommandHandlers = new BlogCommandHandlers(_blogRepository);
+            _userCommandHandlers = new UserCommandHandlers(_userRepository);
             _postEventHandlers = new PostView(_postViewRepostiory);
             _blogEventHandlers = new BlogView(_blogViewRepository);
-            _authorEventHandlers = new AuthorView(_authorViewRepository);
+            _userEventHandlers = new UserView(_userViewRepository);
         }
 
         public void ConfigureMessageRouter(IMessageRouter messageRouter)
@@ -49,12 +54,12 @@ namespace NBlog.Infrastructure
         {
             RegisterPostEventHandlers(messageRouter);
             RegisterBlogEventHandlers(messageRouter);
-            RegisterAuthorEventHandlers(messageRouter);
+            RegisterUserEventHandlers(messageRouter);
         }
 
-        private void RegisterAuthorEventHandlers(IMessageRouter messageRouter)
+        private void RegisterUserEventHandlers(IMessageRouter messageRouter)
         {
-            messageRouter.Register<UserAddedEvent>(_authorEventHandlers.Handle);
+            messageRouter.Register<UserCreatedEvent>(_userEventHandlers.Handle);
         }
 
         private void RegisterBlogEventHandlers(IMessageRouter messageRouter)
@@ -74,6 +79,12 @@ namespace NBlog.Infrastructure
         {
             RegisterPostCommandHandlers(messageRouter);
             RegisterBlogCommandHandlers(messageRouter);
+            RegisterUserCommandHandlers(messageRouter);
+        }
+
+        private void RegisterUserCommandHandlers(IMessageRouter messageRouter)
+        {
+            messageRouter.Register<CreateUserCommand>(_userCommandHandlers.Handle);
         }
 
         private void RegisterBlogCommandHandlers(IMessageRouter messageRouter)
@@ -92,6 +103,6 @@ namespace NBlog.Infrastructure
         // only used for debugging purpose.
         public PostView PostView { get { return _postEventHandlers; } }
         public BlogView BlogView { get { return _blogEventHandlers; } }
-        public AuthorView AuthorView { get { return _authorEventHandlers; } }
+        public UserView UserView { get { return _userEventHandlers; } }
     }
 }

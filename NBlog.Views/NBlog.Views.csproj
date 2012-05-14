@@ -48,7 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorView.cs" />
+    <Compile Include="UserView.cs" />
     <Compile Include="BlogView.cs" />
     <Compile Include="IAuthorView.cs" />
     <Compile Include="IBlogView.cs" />

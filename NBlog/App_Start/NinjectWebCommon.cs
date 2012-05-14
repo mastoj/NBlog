@@ -71,9 +71,9 @@ namespace NBlog.App_Start
         public override void Load()
         {
             Bind<IBlogView>().To<BlogView>();
-            Bind<IAuthorView>().To<AuthorView>();
+            Bind<IUserView>().To<UserView>();
             Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>();
-            Bind<IViewRepository<Author>>().To<InMemoryViewRepository<Author>>();
+            Bind<IViewRepository<UserViewItem>>().To<InMemoryViewRepository<UserViewItem>>();
             Bind<ISendCommand>().To<InMemoryBus>();
             Bind<IMessageRouter>().To<MessageRouter>();
 

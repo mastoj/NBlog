@@ -17,7 +17,7 @@ namespace NBlog.Domain.Tests.CommandHandlers
         {
             _blogRepository = new DomainRepositoryStub<Blog>();
             _blogCommandHandlers = new BlogCommandHandlers(_blogRepository);
-            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", "adminId", "authorName", "author@Name.com");
+            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", "adminId");
             _blogCommandHandlers.Handle(_createBlogCommand);
         }
 
