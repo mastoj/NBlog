@@ -76,7 +76,12 @@ namespace NBlog.App_Start
             Bind<IViewRepository<Author>>().To<InMemoryViewRepository<Author>>();
             Bind<ISendCommand>().To<InMemoryBus>();
             Bind<IMessageRouter>().To<MessageRouter>();
+
+#if DEBUG
+            Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
+#else
             Bind<IAuthenticationService>().To<AuthenticationService>();
+#endif
             this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
         }
     }

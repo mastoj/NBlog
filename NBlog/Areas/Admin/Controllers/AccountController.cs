@@ -69,6 +69,7 @@ namespace NBlog.Areas.Admin.Controllers
             Response.Cookies.Add(authCookie);
         }
 
+        [HttpPost]
         public virtual ActionResult RegisterUser(string returnUrl, CreateUserCommand createUserCommand)
         {
             if(ModelState.IsValid && UserDoesNotExist())
