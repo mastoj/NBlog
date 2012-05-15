@@ -23,7 +23,7 @@ namespace NBlog.Services
         bool IsUserAuthenticated(IPrincipal user);
         ActionResult GetAuthenticationUrl(string returnUrl);
         OpenIdData ParseOpenIdResponse();
-        bool TryAuthenticateUser(OpenIdData openIdData, out UserViewItem user);
+        bool TryAuthenticateUser(string openId, out UserViewItem user);
     }
 
     public class AuthenticationServiceStub : IAuthenticationService
@@ -65,9 +65,9 @@ namespace NBlog.Services
                        };
         }
 
-        public bool TryAuthenticateUser(OpenIdData openIdData, out UserViewItem user)
+        public bool TryAuthenticateUser(string openId, out UserViewItem user)
         {
-            user = _userView.GetUser(openIdData.OpenId);
+            user = _userView.GetUser(openId);
             if (user == null)
             {
                 return false;
@@ -151,9 +151,9 @@ namespace NBlog.Services
 
         }
 
-        public bool TryAuthenticateUser(OpenIdData openIdData, out UserViewItem user)
+        public bool TryAuthenticateUser(string openId, out UserViewItem user)
         {
-            user = _userView.GetUser(openIdData.OpenId);
+            user = _userView.GetUser(openId);
             if(user == null)
             {
                 return false;

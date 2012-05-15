@@ -121,6 +121,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.0.0.15\lib\net40\Ninject.dll</HintPath>
@@ -208,6 +214,9 @@
     <Reference Include="TJ.CQRS, Version=0.1.1.43061, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TJ.CQRS.0.1.1.43061\lib\net40\TJ.CQRS.dll</HintPath>
+    </Reference>
+    <Reference Include="TJ.CQRS.MongoEvent">
+      <HintPath>..\packages\TJ.CQRS.MongoEvent.0.1.0.0\lib\net40\TJ.CQRS.MongoEvent.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>

@@ -38,7 +38,7 @@ namespace NBlog.Areas.Admin.Controllers
         {
             var openIdData = _authenticationService.ParseOpenIdResponse();
             UserViewItem user;
-            if (_authenticationService.TryAuthenticateUser(openIdData, out user))
+            if (_authenticationService.TryAuthenticateUser(openIdData.OpenId, out user))
             {
                 SetAuthenticationCookie(user.UserId);
                 return new RedirectResult(returnUrl);                
@@ -74,7 +74,12 @@ namespace NBlog.Areas.Admin.Controllers
             if(ModelState.IsValid && UserDoesNotExist())
             {
                 _commandBus.Send(createUserCommand);
-                return new RedirectResult(returnUrl);
+                UserViewItem user;
+                if (_authenticationService.TryAuthenticateUser(createUserCommand.UserId, out user))
+                {
+                    SetAuthenticationCookie(user.UserId);
+                    return new RedirectResult(returnUrl);
+                }
             }
             return View(createUserCommand);
         }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Please register the account";
+    var returnUrl = Request["returnUrl"];
 }
 
 <h2>Register god damn it!</h2>
@@ -19,6 +20,7 @@
     </div>
 
     @Html.HiddenFor(model => model.UserId)
+    @Html.Hidden("returnUrl", returnUrl)
     @Html.AntiForgeryToken()
 
     <input type="submit" value="Register account" />

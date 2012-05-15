@@ -6,7 +6,10 @@ using NBlog.Services;
 using NBlog.Views;
 using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
+using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
+using TJ.CQRS.MongoEvent;
+using TJ.CQRS.Respositories;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NBlog.App_Start.NinjectWebCommon), "Stop")]
@@ -64,6 +67,9 @@ namespace NBlog.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new NBlogNinjectModule());
+            var configuration = kernel.Get<INBlogDomainConfiguration>();
+            var messageRouter = kernel.Get<IMessageRouter>();
+            configuration.ConfigureMessageRouter(messageRouter);
         }        
     }
 
@@ -71,13 +77,18 @@ namespace NBlog.App_Start
     {
         public override void Load()
         {
-            Bind<IBlogView>().To<BlogView>();
-            Bind<IUserView>().To<UserView>();
-            Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>();
-            Bind<IViewRepository<UserViewItem>>().To<InMemoryViewRepository<UserViewItem>>();
-            Bind<ISendCommand>().To<InMemoryBus>();
-            Bind<IMessageRouter>().To<MessageRouter>();
-            Bind<INBlogDomainConfiguration>().To<NBlogDomainConfiguration>();
+            Bind<IMessageRouter>().To<MessageRouter>().InSingletonScope();
+            Bind<INBlogDomainConfiguration>().To<NBlogDomainConfiguration>().InSingletonScope();
+            Bind<IBlogView>().To<BlogView>().InSingletonScope();
+            Bind<IUserView>().To<UserView>().InSingletonScope();
+            Bind<IViewRepository<PostItem>>().To<InMemoryViewRepository<PostItem>>().InSingletonScope();
+            Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>().InSingletonScope();
+            Bind<IViewRepository<UserViewItem>>().To<InMemoryViewRepository<UserViewItem>>().InSingletonScope();
+            Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InSingletonScope();
+            Bind<IMongoConfiguration>().To<MongoConfiguration>().InSingletonScope();
+            Bind<IEventStore>().To<MongoEventStore>().InSingletonScope();
+            Bind<IBus>().To<InMemoryBus>().InSingletonScope();
+            Bind<ISendCommand>().ToMethod(y => Kernel.Get<IBus>() as InMemoryBus);
 
 #if DEBUG
             Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
