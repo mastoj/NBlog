@@ -45,7 +45,6 @@ namespace NBlog.Areas.Admin.Controllers
             }
             if (UserDoesNotExist())
             {
-
                 var createUserComand = new CreateUserCommand()
                                            {
                                                UserId = openIdData.OpenId
@@ -78,6 +77,10 @@ namespace NBlog.Areas.Admin.Controllers
                 if (_authenticationService.TryAuthenticateUser(createUserCommand.UserId, out user))
                 {
                     SetAuthenticationCookie(user.UserId);
+                    if(string.IsNullOrEmpty(returnUrl))
+                    {
+                        return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = MVC.Home.Area });
+                    }
                     return new RedirectResult(returnUrl);
                 }
             }
