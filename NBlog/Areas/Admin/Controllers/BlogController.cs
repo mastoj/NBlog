@@ -14,10 +14,10 @@ namespace NBlog.Areas.Admin.Controllers
     {
         private readonly IBlogView _blogView;
         private readonly IUserView _userView;
-        private readonly ISendCommand _commandBus;
+        private readonly ICommandBus _commandBus;
         //
         // GET: /Admin/Blog/
-        public BlogController(IBlogView blogView, IUserView userView, ISendCommand commandBus)
+        public BlogController(IBlogView blogView, IUserView userView, ICommandBus commandBus)
         {
             _blogView = blogView;
             _userView = userView;

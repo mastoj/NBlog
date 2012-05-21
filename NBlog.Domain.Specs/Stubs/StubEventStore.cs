@@ -11,7 +11,7 @@ namespace NBlog.Domain.Specs.Stubs
     {
         private List<IDomainEvent> _insertedEvents;
 
-        public StubEventStore(IBus bus)
+        public StubEventStore(IEventBus bus)
             : base(bus)
         {
             _insertedEvents = new List<IDomainEvent>();

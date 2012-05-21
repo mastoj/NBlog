@@ -85,8 +85,8 @@ namespace NBlog.App_Start
             Bind<IEventStore>().To<RavenEventStore>().InRequestScope();
             Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = "http://localhost:8090/"}).
                 InRequestScope();
-            Bind<IBus>().To<InMemoryBus>().InRequestScope();
-            Bind<ISendCommand>().ToMethod(y => Kernel.Get<IBus>() as InMemoryBus);
+            Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
+            Bind<IEventBus>().To<IEventBus>();
 
 #if DEBUG
             Bind<IAuthenticationService>().To<AuthenticationServiceStub>();

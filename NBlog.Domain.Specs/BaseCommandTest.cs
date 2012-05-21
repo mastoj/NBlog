@@ -17,14 +17,16 @@ namespace NBlog.Domain.Specs
         private Exception _caughtException;
         private bool _exceptionIsChecked;
         private bool _exceptionOccured;
-        private IEventStore _eventStore;
-        private InMemoryBus _bus;
+        private StubEventStore _eventStore;
+        private InMemoryCommandBus _commandBus;
+        private InMemoryEventBus _eventBus;
 
         public BaseCommandTest()
         {
             var messageRouter = new MessageRouter();
-            _bus = new InMemoryBus(messageRouter);
-            _eventStore = new StubEventStore(_bus);
+            _eventBus = new InMemoryEventBus(messageRouter);
+            _eventStore = new StubEventStore(_eventBus);
+            _commandBus = new InMemoryCommandBus(messageRouter, _eventStore);
             var domainRepositoryFactory = new DomainRepositoryFactory(_eventStore);
             var postViewRepository = new InMemoryViewRepository<PostItem>();
             var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
@@ -53,12 +55,12 @@ namespace NBlog.Domain.Specs
 
         protected void PreSetCommand(ICommand command)
         {
-            _bus.Send(command);
+            _commandBus.Send(command);
         }
 
         protected IEnumerable<IDomainEvent> GetPublishedEvents()
         {
-            return _bus.PublishedEvents;
+            return _eventBus.PublishedEvents;
         }
 
         [TestFixtureSetUp]
@@ -70,7 +72,7 @@ namespace NBlog.Domain.Specs
             var commandUnderTest = When();
             try
             {
-                _bus.Send(commandUnderTest);
+                _commandBus.Send(commandUnderTest);
             }
             catch (Exception ex)
             {

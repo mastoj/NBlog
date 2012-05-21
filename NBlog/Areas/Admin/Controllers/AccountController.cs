@@ -13,11 +13,11 @@ namespace NBlog.Areas.Admin.Controllers
     public partial class AccountController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly ISendCommand _commandBus;
+        private readonly ICommandBus _commandBus;
         private readonly IUserView _userView;
         //
         // GET: /Admin/Account/
-        public AccountController(IAuthenticationService authenticationService, ISendCommand commandBus, IUserView userView)
+        public AccountController(IAuthenticationService authenticationService, ICommandBus commandBus, IUserView userView)
         {
             _authenticationService = authenticationService;
             _commandBus = commandBus;
