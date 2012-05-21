@@ -218,13 +218,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TJ.CQRS, Version=0.1.2.12875, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.1.4.40344, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.1.2.12875\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.1.4.40344\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
-    <Reference Include="TJ.CQRS.RavenEvent, Version=0.1.2.13175, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS.RavenEvent, Version=0.1.4.40515, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.1.2.13175\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.1.4.40515\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>

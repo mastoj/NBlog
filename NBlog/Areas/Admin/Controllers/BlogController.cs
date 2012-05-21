@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using NBlog.Areas.Admin.Models;
 using NBlog.Domain.Commands;
 using NBlog.Views;
@@ -50,7 +51,7 @@ namespace NBlog.Areas.Admin.Controllers
                 _commandBus.Send(createBlogCommand);
             }
             
-            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = MVC.Home.Area });
         }
 
     }

@@ -7,11 +7,10 @@ namespace NBlog.Views
 {
     public class InMemoryViewRepository<T> : IViewRepository<T>
     {
-        private static List<T> _items = new List<T>();
+        private List<T> _items = new List<T>();
 
         public InMemoryViewRepository()
         {
-//            _items = new List<T>();
         }
 
         public void Insert(T blogViewItem)

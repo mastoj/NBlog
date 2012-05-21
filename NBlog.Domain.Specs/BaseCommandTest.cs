@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NBlog.Domain.Specs.Stubs;
 using NBlog.Infrastructure;
+using NBlog.Infrastructure.MessageRouting;
 using NBlog.Views;
 using NUnit.Framework;
 using TJ.CQRS.Event;
@@ -23,19 +24,18 @@ namespace NBlog.Domain.Specs
 
         public BaseCommandTest()
         {
-            var messageRouter = new MessageRouter();
-            _eventBus = new InMemoryEventBus(messageRouter);
-            _eventStore = new StubEventStore(_eventBus);
-            _commandBus = new InMemoryCommandBus(messageRouter, _eventStore);
-            var domainRepositoryFactory = new DomainRepositoryFactory(_eventStore);
             var postViewRepository = new InMemoryViewRepository<PostItem>();
             var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
             var userViewRepository = new InMemoryViewRepository<UserViewItem>();
-            var handlerConfiguration = new NBlogDomainConfiguration(domainRepositoryFactory, postViewRepository, blogViewRepository, userViewRepository);
-            PostView = handlerConfiguration.PostView;
-            BlogView = handlerConfiguration.BlogView;
-            UserView = handlerConfiguration.UserView;
-            handlerConfiguration.ConfigureMessageRouter(messageRouter);
+            var eventRouter = new EventRouter(postViewRepository, blogViewRepository, userViewRepository);
+            _eventBus = new InMemoryEventBus(eventRouter);
+            _eventStore = new StubEventStore(_eventBus);
+            var domainRepositoryFactory = new DomainRepositoryFactory(_eventStore);
+            var commandRouter = new CommandRouter(domainRepositoryFactory);
+            _commandBus = new InMemoryCommandBus(commandRouter, new UnitOfWork(_eventStore));
+            PostView = eventRouter.PostView;
+            BlogView = eventRouter.BlogView;
+            UserView = eventRouter.UserView;
         }
 
         protected Exception CaughtException

@@ -1,10 +1,12 @@
 using System.Web.Mvc;
 using NBlog.Filters;
 using NBlog.Infrastructure;
+using NBlog.Infrastructure.MessageRouting;
 using NBlog.Services;
 using NBlog.Views;
 using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
+using TJ.CQRS;
 using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
 using TJ.CQRS.RavenEvent;
@@ -66,9 +68,6 @@ namespace NBlog.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new NBlogNinjectModule());
-            var configuration = kernel.Get<INBlogDomainConfiguration>();
-            var messageRouter = kernel.Get<IMessageRouter>();
-            configuration.ConfigureMessageRouter(messageRouter);
         }        
     }
 
@@ -76,17 +75,18 @@ namespace NBlog.App_Start
     {
         public override void Load()
         {
-            Bind<IMessageRouter>().To<MessageRouter>().InSingletonScope();
-            Bind<INBlogDomainConfiguration>().To<NBlogDomainConfiguration>().InSingletonScope();
+            Bind<ICommandRouter>().To<CommandRouter>().InRequestScope();
+            Bind<IEventRouter>().To<EventRouter>().InRequestScope();
             Bind<IBlogView>().To<BlogView>().InRequestScope();
             Bind<IUserView>().To<UserView>().InRequestScope();
-            Bind(typeof (IViewRepository<>)).To(typeof (InMemoryViewRepository<>)).InRequestScope();
+            Bind(typeof (IViewRepository<>)).To(typeof (RavenViewRepository<>)).InRequestScope().WithConstructorArgument("url", "http://localhost:8090/");
             Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InRequestScope();
+            Bind<IEventBus>().To<InMemoryEventBus>().InRequestScope();
             Bind<IEventStore>().To<RavenEventStore>().InRequestScope();
+            Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = "http://localhost:8090/"}).
                 InRequestScope();
             Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
-            Bind<IEventBus>().To<IEventBus>();
 
 #if DEBUG
             Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
