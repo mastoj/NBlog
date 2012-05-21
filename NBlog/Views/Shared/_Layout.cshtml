@@ -10,14 +10,14 @@
     <div>
         @RenderBody()
     </div>
+    <aside class="right-sidebar">
+        <div>
+            <section class="first">
+                @{ Html.RenderAction("RecentPosts", "Post");}
+            </section>
+            <section>
+                @{ Html.RenderAction("RecentPosts", "Post");}                    
+            </section>					
+        </div>
+    </aside>
 </div>
-<aside class="right-sidebar">
-    <div>
-        <section class="first">
-            @{ Html.RenderAction("RecentPosts", "Post");}
-        </section>
-        <section>
-            @{ Html.RenderAction("RecentPosts", "Post");}                    
-        </section>					
-    </div>
-</aside>
