@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Web.Mvc;
 using NBlog.Filters;
 using NBlog.Infrastructure;
@@ -75,16 +76,17 @@ namespace NBlog.App_Start
     {
         public override void Load()
         {
+            var url = ConfigurationManager.AppSettings["RAVENHQ_CONNECTION_STRING"];
             Bind<ICommandRouter>().To<CommandRouter>().InRequestScope();
             Bind<IEventRouter>().To<EventRouter>().InRequestScope();
             Bind<IBlogView>().To<BlogView>().InRequestScope();
             Bind<IUserView>().To<UserView>().InRequestScope();
-            Bind(typeof (IViewRepository<>)).To(typeof (RavenViewRepository<>)).InRequestScope().WithConstructorArgument("url", "http://localhost:8090/");
+            Bind(typeof (IViewRepository<>)).To(typeof (RavenViewRepository<>)).InRequestScope().WithConstructorArgument("url", url);
             Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InRequestScope();
             Bind<IEventBus>().To<InMemoryEventBus>().InRequestScope();
             Bind<IEventStore>().To<RavenEventStore>().InRequestScope();
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = "http://localhost:8090/"}).
+            Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = url}).
                 InRequestScope();
             Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
 
