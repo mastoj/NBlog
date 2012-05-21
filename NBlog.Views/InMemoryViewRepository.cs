@@ -7,26 +7,26 @@ namespace NBlog.Views
 {
     public class InMemoryViewRepository<T> : IViewRepository<T>
     {
-        private List<T> _blogViewItems;
+        private static List<T> _items = new List<T>();
 
         public InMemoryViewRepository()
         {
-            _blogViewItems = new List<T>();
+//            _items = new List<T>();
         }
 
         public void Insert(T blogViewItem)
         {
-            _blogViewItems.Add(blogViewItem);
+            _items.Add(blogViewItem);
         }
 
         public T Find(Func<T, bool> predicate)
         {
-            return _blogViewItems.FirstOrDefault(y => predicate.IsNull() || predicate(y));
+            return _items.FirstOrDefault(y => predicate.IsNull() || predicate(y));
         }
 
         public IEnumerable<T> All(Func<T, bool> predicate)
         {
-            return _blogViewItems.Where(y => predicate.IsNull() || predicate(y));
+            return _items.Where(y => predicate.IsNull() || predicate(y));
         }
     }
 }

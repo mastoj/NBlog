@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Web.Mvc;
 using NBlog.Filters;
 using NBlog.Infrastructure;
@@ -8,7 +7,7 @@ using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
-using TJ.CQRS.MongoEvent;
+using TJ.CQRS.RavenEvent;
 using TJ.CQRS.Respositories;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NBlog.App_Start.NinjectWebCommon), "Start")]
@@ -79,15 +78,14 @@ namespace NBlog.App_Start
         {
             Bind<IMessageRouter>().To<MessageRouter>().InSingletonScope();
             Bind<INBlogDomainConfiguration>().To<NBlogDomainConfiguration>().InSingletonScope();
-            Bind<IBlogView>().To<BlogView>().InSingletonScope();
-            Bind<IUserView>().To<UserView>().InSingletonScope();
-            Bind<IViewRepository<PostItem>>().To<InMemoryViewRepository<PostItem>>().InSingletonScope();
-            Bind<IViewRepository<BlogViewItem>>().To<InMemoryViewRepository<BlogViewItem>>().InSingletonScope();
-            Bind<IViewRepository<UserViewItem>>().To<InMemoryViewRepository<UserViewItem>>().InSingletonScope();
-            Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InSingletonScope();
-            Bind<IMongoConfiguration>().To<MongoConfiguration>().InSingletonScope();
-            Bind<IEventStore>().To<MongoEventStore>().InSingletonScope();
-            Bind<IBus>().To<InMemoryBus>().InSingletonScope();
+            Bind<IBlogView>().To<BlogView>().InRequestScope();
+            Bind<IUserView>().To<UserView>().InRequestScope();
+            Bind(typeof (IViewRepository<>)).To(typeof (InMemoryViewRepository<>)).InRequestScope();
+            Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InRequestScope();
+            Bind<IEventStore>().To<RavenEventStore>().InRequestScope();
+            Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = "http://localhost:8090/"}).
+                InRequestScope();
+            Bind<IBus>().To<InMemoryBus>().InRequestScope();
             Bind<ISendCommand>().ToMethod(y => Kernel.Get<IBus>() as InMemoryBus);
 
 #if DEBUG
