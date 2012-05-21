@@ -6,7 +6,7 @@
 }
 
 <h2>Register god damn it!</h2>
-@using(Html.BeginForm(MVC.Admin.Account.ActionNames.RegisterUser, MVC.Admin.Account.Name))
+@using(Html.BeginForm(MVC.Admin.Account.ActionNames.RegisterUser, MVC.Admin.Account.Name, new { returnUrl = returnUrl }))
 {
     <div class="form-input">
         @Html.LabelFor(model => model.Email, "Email: ")
