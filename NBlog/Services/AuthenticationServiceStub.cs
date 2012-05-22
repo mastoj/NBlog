@@ -11,7 +11,7 @@ using NBlog.Views;
 
 namespace NBlog.Services
 {
-    public class AuthenticationServiceStubAuthenticationServiceStub : IAuthenticationService
+    public class AuthenticationServiceStub : IAuthenticationService
     {
         private readonly IUserView _userView;
         private UrlHelper _urlHelper;
