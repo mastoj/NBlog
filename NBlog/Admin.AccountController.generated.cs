@@ -44,11 +44,6 @@ namespace NBlog.Areas.Admin.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult AuthenticateUser() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.AuthenticateUser);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult RegisterUser() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.RegisterUser);
         }
@@ -68,14 +63,12 @@ namespace NBlog.Areas.Admin.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Login = "Login";
-            public readonly string AuthenticateUser = "AuthenticateUser";
             public readonly string RegisterUser = "RegisterUser";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Login = "Login";
-            public const string AuthenticateUser = "AuthenticateUser";
             public const string RegisterUser = "RegisterUser";
         }
 
@@ -85,13 +78,6 @@ namespace NBlog.Areas.Admin.Controllers {
         public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Login {
-            public readonly string returnUrl = "returnUrl";
-        }
-        static readonly ActionParamsClass_AuthenticateUser s_params_AuthenticateUser = new ActionParamsClass_AuthenticateUser();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AuthenticateUser AuthenticateUserParams { get { return s_params_AuthenticateUser; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AuthenticateUser {
             public readonly string returnUrl = "returnUrl";
         }
         static readonly ActionParamsClass_RegisterUser s_params_RegisterUser = new ActionParamsClass_RegisterUser();
@@ -117,12 +103,6 @@ namespace NBlog.Areas.Admin.Controllers {
 
         public override System.Web.Mvc.ActionResult Login(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Login);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult AuthenticateUser(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AuthenticateUser);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }

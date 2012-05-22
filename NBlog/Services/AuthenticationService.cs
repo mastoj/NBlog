@@ -39,24 +39,9 @@ namespace NBlog.Services
         public ActionResult GetAuthenticationUrl(string returnUrl)
         {
             var identifier = Identifier.Parse("https://www.google.com/accounts/o8/id");
-            var routeDictionary =
-                new
-                    {
-                        action = MVC.Admin.Account.ActionNames.AuthenticateUser,
-                        controller = MVC.Admin.Account.Name,
-                        returnUrl = returnUrl
-                    };
-            Realm realm = GetRealm();
-            var request = openIdRelyingParty.CreateRequest(identifier, realm, new Uri(_urlHelper.RouteUrl("Admin_default", routeDictionary, "http")));
+            var request = openIdRelyingParty.CreateRequest(identifier);
             request.AddExtension(GetClaim());
             return request.RedirectingResponse.AsActionResult();
-        }
-
-        private Realm GetRealm()
-        {
-            var realmUrl = _urlHelper.RouteUrl("Account_route", new {action = "Login", controller = "Account"}, "http");
-            var realm = new Realm(realmUrl);
-            return realm;
         }
 
         private IOpenIdMessageExtension GetClaim()
@@ -68,9 +53,18 @@ namespace NBlog.Services
                        };
         }
 
-        public OpenIdData ParseOpenIdResponse()
+        public bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
         {
-            var openIdResponse = openIdRelyingParty.GetResponse();
+            openIdResponse = openIdRelyingParty.GetResponse();
+            if (openIdResponse.IsNull())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
+        {
             if (openIdResponse.IsNull())
             {
                 throw new ArgumentException("Invalid open id response");

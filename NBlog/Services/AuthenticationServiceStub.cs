@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DotNetOpenAuth.OpenId;
+using DotNetOpenAuth.OpenId.Messages;
+using DotNetOpenAuth.OpenId.RelyingParty;
 using NBlog.Views;
 
 namespace NBlog.Services
@@ -29,7 +33,7 @@ namespace NBlog.Services
         {
             RouteValueDictionary routeValues = new RouteValueDictionary(
                 new {
-                        action = MVC.Admin.Account.ActionNames.AuthenticateUser,
+                        action = MVC.Admin.Account.ActionNames.Login,
                         controller = MVC.Admin.Account.Name,
                         returnUrl = returnUrl
                     }
@@ -37,7 +41,7 @@ namespace NBlog.Services
             return new RedirectToRouteResult(routeValues); 
         }
 
-        public OpenIdData ParseOpenIdResponse()
+        public OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
         {
             return new OpenIdData()
                        {
@@ -54,6 +58,80 @@ namespace NBlog.Services
                 return false;
             }
             return true;
+        }
+
+        public bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
+        {
+            openIdResponse = new AuthenticationResponseStub();
+            return true;
+        }
+    }
+
+    public class AuthenticationResponseStub : IAuthenticationResponse
+    {
+        public string GetCallbackArgument(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetUntrustedCallbackArgument(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, string> GetCallbackArguments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, string> GetUntrustedCallbackArguments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetExtension<T>() where T : IOpenIdMessageExtension
+        {
+            throw new NotImplementedException();
+        }
+
+        public IOpenIdMessageExtension GetExtension(Type extensionType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetUntrustedExtension<T>() where T : IOpenIdMessageExtension
+        {
+            throw new NotImplementedException();
+        }
+
+        public IOpenIdMessageExtension GetUntrustedExtension(Type extensionType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Identifier ClaimedIdentifier
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string FriendlyIdentifierForDisplay
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public AuthenticationStatus Status
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IProviderEndpoint Provider
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Exception Exception
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

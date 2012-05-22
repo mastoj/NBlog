@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using DotNetOpenAuth.OpenId.RelyingParty;
 using NBlog.Domain.Commands;
 using NBlog.Models;
 using NBlog.Services;
@@ -30,13 +31,19 @@ namespace NBlog.Areas.Admin.Controllers
             {
                 return new RedirectResult(returnUrl);
             }
+            IAuthenticationResponse openIdResponse;
+            var gotOpenIdResponse = _authenticationService.TryGetOpenIdResponse(out openIdResponse);
+            if(gotOpenIdResponse)
+            {
+                return AuthenticateUser(returnUrl, openIdResponse);
+            }
             var authenticationUrl = _authenticationService.GetAuthenticationUrl(returnUrl);
             return authenticationUrl;
         }
 
-        public virtual ActionResult AuthenticateUser(string returnUrl)
+        private ActionResult AuthenticateUser(string returnUrl, IAuthenticationResponse openIdResponse)
         {
-            var openIdData = _authenticationService.ParseOpenIdResponse();
+            var openIdData = _authenticationService.ParseOpenIdResponse(openIdResponse);
             UserViewItem user;
             if (_authenticationService.TryAuthenticateUser(openIdData.OpenId, out user))
             {
