@@ -76,18 +76,16 @@ namespace NBlog.App_Start
     {
         public override void Load()
         {
-            var url = ConfigurationManager.AppSettings["RAVENHQ_CONNECTION_STRING"];
+            var connectionStringName = "RavenDB";
             Bind<ICommandRouter>().To<CommandRouter>().InRequestScope();
             Bind<IEventRouter>().To<EventRouter>().InRequestScope();
             Bind<IBlogView>().To<BlogView>().InRequestScope();
             Bind<IUserView>().To<UserView>().InRequestScope();
-            Bind(typeof (IViewRepository<>)).To(typeof (RavenViewRepository<>)).InRequestScope().WithConstructorArgument("url", url);
+            Bind(typeof (IViewRepository<>)).To(typeof (RavenViewRepository<>)).InRequestScope().WithConstructorArgument("connectionStringName", connectionStringName);
             Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InRequestScope();
             Bind<IEventBus>().To<InMemoryEventBus>().InRequestScope();
-            Bind<IEventStore>().To<RavenEventStore>().InRequestScope();
+            Bind<IEventStore>().To<RavenEventStore>().InRequestScope().WithConstructorArgument("connectionStringName", connectionStringName);
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            Bind<RavenConfiguration>().ToMethod(y => new RavenConfiguration() {Url = url}).
-                InRequestScope();
             Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
 
 #if DEBUG

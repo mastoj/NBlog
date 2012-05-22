@@ -11,11 +11,11 @@ namespace NBlog.Views
     {
         private DocumentStore _documentStore;
 
-        public RavenViewRepository(string url)
+        public RavenViewRepository(string connectionStringName)
         {
             _documentStore = new DocumentStore()
                                  {
-                                     Url = url
+                                     ConnectionStringName = connectionStringName
                                  };
             _documentStore.Initialize();
         }
