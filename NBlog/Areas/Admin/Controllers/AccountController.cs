@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -81,14 +82,19 @@ namespace NBlog.Areas.Admin.Controllers
             {
                 _commandBus.Send(createUserCommand);
                 UserViewItem user;
-                if (_authenticationService.TryAuthenticateUser(createUserCommand.UserId, out user))
+                for (int i = 0; i < 3; i++)
                 {
-                    SetAuthenticationCookie(user.UserId);
-                    if(string.IsNullOrEmpty(returnUrl))
+                    if (_authenticationService.TryAuthenticateUser(createUserCommand.UserId, out user))
                     {
-                        return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = MVC.Home.Area });
+                        SetAuthenticationCookie(user.UserId);
+                        if (string.IsNullOrEmpty(returnUrl))
+                        {
+                            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name,
+                                                    new {area = MVC.Home.Area});
+                        }
+                        return new RedirectResult(returnUrl);
                     }
-                    return new RedirectResult(returnUrl);
+                    Thread.Sleep(500);
                 }
             }
             return View(createUserCommand);
