@@ -254,7 +254,9 @@
     <Compile Include="BlogController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <None Include="Content\less\form.less" />
+    <Content Include="Content\less\form.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -315,7 +317,9 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Account\RegisterUser.cshtml" />
-    <None Include="Content\less\mixins.less" />
+    <Content Include="Content\less\mixins.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\less_tb\nblog.less" />
     <Content Include="Content\less\reset.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
