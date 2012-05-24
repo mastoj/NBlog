@@ -7,7 +7,17 @@ using TJ.Extensions;
 
 namespace NBlog.Views
 {
-    public class PostView
+    public interface IPostView
+    {
+        void Handle(PostCreatedEvent postCreatedEvent);
+        IEnumerable<PostItem> GetPosts(bool includeDeletedPosts = false);
+        void Handle(PostPublishedEvent postPublishedEvent);
+        IEnumerable<PostItem> GetPublishedPosts();
+        void Handle(PostDeletedEvent postPublishedEvent);
+        void Handle(PostUpdatedEvent postUpdatedEvent);
+    }
+
+    public class PostView : IPostView
     {
         private readonly IViewRepository<PostItem> _postViewRepostiory;
 

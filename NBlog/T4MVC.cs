@@ -37,6 +37,7 @@ namespace T4MVC {
         public readonly string Name = "Admin";
         public NBlog.Areas.Admin.Controllers.AccountController Account = new NBlog.Areas.Admin.Controllers.T4MVC_AccountController();
         public NBlog.Areas.Admin.Controllers.BlogController Blog = new NBlog.Areas.Admin.Controllers.T4MVC_BlogController();
+        public NBlog.Areas.Admin.Controllers.PostController Post = new NBlog.Areas.Admin.Controllers.T4MVC_PostController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }
 }
