@@ -23,28 +23,9 @@ namespace NBlog.Infrastructure.MessageRouting
             _postEventHandlers = new PostView(_postViewRepostiory);
             _blogEventHandlers = new BlogView(_blogViewRepository);
             _userEventHandlers = new UserView(_userViewRepository);
-            ConfigureRoutes();
-        }
 
-        private void ConfigureRoutes()
-        {
-            RegisterPostEventHandlers();
-            RegisterBlogEventHandlers();
-            RegisterUserEventHandlers();
-        }
-
-        private void RegisterUserEventHandlers()
-        {
             Register<UserCreatedEvent>(_userEventHandlers.Handle);
-        }
-
-        private void RegisterBlogEventHandlers()
-        {
             Register<BlogCreatedEvent>(_blogEventHandlers.Handle);
-        }
-
-        private void RegisterPostEventHandlers()
-        {
             Register<PostCreatedEvent>(_postEventHandlers.Handle);
             Register<PostDeletedEvent>(_postEventHandlers.Handle);
             Register<PostPublishedEvent>(_postEventHandlers.Handle);

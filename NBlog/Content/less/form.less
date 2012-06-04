@@ -3,17 +3,27 @@
 
 form {
 	width: auto;
-	padding: @large-padding;
+	width: auto;
+	.editor-label {
+		width: 250px;
+		.left();
+		display: inline;
+		label {
+			.right();
+		}
+	}
+	.editor-label {
+		.left();
+		input {
+			.left();
+		}
+	}
     .form-input {
 		width: 100%;
 		float: none;
 		.clearfix();
 		* {
 			.left();
-		}
-		label {
-			width: 250px;
-			display: block;
 		}
 		input.normal {
 			width: 300px;

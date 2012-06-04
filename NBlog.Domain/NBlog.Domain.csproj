@@ -43,15 +43,16 @@
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TJ.CQRS, Version=0.1.4.40344, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.1.5.13908, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.1.4.40344\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.1.5.13908\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,6 +65,7 @@
     <Compile Include="Commands\CreateBlogCommand.cs" />
     <Compile Include="Commands\CreateUserCommand.cs" />
     <Compile Include="Commands\DeletePostCommand.cs" />
+    <Compile Include="Commands\Validators\PostValidators.cs" />
     <Compile Include="Commands\Validators\UserValidators.cs" />
     <Compile Include="Entities\Blog.cs" />
     <Compile Include="Event\BlogCreatedEvent.cs" />

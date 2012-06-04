@@ -53,6 +53,5 @@ namespace NBlog.Areas.Admin.Controllers
             
             return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = MVC.Home.Area });
         }
-
     }
 }

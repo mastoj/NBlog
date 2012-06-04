@@ -26,14 +26,16 @@ namespace NBlog
             routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
 
             routes.MapRoute(
                 name: "Url",
                 url: "{slug}",
-                defaults: new { controller = "Post", action = "Show" },
-                constraints: new { slug = @".+"});
+                defaults: new {controller = "Post", action = "Show"},
+                constraints: new {slug = @".+"},
+                namespaces: new[] {"NBlog.Controllers"}
+                );
 
             routes.MapRoute(
                 name: "Default",

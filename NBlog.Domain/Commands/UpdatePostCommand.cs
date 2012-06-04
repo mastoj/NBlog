@@ -20,5 +20,9 @@ namespace NBlog.Domain.Commands
             Tags = tags;
             Excerpt = excerpt;
         }
+
+        protected UpdatePostCommand() : base(Guid.NewGuid())
+        {
+        }
     }
 }

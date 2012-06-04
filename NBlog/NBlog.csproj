@@ -218,13 +218,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TJ.CQRS, Version=0.1.4.40344, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.1.5.13908, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.1.4.40344\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.1.5.13908\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
-    <Reference Include="TJ.CQRS.RavenEvent, Version=0.1.6.36468, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS.RavenEvent, Version=0.1.7.12173, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.1.6.36468\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.1.7.12173\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
@@ -255,6 +255,7 @@
     <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Models\CreateBlogModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditPostModel.cs" />
     <Compile Include="BlogController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -324,6 +325,9 @@
     <Content Include="Content\less\mixins.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <None Include="Content\less_tb\nblog.less" />
     <Content Include="Content\less\reset.less">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -402,7 +406,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -42,6 +42,11 @@ namespace NBlog.Areas.Admin.Controllers {
         public System.Web.Mvc.ActionResult Index() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Edit() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PostController Actions { get { return MVC.Admin.Post; } }
@@ -59,12 +64,14 @@ namespace NBlog.Areas.Admin.Controllers {
         public class ActionNamesClass {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string Edit = "Edit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string Edit = "Edit";
         }
 
 
@@ -75,12 +82,20 @@ namespace NBlog.Areas.Admin.Controllers {
         public class ActionParamsClass_Index {
             public readonly string includeDeleted = "includeDeleted";
         }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit {
+            public readonly string postId = "postId";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string Create = "~/Areas/Admin/Views/Post/Create.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/Post/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Post/Index.cshtml";
         }
     }
@@ -97,6 +112,12 @@ namespace NBlog.Areas.Admin.Controllers {
 
         public override System.Web.Mvc.ActionResult Create() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Create);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Edit(System.Guid postId) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
+            callInfo.RouteValueDictionary.Add("postId", postId);
             return callInfo;
         }
 

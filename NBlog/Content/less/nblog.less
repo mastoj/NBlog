@@ -72,13 +72,28 @@ body {
 	}
 }
 
+#admincontent .editor,
+#content section.posts {
+	float: left;
+	width: auto;
+	padding: @normal-padding;	
+}
+
+#admincontent {
+	.editor {
+		width: 100%;
+	}
+}
+
 #main-container {
+	header {
+		h1 { font-size: 2em; line-height: 2em; }
+		h2 { font-size: 1.5em; line-height: 2em; }
+		h3 { font-size: 1.3em; line-height: 2em; }
+	}
 	.main {
 		background-color: @main-bg;
 		#content {
-			h1 { font-size: 2em; line-height: 2em; }
-			h2 { font-size: 1.5em; line-height: 2em; }
-			h3 { font-size: 1.3em; line-height: 2em; }
 			font-size: 1.1em;
 			line-height: 1.4em;
 
@@ -131,7 +146,7 @@ aside {
 	}
 }
 
-section.posts {
+section.posts, .editor {
 	.post {
 		.clearfix();
 		header {

@@ -1,11 +1,12 @@
-﻿@model NBlog.Domain.Commands.CreatePostCommand
+﻿@model NBlog.Areas.Admin.Models.EditPostModel
 
 @{
-    ViewBag.Title = "Create post";
+    ViewBag.Title = "Update post";
 }
+
 <div class="editor">
     <header>
-        <h1>New post</h1>
+        <h1>Edit post</h1>
     </header>
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true)
@@ -44,7 +45,7 @@
             </div>
 
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Update" />
             </p>
         </fieldset>
     }

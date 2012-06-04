@@ -18,33 +18,11 @@ namespace NBlog.Infrastructure.MessageRouting
             _postCommandHandlers = new PostCommandHandlers(_domainRepositoryFactory);
             _blogCommandHandlers = new BlogCommandHandlers(_domainRepositoryFactory);
             _userCommandHandlers = new UserCommandHandlers(_domainRepositoryFactory);
-            ConfigureMessageRouter();
-        }
 
-        private void ConfigureMessageRouter()
-        {
-            RegisterCommandHandlers();
-        }
-
-        private void RegisterCommandHandlers()
-        {
-            RegisterPostCommandHandlers();
-            RegisterBlogCommandHandlers();
-            RegisterUserCommandHandlers();
-        }
-
-        private void RegisterUserCommandHandlers()
-        {
             Register<CreateUserCommand>(_userCommandHandlers.Handle);
-        }
-
-        private void RegisterBlogCommandHandlers()
-        {
+            
             Register<CreateBlogCommand>(_blogCommandHandlers.Handle);
-        }
 
-        private void RegisterPostCommandHandlers()
-        {
             Register<CreatePostCommand>(_postCommandHandlers.Handle);
             Register<PublishPostCommand>(_postCommandHandlers.Handle);
             Register<UpdatePostCommand>(_postCommandHandlers.Handle);
