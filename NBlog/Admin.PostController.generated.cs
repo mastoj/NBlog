@@ -44,8 +44,23 @@ namespace NBlog.Areas.Admin.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult CreateAndPublish() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.CreateAndPublish);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Edit() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Publish() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Publish);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Unpublish() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Unpublish);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -64,14 +79,20 @@ namespace NBlog.Areas.Admin.Controllers {
         public class ActionNamesClass {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string CreateAndPublish = "CreateAndPublish";
             public readonly string Edit = "Edit";
+            public readonly string Publish = "Publish";
+            public readonly string Unpublish = "Unpublish";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string CreateAndPublish = "CreateAndPublish";
             public const string Edit = "Edit";
+            public const string Publish = "Publish";
+            public const string Unpublish = "Unpublish";
         }
 
 
@@ -82,12 +103,33 @@ namespace NBlog.Areas.Admin.Controllers {
         public class ActionParamsClass_Index {
             public readonly string includeDeleted = "includeDeleted";
         }
+        static readonly ActionParamsClass_CreateAndPublish s_params_CreateAndPublish = new ActionParamsClass_CreateAndPublish();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateAndPublish CreateAndPublishParams { get { return s_params_CreateAndPublish; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateAndPublish {
+            public readonly string command = "command";
+        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit {
-            public readonly string postId = "postId";
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Publish s_params_Publish = new ActionParamsClass_Publish();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Publish PublishParams { get { return s_params_Publish; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Publish {
+            public readonly string command = "command";
+        }
+        static readonly ActionParamsClass_Unpublish s_params_Unpublish = new ActionParamsClass_Unpublish();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Unpublish UnpublishParams { get { return s_params_Unpublish; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Unpublish {
+            public readonly string command = "command";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,9 +157,39 @@ namespace NBlog.Areas.Admin.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Edit(System.Guid postId) {
+        public override System.Web.Mvc.ActionResult Create(NBlog.Domain.Commands.CreatePostCommand command) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Create);
+            callInfo.RouteValueDictionary.Add("command", command);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult CreateAndPublish(NBlog.Domain.Commands.CreateAndPublishPostCommand command) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CreateAndPublish);
+            callInfo.RouteValueDictionary.Add("command", command);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
-            callInfo.RouteValueDictionary.Add("postId", postId);
+            callInfo.RouteValueDictionary.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Publish(NBlog.Domain.Commands.PublishPostCommand command) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Publish);
+            callInfo.RouteValueDictionary.Add("command", command);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Unpublish(NBlog.Domain.Commands.UnpublishPostCommand command) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Unpublish);
+            callInfo.RouteValueDictionary.Add("command", command);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Edit(NBlog.Domain.Commands.UpdatePostCommand command) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
+            callInfo.RouteValueDictionary.Add("command", command);
             return callInfo;
         }
 

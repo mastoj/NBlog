@@ -9,10 +9,11 @@ namespace NBlog.Views
 {
     public interface IPostView
     {
-        void Handle(PostCreatedEvent postCreatedEvent);
-        IEnumerable<PostItem> GetPosts(bool includeDeletedPosts = false);
-        void Handle(PostPublishedEvent postPublishedEvent);
         IEnumerable<PostItem> GetPublishedPosts();
+        IEnumerable<PostItem> GetPosts(bool includeDeletedPosts = false);
+        void Handle(PostCreatedEvent postCreatedEvent);
+        void Handle(PostPublishedEvent postPublishedEvent);
+        void Handle(PostUnpublishedEvent postPublishedEvent);
         void Handle(PostDeletedEvent postPublishedEvent);
         void Handle(PostUpdatedEvent postUpdatedEvent);
     }
@@ -47,6 +48,11 @@ namespace NBlog.Views
             return _postViewRepostiory.All(y => y.IsDeleted.IsFalse() || includeDeletedPosts);
         }
 
+        public IEnumerable<PostItem> GetPublishedPosts()
+        {
+            return _postViewRepostiory.All(y => y.IsPublished && y.IsDeleted.IsFalse());
+        }
+
         public void Handle(PostPublishedEvent postPublishedEvent)
         {
             var post = _postViewRepostiory.Find(y => y.PostId == postPublishedEvent.AggregateId);
@@ -57,14 +63,9 @@ namespace NBlog.Views
             }
         }
 
-        public IEnumerable<PostItem> GetPublishedPosts()
+        public void Handle(PostDeletedEvent postDeletedEvent)
         {
-            return _postViewRepostiory.All(y => y.IsPublished && y.IsDeleted.IsFalse());
-        }
-
-        public void Handle(PostDeletedEvent postPublishedEvent)
-        {
-            var post = _postViewRepostiory.Find(y => y.PostId == postPublishedEvent.AggregateId);
+            var post = _postViewRepostiory.Find(y => y.PostId == postDeletedEvent.AggregateId);
             if (post.IsNotNull())
             {
                 post.IsDeleted = true;
@@ -82,6 +83,16 @@ namespace NBlog.Views
                 post.Slug = postUpdatedEvent.Slug;
                 post.Tags = postUpdatedEvent.Tags;
                 post.Title = postUpdatedEvent.Title;
+            }
+        }
+
+
+        public void Handle(PostUnpublishedEvent postUnpublishedEvent)
+        {
+            var post = _postViewRepostiory.Find(y => y.PostId == postUnpublishedEvent.AggregateId);
+            if (post.IsNotNull())
+            {
+                post.IsPublished = false;
             }
         }
     }

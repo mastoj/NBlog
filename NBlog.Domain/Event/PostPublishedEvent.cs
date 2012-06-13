@@ -13,4 +13,12 @@ namespace NBlog.Domain.Event
             AggregateId = aggregateId;
         }
     }
+
+    public class PostUnpublishedEvent : DomainEventBase
+    {
+        public PostUnpublishedEvent(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 using NBlog.Domain.Event;
 using NBlog.Views;
+using TJ.CQRS;
 using TJ.CQRS.Messaging;
 
 namespace NBlog.Infrastructure.MessageRouting
@@ -36,5 +37,20 @@ namespace NBlog.Infrastructure.MessageRouting
         public PostView PostView { get { return _postEventHandlers; } }
         public BlogView BlogView { get { return _blogEventHandlers; } }
         public UserView UserView { get { return _userEventHandlers; } }
+    }
+
+    public class Logger<T> : IHandle<T> where T : IMessage
+    {
+        private readonly IHandle<T> _nextStep;
+
+        public Logger(IHandle<T> nextStep)
+        {
+            _nextStep = nextStep;
+        }
+
+        public void Handle(T thingToHandle)
+        {
+            _nextStep.Handle(thingToHandle);
+        }
     }
 }

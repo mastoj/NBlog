@@ -11,14 +11,15 @@ using TJ.CQRS.Messaging;
 
 namespace NBlog.Areas.Admin.Controllers
 {
-    public partial class BlogController : Controller
+    [Authorize]
+    public partial class BlogController : CommandControllerBase
     {
         private readonly IBlogView _blogView;
         private readonly IUserView _userView;
         private readonly ICommandBus _commandBus;
         //
         // GET: /Admin/Blog/
-        public BlogController(IBlogView blogView, IUserView userView, ICommandBus commandBus)
+        public BlogController(IBlogView blogView, IUserView userView, ICommandBus commandBus) : base(commandBus)
         {
             _blogView = blogView;
             _userView = userView;
@@ -30,7 +31,6 @@ namespace NBlog.Areas.Admin.Controllers
             return View(MVC.Admin.Blog.Views.Create);
         }
 
-        [Authorize]
         public virtual ActionResult Create()
         {
             return View(MVC.Admin.Blog.Views.Create);
@@ -39,19 +39,12 @@ namespace NBlog.Areas.Admin.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateBlogModel model)
         {
-            var blogs = _blogView.GetBlogs();
-            if (blogs.Count() > 0)
-            {
-                return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
-            }
-            if (ModelState.IsValid)
-            {
-                var user = _userView.GetUser(User.Identity.Name);
-                var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, user.UserId);
-                _commandBus.Send(createBlogCommand);
-            }
-            
-            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = MVC.Home.Area });
+            Func<bool> preCondition = () => _blogView.GetBlogs().Count() == 0;
+            var user = _userView.GetUser(User.Identity.Name);
+            var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, user.UserId);
+            Func<ActionResult> nextResult = () => RedirectToAction(MVC.Admin.Post.Index());
+            Func<ActionResult> failResult = () => RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+            return ValidateAndSendCommand(createBlogCommand, nextResult, failResult, preCondition);
         }
     }
 }

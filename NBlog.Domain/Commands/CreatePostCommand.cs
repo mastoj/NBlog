@@ -31,4 +31,9 @@ namespace NBlog.Domain.Commands
             Excerpt = excerpt;
         }
     }
+
+    [Validator(typeof(CreatePostCommandValidator))]
+    public class CreateAndPublishPostCommand : CreatePostCommand
+    {
+    }
 }

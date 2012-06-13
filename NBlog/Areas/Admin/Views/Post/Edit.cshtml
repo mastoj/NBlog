@@ -44,12 +44,28 @@
                 @Html.ValidationMessageFor(model => model.Content)
             </div>
 
-            <p>
-                <input type="submit" value="Update" />
-            </p>
         </fieldset>
+        <div class="form-button">
+            <input type="submit" value="Update" />
+        </div>
     }
 
+    @if(Model.Post.IsPublished) {
+        using(Html.BeginForm(MVC.Admin.Post.ActionNames.Unpublish, MVC.Admin.Post.Name)){
+            <div class="form-button">
+                @Html.Hidden("AggregateId", Model.AggregateId)
+                <input type="submit" value="Unpublish" />
+            </div>
+        }
+    }
+    @if(Model.Post.IsPublished == false) {
+        using(Html.BeginForm(MVC.Admin.Post.ActionNames.Publish, MVC.Admin.Post.Name)){
+            <div class="form-button">
+                @Html.Hidden("AggregateId", Model.AggregateId)
+                <input type="submit" value="Publish" />
+            </div>
+        }
+    }
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>

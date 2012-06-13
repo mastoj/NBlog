@@ -15,4 +15,12 @@ namespace NBlog.Domain.Commands.Validators
             RuleFor(y => y.Title).NotEmpty().WithMessage("Title cannot be empty");
         }
     }
+
+    public class PublishPostCommandValidator : AbstractValidator<PublishPostCommand>
+    {
+        public PublishPostCommandValidator()
+        {
+            RuleFor(y => y.AggregateId).NotEqual(Guid.Empty).WithMessage("Post id cannot be empty");
+        }
+    }
 }

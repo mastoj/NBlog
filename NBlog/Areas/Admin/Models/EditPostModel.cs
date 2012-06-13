@@ -12,8 +12,9 @@ namespace NBlog.Areas.Admin.Models
     {
         public EditPostModel(PostItem post) : base(post.Title, post.Content, post.Slug, post.Tags, post.Excerpt, Guid.NewGuid())
         {
+            Post = post;
         }
 
-        public PostItem Post { get; set; }
+        public PostItem Post { get; private set; }
     }
 }
