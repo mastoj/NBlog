@@ -59,10 +59,11 @@
         }
     }
     @if(Model.Post.IsPublished == false) {
-        using(Html.BeginForm(MVC.Admin.Post.ActionNames.Publish, MVC.Admin.Post.Name)){
+        using (Html.BeginForm(MVC.Admin.Post.ActionNames.Publish, MVC.Admin.Post.Name, new { AggregateId = Model.AggregateId }))
+        {
             <div class="form-button">
-                @Html.Hidden("AggregateId", Model.AggregateId)
-                <input type="submit" value="Publish" />
+@*                @Html.Hidden("AggregateId", Model.AggregateId)
+*@                <input type="submit" value="Publish" />
             </div>
         }
     }

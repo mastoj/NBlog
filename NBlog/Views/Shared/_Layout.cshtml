@@ -2,15 +2,15 @@
     Layout = "_MainLayout.cshtml";
 }
 
-@section Navigation {
+@*@section Navigation {
     @{ Html.RenderAction(MVC.Blog.ActionNames.Navigation, MVC.Blog.Name); }
-}
+}*@
 
 <div id="content">
     <div>
         @RenderBody()
     </div>
-    <aside class="right-sidebar">
+@*    <aside class="right-sidebar">
         <div>
             <section class="first">
                 @{ Html.RenderAction("RecentPosts", "Post");}
@@ -19,5 +19,5 @@
                 @{ Html.RenderAction("RecentPosts", "Post");}                    
             </section>					
         </div>
-    </aside>
+    </aside>*@
 </div>

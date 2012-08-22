@@ -28,6 +28,7 @@ namespace NBlog.Areas.Admin.Controllers
 
         public virtual ActionResult Login(string returnUrl)
         {
+            returnUrl = returnUrl ?? Url.Action(MVC.Admin.Post.ActionNames.Index, MVC.Admin.Post.Name);
             if (_authenticationService.IsUserAuthenticated(User))
             {
                 return new RedirectResult(returnUrl);

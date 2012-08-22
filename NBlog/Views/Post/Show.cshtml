@@ -1,7 +1,18 @@
-﻿@model NBlog.Views.PostItem
+﻿@using NBlog.Helpers
+@model NBlog.Views.PostItem
 
 @{
     ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+<article class="post">
+    <header>
+        <h1>
+            @Model.Title
+        </h1>
+        <time datetime="@Model.PublishedTime.ToHtmlTimeString()">@Model.PublishedTime.ToPostTime()</time>
+    </header>
+    <div class="content">
+        @Model.Excerpt
+    </div>
+</article>

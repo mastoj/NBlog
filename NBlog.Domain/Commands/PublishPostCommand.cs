@@ -8,11 +8,6 @@ namespace NBlog.Domain.Commands
     [Validator(typeof(PublishPostCommandValidator))]
     public class PublishPostCommand : Command
     {
-        public PublishPostCommand()
-            : base(Guid.Empty)
-        {
-
-        }
         public PublishPostCommand(Guid aggregateId) : base(aggregateId)
         {
         }
@@ -21,5 +16,9 @@ namespace NBlog.Domain.Commands
     [Validator(typeof(PublishPostCommandValidator))]
     public class UnpublishPostCommand : PublishPostCommand
     {
+        public UnpublishPostCommand(Guid aggregateId) : base(aggregateId)
+        {
+
+        }
     }
 }

@@ -23,9 +23,6 @@ using T4MVC;
 namespace NBlog.Controllers {
     public partial class PostController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public PostController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected PostController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -60,12 +57,14 @@ namespace NBlog.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
+            public readonly string Index = "Index";
             public readonly string Show = "Show";
             public readonly string RecentPosts = "RecentPosts";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
+            public const string Index = "Index";
             public const string Show = "Show";
             public const string RecentPosts = "RecentPosts";
         }
@@ -84,6 +83,7 @@ namespace NBlog.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string _RecentPosts = "~/Views/Post/_RecentPosts.cshtml";
+            public readonly string Index = "~/Views/Post/Index.cshtml";
             public readonly string Show = "~/Views/Post/Show.cshtml";
         }
     }
@@ -91,6 +91,11 @@ namespace NBlog.Controllers {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class T4MVC_PostController: NBlog.Controllers.PostController {
         public T4MVC_PostController() : base(Dummy.Instance) { }
+
+        public override System.Web.Mvc.ActionResult Index() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+            return callInfo;
+        }
 
         public override System.Web.Mvc.ActionResult Show(string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Show);

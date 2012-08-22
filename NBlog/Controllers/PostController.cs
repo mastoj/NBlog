@@ -9,6 +9,20 @@ namespace NBlog.Controllers
 {
     public partial class PostController : Controller
     {
+        private readonly IPostView _postView;
+
+        public PostController(IPostView postView)
+        {
+            _postView = postView;
+        }
+
+        public virtual ActionResult Index()
+        {
+            var items = _postView.GetPublishedPosts();
+            return View(PostItems());
+        }
+
+
         public virtual ActionResult Show(string slug)
         {
             var postItem = PostItems().First();

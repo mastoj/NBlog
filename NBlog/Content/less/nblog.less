@@ -16,7 +16,7 @@ body {
 
 .container {
 	.wrapper {
-		max-width: 1200px;
+		max-width: 900px;
 		margin:0px auto;
 	}
 }
@@ -37,46 +37,47 @@ body {
 			padding: @large-padding;
 			.clearfix();
 		}
-		nav {
-			width: auto;
-			padding: 0 @xlarge-padding;
-			ul {
-				list-style-type: none;
-				li {
-					margin-left: @small-padding;
-					padding: 0;
-					float: left;
-					&.right {
-						.right();
-					}
-					a {
-						display: block;
-						padding: @small-padding @normal-padding;
-						color: @main-secondary;
-						text-decoration: none;
-						&:hover {
-							background-color: @link-color;						
-							color: @content-bg;
-						}
-					}
-					&.active {
-						a {
-							background-color: @content-bg;
-							color: @main-color;
-						}
-					}
-				}
-				.clearfix();
-			}
-		}
+//		nav {
+//			width: auto;
+//			padding: 0 @xlarge-padding;
+//			ul {
+//				list-style-type: none;
+//				li {
+//					margin-left: @small-padding;
+//					padding: 0;
+//					float: left;
+//					&.right {
+//						.right();
+//					}
+//					a {
+//						display: block;
+//						padding: @small-padding @normal-padding;
+//						color: @main-secondary;
+//						text-decoration: none;
+//						&:hover {
+//							background-color: @link-color;						
+//							color: @content-bg;
+//						}
+//					}
+//					&.active {
+//						a {
+//							background-color: @content-bg;
+//							color: @main-color;
+//						}
+//					}
+//				}
+//				.clearfix();
+//			}
+//		}
 	}
 }
 
+#content {
+	padding: @normal-padding;
+}
 #admincontent .editor,
 #content section.posts {
-	float: left;
 	width: auto;
-	padding: @normal-padding;	
 }
 
 #admincontent {
@@ -92,46 +93,11 @@ body {
 		h3 { font-size: 1.3em; line-height: 2em; }
 	}
 	.main {
-		background-color: @main-bg;
+		background-color: @content-bg;
 		#content {
 			font-size: 1.1em;
 			line-height: 1.4em;
-
-			background-color: @content-bg;
-			margin-right: 300px;
-			float: left;
-			overflow: visible;
-			border-right: 1px solid @nav-bg; 
-			.clearfix();
-			&>div {
-				.left();
-				.clearfix();
-				width: auto;
-			}
-			&>div>article, &>div>section {
-				float: left;
-				width: auto;
-				padding: @normal-padding;
-			}
 		}
-	}
-}
-
-aside {
-	&.right-sidebar {
-		margin: 0 -100% 0 0;
-		.left();
-	}
-	&>div {
-		padding: @normal-padding;
-		width: 280px;
-	} 
-	width: 300px;
-	overflow: hidden;
-	clear: none;
-	background-color: @main-bg;
-	ul {
-		list-style-type: none;
 	}
 }
 
@@ -146,25 +112,23 @@ aside {
 	}
 }
 
-section.posts, .editor {
-	.post {
+.post {
+	.clearfix();
+	header {
+		padding-top: @normal-padding;
+		position: relative;
+		time {
+			position: absolute;
+			font-style: italic;
+			font-size: 0.8em;
+			color: @main-secondary;
+			top: 0px;
+		}
+	}
+	.read-more {
+		float: left;
+		margin-bottom: @large-padding;
 		.clearfix();
-		header {
-			padding-top: @normal-padding;
-			position: relative;
-			time {
-				position: absolute;
-				font-style: italic;
-				font-size: 0.8em;
-				color: @main-secondary;
-				top: 0px;
-			}
-		}
-		.read-more {
-			float: left;
-			margin-bottom: @large-padding;
-			.clearfix();
-		}
 	}
 }
 

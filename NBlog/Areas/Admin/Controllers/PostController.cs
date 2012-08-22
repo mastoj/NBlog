@@ -55,14 +55,16 @@ namespace NBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Publish(PublishPostCommand command)
+        public virtual ActionResult Publish(Guid id)
         {
+            var command = new PublishPostCommand(id);
             return ValidateAndSendEditCommand(command);
         }
 
         [HttpPost]
-        public virtual ActionResult Unpublish(UnpublishPostCommand command)
+        public virtual ActionResult Unpublish(Guid id)
         {
+            var command = new UnpublishPostCommand(id);
             return ValidateAndSendEditCommand(command);
         }
 
