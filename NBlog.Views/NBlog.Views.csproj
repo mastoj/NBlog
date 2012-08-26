@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -53,9 +56,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TJ.CQRS, Version=0.1.5.13908, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.1.6.27573, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.1.5.13908\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.1.6.27573\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>

@@ -16,7 +16,7 @@ namespace NBlog.Areas.Admin
         {
             context.MapRoute(
                 "Post_route",
-                "Admin/Post/{action}/{id}",
+                "Admin/Post/{action}/{aggregateId}",
                 new { controller = MVC.Admin.Post.Name, action = MVC.Admin.Post.ActionNames.Index, id = UrlParameter.Optional },
                 null,
                 new[] { "NBlog.Areas.Admin.Controllers" }

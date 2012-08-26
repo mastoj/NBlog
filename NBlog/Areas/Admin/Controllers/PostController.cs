@@ -28,7 +28,7 @@ namespace NBlog.Areas.Admin.Controllers
 
         public virtual ActionResult Create()
         {
-            return View(MVC.Admin.Post.ActionNames.Create);
+            return View(MVC.Admin.Post.ActionNames.Create, new CreatePostCommand());
         }
 
         [HttpPost]
@@ -43,28 +43,28 @@ namespace NBlog.Areas.Admin.Controllers
             return ValidateAndSendCommand(command, MVC.Admin.Post.Index, () => View(command));
         }
 
-        public virtual ActionResult Edit(Guid id)
+        public virtual ActionResult Edit(Guid aggregateId)
         {
-            var post = _postView.GetPosts().SingleOrDefault(y => y.PostId == id);
+            var post = _postView.GetPosts().SingleOrDefault(y => y.AggregateId == aggregateId);
             if (post.IsNull())
             {
-                return new HttpNotFoundResult("No post with id " + id);
+                return new HttpNotFoundResult("No post with id " + aggregateId);
             }
             var viewModel = new EditPostModel(post);
             return View(viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult Publish(Guid id)
+        public virtual ActionResult Publish(Guid aggregateId)
         {
-            var command = new PublishPostCommand(id);
+            var command = new PublishPostCommand(aggregateId);
             return ValidateAndSendEditCommand(command);
         }
 
         [HttpPost]
-        public virtual ActionResult Unpublish(Guid id)
+        public virtual ActionResult Unpublish(Guid aggregateId)
         {
-            var command = new UnpublishPostCommand(id);
+            var command = new UnpublishPostCommand(aggregateId);
             return ValidateAndSendEditCommand(command);
         }
 
@@ -76,9 +76,9 @@ namespace NBlog.Areas.Admin.Controllers
 
         private ActionResult ValidateAndSendEditCommand(Command command)
         {
-            Func<bool> preCondition = () => _postView.GetPosts().SingleOrDefault(y => y.PostId == command.AggregateId).IsNotNull();
+            Func<bool> preCondition = () => _postView.GetPosts().SingleOrDefault(y => y.AggregateId == command.AggregateId).IsNotNull();
             Func<ActionResult> preConditionResult = () => new HttpNotFoundResult("No post with id " + command.AggregateId);
-            return ValidateAndSendCommand(command, MVC.Admin.Post.Index, () => View(command), preCondition, preConditionResult);
+            return ValidateAndSendCommand(command, () => RedirectToAction(MVC.Admin.Post.Index()), () => View(command), preCondition, preConditionResult);
         }
     }
 }

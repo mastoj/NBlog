@@ -1,4 +1,5 @@
-﻿@model NBlog.Domain.Commands.CreatePostCommand
+﻿@using NBlog.Domain.Commands
+@model NBlog.Domain.Commands.CreatePostCommand
 
 @{
     ViewBag.Title = "Create post";
@@ -32,14 +33,14 @@
                 @Html.LabelFor(model => model.Excerpt)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Excerpt)
+                @Html.TextAreaFor(model => model.Excerpt)
                 @Html.ValidationMessageFor(model => model.Excerpt)
             </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.Content)
             </div>
             <div class="editor-field ">
-                @Html.EditorFor(model => model.Content)
+                @Html.TextAreaFor(model => model.Content)
                 @Html.ValidationMessageFor(model => model.Content)
             </div>
 

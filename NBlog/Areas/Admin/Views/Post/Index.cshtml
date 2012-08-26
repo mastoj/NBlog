@@ -19,7 +19,7 @@ else
         <li class="post-index-item @(postItem.IsPublished ? "published" : "")">
             <span class="title">@postItem.Title</span>
             <span class="actions">
-                @Html.ActionLink("Edit", MVC.Admin.Post.Edit(postItem.PostId))
+                @Html.ActionLink("Edit", MVC.Admin.Post.Edit(postItem.AggregateId))
             </span>
         </li>
     }

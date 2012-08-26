@@ -19,13 +19,13 @@ namespace NBlog.Controllers
         public virtual ActionResult Index()
         {
             var items = _postView.GetPublishedPosts();
-            return View(PostItems());
+            return View(items);
         }
 
 
         public virtual ActionResult Show(string slug)
         {
-            var postItem = PostItems().First();
+            var postItem = _postView.GetPostWithSlug(slug);
             return View("Show", postItem);
         }
 

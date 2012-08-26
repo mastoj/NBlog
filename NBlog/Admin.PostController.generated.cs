@@ -115,21 +115,21 @@ namespace NBlog.Areas.Admin.Controllers {
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit {
-            public readonly string id = "id";
+            public readonly string aggregateId = "aggregateId";
         }
         static readonly ActionParamsClass_Publish s_params_Publish = new ActionParamsClass_Publish();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Publish PublishParams { get { return s_params_Publish; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Publish {
-            public readonly string id = "id";
+            public readonly string aggregateId = "aggregateId";
         }
         static readonly ActionParamsClass_Unpublish s_params_Unpublish = new ActionParamsClass_Unpublish();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Unpublish UnpublishParams { get { return s_params_Unpublish; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Unpublish {
-            public readonly string id = "id";
+            public readonly string aggregateId = "aggregateId";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -169,21 +169,21 @@ namespace NBlog.Areas.Admin.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id) {
+        public override System.Web.Mvc.ActionResult Edit(System.Guid aggregateId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
-            callInfo.RouteValueDictionary.Add("id", id);
+            callInfo.RouteValueDictionary.Add("aggregateId", aggregateId);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Publish(System.Guid id) {
+        public override System.Web.Mvc.ActionResult Publish(System.Guid aggregateId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Publish);
-            callInfo.RouteValueDictionary.Add("id", id);
+            callInfo.RouteValueDictionary.Add("aggregateId", aggregateId);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Unpublish(System.Guid id) {
+        public override System.Web.Mvc.ActionResult Unpublish(System.Guid aggregateId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Unpublish);
-            callInfo.RouteValueDictionary.Add("id", id);
+            callInfo.RouteValueDictionary.Add("aggregateId", aggregateId);
             return callInfo;
         }
 

@@ -32,7 +32,7 @@ namespace NBlog.Views.Tests
             post.Content.Should().Be(_postCreatedEvent.Content);
             post.CreationDate.Should().Be(_postCreatedEvent.CreationDate);
             post.Excerpt.Should().Be(_postCreatedEvent.Excerpt);
-            post.PostId.Should().Be(_postCreatedEvent.AggregateId);
+            post.AggregateId.Should().Be(_postCreatedEvent.AggregateId);
             post.Slug.Should().Be(_postCreatedEvent.Slug);
             post.Title.Should().Be(_postCreatedEvent.Title);
             post.Tags.Should().Contain(_postCreatedEvent.Tags);
@@ -72,7 +72,7 @@ namespace NBlog.Views.Tests
         public void It_Should_Have_Correct_Post_Id()
         {
             var post = PostView.GetPublishedPosts().Last();
-            post.PostId.Should().Be(_postPublihsedEvent.AggregateId);
+            post.AggregateId.Should().Be(_postPublihsedEvent.AggregateId);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace NBlog.Views.Tests
         [Test]
         public void The_Posts_Should_Not_Contain_Deleted_Post()
         {
-            PostView.GetPosts().Any(y => y.PostId == _postId).Should().BeFalse();
+            PostView.GetPosts().Any(y => y.AggregateId == _postId).Should().BeFalse();
         }
 
         private Guid _postId;
@@ -163,7 +163,7 @@ namespace NBlog.Views.Tests
         [Test]
         public void Then_Posts_Should_Not_Contain_Deleted_Post()
         {
-            PostView.GetPosts().Any(y => y.PostId == _postId).Should().BeFalse();
+            PostView.GetPosts().Any(y => y.AggregateId == _postId).Should().BeFalse();
         }
 
         [Test]
@@ -175,13 +175,13 @@ namespace NBlog.Views.Tests
         [Test]
         public void Then_Published_Posts_Should_Not_Contain_Deleted_Post()
         {
-            PostView.GetPublishedPosts().Any(y => y.PostId == _postId).Should().BeFalse();
+            PostView.GetPublishedPosts().Any(y => y.AggregateId == _postId).Should().BeFalse();
         }
 
         [Test]
         public void Then_Posts_Should_Included_Deleted_Post_If_Asked_For_It()
         {
-            PostView.GetPosts(includeDeletedPosts: true).Any(y => y.PostId == _postId).Should().BeTrue();
+            PostView.GetPosts(includeDeletedPosts: true).Any(y => y.AggregateId == _postId).Should().BeTrue();
             PostView.GetPosts(includeDeletedPosts: true).Count().Should().Be(_initialPostCount);
         }
 

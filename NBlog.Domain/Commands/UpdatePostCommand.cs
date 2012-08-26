@@ -21,7 +21,7 @@ namespace NBlog.Domain.Commands
             Excerpt = excerpt;
         }
 
-        protected UpdatePostCommand() : base(Guid.NewGuid())
+        public UpdatePostCommand() : base(Guid.Empty)
         {
         }
     }

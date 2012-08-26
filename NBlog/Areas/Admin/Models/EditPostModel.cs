@@ -10,7 +10,7 @@ namespace NBlog.Areas.Admin.Models
 {
     public class EditPostModel : UpdatePostCommand
     {
-        public EditPostModel(PostItem post) : base(post.Title, post.Content, post.Slug, post.Tags, post.Excerpt, Guid.NewGuid())
+        public EditPostModel(PostItem post) : base(post.Title, post.Content, post.Slug, post.Tags, post.Excerpt, post.AggregateId)
         {
             Post = post;
         }

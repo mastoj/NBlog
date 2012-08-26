@@ -13,6 +13,6 @@
         <time datetime="@Model.PublishedTime.ToHtmlTimeString()">@Model.PublishedTime.ToPostTime()</time>
     </header>
     <div class="content">
-        @Model.Excerpt
+        @Html.Raw(@Model.HtmlContent)
     </div>
 </article>
