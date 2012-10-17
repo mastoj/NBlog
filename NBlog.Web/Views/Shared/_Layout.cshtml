@@ -22,25 +22,45 @@
 	<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 *@  </head>
 
-	<body>
-		<div id="header-container" class="container header">
-			<header class="wrapper clearfix">
+    <body>
+        <div id="header-container" class="container">
+            <header class="header">
                 <hgroup>
-                    @{Html.RenderAction(MVC.Blog.ActionNames.Header, MVC.Blog.Name, new { area = "" });}
+                    @{Html.RenderAction("Header", "Blog", new { area = "" });}
                 </hgroup>
-@*                <nav>
+                @*                <nav>
                     @RenderSection("Navigation")
                 </nav>*@
-			</header>
-		</div>
-		<div id="main-container" class="container">
-			<div class="main wrapper clearfix">
+            </header>
+        </div>
+        <div id="main-container" class="container">
+            <section class="main">
                 @RenderBody()
-			</div>
-		</div>
-		<!-- Le javascript
-			================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="@Url.Content("~/Scripts/site.min.js")"></script>
-	</body>
+            </section>
+        </div>
+        <!-- Le javascript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="@Url.Content("~/Scripts/site.min.js")"></script>
+    </body>
 </html>
+
+@*@section Navigation {
+    @{ Html.RenderAction(MVC.Blog.ActionNames.Navigation, MVC.Blog.Name); }
+}
+
+<div id="content">
+    <div>
+        @RenderBody()
+    </div>
+    <aside class="right-sidebar">
+        <div>
+            <section class="first">
+                @{ Html.RenderAction("RecentPosts", "Post");}
+            </section>
+            <section>
+                @{ Html.RenderAction("RecentPosts", "Post");}                    
+            </section>					
+        </div>
+    </aside>
+</div>*@

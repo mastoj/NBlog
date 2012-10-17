@@ -1,0 +1,53 @@
+﻿@import "variables.less";
+
+/* up to pads landscape */
+@media only screen and (max-width : 979px) {
+	body {
+		font: 14px/22px 'Lato',Helvetica,Arial,sans-serif;
+	}
+	#main-container {
+		.main {
+			#content {
+				margin-right: 0px;
+			}
+		}
+	}
+	aside.right-sidebar {
+		margin: auto;
+		width: 100%;
+		float: none;
+		&>div {
+			width: 100%;
+			section {
+				float: left;
+				width: 30%;
+				margin-left: 5%;
+				&.first {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	aside.right-sidebar {
+		&>div {
+			section {
+				float: none;
+				width: auto;
+				margin-left: auto;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 479px) {
+	#header-container {
+		header {
+			hgroup {
+				h1 {  font-size: 1.5em; }
+			}
+		}
+	}
+}
