@@ -28,6 +28,18 @@ h1, h2 {
 	font-weight: normal;
 }
 
+a {
+	color: @link-color;
+	&:hover {
+		color: @content-bg;
+		background-color: @link-color;
+	}
+}
+
+.block-link a {
+	padding: 0.3em;
+}
+
 .container {
 	&>* {
 		max-width: 900px;
@@ -37,110 +49,60 @@ h1, h2 {
 
 .main {
 	padding: 1.25em;
+	background-color: @content-bg;
 	h1 {
 		font-size: 2em;
 	}
 	h2 {
 		font-size: 1.3em;
 	}
+	.post {
+		.content {
+			margin-bottom: 1em;
+		}
+	}
+
 }
 
+.bottom-ruler:after {
+	content: "";
+	clear:both;
+	display: block;
+	background-color: @main-secondary;
+	height:1px;
+	margin:1.5em 5%;
+}
 
-a {
-	color: @link-color;
+.post-header {
+	position: relative;
+	h1 {
+		line-height: 2.5;
+	}
+}
+
+.time {
+	position: absolute;
+	font-style: italic;
+	font-size: 0.8em;
+	color: @main-secondary;
+	top: 0px;
 }
 
 .header {
-	header {
-		background-color: @header-bg;
-		color: @header-main;
-		hgroup {
-			vertical-align: bottom;
-			height: 30px;
-			h1, h2 {
-				display: inline;
-				position: relative;
-			}
-			a {
-				text-decoration: none;
-			}
-			h1 {  
-				color: @header-main;
-				font-size: 3em; 
-			}
-			h2 { color: @main-secondary; }
-			padding: @large-padding;
-		}
-	}
-}
-
-#content {
-	padding: @normal-padding;
-}
-#admincontent .editor,
-#content section.posts {
-	width: auto;
-}
-
-#admincontent {
-	.editor {
-		width: 100%;
-	}
-}
-
-#main-container {
-	header {
-		h1 { font-size: 2em; line-height: 2em; }
-		h2 { font-size: 1.5em; line-height: 2em; }
-		h3 { font-size: 1.3em; line-height: 2em; }
-	}
-	.main {
-		background-color: @content-bg;
-		#content {
-			font-size: 1.1em;
-			line-height: 1.4em;
-		}
-	}
-}
-
-
-#recent_posts {
-	list-style-type: none;
-	.post {
-		margin-top: 0px;
-		a {
-			line-height: 1.2em; 
-		}
-	}
-}
-
-.post {
-	header {
-		padding-top: @normal-padding;
+	background-color: @header-bg;
+	color: @header-main;
+	margin-bottom: 0.3em;
+	margin-top: 0.3em;
+	h1, h2 {
+		display: inline;
 		position: relative;
-		time {
-			position: absolute;
-			font-style: italic;
-			font-size: 0.8em;
-			color: @main-secondary;
-			top: 0px;
-		}
 	}
-	.read-more {
-		float: left;
-		margin-bottom: @large-padding;
-	}
-}
-
-.block-link {
-	margin: @large-padding 0 @normal-padding 0;
 	a {
-		padding: 6px;
-		color: @link-color;
-		&:hover {
-			color: @content-bg;
-			background-color: @link-color;
-		}
+		text-decoration: none;
 	}
+	h1 {  
+		color: @header-main;
+		font-size: 3em; 
+	}
+	h2 { color: @main-secondary; }
 }
-
