@@ -166,6 +166,26 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\css\wmd.css" />
     <Content Include="Content\fonts\lato.css" />
+    <Content Include="Content\google-code-prettify\lang-apollo.js" />
+    <Content Include="Content\google-code-prettify\lang-clj.js" />
+    <Content Include="Content\google-code-prettify\lang-css.js" />
+    <Content Include="Content\google-code-prettify\lang-go.js" />
+    <Content Include="Content\google-code-prettify\lang-hs.js" />
+    <Content Include="Content\google-code-prettify\lang-lisp.js" />
+    <Content Include="Content\google-code-prettify\lang-lua.js" />
+    <Content Include="Content\google-code-prettify\lang-ml.js" />
+    <Content Include="Content\google-code-prettify\lang-n.js" />
+    <Content Include="Content\google-code-prettify\lang-proto.js" />
+    <Content Include="Content\google-code-prettify\lang-scala.js" />
+    <Content Include="Content\google-code-prettify\lang-sql.js" />
+    <Content Include="Content\google-code-prettify\lang-tex.js" />
+    <Content Include="Content\google-code-prettify\lang-vb.js" />
+    <Content Include="Content\google-code-prettify\lang-vhdl.js" />
+    <Content Include="Content\google-code-prettify\lang-wiki.js" />
+    <Content Include="Content\google-code-prettify\lang-xq.js" />
+    <Content Include="Content\google-code-prettify\lang-yaml.js" />
+    <Content Include="Content\google-code-prettify\prettify.css" />
+    <Content Include="Content\google-code-prettify\prettify.js" />
     <Content Include="Content\img\wmd-buttons.png" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -195,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Post\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -264,7 +285,7 @@
     <Content Include="Views\Blog\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\EditorTemplates\PostItem.cshtml" />
+    <Content Include="Views\Post\_EditPostItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
