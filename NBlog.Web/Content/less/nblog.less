@@ -106,3 +106,23 @@ a {
 	}
 	h2 { color: @main-secondary; }
 }
+
+.editor {
+	width: 100%;
+	line-height: 2em;
+	.editor-entry {
+		margin-bottom: 0.5em;
+		&.title input {
+			font-size: 2em;
+		}
+		&.slug .editor-field * {
+			width: auto;
+		}
+		.editor-field * {
+			width: 100%;
+		}
+		.editor-label {
+			font-weight: bold;
+		}
+	}
+}

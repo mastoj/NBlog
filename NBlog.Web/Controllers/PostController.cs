@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using NBlog.Views;
+using NBlog.Web.Models;
 
 namespace NBlog.Web.Controllers
 {
@@ -22,10 +23,14 @@ namespace NBlog.Web.Controllers
         }
 
 
-        public virtual ActionResult Show(string slug)
+        public virtual ActionResult Show(string slug, string mode = null)
         {
-            var postItem = _postView.GetPostWithSlug(slug);
-            return View("Show", postItem);
+            var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
+            if (mode.ToLower() == "edit")
+            {
+                postItemViewModel.IsEditMode = true;
+            }
+            return View("Show", postItemViewModel);
         }
 
         [ChildActionOnly]

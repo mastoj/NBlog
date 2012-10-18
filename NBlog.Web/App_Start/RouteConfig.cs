@@ -14,7 +14,7 @@ namespace NBlog.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Url",
+                name: "PostRoutes",
                 url: "{slug}",
                 defaults: new { controller = "Post", action = "Show" },
                 constraints: new { slug = @".+" },
