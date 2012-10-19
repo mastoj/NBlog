@@ -134,6 +134,16 @@ a {
 			font-weight: bold;
 		}
 	}
+	#Excerpt {
+		height: 70px;
+	}
+}
+
+.resizable-textarea {
+	&>span {
+		display: block;
+		line-height: 0px;
+	}
 }
 
 // Code style
@@ -174,4 +184,19 @@ code {
 pre.prettyprint {
 	border: none;
 	padding: 0.5em;
+}
+div.grippie {
+    background: url("../img/grippie.png") no-repeat scroll center 2px #EEEEEE;
+    border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    cursor: s-resize;
+    height: 9px;
+    overflow: hidden;
+}
+
+.shadow, .prettyprint {
+	-moz-box-shadow: -5px -5px 5px #888;
+	-webkit-box-shadow: -5px -5px 5px #888;
+	box-shadow: -5px -5px 5px #888;
 }

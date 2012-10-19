@@ -93,7 +93,8 @@
         var defaults = {
             buttonBarId: "wmd-button-bar",
             previewId: "wmd-preview",
-            inputId: "wmd-input"
+            inputId: "wmd-input",
+            preview: true
         };
         options = $.extend(defaults, options);
 
@@ -1436,7 +1437,6 @@
             var highlightYShift = "-40px";
 
             var buttonRow = document.createElement("ul");
-            buttonRow.id = "wmd-button-row";
             buttonRow.className = 'wmd-button-row';
             buttonRow = buttonBar.appendChild(buttonRow);
             var xPosition = 0;
@@ -1446,7 +1446,6 @@
                 button.style.left = xPosition + "px";
                 xPosition += 25;
                 var buttonImage = document.createElement("span");
-                button.id = id;
                 button.appendChild(buttonImage);
                 button.title = title;
                 button.XShift = XShift;
@@ -1456,13 +1455,12 @@
                 buttonRow.appendChild(button);
                 return button;
             };
-            var makeSpacer = function (num) {
+            var makeSpacer = function(num) {
                 var spacer = document.createElement("li");
                 spacer.className = "wmd-spacer wmd-spacer" + num;
-                spacer.id = "wmd-spacer" + num;
                 buttonRow.appendChild(spacer);
                 xPosition += 25;
-            }
+            };
 
             buttons.bold = makeButton("wmd-bold-button", getString("bold"), "0px", bindCommand("doBold"));
             buttons.italic = makeButton("wmd-italic-button", getString("italic"), "-20px", bindCommand("doItalic"));

@@ -20,15 +20,14 @@
                     @Html.LabelFor(model => model.Content)
                 </div>
                 <div id="wmd-button-bar" class="wmd-button-bar"></div>
-                @Html.TextAreaFor(model => model.Content, new { @class="wmd-input"})
+                @Html.TextAreaFor(model => model.Content, new { @class="wmd-input resizable"})
             </div>
-            <div class="editor-entry excerpt">
+            <div class="editor-entry excerpt wmd-panel">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Excerpt)
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Excerpt)
-                </div>
+                <div id="excerptButtonBar" class="wmd-button-bar"></div>
+                @Html.TextAreaFor(model => model.Excerpt, new { @class="wmd-input resizable"})
             </div>
 
             <input type="submit" value="Save" class="submit-buttom" />
