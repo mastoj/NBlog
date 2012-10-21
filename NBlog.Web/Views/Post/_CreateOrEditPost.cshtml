@@ -29,7 +29,7 @@
             <div id="excerptButtonBar" class="wmd-button-bar"></div>
             @Html.TextAreaFor(model => model.Excerpt, new { @class="wmd-input resizable"})
         </div>
-
+        @Html.HiddenFor(model => model.AggregateId)
         <input type="submit" value="Save" class="submit-buttom" />
     </fieldset>
 </div>

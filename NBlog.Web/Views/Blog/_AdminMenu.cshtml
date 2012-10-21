@@ -9,10 +9,13 @@
 <div class="admin-menu">
     <ul class="admin-menu-list">
         <li>
-            @Html.ActionLink(toggleText, "ToggleUserMode", "Account", new {returnUrl = Request.RawUrl}, null)
+            @Html.ActionLink("Sign out", "SignOut", "Account")
         </li>
         <li>
-            @Html.ActionLink("Sign out", "SignOut", "Account")
+            @Html.ActionLink("Create post", "Create", "Post")
+        </li>
+        <li>
+            @Html.ActionLink(toggleText, "ToggleUserMode", "Account", new {returnUrl = Request.RawUrl}, null)
         </li>
     </ul>
 </div>
