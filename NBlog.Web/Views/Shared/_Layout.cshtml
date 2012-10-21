@@ -35,23 +35,7 @@
                 </header>
                 @if(User != null && User.Identity.IsAuthenticated)
                 {
-                    <div class="admin-menu">
-                        <ul class="admin-menu-list">
-                            <li>
-                                @if (Request.QueryString["mode"] != null && Request.QueryString["mode"] == "admin")
-                                {
-                                    @Html.RouteLink("Disable admin mode", new {});
-                                }
-                                else
-                                {
-                                    @Html.RouteLink("Enable admin mode", new {mode = "admin"})
-                                }
-                            </li>
-                            <li>
-                                @Html.ActionLink("Sign out", "SignOut", "Account")
-                            </li>
-                        </ul>
-                    </div>
+                    Html.RenderAction("AdminMenu", "Blog");
                 }
             </div>
         </div>

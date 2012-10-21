@@ -1,16 +1,19 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using NBlog.Views;
+using NBlog.Web.Services;
 
 namespace NBlog.Web.Controllers
 {
     public partial class BlogController : Controller
     {
         private readonly IBlogView _blogView;
+        private IAuthenticationService _authenticationService;
 
-        public BlogController(IBlogView blogView)
+        public BlogController(IBlogView blogView, IAuthenticationService authenticationService)
         {
             _blogView = blogView;
+            _authenticationService = authenticationService;
         }
 
         [ChildActionOnly]
@@ -35,5 +38,11 @@ namespace NBlog.Web.Controllers
         //                              };
         //    return View("_Navigation", navigationItems);
         //}
+        [ChildActionOnly]
+        public ActionResult AdminMenu()
+        {
+            var userMode = _authenticationService.GetUserMode(Request);
+            return View("_AdminMenu", userMode);
+        }
     }
 }

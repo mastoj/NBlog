@@ -14,7 +14,7 @@ using TJ.Extensions;
 
 namespace NBlog.Web.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationService : AuthenticationServiceBase
     {
         private static OpenIdRelyingParty openIdRelyingParty = new OpenIdRelyingParty();
         private readonly IUserView _userView;
@@ -24,12 +24,7 @@ namespace NBlog.Web.Services
             _userView = userView;
         }
 
-        public bool IsUserAuthenticated(IPrincipal user)
-        {
-            return user.Identity.IsAuthenticated;
-        }
-
-        public ActionResult GetAuthenticationUrl(string returnUrl)
+        public override ActionResult GetAuthenticationUrl(string returnUrl)
         {
             var identifier = Identifier.Parse("https://www.google.com/accounts/o8/id");
             var request = openIdRelyingParty.CreateRequest(identifier);
@@ -46,7 +41,7 @@ namespace NBlog.Web.Services
                        };
         }
 
-        public bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
+        public override bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
         {
             openIdResponse = openIdRelyingParty.GetResponse();
             if (openIdResponse.IsNull())
@@ -56,7 +51,7 @@ namespace NBlog.Web.Services
             return true;
         }
 
-        public OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
+        public override OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
         {
             if (openIdResponse.IsNull())
             {
@@ -76,7 +71,7 @@ namespace NBlog.Web.Services
 
         }
 
-        public bool TryAuthenticateUser(string openId, out UserViewItem user)
+        public override bool TryAuthenticateUser(string openId, out UserViewItem user)
         {
             user = _userView.GetUserByAuthenticationId(openId);
             if(user == null)
@@ -84,6 +79,33 @@ namespace NBlog.Web.Services
                 return false;
             }
             return true;
+        }
+    }
+
+    public abstract class AuthenticationServiceBase : IAuthenticationService
+    {
+        private HttpCookie _modeCookie;
+        public abstract ActionResult GetAuthenticationUrl(string returnUrl);
+        public abstract OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse);
+        public abstract bool TryAuthenticateUser(string authenticationId, out UserViewItem user);
+        public abstract bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse);
+
+        public bool IsUserAuthenticated(IPrincipal user)
+        {
+            return user.Identity.IsAuthenticated;
+        }
+
+        public UserMode GetUserMode(HttpRequestBase request)
+        {
+            _modeCookie = request.Cookies.Get("CurrentMode");
+            var currentMode = _modeCookie != null && _modeCookie.Value == "Admin" ? UserMode.Admin : UserMode.None;
+            return currentMode;
+        }
+
+        public void SetUserMode(HttpResponseBase response, UserMode userMode)
+        {
+            HttpCookie modeCookie = new HttpCookie("CurrentMode", userMode.ToString());
+            response.SetCookie(modeCookie);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Principal;
+using System.Web;
 using System.Web.Mvc;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using NBlog.Views;
@@ -13,6 +14,8 @@ namespace NBlog.Web.Services
         OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse);
         bool TryAuthenticateUser(string authenticationId, out UserViewItem user);
         bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse);
+        UserMode GetUserMode(HttpRequestBase request);
+        void SetUserMode(HttpResponseBase response, UserMode userMode);
     }
 
     public class OpenIdData

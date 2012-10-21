@@ -5,16 +5,19 @@ using System.Security.Principal;
 using System.Web.Mvc;
 using NBlog.Views;
 using NBlog.Web.Models;
+using NBlog.Web.Services;
 
 namespace NBlog.Web.Controllers
 {
     public partial class PostController : Controller
     {
         private readonly IPostView _postView;
+        private readonly IAuthenticationService _authenticationService;
 
-        public PostController(IPostView postView)
+        public PostController(IPostView postView, IAuthenticationService authenticationService)
         {
             _postView = postView;
+            _authenticationService = authenticationService;
         }
 
         public virtual ActionResult Index()
@@ -24,23 +27,23 @@ namespace NBlog.Web.Controllers
         }
 
 
-        public virtual ActionResult Show(string slug, string mode = null)
+        public virtual ActionResult Show(string slug)
         {
             var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
-            postItemViewModel.IsAdminMode = IsAdminMode(mode);
+            postItemViewModel.IsAdminMode = IsAdminMode();
             return View("Show", postItemViewModel);
         }
 
-        private bool IsAdminMode(string mode)
+        private bool IsAdminMode()
         {
             var isAuthenticated = IsUserAuthenticated(User);
-            var isRequestingAdminMode = IsRequestingAdminMode(mode);
+            var isRequestingAdminMode = IsRequestingAdminMode();
             return isAuthenticated && isRequestingAdminMode;
         }
 
-        private bool IsRequestingAdminMode(string mode)
+        private bool IsRequestingAdminMode()
         {
-            return !string.IsNullOrEmpty(mode) && mode.ToLower() == "admin";
+            return _authenticationService.GetUserMode(Request) == UserMode.Admin;
         }
 
         private bool IsUserAuthenticated(IPrincipal user)

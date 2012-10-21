@@ -102,13 +102,11 @@ namespace NBlog.Web.Controllers
             return View(createUserCommand);
         }
 
-        public ActionResult ToggleAdminMode(string returnUrl)
+        public ActionResult ToggleUserMode(string returnUrl)
         {
-            var modeCookie = Request.Cookies.Get("CurrentMode");
-            if(modeCookie == null)
-            {
-                modeCookie = new HttpCookie("CurrentMode", "admin");
-            }
+            var userMode = _authenticationService.GetUserMode(Request);
+            var toggledUserMode = userMode == UserMode.None ? UserMode.Admin : UserMode.None;
+            _authenticationService.SetUserMode(Response, toggledUserMode);
             return Redirect(returnUrl);
         }
 

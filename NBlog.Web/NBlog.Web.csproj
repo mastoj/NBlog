@@ -224,6 +224,7 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AuthenticationServiceStub.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
+    <Compile Include="Services\UserMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\mash.js.chirp.config" />
     <Content Include="Views\Account\RegisterUser.cshtml" />
+    <Content Include="Views\Blog\_AdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,18 @@
+﻿@using NBlog.Web.Services
+@model NBlog.Web.Services.UserMode
+
+@{
+    Layout = null;
+    var toggleText = Model == UserMode.Admin ? "Disable admin mode" : "Enable admin mode";
+}
+
+<div class="admin-menu">
+    <ul class="admin-menu-list">
+        <li>
+            @Html.ActionLink(toggleText, "ToggleUserMode", "Account", new {returnUrl = Request.RawUrl}, null)
+        </li>
+        <li>
+            @Html.ActionLink("Sign out", "SignOut", "Account")
+        </li>
+    </ul>
+</div>

@@ -11,7 +11,7 @@ using NBlog.Views;
 
 namespace NBlog.Web.Services
 {
-    public class AuthenticationServiceStub : IAuthenticationService
+    public class AuthenticationServiceStub : AuthenticationServiceBase
     {
         private readonly IUserView _userView;
         private UrlHelper _urlHelper;
@@ -24,12 +24,7 @@ namespace NBlog.Web.Services
             _urlHelper = new UrlHelper(new RequestContext(httpContextWrapper, RouteTable.Routes.GetRouteData(httpContextWrapper)));      
         }
 
-        public bool IsUserAuthenticated(IPrincipal user)
-        {
-            return user.Identity.IsAuthenticated;
-        }
-
-        public ActionResult GetAuthenticationUrl(string returnUrl)
+        public override ActionResult GetAuthenticationUrl(string returnUrl)
         {
             RouteValueDictionary routeValues = new RouteValueDictionary(
                 new {
@@ -41,7 +36,7 @@ namespace NBlog.Web.Services
             return new RedirectToRouteResult(routeValues); 
         }
 
-        public OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
+        public override OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse)
         {
             return new OpenIdData()
                        {
@@ -50,7 +45,7 @@ namespace NBlog.Web.Services
                        };
         }
 
-        public bool TryAuthenticateUser(string authenticationId, out UserViewItem user)
+        public override bool TryAuthenticateUser(string authenticationId, out UserViewItem user)
         {
             user = _userView.GetUserByAuthenticationId(authenticationId);
             if (user == null)
@@ -60,7 +55,7 @@ namespace NBlog.Web.Services
             return true;
         }
 
-        public bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
+        public override bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse)
         {
             openIdResponse = new AuthenticationResponseStub();
             return true;
