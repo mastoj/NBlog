@@ -97,6 +97,7 @@
             preview: true
         };
         options = $.extend(defaults, options);
+        options.previewId = options.preview ? options.previewId : undefined; 
 
         if (typeof options.handler === "function") { //backwards compatible behavior
             options = { helpButton: options };

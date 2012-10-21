@@ -4,7 +4,7 @@ $(function() {
     (function () {
         var converter = Markdown.getSanitizingConverter();
         initMarkdownEditor(converter, { inputId: "Content" });
-        initMarkdownEditor(converter, { inputId: "Excerpt", buttonBarId: "excerptButtonBar", Preview: false });
+        initMarkdownEditor(converter, { inputId: "Excerpt", buttonBarId: "excerptButtonBar", preview: false });
     })();
     $('#Content').each(function() {
         var elem = $(this);
@@ -21,9 +21,6 @@ $(function() {
 
 function initMarkdownEditor(converter, options) {
     var defaults = {
-        buttonBarId: "wmd-button-bar",
-        previewId: "wmd-preview",
-        inputId: "wmd-input",
         preview: true
     };
     options = $.extend(defaults, options);
