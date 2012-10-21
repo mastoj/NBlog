@@ -3,12 +3,8 @@
 $(function() {
     (function () {
         var converter = Markdown.getSanitizingConverter();
-        var contentEditor = new Markdown.Editor(converter, {
-            inputId: "Content"
-        });
-        contentEditor.run();
-        var excerptEditor = new Markdown.Editor(converter, { inputId: "Excerpt", buttonBarId: "excerptButtonBar", Preview: false });
-        excerptEditor.run();
+        initMarkdownEditor(converter, { inputId: "Content" });
+        initMarkdownEditor(converter, { inputId: "Excerpt", buttonBarId: "excerptButtonBar", Preview: false });
     })();
     $('#Content').each(function() {
         var elem = $(this);
@@ -22,6 +18,21 @@ $(function() {
         initTimeUpdate(elem, 1000, function() { targetElem.html(elem.val()) });
     });
 });
+
+function initMarkdownEditor(converter, options) {
+    var defaults = {
+        buttonBarId: "wmd-button-bar",
+        previewId: "wmd-preview",
+        inputId: "wmd-input",
+        preview: true
+    };
+    options = $.extend(defaults, options);
+    var inputArea = $("#" + options.inputId);
+    if (inputArea.length === 0)
+        return;
+    var editor = new Markdown.Editor(converter, options);
+    editor.run();
+}
 
 function initTimeUpdate(target, delay, action) {
     target.keydown(function () {

@@ -1006,6 +1006,8 @@
         };
 
         var init = function () {
+            if (panels.input == null)
+                return;
 
             setupEvents(panels.input, applyTimeout);
             makePreviewHtml();
