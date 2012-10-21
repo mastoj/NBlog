@@ -11,9 +11,6 @@
         @Html.Partial("_CreateOrEditPost", Model.PostItem)
     }
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <article class="post">
     <header class="post-header">
@@ -26,3 +23,7 @@
         @Html.Raw(@Model.PostItem.HtmlContent)
     </div>
 </article>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -17,6 +17,7 @@ $(function() {
         var targetElem = $(".post header h1");
         initTimeUpdate(elem, 1000, function() { targetElem.html(elem.val()) });
     });
+    $("#tags").tagit();
 });
 
 function initMarkdownEditor(converter, options) {
