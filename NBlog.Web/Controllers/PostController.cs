@@ -26,7 +26,7 @@ namespace NBlog.Web.Controllers
         public virtual ActionResult Show(string slug, string mode = null)
         {
             var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
-            if (mode.ToLower() == "edit")
+            if (!string.IsNullOrEmpty(mode) && mode.ToLower() == "edit")
             {
                 postItemViewModel.IsEditMode = true;
             }

@@ -10,20 +10,32 @@ $(function() {
         var excerptEditor = new Markdown.Editor(converter, { inputId: "Excerpt", buttonBarId: "excerptButtonBar", Preview: false });
         excerptEditor.run();
     })();
-    $('#Content').keydown(function () {
+    $('#Content').each(function() {
         var elem = $(this);
-        if (elem.timer) {
-            clearTimeout(elem.timer);
-        }
-        elem.timer = setTimeout('stylePreview()', 2000);
+        initTimeUpdate(elem, 2000, stylePreview);
     });
     styleCode();
     $("textarea.resizable").TextAreaResizer();
+    $("#Title").each(function() {
+        var elem = $(this);
+        var targetElem = $(".post header h1");
+        initTimeUpdate(elem, 1000, function() { targetElem.html(elem.val()) });
+    });
 });
+
+function initTimeUpdate(target, delay, action) {
+    target.keydown(function () {
+        if (target.timer) {
+            clearTimeout(target.timer);
+        }
+        target.timer = setTimeout(action, delay);
+    });
+}
 
 function stylePreview() {
     $(".wmd-preview pre").addClass("prettyprint");
-    $(".wmd-preview code").html(prettyPrintOne($(".wmd-preview code").html()));
+    $(".wmd-preview code").html(window.prettyPrint());
+    //$(".wmd-preview code").html(window.prettyPrint()($(".wmd-preview code").html()));
 }
 
 function styleCode() {
@@ -36,9 +48,11 @@ function styleCode() {
     $("pre code").parent().each(function () {
         if (!$(this).hasClass("prettyprint")) {
             $(this).addClass("prettyprint");
-            a = true
+            a = true;
         }
     });
 
-    if (a) { prettyPrint() }
+    if (a) {
+        window.prettyPrint();
+    }
 }

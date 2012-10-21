@@ -184,6 +184,7 @@
     <Content Include="Content\google-code-prettify\lang-wiki.js" />
     <Content Include="Content\google-code-prettify\lang-xq.js" />
     <Content Include="Content\google-code-prettify\lang-yaml.js" />
+    <Content Include="Content\google-code-prettify\prettify-full.js" />
     <Content Include="Content\google-code-prettify\prettify.css" />
     <Content Include="Content\google-code-prettify\prettify.js" />
     <Content Include="Content\img\wmd-buttons.png" />
