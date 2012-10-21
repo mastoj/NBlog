@@ -7,9 +7,9 @@ namespace NBlog.Domain.Commands
     {
         public string BlogTitle { get; set; }
         public string Subtitle { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public CreateBlogCommand(string blogTitle, string subtitle, string userId)
+        public CreateBlogCommand(string blogTitle, string subtitle, Guid userId)
             : base(Guid.NewGuid())
         {
             BlogTitle = blogTitle;

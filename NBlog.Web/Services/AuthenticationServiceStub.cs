@@ -9,7 +9,7 @@ using DotNetOpenAuth.OpenId.Messages;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using NBlog.Views;
 
-namespace NBlog.Services
+namespace NBlog.Web.Services
 {
     public class AuthenticationServiceStub : IAuthenticationService
     {
@@ -33,8 +33,8 @@ namespace NBlog.Services
         {
             RouteValueDictionary routeValues = new RouteValueDictionary(
                 new {
-                        action = MVC.Admin.Account.ActionNames.Login,
-                        controller = MVC.Admin.Account.Name,
+                        action = "Login",
+                        controller = "Account",
                         returnUrl = returnUrl
                     }
                 );
@@ -50,7 +50,7 @@ namespace NBlog.Services
                        };
         }
 
-        public bool TryAuthenticateUser(Guid authenticationId, out UserViewItem user)
+        public bool TryAuthenticateUser(string authenticationId, out UserViewItem user)
         {
             user = _userView.GetUserByAuthenticationId(authenticationId);
             if (user == null)

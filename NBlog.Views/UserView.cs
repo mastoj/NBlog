@@ -23,25 +23,25 @@ namespace NBlog.Views
         {
             var author = new UserViewItem()
                              {
-                                 UserId = userAddedEvent.UserId,
+                                 AuthenticationId = userAddedEvent.authenticationId,
                                  UserName = userAddedEvent.Name,
                                  UserEmail = userAddedEvent.Email,
-                                 UserAggregateId = userAddedEvent.AggregateId
+                                 UserId = userAddedEvent.AggregateId
                              };
             _userViewRepository.Insert(author);
         }
 
-        public UserViewItem GetUser(string identity)
+        public UserViewItem GetUserByAuthenticationId(string authenticationId)
         {
-            return _userViewRepository.All().SingleOrDefault(y => y.UserId == identity);
+            return _userViewRepository.All().SingleOrDefault(y => y.AuthenticationId == authenticationId);
         }
     }
 
     public class UserViewItem
     {
-        public string UserId { get; set; }
+        public string AuthenticationId { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
-        public Guid UserAggregateId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

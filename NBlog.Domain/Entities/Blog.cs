@@ -7,7 +7,7 @@ namespace NBlog.Domain.Entities
 {
     public class Blog : AggregateRoot
     {
-        private List<string> _usersIds;
+        private List<Guid> _usersIds;
 
         public Blog()
         {
@@ -24,7 +24,7 @@ namespace NBlog.Domain.Entities
         {
             if (_usersIds == null)
             {
-                _usersIds = new List<string>();
+                _usersIds = new List<Guid>();
             }
             _usersIds.Add(UserAddedToBlogEvent.UserId);
         }
@@ -34,7 +34,7 @@ namespace NBlog.Domain.Entities
             AggregateId = blogCreatedEvent.AggregateId;
         }
 
-        private Blog(string title, string subtitle, string userId, Guid aggregateId) : this()
+        private Blog(string title, string subtitle, Guid userId, Guid aggregateId) : this()
         {
             var blogCreatedEvent = new BlogCreatedEvent(title, subtitle, DateTime.Now, aggregateId);
             var userAddedEvent = new UserAddedToBlogEvent(userId, aggregateId);
@@ -42,7 +42,7 @@ namespace NBlog.Domain.Entities
             Apply(userAddedEvent);
         }
 
-        public static Blog Create(string title, string subtitle, string userId, Guid aggregateId)
+        public static Blog Create(string title, string subtitle, Guid userId, Guid aggregateId)
         {
             return new Blog(title, subtitle, userId, aggregateId);
         }

@@ -5,9 +5,9 @@ namespace NBlog.Domain.Event
 {
     public class UserAddedToBlogEvent : DomainEventBase
     {
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public UserAddedToBlogEvent(string userId, Guid aggregateId)
+        public UserAddedToBlogEvent(Guid userId, Guid aggregateId)
         {
             UserId = userId;
             AggregateId = aggregateId;

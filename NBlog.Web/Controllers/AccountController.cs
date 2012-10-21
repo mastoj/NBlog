@@ -6,12 +6,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using NBlog.Domain.Commands;
-using NBlog.Models;
-using NBlog.Services;
 using NBlog.Views;
+using NBlog.Web.Services;
 using TJ.CQRS.Messaging;
 
-namespace NBlog.Areas.Admin.Controllers
+namespace NBlog.Web.Controllers
 {
     public partial class AccountController : Controller
     {
@@ -29,7 +28,7 @@ namespace NBlog.Areas.Admin.Controllers
 
         public virtual ActionResult Login(string returnUrl)
         {
-            returnUrl = returnUrl ?? Url.Action(MVC.Admin.Post.ActionNames.Index, MVC.Admin.Post.Name);
+            returnUrl = returnUrl ?? Url.Action("Index", "Post");
             if (_authenticationService.IsUserAuthenticated(User))
             {
                 return new RedirectResult(returnUrl);
@@ -48,21 +47,17 @@ namespace NBlog.Areas.Admin.Controllers
         {
             var openIdData = _authenticationService.ParseOpenIdResponse(openIdResponse);
             UserViewItem user;
-            var authenticationId = new Guid(openIdData.OpenId);
+            var authenticationId = openIdData.OpenId;
             if (_authenticationService.TryAuthenticateUser(authenticationId, out user))
             {
                 SetAuthenticationCookie(user.AuthenticationId.ToString());
                 return new RedirectResult(returnUrl);                
             }
-            if (UserDoesNotExist())
+            if (UsersExist() == false)
             {
-                var createUserComand = new CreateUserCommand()
-                                           {
-                                               AuthenticationId = authenticationId
-                                           };
-                return View(MVC.Admin.Account.Views.RegisterUser, createUserComand);
+                return RedirectToAction("RegisterUser", new {UserId = openIdData.OpenId, returnUrl = returnUrl});
             }
-            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+            return RedirectToAction("Index", "Post");
         }
 
         private void SetAuthenticationCookie(string authorId)
@@ -78,34 +73,54 @@ namespace NBlog.Areas.Admin.Controllers
             Response.Cookies.Add(authCookie);
         }
 
+        public ActionResult RegisterUser(string UserId)
+        {
+            var createUserComand = new CreateUserCommand()
+            {
+                AuthenticationId = UserId
+            };
+            return View("RegisterUser", createUserComand);
+
+        }
+
         [HttpPost]
         public virtual ActionResult RegisterUser(string returnUrl, CreateUserCommand createUserCommand)
         {
-            if(ModelState.IsValid && UserDoesNotExist())
+            if(ModelState.IsValid && UsersExist() == false)
             {
                 _commandBus.Send(createUserCommand);
-                UserViewItem user;
-                for (int i = 0; i < 3; i++)
+                SetAuthenticationCookie(createUserCommand.AuthenticationId);
+                if (string.IsNullOrEmpty(returnUrl))
                 {
-                    if (_authenticationService.TryAuthenticateUser(createUserCommand.AuthenticationId, out user))
-                    {
-                        SetAuthenticationCookie(user.AuthenticationId.ToString());
-                        if (string.IsNullOrEmpty(returnUrl))
-                        {
-                            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name,
-                                                    new {area = MVC.Home.Area});
-                        }
-                        return new RedirectResult(returnUrl);
-                    }
-                    Thread.Sleep(500);
+                    return RedirectToAction("Index", "Post");
+                }
+                else
+                {
+                    return Redirect(returnUrl);
                 }
             }
             return View(createUserCommand);
         }
 
-        private bool UserDoesNotExist()
+        public ActionResult ToggleAdminMode(string returnUrl)
         {
-            return _userView.GetUsers().Count() == 0;
+            var modeCookie = Request.Cookies.Get("CurrentMode");
+            if(modeCookie == null)
+            {
+                modeCookie = new HttpCookie("CurrentMode", "admin");
+            }
+            return Redirect(returnUrl);
+        }
+
+        private bool UsersExist()
+        {
+            return _userView.GetUsers().Count() > 0;
+        }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Post");
         }
     }
 }

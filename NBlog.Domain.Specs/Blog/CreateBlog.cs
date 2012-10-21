@@ -15,7 +15,7 @@ namespace NBlog.Domain.Specs.Blog
     {
         protected override CreateBlogCommand When()
         {
-            _createBlogCommand = new CreateBlogCommand("Blog title", "Subtitle", "AdminId");
+            _createBlogCommand = new CreateBlogCommand("Blog title", "Subtitle", Guid.Empty);
             return _createBlogCommand;
         }
 

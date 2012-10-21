@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
-using System.Web.Security;
 using DotNetOpenAuth.OpenId.RelyingParty;
-using NBlog.Models;
 using NBlog.Views;
 
-namespace NBlog.Services
+namespace NBlog.Web.Services
 {
     public interface IAuthenticationService
     {
         bool IsUserAuthenticated(IPrincipal user);
         ActionResult GetAuthenticationUrl(string returnUrl);
         OpenIdData ParseOpenIdResponse(IAuthenticationResponse openIdResponse);
-        bool TryAuthenticateUser(Guid authenticationId, out UserViewItem user);
+        bool TryAuthenticateUser(string authenticationId, out UserViewItem user);
         bool TryGetOpenIdResponse(out IAuthenticationResponse openIdResponse);
     }
 

@@ -22,7 +22,7 @@ namespace NBlog.Domain.CommandHandlers
             var validationResult = createValidator.Validate(creatUserCommand);
             if (validationResult.IsValid)
             {
-                var user = User.Create(creatUserCommand.UserId, creatUserCommand.Name, creatUserCommand.Email,
+                var user = User.Create(creatUserCommand.AuthenticationId, creatUserCommand.Name, creatUserCommand.Email,
                                        creatUserCommand.AggregateId);
                 _userRepository.Insert(user);
             }

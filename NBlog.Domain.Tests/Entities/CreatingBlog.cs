@@ -15,7 +15,7 @@ namespace NBlog.Domain.Tests.Entities
         [TestFixtureSetUp]
         public void When()
         {
-            _blog = Blog.Create("Title", "SubTitle", "adminId", Guid.Empty);
+            _blog = Blog.Create("Title", "SubTitle", Guid.Empty, Guid.Empty);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace NBlog.Domain.Tests.Entities
             var events = _blog.GetChanges().OfType<UserAddedToBlogEvent>();
             events.Count().Should().Be(1);
             var userAddedEvent = events.First();
-            userAddedEvent.UserId.Should().Be("adminId");
+            userAddedEvent.UserId.Should().Be(Guid.Empty);
         }
 
         private Blog _blog;

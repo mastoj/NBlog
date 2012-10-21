@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NBlog.Domain.CommandHandlers;
@@ -18,7 +19,7 @@ namespace NBlog.Domain.Tests.CommandHandlers
             var repositoryFactory = new DomainRepositoryStubFactory();
             _blogRepository = repositoryFactory.GetDomainRepository<Blog>();
             _blogCommandHandlers = new BlogCommandHandlers(repositoryFactory);
-            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", "adminId");
+            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", Guid.Empty);
             _blogCommandHandlers.Handle(_createBlogCommand);
         }
 

@@ -98,6 +98,7 @@ a {
 }
 
 .header {
+	position: relative;
 	background-color: @header-bg;
 	color: @header-main;
 	margin-bottom: 0.3em;
@@ -114,6 +115,20 @@ a {
 		font-size: 3em; 
 	}
 	h2 { color: @main-secondary; }
+	.admin-menu {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding-top: 0.25em;
+		padding-right: 0.25em;
+	}
+	.admin-menu-list {
+		list-style-type: none;
+		li {
+			float: right;
+			margin-left: 0.4em;
+		}
+	}
 }
 
 .editor {

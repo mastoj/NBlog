@@ -17,7 +17,7 @@ namespace NBlog.Domain.Specs.User
                                      {
                                          Email = "something@something.com",
                                          Name = "Tomas Something",
-                                         UserId = "ThisIsOpen"
+                                         AuthenticationId = "SomeAuthId"
                                      };
             return _createUserCommand;
         }

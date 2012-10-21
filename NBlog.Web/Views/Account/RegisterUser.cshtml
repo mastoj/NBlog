@@ -1,0 +1,35 @@
+﻿@model NBlog.Domain.Commands.CreateUserCommand
+
+@{
+    ViewBag.Title = "Create user";
+    var returnUrl = Request["returnUrl"];
+}
+
+@using (Html.BeginForm())
+{
+    <div class="editor">
+        <fieldset>
+            <div class="editor-entry">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="editor-entry">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.AuthenticationId)
+            @Html.Hidden("returnUrl", returnUrl)
+            <input type="submit" value="Save" class="submit-buttom" />
+        </fieldset>
+    </div>
+}

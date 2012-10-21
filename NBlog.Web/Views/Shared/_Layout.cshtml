@@ -24,14 +24,36 @@
 
     <body>
         <div id="header-container" class="container">
-            <header class="header">
-                <hgroup>
-                    @{Html.RenderAction("Header", "Blog", new { area = "" });}
-                </hgroup>
-                @*                <nav>
+            <div class="header">
+                <header>
+                    <hgroup>
+                        @{Html.RenderAction("Header", "Blog", new { area = "" });}
+                    </hgroup>
+                    @*                <nav>
                     @RenderSection("Navigation")
                 </nav>*@
-            </header>
+                </header>
+                @if(User != null && User.Identity.IsAuthenticated)
+                {
+                    <div class="admin-menu">
+                        <ul class="admin-menu-list">
+                            <li>
+                                @if (Request.QueryString["mode"] != null && Request.QueryString["mode"] == "admin")
+                                {
+                                    @Html.RouteLink("Disable admin mode", new {});
+                                }
+                                else
+                                {
+                                    @Html.RouteLink("Enable admin mode", new {mode = "admin"})
+                                }
+                            </li>
+                            <li>
+                                @Html.ActionLink("Sign out", "SignOut", "Account")
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
         </div>
         <div id="main-container" class="container">
             <section class="main">
@@ -46,6 +68,8 @@
         <script src="~/Scripts/Markdown.Converter.js"></script>
         <script src="~/Scripts/Markdown.Sanitizer.js"></script>
         <script src="~/Scripts/Markdown.Editor.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/Scripts/nblog.js"></script>
 @*        <script src="~/Content/google-code-prettify/prettify.js"></script>*@
         <script src="~/Content/google-code-prettify/prettify-full.js"></script>

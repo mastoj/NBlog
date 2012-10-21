@@ -1,6 +1,7 @@
 using System.Web.Http.Filters;
 using NBlog.Infrastructure.MessageRouting;
 using NBlog.Views;
+using NBlog.Web.Services;
 using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 using TJ.CQRS;
@@ -85,11 +86,11 @@ namespace NBlog.Web.App_Start
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
 
-#if DEBUG
+//#if DEBUG
 //            Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
-#else
+//#else
             Bind<IAuthenticationService>().To<AuthenticationService>();
-#endif
+//#endif
 //            this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
         }
     }

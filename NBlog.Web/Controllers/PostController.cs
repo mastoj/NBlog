@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web.Mvc;
 using NBlog.Views;
 using NBlog.Web.Models;
@@ -26,11 +27,25 @@ namespace NBlog.Web.Controllers
         public virtual ActionResult Show(string slug, string mode = null)
         {
             var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
-            if (!string.IsNullOrEmpty(mode) && mode.ToLower() == "edit")
-            {
-                postItemViewModel.IsEditMode = true;
-            }
+            postItemViewModel.IsAdminMode = IsAdminMode(mode);
             return View("Show", postItemViewModel);
+        }
+
+        private bool IsAdminMode(string mode)
+        {
+            var isAuthenticated = IsUserAuthenticated(User);
+            var isRequestingAdminMode = IsRequestingAdminMode(mode);
+            return isAuthenticated && isRequestingAdminMode;
+        }
+
+        private bool IsRequestingAdminMode(string mode)
+        {
+            return !string.IsNullOrEmpty(mode) && mode.ToLower() == "admin";
+        }
+
+        private bool IsUserAuthenticated(IPrincipal user)
+        {
+            return user != null && user.Identity.IsAuthenticated;
         }
 
         [ChildActionOnly]

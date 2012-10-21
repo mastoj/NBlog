@@ -10,6 +10,6 @@ namespace NBlog.Web.Models
         }
 
         public PostItem PostItem { get; set; }
-        public bool IsEditMode { get; set; }
+        public bool IsAdminMode { get; set; }
     }
 }

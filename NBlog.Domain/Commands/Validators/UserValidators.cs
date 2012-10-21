@@ -10,7 +10,7 @@ namespace NBlog.Domain.Commands.Validators
     {
         public CreateUserCommandValidator()
         {
-            RuleFor(y => y.UserId).NotEmpty().WithMessage("Open id cannot be empty");
+            RuleFor(y => y.AuthenticationId).NotEmpty().WithMessage("Open id cannot be empty");
             RuleFor(y => y.Name).NotEmpty().WithMessage("Name cannot be empty");
             RuleFor(y => y.Email).NotEmpty().WithMessage("Email cannot be empty").EmailAddress().WithMessage(
                 "Input is not an email address");

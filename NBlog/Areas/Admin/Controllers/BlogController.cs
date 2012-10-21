@@ -38,7 +38,7 @@ namespace NBlog.Areas.Admin.Controllers
         public virtual ActionResult Create(CreateBlogModel model)
         {
             Func<bool> preCondition = () => _blogView.GetBlogs().Count() == 0;
-            var user = _userView.GetUser(User.Identity.Name);
+            var user = _userView.GetUserByAuthenticationId(new Guid(User.Identity.Name));
             var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, user.UserId);
             Func<ActionResult> nextResult = () => RedirectToAction(MVC.Admin.Post.Index());
             Func<ActionResult> failResult = () => RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);

@@ -19,7 +19,7 @@
         @Html.ValidationMessageFor(model => model.Name)
     </div>
 
-    @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.AuthenticationId)
     @Html.Hidden("returnUrl", returnUrl)
     @Html.AntiForgeryToken()
 

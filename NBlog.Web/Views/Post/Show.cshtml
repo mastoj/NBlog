@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "title";
 }
-@if(Model.IsEditMode)
+@if(Model.IsAdminMode)
 {
     @Html.Partial("_EditPostItem", Model.PostItem)
 }
