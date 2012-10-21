@@ -35,7 +35,6 @@ function initTimeUpdate(target, delay, action) {
 function stylePreview() {
     $(".wmd-preview pre").addClass("prettyprint");
     $(".wmd-preview code").html(window.prettyPrint());
-    //$(".wmd-preview code").html(window.prettyPrint()($(".wmd-preview code").html()));
 }
 
 function styleCode() {
