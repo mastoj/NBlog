@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
+using NBlog.Domain.Commands;
 using NBlog.Views;
 using NBlog.Web.Models;
 using NBlog.Web.Services;
+using TJ.CQRS.Messaging;
 
 namespace NBlog.Web.Controllers
 {
-    public partial class PostController : Controller
+    public class PostController : CommandControllerBase
     {
         private readonly IPostView _postView;
         private readonly IAuthenticationService _authenticationService;
 
-        public PostController(IPostView postView, IAuthenticationService authenticationService)
+        public PostController(IPostView postView, IAuthenticationService authenticationService, ICommandBus commandBus)
+            : base(commandBus)
         {
             _postView = postView;
             _authenticationService = authenticationService;
@@ -22,16 +25,30 @@ namespace NBlog.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            var items = _postView.GetPublishedPosts();
+            var items = _authenticationService.IsUserAuthenticated(User)
+                                   ?  _postView.GetPosts()
+                                   : _postView.GetPublishedPosts();
             return View(items);
         }
-
 
         public virtual ActionResult Show(string slug)
         {
             var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
             postItemViewModel.IsAdminMode = IsAdminMode();
             return View("Show", postItemViewModel);
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Create(CreatePostCommand command)
+        {
+            return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = command.Slug}), () => View(command));
         }
 
         private bool IsAdminMode()
@@ -84,6 +101,14 @@ namespace NBlog.Web.Controllers
         private string GenerateString()
         {
             return "Lorem ipsum ";
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Update(UpdatePostCommand command)
+        {
+            return ValidateAndSendCommand(command, () => RedirectToAction("Index", "Post"), () =>
+                { throw new ApplicationException("Failed to update post"); });
         }
     }
 }

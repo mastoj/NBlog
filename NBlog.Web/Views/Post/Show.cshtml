@@ -6,8 +6,15 @@
 }
 @if(Model.IsAdminMode)
 {
-    @Html.Partial("_EditPostItem", Model.PostItem)
+    using (Html.BeginForm("Update", "Post", FormMethod.Post))
+    {
+        @Html.Partial("_CreateOrEditPost", Model.PostItem)
+    }
 }
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
 <article class="post">
     <header class="post-header">
         <h1>

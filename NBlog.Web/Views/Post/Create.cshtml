@@ -1,0 +1,20 @@
+﻿@using NBlog.Web.Helpers
+@model NBlog.Domain.Commands.CreatePostCommand
+
+@{
+    ViewBag.Title = "title";
+    var now = DateTime.Now;
+}
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.Partial("_CreateOrEditPost", Model)
+}
+<article class="post">
+    <header class="post-header">
+        <h1>
+        </h1>
+        <time class="time" datetime="@now.ToHtmlTimeString()">@now.ToPostTime()</time>
+    </header>
+    <div class="content wmd-preview" id="wmd-preview">
+    </div>
+</article>
