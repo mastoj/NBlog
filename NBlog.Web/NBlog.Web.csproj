@@ -321,10 +321,10 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.min.js" />
     <Content Include="Scripts\jquery.textarearesizer.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -349,8 +349,9 @@
     <Content Include="Views\Account\RegisterUser.cshtml" />
     <Content Include="Views\Blog\_AdminMenu.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
-    <Content Include="Views\Post\_CreateOrEditPost.cshtml" />
+    <Content Include="Views\Post\_CreatePost.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Post\_EditPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

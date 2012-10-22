@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using NBlog.Domain.Entities;
 
 namespace NBlog.Domain.Commands.Validators
 {

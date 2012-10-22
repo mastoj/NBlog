@@ -4,7 +4,7 @@ using NBlog.Domain.Entities;
 
 namespace NBlog.Views
 {
-    public class PostItem : IPostData
+    public class PostItem
     {
         public string Title { get; set; }
         public string Slug { get; set; }
