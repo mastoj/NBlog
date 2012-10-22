@@ -1,4 +1,4 @@
-﻿@model NBlog.Web.Models.CreateBlogModel
+﻿@model NBlog.Domain.Commands.CreateBlogCommand
 
 @{
     ViewBag.Title = "Create your blog!";
@@ -7,10 +7,28 @@
 <h1>
     @ViewBag.Title
 </h1>
-<div class="editor">
-    @using(Html.BeginForm())
-    {
-        @Html.EditorForModel()
+@using(Html.BeginForm())
+{
+    <div class="editor">
+        <div class="editor-entry">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlogTitle)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BlogTitle)
+                @Html.ValidationMessageFor(model => model.BlogTitle)
+            </div>
+        </div>
+        <div class="editor-entry">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Subtitle)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Subtitle)
+                @Html.ValidationMessageFor(model => model.Subtitle)
+            </div>
+        </div>
         <input type="submit" value="Create blog"/>
-    }
-</div>
+    </div>
+}
+

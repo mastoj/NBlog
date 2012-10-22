@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using FluentValidation.Attributes;
+using NBlog.Domain.Commands.Validators;
 using TJ.CQRS.Messaging;
 
 namespace NBlog.Domain.Commands
 {
+    [Validator(typeof(UpdatePostCommandValidator))]
     public class UpdatePostCommand : Command
     {
         public string Title { get; set; }

@@ -15,7 +15,15 @@ $(function() {
     $("#Title").each(function() {
         var elem = $(this);
         var targetElem = $(".post header h1");
-        initTimeUpdate(elem, 1000, function() { targetElem.html(elem.val()) });
+        initTimeUpdate(elem, 1000, function () {
+            var newTitle = elem.val();
+            if (newTitle) {
+                targetElem.html(newTitle);
+            }
+            else {
+                targetElem.html("Missing title");
+            }
+        });
     });
     $("#tags").tagit();
 });

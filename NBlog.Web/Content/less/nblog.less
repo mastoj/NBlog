@@ -10,6 +10,8 @@
 @nav-bg: #E0E0E0;
 @nav-bg-gradient-start: #CCCCCC;
 @nav-bg-gradient-end: #b0b0b0;
+@error-bg: #FFD0D0;
+@error-fg: #FF0000;
 
 // Padding
 @xlarge-padding: 30px;
@@ -148,12 +150,12 @@ a {
 		&.slug .editor-field * {
 			width: auto;
 		}
-		.editor-field * {
-			width: 100%;
-		}
-		.editor-label {
-			font-weight: bold;
-		}
+	}
+	.editor-field * {
+		width: 100%;
+	}
+	.editor-label {
+		font-weight: bold;
 	}
 	#Excerpt {
 		height: 70px;
@@ -239,4 +241,13 @@ blockquote {
 img {
 	.shadow;
 	margin: 1.5em 2em;
+}
+
+.input-validation-error {
+	background-color: @error-bg;
+}
+
+.field-validation-error {
+	color: @error-fg;
+	font-size: 0.8em;
 }

@@ -45,17 +45,16 @@ namespace NBlog.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public virtual ActionResult Create(CreateBlogModel model)
+        public virtual ActionResult Create(CreateBlogCommand command)
         {
             ActionResult actionResult;
             if (RedirectIfBlogExists(out actionResult)) return actionResult;
             Func<bool> preCondition = () => _blogView.GetBlogs().Count() == 0;
             var user = _userView.GetUserByAuthenticationId(User.Identity.Name);
-            var createBlogCommand = new CreateBlogCommand(model.BlogTitle, model.SubTitle, user.UserId);
             Func<ActionResult> nextResult = () => RedirectToAction("Create", "Post");
             Func<ActionResult> failResult = () => { throw new ApplicationException("Fail to create blog"); };
-            Func<ActionResult> validationFailFunc = () => View("Create", model);
-            return ValidateAndSendCommand(createBlogCommand, nextResult, failResult, validationFailFunc: validationFailFunc, preCondition: preCondition);
+            Func<ActionResult> validationFailFunc = () => View("Create", command);
+            return ValidateAndSendCommand(command, nextResult, failResult, validationFailFunc: validationFailFunc, preCondition: preCondition);
         }
 
         [ChildActionOnly]
