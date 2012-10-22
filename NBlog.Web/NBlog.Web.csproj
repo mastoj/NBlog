@@ -220,6 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Models\CreateBlogModel.cs" />
     <Compile Include="Models\PostItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
@@ -349,6 +350,7 @@
     <Content Include="Views\Blog\_AdminMenu.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Post\_CreateOrEditPost.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -69,6 +69,7 @@
     <Compile Include="Commands\Validators\PostValidators.cs" />
     <Compile Include="Commands\Validators\UserValidators.cs" />
     <Compile Include="Entities\Blog.cs" />
+    <Compile Include="Entities\IPostData.cs" />
     <Compile Include="Event\BlogCreatedEvent.cs" />
     <Compile Include="Event\PostDeletedEvent.cs" />
     <Compile Include="Event\PostPublishedEvent.cs" />

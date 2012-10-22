@@ -1,0 +1,16 @@
+﻿@model NBlog.Web.Models.CreateBlogModel
+
+@{
+    ViewBag.Title = "Create your blog!";
+}
+
+<h1>
+    @ViewBag.Title
+</h1>
+<div class="editor">
+    @using(Html.BeginForm())
+    {
+        @Html.EditorForModel()
+        <input type="submit" value="Create blog"/>
+    }
+</div>

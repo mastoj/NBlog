@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using FluentValidation.Attributes;
 using NBlog.Domain.Commands.Validators;
+using NBlog.Domain.Entities;
 using TJ.CQRS.Messaging;
 
 namespace NBlog.Domain.Commands
 {
     [Validator(typeof(CreatePostCommandValidator))]
-    public class CreatePostCommand : Command
+    public class CreatePostCommand : Command, IPostData
     {
         public string Title { get; set; }
         public string Content { get; set; }

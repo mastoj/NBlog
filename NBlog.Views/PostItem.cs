@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using NBlog.Domain.Entities;
 
 namespace NBlog.Views
 {
-    public class PostItem
+    public class PostItem : IPostData
     {
         public string Title { get; set; }
         public string Slug { get; set; }

@@ -1,6 +1,7 @@
-using System.Web.Http.Filters;
+using System.Web.Mvc;
 using NBlog.Infrastructure.MessageRouting;
 using NBlog.Views;
+using NBlog.Web.Filters;
 using NBlog.Web.Services;
 using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
@@ -91,7 +92,7 @@ namespace NBlog.Web.App_Start
 //#else
             Bind<IAuthenticationService>().To<AuthenticationService>();
 //#endif
-//            this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
+            this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
         }
     }
 }

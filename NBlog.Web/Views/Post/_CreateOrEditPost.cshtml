@@ -1,4 +1,4 @@
-﻿@model NBlog.Views.PostItem
+﻿@model NBlog.Domain.Entities.IPostData
 @{
     Layout = null;
 }
@@ -31,11 +31,11 @@
         </div>
         <div class="editor-entry">
             <ul id="tags">
-                @if(Model.Tags != null)
+                @if(Model != null && Model.Tags != null)
                 {
                     foreach (var tag in Model.Tags)
                     {
-                        <li class="tag">tag</li>
+                        <li class="tag">@tag</li>
                     }
                 }
             </ul>

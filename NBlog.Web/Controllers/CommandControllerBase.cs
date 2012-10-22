@@ -13,7 +13,7 @@ namespace NBlog.Web.Controllers
             _commandBus = commandBus;
         }
 
-        protected ActionResult ValidateAndSendCommand(Command command, Func<ActionResult> successFunc, Func<ActionResult> failFunc, Func<bool> preCondition = null, Func<ActionResult> preConditionResult = null)
+        protected ActionResult ValidateAndSendCommand(Command command, Func<ActionResult> successFunc, Func<ActionResult> failFunc, Func<ActionResult> validationFailFunc = null, Func<bool> preCondition = null, Func<ActionResult> preConditionResult = null)
         {
             if (preCondition.IsNull() || preCondition())
             {
@@ -21,6 +21,10 @@ namespace NBlog.Web.Controllers
                 {
                     _commandBus.Send(command);
                     return successFunc();
+                }
+                else if(validationFailFunc.IsNotNull())
+                {
+                    return validationFailFunc();
                 }
             }
             else if (preConditionResult.IsNotNull())

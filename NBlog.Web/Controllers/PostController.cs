@@ -41,7 +41,8 @@ namespace NBlog.Web.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            return View();
+            var command = new CreatePostCommand() {AggregateId = Guid.NewGuid()};
+            return View("Create", command);
         }
 
         [Authorize]
