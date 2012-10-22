@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
+using System.Threading;
 using System.Web.Mvc;
 using NBlog.Domain.Commands;
 using NBlog.Views;
@@ -34,7 +35,17 @@ namespace NBlog.Web.Controllers
 
         public virtual ActionResult Show(string slug)
         {
-            var postItemViewModel = new PostItemViewModel(_postView.GetPostWithSlug(slug));
+            PostItem postItem = null;
+            int retries = 0;
+            do
+            {
+                postItem = _postView.GetPostWithSlug(slug);
+                if (postItem != null)
+                    break;
+                Thread.Sleep(500);
+                retries = retries + 1;
+            } while (retries < 3);
+            var postItemViewModel = new PostItemViewModel(postItem);
             postItemViewModel.IsAdminMode = IsAdminMode();
             return View("Show", postItemViewModel);
         }
