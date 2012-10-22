@@ -8,6 +8,7 @@ using NBlog.Views;
 using NBlog.Web.Models;
 using NBlog.Web.Services;
 using TJ.CQRS.Messaging;
+using TJ.Extensions;
 
 namespace NBlog.Web.Controllers
 {
@@ -49,7 +50,24 @@ namespace NBlog.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreatePostCommand command)
         {
-            return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = command.Slug}), () => View(command));
+            Func<bool> preCondition = () => ValidateSlug(command.AggregateId, command.Slug);
+
+            Func<ActionResult> preConditionResult = () =>
+                {
+                    ModelState.AddModelError("Slug", "Slug already taken");
+                    return View(command);
+                };
+            return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = command.Slug}), () => View(command), preCondition: preCondition, preConditionResult: preConditionResult);
+        }
+
+        private bool ValidateSlug(Guid aggregateId, string slug)
+        {
+            var existingPost = _postView.GetPosts().Where(y => y.Slug == slug).FirstOrDefault();
+            if(existingPost.IsNotNull() && existingPost.AggregateId != aggregateId)
+            {
+                return false;
+            }
+            return true;
         }
 
         private bool IsAdminMode()

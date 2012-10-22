@@ -16,7 +16,7 @@
                 <time class="time" datetime="@postItem.PublishedTime.ToHtmlTimeString()">@postItem.PublishedTime.ToPostTime()</time>
             </header>
             <div class="content excerpt">
-                @postItem.Excerpt
+                @Html.Raw(postItem.HtmlExcerpt)
             </div>
             <div class="block-link">
                 @Html.ActionLink("Read more", "Show", "Post", new { slug= postItem.Slug }, null)
