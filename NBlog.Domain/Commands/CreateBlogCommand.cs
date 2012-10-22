@@ -15,6 +15,10 @@ namespace NBlog.Domain.Commands
         public string Subtitle { get; set; }
         public Guid UserId { get; set; }
 
+        public CreateBlogCommand() : base(Guid.NewGuid())
+        {
+            
+        }
         public CreateBlogCommand(string blogTitle, string subtitle, Guid userId)
             : base(Guid.NewGuid())
         {
