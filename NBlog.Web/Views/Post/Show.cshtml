@@ -11,6 +11,9 @@
     {
         @Html.Partial("_EditPost", Model.UpdatePostCommand)
     }
+    <div class="actions">
+        @Html.ActionLink("Publish", "Publish", new {aggregateId = Model.PostItem.AggregateId})
+    </div>
 }
 
 <article class="post">

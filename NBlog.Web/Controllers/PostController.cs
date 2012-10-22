@@ -126,8 +126,17 @@ namespace NBlog.Web.Controllers
         [HttpPost]
         public ActionResult Update(UpdatePostCommand command)
         {
-            return ValidateAndSendCommand(command, () => RedirectToAction("Index", "Post"), () =>
+            return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = command.Slug }), () =>
                 { throw new ApplicationException("Failed to update post"); });
+        }
+
+        [Authorize]
+        public ActionResult Publish(Guid aggregateid)
+        {
+            var command = new PublishPostCommand(aggregateid);
+            var postItem = _postView.GetPosts().Where(y => y.AggregateId == aggregateid).First();
+            return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = postItem.Slug }), () =>
+            { throw new ApplicationException("Failed to publish post"); });
         }
     }
 }
