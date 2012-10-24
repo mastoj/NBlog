@@ -25,7 +25,9 @@ $(function() {
             }
         });
     });
-    $("#tags").tagit();
+    $("#Tags").tagit({
+        aspnetMvcMode: true
+    });
 });
 
 function initMarkdownEditor(converter, options) {
