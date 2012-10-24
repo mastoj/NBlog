@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
+using System.Web.Management;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FluentValidation.Mvc;
@@ -16,9 +18,29 @@ namespace NBlog.Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-//            HtmlHelper.ClientValidationEnabled = true;
-//            HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+            //            HtmlHelper.ClientValidationEnabled = true;
+            //            HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
             FluentValidationModelValidatorProvider.Configure();
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            try
+            {
+                var exception = Server.GetLastError();
+                new LogEvent(exception.Message + ": " + exception.StackTrace).Raise();
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+
+    class LogEvent : WebRequestErrorEvent
+    {
+        public LogEvent(string message)
+            : base(null, null, 100001, new Exception(message))
+        {
         }
     }
 }
