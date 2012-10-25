@@ -59,6 +59,7 @@ namespace NBlog.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(CreatePostCommand command)
         {
             Func<bool> preCondition = () => ValidateSlug(command.AggregateId, command.Slug);
@@ -135,6 +136,7 @@ namespace NBlog.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(UpdatePostCommand command)
         {
             return ValidateAndSendCommand(command, () => RedirectToAction("Show", "Post", new { slug = command.Slug }), () =>
