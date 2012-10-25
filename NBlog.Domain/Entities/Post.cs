@@ -28,6 +28,12 @@ namespace NBlog.Domain.Entities
             RegisterEventHandler<PostUpdatedEvent>(PostUpdated);
             RegisterEventHandler<PostPublishedEvent>(PostPublished);
             RegisterEventHandler<PostDeletedEvent>(PostDeleted);
+            RegisterEventHandler<PublishDateChangedEvent>(PostPublishDateChanged);
+        }
+
+        private void PostPublishDateChanged(PublishDateChangedEvent publishDateChangedEvent)
+        {
+            _publishTime = publishDateChangedEvent.PublishDate;
         }
 
         private void PostDeleted(PostDeletedEvent postDeletedEvent)
@@ -95,6 +101,12 @@ namespace NBlog.Domain.Entities
         {
             var postDeletedEvent = new PostDeletedEvent(AggregateId);
             Apply(postDeletedEvent);
+        }
+
+        public void SetPublishDate(DateTime newPublishDate)
+        {
+            var publishDateChangedEvent = new PublishDateChangedEvent(AggregateId, newPublishDate);
+            Apply(publishDateChangedEvent);
         }
     }
 }

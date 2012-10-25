@@ -21,4 +21,15 @@ namespace NBlog.Domain.Event
             AggregateId = aggregateId;
         }
     }
+
+    public class PublishDateChangedEvent : DomainEventBase
+    {
+        public DateTime PublishDate { get; set; }
+
+        public PublishDateChangedEvent(Guid aggregateId, DateTime publishDate)
+        {
+            PublishDate = publishDate;
+            AggregateId = aggregateId;
+        }
+    }
 }

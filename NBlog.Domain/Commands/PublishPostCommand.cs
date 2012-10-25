@@ -21,4 +21,14 @@ namespace NBlog.Domain.Commands
 
         }
     }
+
+    public class SetPublishDateOnPostCommand : Command
+    {
+        public DateTime NewPublishDate { get; set; }
+
+        public SetPublishDateOnPostCommand(Guid aggregateId, DateTime newPublishDate) : base(aggregateId)
+        {
+            NewPublishDate = newPublishDate;
+        }
+    }
 }

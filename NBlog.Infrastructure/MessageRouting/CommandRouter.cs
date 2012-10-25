@@ -27,6 +27,7 @@ namespace NBlog.Infrastructure.MessageRouting
             Register<PublishPostCommand>(_postCommandHandlers.Handle);
             Register<UpdatePostCommand>(_postCommandHandlers.Handle);
             Register<DeletePostCommand>(_postCommandHandlers.Handle);
+            Register<SetPublishDateOnPostCommand>(_postCommandHandlers.Handle);
         }
     }
 }

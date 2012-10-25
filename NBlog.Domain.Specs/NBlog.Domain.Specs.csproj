@@ -52,9 +52,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TJ.CQRS, Version=0.1.6.27573, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.2.0.31883, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.1.6.27573\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.2.0.31883\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions">
       <HintPath>..\packages\TJ.Extensions.0.1.0.0\lib\net40\TJ.Extensions.dll</HintPath>
@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="BaseCommandTest.cs" />
     <Compile Include="Blog\CreateBlog.cs" />
+    <Compile Include="Post\SetPublishDateOnPost.cs" />
     <Compile Include="Post\CreatePost.cs" />
     <Compile Include="Post\DeletePost.cs" />
     <Compile Include="Post\PublishPost.cs" />

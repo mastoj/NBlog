@@ -21,9 +21,11 @@ namespace NBlog.Domain.Specs
         private StubEventStore _eventStore;
         private InMemoryCommandBus _commandBus;
         private InMemoryEventBus _eventBus;
+        private List<IDomainEvent> _publishedEvents;
 
         public BaseCommandTest()
         {
+            _publishedEvents = new List<IDomainEvent>();
             var postViewRepository = new InMemoryViewRepository<PostItem>();
             var blogViewRepository = new InMemoryViewRepository<BlogViewItem>();
             var userViewRepository = new InMemoryViewRepository<UserViewItem>();
@@ -60,7 +62,7 @@ namespace NBlog.Domain.Specs
 
         protected IEnumerable<IDomainEvent> GetPublishedEvents()
         {
-            return _eventBus.PublishedEvents;
+            return _publishedEvents;
         }
 
         [TestFixtureSetUp]
@@ -69,6 +71,7 @@ namespace NBlog.Domain.Specs
             _exceptionOccured = false;
             _exceptionIsChecked = false;
             Given();
+            _eventBus.EventPublished = (y) => _publishedEvents.Add(y);
             var commandUnderTest = When();
             try
             {

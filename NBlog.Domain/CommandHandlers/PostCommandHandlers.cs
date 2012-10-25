@@ -1,4 +1,5 @@
-﻿using NBlog.Domain.Commands;
+﻿using System;
+using NBlog.Domain.Commands;
 using NBlog.Domain.Entities;
 using NBlog.Domain.Exceptions;
 using TJ.CQRS;
@@ -7,7 +8,7 @@ using TJ.Extensions;
 
 namespace NBlog.Domain.CommandHandlers
 {
-    public class PostCommandHandlers : IHandle<CreatePostCommand>, IHandle<PublishPostCommand>, IHandle<UpdatePostCommand>
+    public class PostCommandHandlers : IHandle<CreatePostCommand>, IHandle<PublishPostCommand>, IHandle<UpdatePostCommand>, IHandle<SetPublishDateOnPostCommand>
     {
         private readonly IDomainRepository<Post> _postRepository;
 
@@ -31,33 +32,37 @@ namespace NBlog.Domain.CommandHandlers
 
         public void Handle(PublishPostCommand publishPostCommand)
         {
-            var post = _postRepository.Get(publishPostCommand.AggregateId);
-            if (post.IsNull())
-            {
-                throw new PostDoesNotExistException();
-            }
+            var post = TryGetPost(publishPostCommand.AggregateId);
             post.Publish();
         }
 
         public void Handle(UpdatePostCommand updatePostCommand)
         {
-            var post = _postRepository.Get(updatePostCommand.AggregateId);
-            if (post.IsNull())
-            {
-                throw new PostDoesNotExistException();
-            }
+            var post = TryGetPost(updatePostCommand.AggregateId);
             post.Update(updatePostCommand.Title, updatePostCommand.Content, updatePostCommand.Slug,
                         updatePostCommand.Tags, updatePostCommand.Excerpt);
         }
 
         public void Handle(DeletePostCommand deletePostCommand)
         {
-            var post = _postRepository.Get(deletePostCommand.AggregateId);
+            var post = TryGetPost(deletePostCommand.AggregateId);
+            post.Delete();
+        }
+
+        public void Handle(SetPublishDateOnPostCommand setPublishDateCommand)
+        {
+            var post = TryGetPost(setPublishDateCommand.AggregateId);
+            post.SetPublishDate(setPublishDateCommand.NewPublishDate);
+        }
+
+        private Post TryGetPost(Guid aggregateId)
+        {
+            var post = _postRepository.Get(aggregateId);
             if (post.IsNull())
             {
                 throw new PostDoesNotExistException();
             }
-            post.Delete();
+            return post;
         }
     }
 }
