@@ -90,7 +90,7 @@ namespace NBlog.Web.Controllers
         }
 
         [Authorize]
-        public void ResetViews()
+        public ActionResult ResetViews()
         {
             foreach (var views in _viewManager.GetAllViews())
             {
@@ -98,6 +98,7 @@ namespace NBlog.Web.Controllers
             }
             var allEvents = _eventStore.GetAllEvents();
             _eventBus.PublishEvents(allEvents);
+            return RedirectToAction("Edit");
         }
     }
 }

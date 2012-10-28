@@ -15,6 +15,9 @@
             @Html.ActionLink("Create post", "Create", "Post")
         </li>
         <li>
+            @Html.ActionLink("Edit blog", "Edit", "Blog")
+        </li>
+        <li>
             @Html.ActionLink(toggleText, "ToggleUserMode", "Account", new {returnUrl = Request.RawUrl}, null)
         </li>
     </ul>
