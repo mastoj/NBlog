@@ -103,9 +103,6 @@
     <Reference Include="Mono.Math">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.2.12274\lib\net45-full\Mono.Math.dll</HintPath>
     </Reference>
-    <Reference Include="NBlog.Infrastructure">
-      <HintPath>..\NBlog\Bin\NBlog.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -372,6 +369,10 @@
     <ProjectReference Include="..\NBlog.Domain\NBlog.Domain.csproj">
       <Project>{d17a3739-526e-4400-8b83-2232494dd5f4}</Project>
       <Name>NBlog.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NBlog.Infrastructure\NBlog.Infrastructure.csproj">
+      <Project>{16a43959-57cc-4a21-b136-61892d440737}</Project>
+      <Name>NBlog.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\NBlog.Views\NBlog.Views.csproj">
       <Project>{04296F85-1CEF-4842-995B-62B93180CD25}</Project>
