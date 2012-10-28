@@ -85,7 +85,7 @@
       <Name>NBlog.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\NBlog.Infrastructure\NBlog.Infrastructure.csproj">
-      <Project>{16A43959-57CC-4A21-B136-61892D440737}</Project>
+      <Project>{16a43959-57cc-4a21-b136-61892d440737}</Project>
       <Name>NBlog.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\NBlog.Views\NBlog.Views.csproj">
