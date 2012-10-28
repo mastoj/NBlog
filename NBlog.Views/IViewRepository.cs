@@ -9,5 +9,6 @@ namespace NBlog.Views
         T Find(Func<T, bool> func);
         IEnumerable<T> All(Func<T, bool> func = null);
         void Clear(string indexName);
+        void CommitChanges();
     }
 }

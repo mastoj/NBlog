@@ -32,5 +32,10 @@ namespace NBlog.Views
         {
             throw new NotImplementedException();
         }
+
+        public void CommitChanges()
+        {
+
+        }
     }
 }

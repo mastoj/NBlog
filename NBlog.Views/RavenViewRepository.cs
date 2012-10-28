@@ -15,7 +15,6 @@ namespace NBlog.Views
         private DocumentStore _documentStore;
         private IDocumentSession _session;
         private static bool _hasInitializedIndexes = false;
-        private List<T> _foundInstances;
 
         public RavenViewRepository(string connectionStringName)
         {
@@ -26,12 +25,11 @@ namespace NBlog.Views
             _documentStore.Initialize();
             CreateIndexes();
             _session = _documentStore.OpenSession();
-            _foundInstances = new List<T>();
         }
 
         private void CreateIndexes()
         {
-            if(_hasInitializedIndexes.IsFalse())
+            if (_hasInitializedIndexes.IsFalse())
             {
                 IndexCreation.CreateIndexes(this.GetType().Assembly, _documentStore);
                 _hasInitializedIndexes = true;
@@ -45,18 +43,13 @@ namespace NBlog.Views
 
         public T Find(Func<T, bool> func)
         {
-            var instance = _foundInstances.SingleOrDefault(func);
-            if (instance == null)
-            {
-                instance = _session.Query<T>().SingleOrDefault(func);
-                _foundInstances.Add(instance);
-            }
+            var instance = _session.Query<T>().SingleOrDefault(func);
             return instance;
         }
 
         public IEnumerable<T> All(Func<T, bool> predicate = null)
         {
-            if(predicate.IsNotNull())
+            if (predicate.IsNotNull())
             {
                 return _session.Query<T>().Where(predicate);
             }
@@ -68,9 +61,14 @@ namespace NBlog.Views
             _session.Advanced.DatabaseCommands.DeleteByIndex(indexName, new IndexQuery());
         }
 
-        public void Dispose()
+        public void CommitChanges()
         {
             _session.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            CommitChanges();
         }
     }
 }

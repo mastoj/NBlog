@@ -46,6 +46,7 @@ namespace NBlog.Views
                 LastSaveTime = postCreatedEvent.CreationDate
             };
             _postViewRepostiory.Insert(postItem);
+            _postViewRepostiory.CommitChanges();
         }
 
         public IEnumerable<PostItem> GetPosts(bool includeDeletedPosts = false)
@@ -65,6 +66,7 @@ namespace NBlog.Views
             {
                 post.PublishedTime = postPublishedEvent.PublishTime;
                 post.IsPublished = true;
+                _postViewRepostiory.CommitChanges();
             }
         }
 
@@ -74,6 +76,7 @@ namespace NBlog.Views
             if (post.IsNotNull())
             {
                 post.IsDeleted = true;
+                _postViewRepostiory.CommitChanges();
             }
         }
 
@@ -90,6 +93,7 @@ namespace NBlog.Views
                 post.Slug = postUpdatedEvent.Slug;
                 post.Tags = postUpdatedEvent.Tags;
                 post.Title = postUpdatedEvent.Title;
+                _postViewRepostiory.CommitChanges();
             }
         }
 
@@ -110,6 +114,7 @@ namespace NBlog.Views
             if (post.IsNotNull())
             {
                 post.IsPublished = false;
+                _postViewRepostiory.CommitChanges();
             }
         }
 

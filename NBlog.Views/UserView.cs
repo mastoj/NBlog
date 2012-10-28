@@ -29,6 +29,7 @@ namespace NBlog.Views
                                  UserId = userAddedEvent.AggregateId
                              };
             _userViewRepository.Insert(author);
+            _userViewRepository.CommitChanges();
         }
 
         public UserViewItem GetUserByAuthenticationId(string authenticationId)

@@ -27,6 +27,7 @@ namespace NBlog.Views
                                        SubTitle = createdEvent.SubTitle
                                    };
             _blogViewRepository.Insert(blogViewItem);
+            _blogViewRepository.CommitChanges();
         }
 
         public void ResetView()
