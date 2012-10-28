@@ -215,6 +215,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommandControllerBase.cs" />
+    <Compile Include="Models\EditBlogViewModel.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Helpers\ViewManager.cs" />
     <Compile Include="Filters\BlogExistFilter.cs" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Post\_CreatePost.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Post\_EditPost.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

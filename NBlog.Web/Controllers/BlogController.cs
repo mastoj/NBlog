@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using NBlog.Domain.Commands;
 using NBlog.Views;
 using NBlog.Web.Helpers;
+using NBlog.Web.Models;
 using NBlog.Web.Services;
 using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
@@ -36,6 +37,13 @@ namespace NBlog.Web.Controllers
             ActionResult actionResult;
             if (RedirectIfBlogExists(out actionResult)) return actionResult;
             return View("Create");
+        }
+
+        [Authorize]
+        public ActionResult Edit()
+        {
+            EditBlogViewModel editBlogViewModel = new EditBlogViewModel();
+            return View(editBlogViewModel);
         }
 
         private bool RedirectIfBlogExists(out ActionResult actionResult)
