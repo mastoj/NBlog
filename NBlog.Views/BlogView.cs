@@ -28,9 +28,14 @@ namespace NBlog.Views
                                    };
             _blogViewRepository.Insert(blogViewItem);
         }
+
+        public void ResetView()
+        {
+            _blogViewRepository.Clear("BlogViewIndex");
+        }
     }
 
-    public interface IBlogView
+    public interface IBlogView : INBlogView
     {
         IEnumerable<BlogViewItem> GetBlogs();
         void Handle(BlogCreatedEvent createdEvent);

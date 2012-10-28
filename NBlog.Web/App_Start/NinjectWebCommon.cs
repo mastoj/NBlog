@@ -1,7 +1,9 @@
 using System.Web.Mvc;
 using NBlog.Infrastructure.MessageRouting;
 using NBlog.Views;
+using NBlog.Web.Controllers;
 using NBlog.Web.Filters;
+using NBlog.Web.Helpers;
 using NBlog.Web.Services;
 using Ninject.Modules;
 using Ninject.Web.Mvc.FilterBindingSyntax;
@@ -80,18 +82,18 @@ namespace NBlog.Web.App_Start
             Bind<IBlogView>().To<BlogView>().InRequestScope();
             Bind<IUserView>().To<UserView>().InRequestScope();
             Bind<IPostView>().To<PostView>().InRequestScope();
+            Bind<ViewManager>().To<ViewManager>().InRequestScope();
             Bind(typeof(IViewRepository<>)).To(typeof(RavenViewRepository<>)).InRequestScope().WithConstructorArgument("connectionStringName", connectionStringName);
             Bind<IDomainRepositoryFactory>().To<DomainRepositoryFactory>().InRequestScope();
             Bind<IEventBus>().To<InMemoryEventBus>().InRequestScope();
             Bind<IEventStore>().To<RavenEventStore>().InRequestScope().WithConstructorArgument("connectionStringName", connectionStringName);
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             Bind<ICommandBus>().To<InMemoryCommandBus>().InRequestScope();
-
-//#if DEBUG
-//            Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
-//#else
+#if DEBUG
+            Bind<IAuthenticationService>().To<AuthenticationServiceStub>();
+#else
             Bind<IAuthenticationService>().To<AuthenticationService>();
-//#endif
+#endif
             this.BindFilter<BlogExistFilter>(FilterScope.Global, 0);
         }
     }

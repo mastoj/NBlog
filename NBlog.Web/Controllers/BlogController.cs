@@ -3,23 +3,31 @@ using System.Linq;
 using System.Web.Mvc;
 using NBlog.Domain.Commands;
 using NBlog.Views;
-using NBlog.Web.Models;
+using NBlog.Web.Helpers;
 using NBlog.Web.Services;
+using TJ.CQRS.Event;
 using TJ.CQRS.Messaging;
 
 namespace NBlog.Web.Controllers
 {
     public partial class BlogController : CommandControllerBase
     {
-        private readonly IBlogView _blogView;
+        private readonly ViewManager _viewManager;
         private IAuthenticationService _authenticationService;
+        private readonly IEventBus _eventBus;
+        private readonly IEventStore _eventStore;
+        private IBlogView _blogView;
         private IUserView _userView;
 
-        public BlogController(IBlogView blogView, IAuthenticationService authenticationService, IUserView userView, ICommandBus commandBus) : base(commandBus)
+        public BlogController(ViewManager viewManager, IAuthenticationService authenticationService, ICommandBus commandBus, IEventBus eventBus, IEventStore eventStore)
+            : base(commandBus)
         {
-            _blogView = blogView;
+            _viewManager = viewManager;
             _authenticationService = authenticationService;
-            _userView = userView;
+            _eventBus = eventBus;
+            _eventStore = eventStore;
+            _blogView = _viewManager.GetView<IBlogView>();
+            _userView = _viewManager.GetView<IUserView>();
         }
 
         [Authorize]
@@ -66,24 +74,22 @@ namespace NBlog.Web.Controllers
             return View("_Header", blog);
         }
 
-        //[ChildActionOnly]
-        //[OutputCache(Duration = 10)]
-        //public virtual ActionResult Navigation()
-        //{
-        //    //@Html.ActionLink(item.Text,MVC.Post.ActionNames.Show, MVC.Post.Name, new { slug = item.Url}, null)
-        //    var navigationItems = new List<NavigationItem>
-        //                              {
-        //                                  new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "home"}) , Text = "Home"},
-        //                                  new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "about"}) , Text = "About"},
-        //                                  new NavigationItem() {Url = Url.Action(MVC.Post.ActionNames.Show, MVC.Post.Name,new { slug = "contact"}) , Text = "Contact"}
-        //                              };
-        //    return View("_Navigation", navigationItems);
-        //}
         [ChildActionOnly]
         public ActionResult AdminMenu()
         {
             var userMode = _authenticationService.GetUserMode(Request);
             return View("_AdminMenu", userMode);
+        }
+
+        [Authorize]
+        public void ResetViews()
+        {
+            foreach (var views in _viewManager.GetAllViews())
+            {
+                views.ResetView();
+            }
+            var allEvents = _eventStore.GetAllEvents();
+            _eventBus.PublishEvents(allEvents);
         }
     }
 }

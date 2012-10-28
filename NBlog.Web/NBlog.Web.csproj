@@ -194,13 +194,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="TJ.CQRS, Version=0.2.0.31883, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS, Version=0.2.1.27538, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.0.2.0.31883\lib\net40\TJ.CQRS.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.0.2.1.27538\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
-    <Reference Include="TJ.CQRS.RavenEvent, Version=0.2.0.32304, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS.RavenEvent, Version=0.2.1.28664, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.2.0.32304\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.2.1.28664\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -216,6 +216,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommandControllerBase.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Helpers\ViewManager.cs" />
     <Compile Include="Filters\BlogExistFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

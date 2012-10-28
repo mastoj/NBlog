@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using MarkdownSharp;
 using NBlog.Domain.Event;
@@ -8,7 +7,7 @@ using TJ.Extensions;
 
 namespace NBlog.Views
 {
-    public interface IPostView
+    public interface IPostView : INBlogView
     {
         IEnumerable<PostItem> GetPublishedPosts();
         IEnumerable<PostItem> GetPosts(bool includeDeletedPosts = false);
@@ -112,6 +111,11 @@ namespace NBlog.Views
             {
                 post.IsPublished = false;
             }
+        }
+
+        public void ResetView()
+        {
+            _postViewRepostiory.Clear("PostViewIndex");
         }
     }
 }

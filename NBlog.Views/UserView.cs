@@ -35,6 +35,11 @@ namespace NBlog.Views
         {
             return _userViewRepository.All().SingleOrDefault(y => y.AuthenticationId == authenticationId);
         }
+
+        public void ResetView()
+        {
+            _userViewRepository.Clear("UserViewIndex");
+        }
     }
 
     public class UserViewItem

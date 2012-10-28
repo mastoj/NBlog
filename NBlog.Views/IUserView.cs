@@ -4,7 +4,7 @@ using NBlog.Domain.Event;
 
 namespace NBlog.Views
 {
-    public interface IUserView
+    public interface IUserView : INBlogView
     {
         IEnumerable<UserViewItem> GetUsers();
         void Handle(UserCreatedEvent userAddedEvent);

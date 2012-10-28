@@ -27,5 +27,10 @@ namespace NBlog.Views
         {
             return _items.Where(y => predicate.IsNull() || predicate(y));
         }
+
+        public void Clear(string indexName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
