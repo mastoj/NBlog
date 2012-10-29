@@ -43,7 +43,7 @@ namespace NBlog.Views
 
         public T Find(Func<T, bool> func)
         {
-            var instance = _session.Query<T>().SingleOrDefault(func);
+            var instance = _session.Query<T>().Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(2))).SingleOrDefault(func);
             return instance;
         }
 
@@ -64,11 +64,12 @@ namespace NBlog.Views
         public void CommitChanges()
         {
             _session.SaveChanges();
+            _session = _documentStore.OpenSession();
         }
 
         public void Dispose()
         {
-            CommitChanges();
+            _session.SaveChanges();
         }
     }
 }
