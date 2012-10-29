@@ -27,9 +27,9 @@ namespace NBlog.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            var items = _authenticationService.IsUserAuthenticated(User)
+            var items = (_authenticationService.IsUserAuthenticated(User)
                                    ?  _postView.GetPosts()
-                                   : _postView.GetPublishedPosts();
+                                   : _postView.GetPublishedPosts()).OrderByDescending(y => y.PublishedTime ?? DateTime.MinValue);
             return View(items);
         }
 
