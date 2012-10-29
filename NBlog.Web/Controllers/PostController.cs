@@ -29,7 +29,7 @@ namespace NBlog.Web.Controllers
         {
             var items = (_authenticationService.IsUserAuthenticated(User)
                                    ?  _postView.GetPosts()
-                                   : _postView.GetPublishedPosts()).OrderByDescending(y => y.PublishedTime ?? DateTime.MinValue);
+                                   : _postView.GetPublishedPosts()).OrderByDescending(y => y.PublishedTime);
             return View(items);
         }
 
