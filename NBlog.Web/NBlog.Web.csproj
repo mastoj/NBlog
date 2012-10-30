@@ -355,6 +355,7 @@
     <Content Include="Views\Post\_EditPost.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\_MasterLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
