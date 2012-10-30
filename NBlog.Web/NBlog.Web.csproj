@@ -256,6 +256,7 @@
     <Content Include="Content\google-code-prettify\prettify-full.js" />
     <Content Include="Content\google-code-prettify\prettify.css" />
     <Content Include="Content\google-code-prettify\prettify.js" />
+    <Content Include="Content\img\grippie.png" />
     <Content Include="Content\img\wmd-buttons.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
