@@ -22,6 +22,7 @@ namespace NBlog.Infrastructure.MessageRouting
             Register<CreateUserCommand>(_userCommandHandlers.Handle);
             
             Register<CreateBlogCommand>(_blogCommandHandlers.Handle);
+            Register<EnableGoogleAnalyticsCommand>(_blogCommandHandlers.Handle);
 
             Register<CreatePostCommand>(_postCommandHandlers.Handle);
             Register<PublishPostCommand>(_postCommandHandlers.Handle);

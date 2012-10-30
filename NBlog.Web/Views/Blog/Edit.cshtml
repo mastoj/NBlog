@@ -2,9 +2,23 @@
 
 @{
     ViewBag.Title = "Edit blog data";
+    ViewBag.DisableGoogleAnalytics = true;
 }
 
 <h2>@ViewBag.Title</h2>
-<div class="editor">    
-    @Html.ActionLink("Reset data views", "ResetViews")
+<div class="editor">
+    <fieldset>
+        @using(Html.BeginForm("EnableGoogleAnalytics", "Blog", FormMethod.Post))
+        {
+            <div class="editor-entry">
+                <div class="editor-field">
+                    @Html.TextBox("uaAccount")
+                </div>
+            </div>
+        <input type="submit" value="Enable google analytics" class="submit-buttom" />
+        }
+    </fieldset>
+    <fieldset>
+        @Html.ActionLink("Reset data views", "ResetViews")
+    </fieldset>    
 </div>

@@ -5,7 +5,7 @@ using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.CommandHandlers
 {
-    public class BlogCommandHandlers : IHandle<CreateBlogCommand>
+    public class BlogCommandHandlers : IHandle<CreateBlogCommand>, IHandle<EnableGoogleAnalyticsCommand>
     {
         private readonly IDomainRepository<Blog> _blogRepository;
 
@@ -18,6 +18,12 @@ namespace NBlog.Domain.CommandHandlers
         {
             var blog = Blog.Create(createBlogCommand.BlogTitle, createBlogCommand.Subtitle, createBlogCommand.UserId, createBlogCommand.AggregateId);
             _blogRepository.Insert(blog);
+        }
+
+        public void Handle(EnableGoogleAnalyticsCommand enableGoogleAnalyticsCommand)
+        {
+            var blog = _blogRepository.Get(enableGoogleAnalyticsCommand.AggregateId);
+            blog.EnableGoogleAnalytics(enableGoogleAnalyticsCommand.UAAccount);
         }
     }
 }

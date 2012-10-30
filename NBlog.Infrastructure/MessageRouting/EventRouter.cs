@@ -27,6 +27,8 @@ namespace NBlog.Infrastructure.MessageRouting
 
             Register<UserCreatedEvent>(_userEventHandlers.Handle);
             Register<BlogCreatedEvent>(_blogEventHandlers.Handle);
+            Register<GoogleAnalyticsEnabledEvent>(_blogEventHandlers.Handle);
+            
             Register<PostCreatedEvent>(_postEventHandlers.Handle);
             Register<PostDeletedEvent>(_postEventHandlers.Handle);
             Register<PostPublishedEvent>(_postEventHandlers.Handle);

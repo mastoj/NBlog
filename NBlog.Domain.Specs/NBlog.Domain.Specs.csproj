@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseCommandTest.cs" />
+    <Compile Include="Blog\GoogleAnalyticsTests.cs" />
     <Compile Include="Blog\CreateBlog.cs" />
     <Compile Include="Post\SetPublishDateOnPost.cs" />
     <Compile Include="Post\CreatePost.cs" />

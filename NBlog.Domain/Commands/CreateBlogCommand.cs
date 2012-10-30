@@ -19,12 +19,23 @@ namespace NBlog.Domain.Commands
         {
             
         }
-        public CreateBlogCommand(string blogTitle, string subtitle, Guid userId)
-            : base(Guid.NewGuid())
+        public CreateBlogCommand(string blogTitle, string subtitle, Guid userId, Guid aggregateId)
+            : base(aggregateId)
         {
             BlogTitle = blogTitle;
             Subtitle = subtitle;
             UserId = userId;
+        }
+    }
+
+    public class EnableGoogleAnalyticsCommand : Command
+    {
+        public string UAAccount { get; set; }
+
+        public EnableGoogleAnalyticsCommand(string uaAccount, Guid aggregateId)
+            : base(aggregateId)
+        {
+            UAAccount = uaAccount;
         }
     }
 }

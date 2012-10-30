@@ -28,6 +28,7 @@
                 @Html.ValidationMessageFor(model => model.Subtitle)
             </div>
         </div>
+        @Html.HiddenFor(model => model.AggregateId)
         <input type="submit" value="Create blog"/>
     </div>
 }

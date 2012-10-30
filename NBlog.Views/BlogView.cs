@@ -30,6 +30,14 @@ namespace NBlog.Views
             _blogViewRepository.CommitChanges();
         }
 
+        public void Handle(GoogleAnalyticsEnabledEvent googleAnalyticsEnabledEvent)
+        {
+            var blogViewItem = _blogViewRepository.Find(y => y.BlogId == googleAnalyticsEnabledEvent.AggregateId);
+            blogViewItem.UAAccount = googleAnalyticsEnabledEvent.UAAccount;
+            blogViewItem.GoogleAnalyticsEnabled = true;
+            _blogViewRepository.CommitChanges();
+        }
+
         public void ResetView()
         {
             _blogViewRepository.Clear("BlogViewIndex");
@@ -47,5 +55,9 @@ namespace NBlog.Views
         public Guid BlogId { get; set; }
         public string BlogTitle { get; set; }
         public string SubTitle { get; set; }
+
+        public bool GoogleAnalyticsEnabled { get; set; }
+
+        public string UAAccount { get; set; }
     }
 }

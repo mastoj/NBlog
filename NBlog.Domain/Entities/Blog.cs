@@ -8,6 +8,7 @@ namespace NBlog.Domain.Entities
     public class Blog : AggregateRoot
     {
         private List<Guid> _usersIds;
+        private string _uaAccount;
 
         public Blog()
         {
@@ -18,6 +19,7 @@ namespace NBlog.Domain.Entities
         {
             RegisterEventHandler<BlogCreatedEvent>(BlogCreated);
             RegisterEventHandler<UserAddedToBlogEvent>(UserAddedToBlogEvent);
+            RegisterEventHandler<GoogleAnalyticsEnabledEvent>(EnableGoogleAnalytics);
         }
 
         private void UserAddedToBlogEvent(UserAddedToBlogEvent UserAddedToBlogEvent)
@@ -45,6 +47,16 @@ namespace NBlog.Domain.Entities
         public static Blog Create(string title, string subtitle, Guid userId, Guid aggregateId)
         {
             return new Blog(title, subtitle, userId, aggregateId);
+        }
+
+        public void EnableGoogleAnalytics(GoogleAnalyticsEnabledEvent googleAnalyticsEnabledEvent)
+        {
+            _uaAccount = googleAnalyticsEnabledEvent.UAAccount;
+        }
+        public void EnableGoogleAnalytics(string uaAccount)
+        {
+            var googleAnalyticsEnabled = new GoogleAnalyticsEnabledEvent(uaAccount, AggregateId);
+            Apply(googleAnalyticsEnabled);
         }
     }
 }

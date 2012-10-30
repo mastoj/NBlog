@@ -27,4 +27,16 @@ namespace NBlog.Domain.Event
         public string SubTitle { get; set; }
         public DateTime CreationTime { get; set; }
     }
+
+    public class GoogleAnalyticsEnabledEvent : DomainEventBase
+    {
+        public string UAAccount { get; set; }
+        public Guid AggregateId { get; set; }
+
+        public GoogleAnalyticsEnabledEvent(string uaAccount, Guid aggregateId)
+        {
+            UAAccount = uaAccount;
+            AggregateId = aggregateId;
+        }
+    }
 }

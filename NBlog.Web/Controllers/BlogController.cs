@@ -36,7 +36,8 @@ namespace NBlog.Web.Controllers
         {
             ActionResult actionResult;
             if (RedirectIfBlogExists(out actionResult)) return actionResult;
-            return View("Create");
+            var createBlogCommand = new CreateBlogCommand();
+            return View("Create", createBlogCommand);
         }
 
         [Authorize]
@@ -44,6 +45,17 @@ namespace NBlog.Web.Controllers
         {
             EditBlogViewModel editBlogViewModel = new EditBlogViewModel();
             return View(editBlogViewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EnableGoogleAnalytics(string uaAccount)
+        {
+            var blog = _blogView.GetBlogs().First();
+            var blogId = blog.BlogId;
+            var enableGoogleAnalyticsCommand = new EnableGoogleAnalyticsCommand(uaAccount, blogId);
+            return ValidateAndSendCommand(enableGoogleAnalyticsCommand, () => RedirectToAction("Edit"),
+                                   () => RedirectToAction("Edit"));
         }
 
         private bool RedirectIfBlogExists(out ActionResult actionResult)
@@ -100,5 +112,25 @@ namespace NBlog.Web.Controllers
             _eventBus.PublishEvents(allEvents);
             return RedirectToAction("Edit");
         }
+
+        [ChildActionOnly]
+        public ActionResult GoogleAnalytics()
+        {
+            var googleAnalyticsViewModel = new GoogleAnalyticsViewModel();
+            var blog = _blogView.GetBlogs().FirstOrDefault();
+            if(blog != null && blog.GoogleAnalyticsEnabled)
+            {
+                googleAnalyticsViewModel.GoogleAnalyticsEnabled = true;
+                googleAnalyticsViewModel.UAAccount = blog.UAAccount;
+            }
+            return View("_GoogleAnalytics", googleAnalyticsViewModel);
+        }
+    }
+
+    public class GoogleAnalyticsViewModel
+    {
+        public bool GoogleAnalyticsEnabled { get; set; }
+
+        public string UAAccount { get; set; }
     }
 }

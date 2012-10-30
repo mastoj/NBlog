@@ -19,7 +19,7 @@ namespace NBlog.Domain.Tests.CommandHandlers
             var repositoryFactory = new DomainRepositoryStubFactory();
             _blogRepository = repositoryFactory.GetDomainRepository<Blog>();
             _blogCommandHandlers = new BlogCommandHandlers(repositoryFactory);
-            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", Guid.Empty);
+            _createBlogCommand = new CreateBlogCommand("Title", "SubTitle", Guid.Empty, Guid.Empty);
             _blogCommandHandlers.Handle(_createBlogCommand);
         }
 
