@@ -9,6 +9,7 @@
 <h2>@ViewBag.Title</h2>
 <div class="editor">
     <fieldset>
+        <legend>Add google analytics tracking value</legend>
         @using(Html.BeginForm("EnableGoogleAnalytics", "Blog", FormMethod.Post))
         {
             <div class="editor-entry">
@@ -16,10 +17,35 @@
                     @Html.TextBox("uaAccount")
                 </div>
             </div>
-        <input type="submit" value="Enable google analytics" class="submit-buttom" />
+            <input type="submit" value="Enable google analytics" class="submit-buttom" />
         }
     </fieldset>
     <fieldset>
+        <legend>Add redirect urls</legend>
+        @if(Model.RedirectUrls != null && Model.RedirectUrls.Count > 0)
+        {
+            <ul class="redirect-urls">
+                @foreach(var redirectUrl in Model.RedirectUrls)
+                {
+                    <li class="redirect-url">
+                        <span class="old-url">@redirectUrl.Key</span><span class="new-url">@redirectUrl.Value</span>
+                    </li>
+                }
+            </ul>
+        }
+        @using(Html.BeginForm("AddRedirectUrls", "Blog", FormMethod.Post))
+        {
+            <div class="editor-entry">
+                <div class="editor-field">
+                    <span class="old-url">@Html.TextBox("oldUrl")</span><span class="new-url">@Html.TextBox("newUrl")</span>
+                </div>
+            </div>
+            <input type="submit" value="Add redirect url" class="submit-buttom" />
+        }
+    </fieldset>
+
+    <fieldset>
+        <legend>Reset views</legend>
         @Html.ActionLink("Reset data views", "ResetViews")
     </fieldset>    
 </div>

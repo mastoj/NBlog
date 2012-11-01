@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NBlog.Domain.Event;
 
 namespace NBlog.Views
@@ -30,6 +31,13 @@ namespace NBlog.Views
             _blogViewRepository.CommitChanges();
         }
 
+        public void Handle(RedirectUrlAddedEvent redirectUrlAddedEvent)
+        {
+            var blog = GetBlogs().Single(y => y.BlogId == redirectUrlAddedEvent.AggregateId);
+            blog.AddRedirectUrl(redirectUrlAddedEvent.OldUrl, redirectUrlAddedEvent.NewUrl);
+            _blogViewRepository.CommitChanges();
+        }
+
         public void Handle(GoogleAnalyticsEnabledEvent googleAnalyticsEnabledEvent)
         {
             var blogViewItem = _blogViewRepository.Find(y => y.BlogId == googleAnalyticsEnabledEvent.AggregateId);
@@ -48,10 +56,13 @@ namespace NBlog.Views
     {
         IEnumerable<BlogViewItem> GetBlogs();
         void Handle(BlogCreatedEvent createdEvent);
+        void Handle(RedirectUrlAddedEvent redirectUrlAddedEvent);
     }
 
     public class BlogViewItem
     {
+        private Dictionary<string, string> _redirectUrls;
+        public Dictionary<string, string> RedirectUrls { get { return _redirectUrls; } set { _redirectUrls = value; } } 
         public Guid BlogId { get; set; }
         public string BlogTitle { get; set; }
         public string SubTitle { get; set; }
@@ -59,5 +70,11 @@ namespace NBlog.Views
         public bool GoogleAnalyticsEnabled { get; set; }
 
         public string UAAccount { get; set; }
+
+        public void AddRedirectUrl(string oldUrl, string newUrl)
+        {
+            if (_redirectUrls == null) _redirectUrls = new Dictionary<string, string>();
+            _redirectUrls.Add(oldUrl, newUrl);
+        }
     }
 }

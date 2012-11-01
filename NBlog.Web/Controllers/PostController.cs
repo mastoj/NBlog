@@ -10,18 +10,21 @@ using NBlog.Web.Models;
 using NBlog.Web.Services;
 using TJ.CQRS.Messaging;
 using TJ.Extensions;
+using NBlog.Web.Helpers;
 
 namespace NBlog.Web.Controllers
 {
     public class PostController : CommandControllerBase
     {
         private readonly IPostView _postView;
+        private readonly IBlogView _blogView;
         private readonly IAuthenticationService _authenticationService;
 
-        public PostController(IPostView postView, IAuthenticationService authenticationService, ICommandBus commandBus)
+        public PostController(ViewManager viewManager, IAuthenticationService authenticationService, ICommandBus commandBus)
             : base(commandBus)
         {
-            _postView = postView;
+            _postView = viewManager.GetView<IPostView>();
+            _blogView = viewManager.GetView<IBlogView>();
             _authenticationService = authenticationService;
         }
 
@@ -31,6 +34,16 @@ namespace NBlog.Web.Controllers
                                    ?  _postView.GetPosts()
                                    : _postView.GetPublishedPosts()).OrderByDescending(y => y.PublishedTime);
             return View(items);
+        }
+
+        public ActionResult RedirectUrl(string oldUrl)
+        {
+            var redirectUrls = _blogView.GetBlogs().First().RedirectUrls;
+            if (redirectUrls != null && redirectUrls.Count > 0 && redirectUrls.ContainsKey(oldUrl))
+            {
+                return RedirectToActionPermanent("Show", new { slug = redirectUrls[oldUrl] });
+            }
+            return new HttpNotFoundResult();
         }
 
         public virtual ActionResult Show(string slug)

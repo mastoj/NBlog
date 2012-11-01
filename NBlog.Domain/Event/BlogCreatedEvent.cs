@@ -39,4 +39,18 @@ namespace NBlog.Domain.Event
             AggregateId = aggregateId;
         }
     }
+
+    public class RedirectUrlAddedEvent : DomainEventBase
+    {
+        public Guid AggregateId { get; set; }
+        public string OldUrl { get; set; }
+        public string NewUrl { get; set; }
+
+        public RedirectUrlAddedEvent(Guid aggregateId, string oldUrl, string newUrl)
+        {
+            AggregateId = aggregateId;
+            OldUrl = oldUrl;
+            NewUrl = newUrl;
+        }
+    }
 }

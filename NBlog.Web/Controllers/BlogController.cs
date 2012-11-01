@@ -44,6 +44,8 @@ namespace NBlog.Web.Controllers
         public ActionResult Edit()
         {
             EditBlogViewModel editBlogViewModel = new EditBlogViewModel();
+            var blog = _blogView.GetBlogs().First();
+            editBlogViewModel.RedirectUrls = blog.RedirectUrls;
             return View(editBlogViewModel);
         }
 
@@ -56,6 +58,14 @@ namespace NBlog.Web.Controllers
             var enableGoogleAnalyticsCommand = new EnableGoogleAnalyticsCommand(uaAccount, blogId);
             return ValidateAndSendCommand(enableGoogleAnalyticsCommand, () => RedirectToAction("Edit"),
                                    () => RedirectToAction("Edit"));
+        }
+
+        public ActionResult AddRedirectUrls(string oldUrl, string newUrl)
+        {
+            var blog = _blogView.GetBlogs().First();
+            var blogId = blog.BlogId;
+            var addRedirectCommand = new AddRedirectUrlCommand(blogId, oldUrl, newUrl);
+            return ValidateAndSendCommand(addRedirectCommand, () => RedirectToAction("Edit"), () => RedirectToAction("Edit"));
         }
 
         private bool RedirectIfBlogExists(out ActionResult actionResult)

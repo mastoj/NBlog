@@ -5,7 +5,7 @@ using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.CommandHandlers
 {
-    public class BlogCommandHandlers : IHandle<CreateBlogCommand>, IHandle<EnableGoogleAnalyticsCommand>
+    public class BlogCommandHandlers : IHandle<CreateBlogCommand>, IHandle<EnableGoogleAnalyticsCommand>, IHandle<AddRedirectUrlCommand>
     {
         private readonly IDomainRepository<Blog> _blogRepository;
 
@@ -24,6 +24,12 @@ namespace NBlog.Domain.CommandHandlers
         {
             var blog = _blogRepository.Get(enableGoogleAnalyticsCommand.AggregateId);
             blog.EnableGoogleAnalytics(enableGoogleAnalyticsCommand.UAAccount);
+        }
+
+        public void Handle(AddRedirectUrlCommand command)
+        {
+            var blog = _blogRepository.Get(command.AggregateId);
+            blog.AddRedirectUrl(command.OldUrl, command.NewUrl);
         }
     }
 }

@@ -27,6 +27,11 @@ namespace NBlog.Web
                 defaults: new { controller = "Post", action = "Index" },
                 namespaces: new[] { "NBlog.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "RedirectRoute",
+                url: "{*oldUrl}",
+                defaults: new { controller = "Post", action = "RedirectUrl" });
         }
     }
 }

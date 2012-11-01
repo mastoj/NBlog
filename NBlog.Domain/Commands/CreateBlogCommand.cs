@@ -38,4 +38,16 @@ namespace NBlog.Domain.Commands
             UAAccount = uaAccount;
         }
     }
+
+    public class AddRedirectUrlCommand : Command
+    {
+        public string OldUrl { get; set; }
+        public string NewUrl { get; set; }
+
+        public AddRedirectUrlCommand(Guid aggregateId, string oldUrl, string newUrl) : base(aggregateId)
+        {
+            OldUrl = oldUrl;
+            NewUrl = newUrl;
+        }
+    }
 }

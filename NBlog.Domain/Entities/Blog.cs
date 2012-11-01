@@ -9,10 +9,12 @@ namespace NBlog.Domain.Entities
     {
         private List<Guid> _usersIds;
         private string _uaAccount;
+        private Dictionary<string, string> _redirectUrls;
 
         public Blog()
         {
             RegisterHandlers();
+            _redirectUrls = new Dictionary<string, string>();
         }
 
         private void RegisterHandlers()
@@ -20,6 +22,19 @@ namespace NBlog.Domain.Entities
             RegisterEventHandler<BlogCreatedEvent>(BlogCreated);
             RegisterEventHandler<UserAddedToBlogEvent>(UserAddedToBlogEvent);
             RegisterEventHandler<GoogleAnalyticsEnabledEvent>(EnableGoogleAnalytics);
+            RegisterEventHandler<RedirectUrlAddedEvent>(Handle);
+        }
+
+        private void Handle(RedirectUrlAddedEvent @event)
+        {
+            if (_redirectUrls.ContainsKey(@event.OldUrl))
+            {
+                _redirectUrls[@event.OldUrl] = @event.NewUrl;
+            }
+            else
+            {
+                _redirectUrls.Add(@event.OldUrl, @event.NewUrl);
+            }
         }
 
         private void UserAddedToBlogEvent(UserAddedToBlogEvent UserAddedToBlogEvent)
@@ -57,6 +72,12 @@ namespace NBlog.Domain.Entities
         {
             var googleAnalyticsEnabled = new GoogleAnalyticsEnabledEvent(uaAccount, AggregateId);
             Apply(googleAnalyticsEnabled);
+        }
+
+        public void AddRedirectUrl(string oldUrl, string newUrl)
+        {
+            var redirectUrlAddedEvent = new RedirectUrlAddedEvent(AggregateId, oldUrl, newUrl);
+            Apply(redirectUrlAddedEvent);
         }
     }
 }
