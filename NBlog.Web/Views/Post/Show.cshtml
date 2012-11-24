@@ -31,3 +31,5 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@Html.Partial("_Disqus", Model.PostItem.AggregateId.ToString())
