@@ -39,6 +39,17 @@ namespace NBlog.Domain.Commands
         }
     }
 
+    public class EnableDisqusCommand : Command
+    {
+        public EnableDisqusCommand(Guid aggregateId, string shortName) : base(aggregateId)
+        {
+            ShortName = shortName;
+        }
+
+        public string ShortName { get; set; }
+
+    }
+
     public class AddRedirectUrlCommand : Command
     {
         public string OldUrl { get; set; }

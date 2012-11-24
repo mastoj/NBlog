@@ -49,17 +49,6 @@ namespace NBlog.Web.Controllers
             return View(editBlogViewModel);
         }
 
-        [HttpPost]
-        [Authorize]
-        public ActionResult EnableGoogleAnalytics(string uaAccount)
-        {
-            var blog = _blogView.GetBlogs().First();
-            var blogId = blog.BlogId;
-            var enableGoogleAnalyticsCommand = new EnableGoogleAnalyticsCommand(uaAccount, blogId);
-            return ValidateAndSendCommand(enableGoogleAnalyticsCommand, () => RedirectToAction("Edit"),
-                                   () => RedirectToAction("Edit"));
-        }
-
         public ActionResult AddRedirectUrls(string oldUrl, string newUrl)
         {
             var blog = _blogView.GetBlogs().First();
@@ -134,6 +123,28 @@ namespace NBlog.Web.Controllers
                 googleAnalyticsViewModel.UAAccount = blog.UAAccount;
             }
             return View("_GoogleAnalytics", googleAnalyticsViewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EnableGoogleAnalytics(string uaAccount)
+        {
+            var blog = _blogView.GetBlogs().First();
+            var blogId = blog.BlogId;
+            var enableGoogleAnalyticsCommand = new EnableGoogleAnalyticsCommand(uaAccount, blogId);
+            return ValidateAndSendCommand(enableGoogleAnalyticsCommand, () => RedirectToAction("Edit"),
+                                   () => RedirectToAction("Edit"));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EnableDisqusAnalytics(string shortName)
+        {
+            var blog = _blogView.GetBlogs().First();
+            var blogId = blog.BlogId;
+            var enableDisqusCommand = new EnableDisqusCommand(blogId, shortName);
+            return ValidateAndSendCommand(enableDisqusCommand, () => RedirectToAction("Edit"),
+                                   () => RedirectToAction("Edit"));
         }
     }
 

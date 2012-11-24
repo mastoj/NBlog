@@ -19,6 +19,15 @@
             </div>
             <input type="submit" value="Enable google analytics" class="submit-buttom" />
         }
+        @using(Html.BeginForm("EnableDisqusAnalytics", "Blog", FormMethod.Post))
+        {
+            <div class="editor-entry">
+                <div class="editor-field">
+                    @Html.TextBox("shortName")
+                </div>
+            </div>
+            <input type="submit" value="Enable disqus" class="submit-buttom" />
+        }
     </fieldset>
     <fieldset>
         <legend>Add redirect urls</legend>
