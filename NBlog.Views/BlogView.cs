@@ -46,6 +46,14 @@ namespace NBlog.Views
             _blogViewRepository.CommitChanges();
         }
 
+        public void Handle(DisqusEnabledEvent disqusEnabledEvent)
+        {
+            var blogViewItem = _blogViewRepository.Find(y => y.BlogId == disqusEnabledEvent.AggregateId);
+            blogViewItem.DisqusShortName = disqusEnabledEvent.ShortName;
+            blogViewItem.DisqusEnabled = true;
+            _blogViewRepository.CommitChanges();
+        }
+
         public void ResetView()
         {
             _blogViewRepository.Clear("BlogViewIndex");
@@ -70,6 +78,10 @@ namespace NBlog.Views
         public bool GoogleAnalyticsEnabled { get; set; }
 
         public string UAAccount { get; set; }
+
+        public string DisqusShortName { get; set; }
+
+        public bool DisqusEnabled { get; set; }
 
         public void AddRedirectUrl(string oldUrl, string newUrl)
         {

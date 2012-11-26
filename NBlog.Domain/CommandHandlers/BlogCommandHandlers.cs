@@ -5,7 +5,7 @@ using TJ.CQRS.Respositories;
 
 namespace NBlog.Domain.CommandHandlers
 {
-    public class BlogCommandHandlers : IHandle<CreateBlogCommand>, IHandle<EnableGoogleAnalyticsCommand>, IHandle<AddRedirectUrlCommand>
+    public class BlogCommandHandlers : IHandle<CreateBlogCommand>, IHandle<EnableGoogleAnalyticsCommand>, IHandle<AddRedirectUrlCommand>, IHandle<EnableDisqusCommand>
     {
         private readonly IDomainRepository<Blog> _blogRepository;
 
@@ -30,6 +30,12 @@ namespace NBlog.Domain.CommandHandlers
         {
             var blog = _blogRepository.Get(command.AggregateId);
             blog.AddRedirectUrl(command.OldUrl, command.NewUrl);
+        }
+
+        public void Handle(EnableDisqusCommand command)
+        {
+            var blog = _blogRepository.Get(command.AggregateId);
+            blog.EnableDisqus(command.ShortName);
         }
     }
 }

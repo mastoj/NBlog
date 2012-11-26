@@ -1,10 +1,8 @@
-﻿@model String
+﻿@model NBlog.Web.Models.DisqusViewModel
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'tomasjansson'; // required: replace example with your forum shortname
-
-    var disqus_identifier = "@(Model)";
-    var disqus_developer = 1;
+    var disqus_identifier = "@(Model.PostId)";
+    var disqus_url = "@(Model.Url)";
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

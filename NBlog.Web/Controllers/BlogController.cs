@@ -113,16 +113,18 @@ namespace NBlog.Web.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult GoogleAnalytics()
+        public ActionResult BlogAddonsHeader()
         {
-            var googleAnalyticsViewModel = new GoogleAnalyticsViewModel();
+            var blogAddonsViewModel = new BlogAddonsViewModel();
             var blog = _blogView.GetBlogs().FirstOrDefault();
-            if(blog != null && blog.GoogleAnalyticsEnabled)
+            if(blog != null)
             {
-                googleAnalyticsViewModel.GoogleAnalyticsEnabled = true;
-                googleAnalyticsViewModel.UAAccount = blog.UAAccount;
+                blogAddonsViewModel.GoogleAnalyticsEnabled = blog.GoogleAnalyticsEnabled;
+                blogAddonsViewModel.UAAccount = blog.UAAccount;
+                blogAddonsViewModel.DisqusShortName = blog.DisqusShortName;
+                blogAddonsViewModel.DisqusEnabled = blog.DisqusEnabled;
             }
-            return View("_GoogleAnalytics", googleAnalyticsViewModel);
+            return View("_BlogAddons", blogAddonsViewModel);
         }
 
         [HttpPost]
@@ -146,12 +148,18 @@ namespace NBlog.Web.Controllers
             return ValidateAndSendCommand(enableDisqusCommand, () => RedirectToAction("Edit"),
                                    () => RedirectToAction("Edit"));
         }
-    }
 
-    public class GoogleAnalyticsViewModel
-    {
-        public bool GoogleAnalyticsEnabled { get; set; }
-
-        public string UAAccount { get; set; }
+        [ChildActionOnly]
+        public ActionResult AfterContentAddons(Guid postId, string url)
+        {
+            var blog = _blogView.GetBlogs().First();
+            var afterContentViewModel = new AfterContentViewModel()
+                                           {
+                                               PostId = postId,
+                                               DisqusEnabled = blog.DisqusEnabled,
+                                               Url = url
+                                           };
+            return View(afterContentViewModel);
+        }
     }
 }

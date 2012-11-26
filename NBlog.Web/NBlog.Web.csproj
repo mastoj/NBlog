@@ -210,8 +210,11 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\BlogAddonsViewModel.cs" />
+    <Compile Include="Models\AfterContentViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommandControllerBase.cs" />
+    <Compile Include="Models\DisqusViewModel.cs" />
     <Compile Include="Models\EditBlogViewModel.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Helpers\ViewManager.cs" />
@@ -357,9 +360,10 @@
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Post\_EditPost.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
-    <Content Include="Views\Blog\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Blog\_BlogAddons.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
+    <Content Include="Views\Blog\AfterContentAddons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

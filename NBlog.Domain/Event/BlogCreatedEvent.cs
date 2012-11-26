@@ -31,7 +31,6 @@ namespace NBlog.Domain.Event
     public class GoogleAnalyticsEnabledEvent : DomainEventBase
     {
         public string UAAccount { get; set; }
-        public Guid AggregateId { get; set; }
 
         public GoogleAnalyticsEnabledEvent(string uaAccount, Guid aggregateId)
         {
@@ -40,9 +39,18 @@ namespace NBlog.Domain.Event
         }
     }
 
+    public class DisqusEnabledEvent : DomainEventBase
+    {
+        public string ShortName { get; set; }
+
+        public DisqusEnabledEvent(string shortName, Guid aggregateId)
+        {
+            ShortName = shortName;
+            AggregateId = aggregateId;
+        }
+    }
     public class RedirectUrlAddedEvent : DomainEventBase
     {
-        public Guid AggregateId { get; set; }
         public string OldUrl { get; set; }
         public string NewUrl { get; set; }
 

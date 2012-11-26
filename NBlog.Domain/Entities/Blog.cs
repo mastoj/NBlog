@@ -10,6 +10,8 @@ namespace NBlog.Domain.Entities
         private List<Guid> _usersIds;
         private string _uaAccount;
         private Dictionary<string, string> _redirectUrls;
+        private string _disqusShortName;
+        private bool _disqusEnabled;
 
         public Blog()
         {
@@ -23,6 +25,13 @@ namespace NBlog.Domain.Entities
             RegisterEventHandler<UserAddedToBlogEvent>(UserAddedToBlogEvent);
             RegisterEventHandler<GoogleAnalyticsEnabledEvent>(EnableGoogleAnalytics);
             RegisterEventHandler<RedirectUrlAddedEvent>(Handle);
+            RegisterEventHandler<DisqusEnabledEvent>(Handle);
+        }
+
+        private void Handle(DisqusEnabledEvent @event)
+        {
+            _disqusEnabled = true;
+            _disqusShortName = @event.ShortName;
         }
 
         private void Handle(RedirectUrlAddedEvent @event)
@@ -37,13 +46,13 @@ namespace NBlog.Domain.Entities
             }
         }
 
-        private void UserAddedToBlogEvent(UserAddedToBlogEvent UserAddedToBlogEvent)
+        private void UserAddedToBlogEvent(UserAddedToBlogEvent userAddedToBlogEvent)
         {
             if (_usersIds == null)
             {
                 _usersIds = new List<Guid>();
             }
-            _usersIds.Add(UserAddedToBlogEvent.UserId);
+            _usersIds.Add(userAddedToBlogEvent.UserId);
         }
 
         private void BlogCreated(BlogCreatedEvent blogCreatedEvent)
@@ -78,6 +87,12 @@ namespace NBlog.Domain.Entities
         {
             var redirectUrlAddedEvent = new RedirectUrlAddedEvent(AggregateId, oldUrl, newUrl);
             Apply(redirectUrlAddedEvent);
+        }
+
+        public void EnableDisqus(string shortName)
+        {
+            var disqusEnabledEvent = new DisqusEnabledEvent(shortName, AggregateId);
+            Apply(disqusEnabledEvent);
         }
     }
 }

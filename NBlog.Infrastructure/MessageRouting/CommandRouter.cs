@@ -24,6 +24,7 @@ namespace NBlog.Infrastructure.MessageRouting
             Register<CreateBlogCommand>(_blogCommandHandlers.Handle);
             Register<EnableGoogleAnalyticsCommand>(_blogCommandHandlers.Handle);
             Register<AddRedirectUrlCommand>(_blogCommandHandlers.Handle);
+            Register<EnableDisqusCommand>(_blogCommandHandlers.Handle);
 
             Register<CreatePostCommand>(_postCommandHandlers.Handle);
             Register<PublishPostCommand>(_postCommandHandlers.Handle);

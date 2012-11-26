@@ -31,9 +31,6 @@
                     <hgroup>
                         @{Html.RenderAction("Header", "Blog", new { area = "" });}
                     </hgroup>
-                    @*                <nav>
-                    @RenderSection("Navigation")
-                </nav>*@
                 </header>
                 @if(User != null && User.Identity.IsAuthenticated)
                 {
