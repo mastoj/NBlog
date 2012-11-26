@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc.Html
+@using NBlog.Web.Models
+@model NBlog.Web.Models.AfterContentViewModel
+@{
+    Layout = null;
+}
+
+@if (Model.DisqusEnabled)
+{
+    RenderPartialExtensions.RenderPartial(Html, "_Disqus", new DisqusViewModel () { PostId = Model.PostId.ToString(), Url = Model.Url});
+}
