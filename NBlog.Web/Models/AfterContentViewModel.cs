@@ -9,5 +9,7 @@ namespace NBlog.Web.Models
         public bool DisqusEnabled { get; set; }
 
         public string Url { get; set; }
+
+        public bool IsDebug { get; set; }
     }
 }

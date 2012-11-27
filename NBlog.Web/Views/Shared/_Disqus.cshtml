@@ -3,6 +3,10 @@
 <script type="text/javascript">
     var disqus_identifier = "@(Model.PostId)";
     var disqus_url = "@(Model.Url)";
+    @if (Model.IsDebug)
+    {
+        @:var disqus_developer = 1;
+    }
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {

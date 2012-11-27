@@ -9,5 +9,6 @@
         public bool DisqusEnabled { get; set; }
 
         public string DisqusShortName { get; set; }
+        public bool IsDebug { get; set; }
     }
 }

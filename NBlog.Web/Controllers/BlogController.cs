@@ -123,6 +123,10 @@ namespace NBlog.Web.Controllers
                 blogAddonsViewModel.UAAccount = blog.UAAccount;
                 blogAddonsViewModel.DisqusShortName = blog.DisqusShortName;
                 blogAddonsViewModel.DisqusEnabled = blog.DisqusEnabled;
+#if DEBUG
+                blogAddonsViewModel.IsDebug = true;
+#endif
+
             }
             return View("_BlogAddons", blogAddonsViewModel);
         }
@@ -159,6 +163,9 @@ namespace NBlog.Web.Controllers
                                                DisqusEnabled = blog.DisqusEnabled,
                                                Url = url
                                            };
+#if DEBUG
+            afterContentViewModel.IsDebug = true;
+#endif
             return View(afterContentViewModel);
         }
     }

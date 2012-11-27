@@ -31,5 +31,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-@Html.Action("AfterContentAddons", "Blog", new { postId = Model.PostItem.AggregateId, url = Url.Action("Show", "Post", new { slug = Model.PostItem.Slug }) })
+@Html.Action("AfterContentAddons", "Blog", 
+new { postId = Model.PostItem.AggregateId, 
+    url = Url.ToPublicUrl(Url.Action("Show", "Post", new { slug = Model.PostItem.Slug }) )})
 
