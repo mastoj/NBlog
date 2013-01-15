@@ -195,9 +195,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TJ.CQRS.0.2.1.27538\lib\net40\TJ.CQRS.dll</HintPath>
     </Reference>
-    <Reference Include="TJ.CQRS.RavenEvent, Version=0.2.2.14752, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TJ.CQRS.RavenEvent, Version=0.2.3.15263, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.2.2.14752\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
+      <HintPath>..\packages\TJ.CQRS.RavenEvent.0.2.3.15263\lib\net40\TJ.CQRS.RavenEvent.dll</HintPath>
     </Reference>
     <Reference Include="TJ.Extensions, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
