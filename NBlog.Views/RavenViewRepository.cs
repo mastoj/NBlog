@@ -43,7 +43,7 @@ namespace NBlog.Views
 
         public T Find(Func<T, bool> func)
         {
-            var instance = _session.Query<T>().Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(2))).SingleOrDefault(func);
+            var instance = _session.Query<T>().Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(8))).SingleOrDefault(func);
             return instance;
         }
 
