@@ -30,10 +30,22 @@ namespace NBlog.Web.Controllers
 
         public virtual ActionResult Index()
         {
+            var blog = _blogView.GetBlogs().FirstOrDefault();
             var items = (_authenticationService.IsUserAuthenticated(User)
                                    ?  _postView.GetPosts()
                                    : _postView.GetPublishedPosts()).OrderByDescending(y => y.PublishedTime);
-            return View(items);
+            var title = blog.BlogTitle;
+            if (!string.IsNullOrEmpty(blog.SubTitle))
+            {
+                title += " - " + blog.SubTitle;
+            }
+
+            var model = new PostIndexViewModel()
+                            {
+                                BlogTitle = title,
+                                Posts = items
+                            };
+            return View(model);
         }
 
         public ActionResult RedirectUrl(string oldUrl)

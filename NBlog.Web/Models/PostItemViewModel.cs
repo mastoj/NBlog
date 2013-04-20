@@ -1,4 +1,5 @@
-﻿using NBlog.Domain.Commands;
+﻿using System.Collections.Generic;
+using NBlog.Domain.Commands;
 using NBlog.Views;
 
 namespace NBlog.Web.Models
@@ -21,5 +22,11 @@ namespace NBlog.Web.Models
                                                           postItem.Excerpt, postItem.AggregateId);
             return updatePostCommand;
         }
+    }
+
+    public class PostIndexViewModel
+    {
+        public string BlogTitle { get; set; }
+        public IEnumerable<PostItem> Posts { get; set; }
     }
 }

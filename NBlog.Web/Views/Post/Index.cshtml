@@ -1,12 +1,12 @@
 ﻿@using NBlog.Web.Helpers
-@model IEnumerable<NBlog.Views.PostItem>
+@model NBlog.Web.Models.PostIndexViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.BlogTitle ?? "Give me a name please!";
 }
 
 <section class="posts">
-    @foreach (var postItem in Model)
+    @foreach (var postItem in Model.Posts)
     {
         <article class="post bottom-ruler">
             <header class="post-header">
