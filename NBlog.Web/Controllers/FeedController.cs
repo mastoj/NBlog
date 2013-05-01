@@ -27,7 +27,7 @@ namespace NBlog.Web.Controllers
         {
             var blog = _blogView.GetBlogs().First();
             var postItems = _postView.GetPublishedPosts()
-                                     .OrderBy(p => p.PublishedTime)
+                                     .OrderByDescending(p => p.PublishedTime)
                                      .Select(CreateSyndicationItem);
 
             var title = blog.BlogTitle + (string.IsNullOrEmpty(blog.SubTitle) ? "" : " - " + blog.SubTitle);
