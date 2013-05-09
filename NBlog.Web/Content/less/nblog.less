@@ -113,10 +113,13 @@ a {
 }
 
 .header {
+	hgroup {
+		display: inline;
+		float: left;
+	}
 	position: relative;
 	background-color: @header-bg;
 	color: @header-main;
-	margin-bottom: 0.3em;
 	margin-top: 0.3em;
 	h1, h2 {
 		display: inline;
@@ -145,6 +148,16 @@ a {
 		li {
 			float: right;
 			margin-left: 0.4em;
+		}
+	}
+	.social-links {
+		float:right;
+		display: inline;
+		.icon {
+			height: 2em;
+			box-shadow: none;
+			border: none;
+			margin-bottom: 0;
 		}
 	}
 }

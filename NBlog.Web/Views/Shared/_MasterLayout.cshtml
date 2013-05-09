@@ -26,11 +26,16 @@
 
     <body>
         <div id="header-container" class="container">
-            <div class="header">
+            <div class="header clearfix">
                 <header>
                     <hgroup>
                         @{Html.RenderAction("Header", "Blog", new { area = "" });}
                     </hgroup>
+                    <div class="social-links">
+                        <a href="@Url.Action("Index", "Feed")">
+                            <img class="icon" src="../../Content/img/rss-basic-webtreatsetc.png"/>
+                        </a>
+                    </div>
                 </header>
                 @if(User != null && User.Identity.IsAuthenticated)
                 {
