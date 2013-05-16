@@ -43,7 +43,7 @@ namespace NBlog.Web.Controllers
         {
             var urlHelper = new UrlHelper(this.ControllerContext.RequestContext);
             var url = new Uri(urlHelper.Action("Show", "Post", new {slug = postItem.Slug}, "http"));
-            return new SyndicationItem(postItem.Title, postItem.Excerpt, url, postItem.Slug, postItem.LastSaveTime);
+            return new SyndicationItem(postItem.Title, postItem.HtmlExcerpt, url, postItem.Slug, postItem.LastSaveTime);
         }
     }
 }
