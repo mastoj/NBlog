@@ -60,6 +60,11 @@ namespace NBlog.Web.Controllers
 
         public virtual ActionResult Show(string slug)
         {
+            var redirectSlug = GetRedirectSlug(slug);
+            if (!string.IsNullOrEmpty(redirectSlug))
+            {
+                return RedirectToAction("Show", "Post", new { slug = redirectSlug });
+            }
             PostItem postItem = null;
             int retries = 0;
             do
@@ -73,6 +78,16 @@ namespace NBlog.Web.Controllers
             var postItemViewModel = new PostItemViewModel(postItem);
             postItemViewModel.IsAdminMode = IsAdminMode();
             return View("Show", postItemViewModel);
+        }
+
+        private string GetRedirectSlug(string slug)
+        {
+            var blog = _blogView.GetBlogs().First();
+            if (blog.RedirectUrls != null && blog.RedirectUrls.ContainsKey(slug))
+            {
+                return blog.RedirectUrls[slug];
+            }
+            return null;
         }
 
         [Authorize]

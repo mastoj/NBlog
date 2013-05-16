@@ -229,6 +229,7 @@
     <Compile Include="Models\CreateBlogModel.cs" />
     <Compile Include="Models\PostItemViewModel.cs" />
     <Compile Include="Models\FeedResult.cs" />
+    <Compile Include="Modules\RedirectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AuthenticationServiceStub.cs" />
